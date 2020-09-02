@@ -5,6 +5,7 @@
  * Author : Vemund
  */ 
 
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
@@ -14,6 +15,7 @@
 #define MYUBRR	F_CPU/16/BAUD-1
 
 #include <util/delay.h>
+#include "inc/xmem.h"
 
 void init_UART(){
 	// Set Baudrate
@@ -63,6 +65,9 @@ ISR(USART0_RXC_vect){
 int main(void)
 {
 	init_UART();
+	init_XMEM();
+	
+	
 	
 	DDRA |= (1<<PA0);
 
@@ -73,14 +78,13 @@ int main(void)
 	
 	uint8_t number = 0;
 	
+	test_XMEM();
+	
     while (1) 
     {
-		printf("Hello number %u\r\n", number);
-		PORTA |= (1<<PA0);
-		_delay_ms(400);
-		PORTA &= ~(1<<PA0);
-		_delay_ms(1000);
-		number++;
+		
+	
+		
     }
 }
 
