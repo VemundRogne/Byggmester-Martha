@@ -10,9 +10,7 @@
 #define XMEM_H_
 
 void init_XMEM();
+
 void test_XMEM();
-
-
-
 
 #endif /* XMEM_H_ */

@@ -137,10 +137,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="inc\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\xmem.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\uart.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\xmem.c">
