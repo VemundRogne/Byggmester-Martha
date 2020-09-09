@@ -19,6 +19,7 @@
 #include "inc/uart.h"
 
 #include <stdlib.h>
+
 void SRAM_test(void)
 {
 	volatile char *ext_ram = (char *) 0x1800; // Start address for the SRAM
@@ -52,106 +53,6 @@ void SRAM_test(void)
 		}
 	}
 	printf("SRAM test completed with \n%4d errors in write phase and \n%4d errors in retrieval phase\n\n", write_errors, retrieval_errors);
-}
-
-void test_XMEM_addressing(){
-	// ADC-Chip select: PD3
-	// SRAM-Chip select: PD4
-	// OLED-Chip: PD5
-	
-	// OLED addresses: 0x1000 -> 0x13FF
-	// ADC addresses:  0x1400 -> 0x17FF
-	// SRAM addresses: 0x1800 -> 0x1FFF
-	
-	volatile char *OLED_add = (char *) 0x1000; // OLED start_address
-	uint16_t OLED_len = 0x13FF - 0x1000; // OLED address length
-	
-	volatile char *ADC_add = (char *) 0x1400; // ADC start-address
-	uint16_t ADC_len = 0x17FF - 0x1400; // ADC address length
-	
-	volatile char *SRAM_add = (char *) 0x1800; // ADC start-address
-	uint16_t SRAM_len = 0x1FFF - 0x1800; // ADC address length
-	
-	printf("Running through all OLED addresses...\n");
-	// Run through all OLED addresses
-	for(uint16_t index = 0; index < OLED_len; index ++){
-		OLED_add[index] = 0xff;
-		_delay_ms(1);
-		
-		// verify only OLED chip-select is low
-		uint8_t OLED_CS = PIND & (1<<PD5);
-		uint8_t ADC_CS = PIND & (1<<PD3);
-		uint8_t SRAM_CS = PIND & (1<<PD4);
-		
-		if (OLED_CS != 0) {
-			printf("OLED_CS read as high, when it should have been low. [OLED-ADDRESS-PHASE]\n");
-		}
-		
-		if (ADC_CS == 0) {
-			printf("ADC_CS read as low, when it should have been high. [OLED-ADDRESS-PHASE]\n");
-		}
-		
-		if (SRAM_CS == 0) {
-			printf("SRAM_CS read as low, when it should have been high. [OLED-ADDRESS-PHASE]\n");
-		}
-		
-		_delay_ms(1);
-	}
-	printf("Done running through OLED addresses!\n");
-	
-//	printf("Running through all ADC addresses...\n");
-//	// Run through all OLED addresses
-//	for(uint16_t index = 0; index < ADC_len; index ++){
-//		ADC_add[index] = 0xff;
-//		_delay_ms(1);
-		
-//		// verify only OLED chip-select is low
-//		uint8_t OLED_CS = PIND & (1<<PD5);
-//		uint8_t ADC_CS = PIND & (1<<PD3);
-//		uint8_t SRAM_CS = PIND & (1<<PD4);
-		
-//		if (ADC_CS != 0) {
-//			printf("ADC_CS read as high, when it should have been low. [ADC-ADDRESS-PHASE]\n");
-//		}
-		
-//		if (OLED_CS == 0) {
-//			printf("OLED_CS read as low, when it should have been high. [ADC-ADDRESS-PHASE]\n");
-//		}
-		
-//		if (SRAM_CS == 0) {
-//			printf("SRAM_CS read as low, when it should have been high. [ADC-ADDRESS-PHASE]\n");
-//		}
-		
-//		_delay_ms(1);
-//	}
-//	printf("Done running through ADC addresses!\n");
-	
-	printf("Running through all SRAM addresses...\n");
-	// Run through all SRAM addresses
-	for(uint16_t index = 0; index < SRAM_len; index ++){
-		SRAM_add[index] = 0xff;
-		_delay_ms(1);
-		
-		// verify only OLED chip-select is low
-		uint8_t OLED_CS = PIND & (1<<PD5);
-		uint8_t ADC_CS = PIND & (1<<PD3);
-		uint8_t SRAM_CS = PIND & (1<<PD4);
-		
-		if (SRAM_CS != 0) {
-			printf("SRAM_CS read as high, when it should have been low. [SRAM-ADDRESS-PHASE]\n");
-		}
-		
-		if (OLED_CS == 0) {
-			printf("OLED_CS read as low, when it should have been high. [SRAM-ADDRESS-PHASE]\n");
-		}
-		
-		if (ADC_CS == 0) {
-			printf("ADC_CS read as low, when it should have been high. [SRAM-ADDRESS-PHASE]\n");
-		}
-		
-		_delay_ms(1);
-	}
-	printf("Done running through SRAM addresses!\n");
 }
 
 int main(void)
