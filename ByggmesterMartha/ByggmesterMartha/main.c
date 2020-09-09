@@ -16,6 +16,7 @@
 
 #include <util/delay.h>
 #include "inc/xmem.h"
+#include "inc/uart.h"
 
 #include <stdlib.h>
 void SRAM_test(void)
@@ -151,38 +152,6 @@ void test_XMEM_addressing(){
 		_delay_ms(1);
 	}
 	printf("Done running through SRAM addresses!\n");
-}
-
-void init_UART(){
-	// Set Baudrate
-	UBRR0L = MYUBRR;
-
-	// Enable RX and TX	
-	UCSR0B = (1<<RXEN0) | (1<<TXEN0);
-
-	// Set frame format: 8data, 2stop bit	
-	UCSR0C = (1<<URSEL0) | (1<<USBS0) | (3<<UCSZ00);
-	
-	// Enable RX interrupt
-	UCSR0B |= (1<<RXCIE0);
-}
-
-// receives one byte in polling mode
-uint8_t UART_rx_polling(){
-	// Wait for data to be received
-	while ( !(UCSR0A & (1<<RXC0) ));
-	
-	// Get data from UART and return
-	return UDR0;
-}
-
-// transmits one byte in polling mode
-void UART_tx_polling(uint8_t data){
-	// Wait for empty transmit buffer
-	while ( !(UCSR0A & (1<<UDRE0) ));
-	
-	// Put data into buffer, sends the data
-	UDR0 = data;
 }
 
 ISR(USART0_RXC_vect){
