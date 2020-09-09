@@ -137,6 +137,9 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="inc\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\uart.h">
       <SubType>compile</SubType>
     </Compile>
@@ -144,6 +147,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\adc.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\uart.c">

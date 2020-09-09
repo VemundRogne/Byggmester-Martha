@@ -17,6 +17,7 @@
 #include <util/delay.h>
 #include "inc/xmem.h"
 #include "inc/uart.h"
+#include "inc/adc.h"
 
 #include <stdlib.h>
 
@@ -59,18 +60,14 @@ int main(void)
 {
 	init_UART();
 	init_XMEM();
-	
-	DDRA |= (1<<PA0);
+	init_adc();
 
 	fdevopen(&UART_tx_polling, &UART_rx_polling);	
 //	fdevopen(&UART_tx_polling(char, stdout *), &UART_rx_polling(stdin *));
 	
 	sei();
 	
-	
 	uint8_t number = 0;
-	
-	test_XMEM_addressing();
 	
     while (1) 
     {	
