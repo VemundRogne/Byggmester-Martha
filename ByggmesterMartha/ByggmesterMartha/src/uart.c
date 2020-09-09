@@ -17,6 +17,13 @@
 
 #include "../inc/uart.h"
 
+// NOTE: This has not been verified to work after refactoring, but I think
+// it should work just fine.
+ISR(USART0_RXC_vect){
+	cli();
+
+	sei();
+}
 
 void init_UART(){
 	// Set Baudrate

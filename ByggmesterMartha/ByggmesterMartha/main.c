@@ -154,19 +154,6 @@ void test_XMEM_addressing(){
 	printf("Done running through SRAM addresses!\n");
 }
 
-ISR(USART0_RXC_vect){
-	cli();
-	//uint8_t n = UART_rx_polling();
-	
-	for (uint8_t i=0; i<5; i++){
-		PORTA |= (1<<PA0);
-		_delay_ms(200);
-		PORTA &= ~(1<<PA0);
-		_delay_ms(500);
-	}
-	sei();
-}
-
 int main(void)
 {
 	init_UART();
