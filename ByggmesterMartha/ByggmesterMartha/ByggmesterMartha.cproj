@@ -140,6 +140,12 @@
     <Compile Include="inc\adc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\hmi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="inc\mmi.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\uart.h">
       <SubType>compile</SubType>
     </Compile>
@@ -150,6 +156,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\adc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\hmi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\mmi.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\uart.c">

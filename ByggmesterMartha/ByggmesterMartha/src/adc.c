@@ -52,19 +52,22 @@ void load_mux_config(){
 	}
 }
 
-void rd_adc(){
+void rd_adc(uint8_t* adc_val){
 	volatile char *ext_adc = (char *) ADC_START_ADDRESS; // Start address for the ADC
 	
-	uint8_t adc_val[8];
-	
-	printf("Reading values from ADC\n");
+	//printf("Reading values from ADC\n");
 	
 	//Write start to start conversion
 	ext_adc[0] = 0x00;
-	_delay_ms(10);
+	
+	// Wait for conversion to complete
+	while( (ADC_BUSY_PIN & (1<<ADC_BUSY_BIT)) == 0){
+		// WAIT
+	}
 	
 	for(uint8_t i=0; i<4; i++){
 		adc_val[i] = ext_adc[i];
-		printf("  channel %u: %u\n", i, adc_val[i]);
+		//printf("  channel %u: %u\n", i, adc_val[i]);
 	}
 }
+

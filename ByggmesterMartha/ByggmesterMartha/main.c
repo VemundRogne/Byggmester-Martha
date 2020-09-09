@@ -18,6 +18,7 @@
 #include "inc/xmem.h"
 #include "inc/uart.h"
 #include "inc/adc.h"
+#include "inc/mmi.h"
 
 #include <stdlib.h>
 
@@ -62,6 +63,8 @@ int main(void)
 	init_XMEM();
 	init_adc();
 
+	init_joystick();
+	
 	fdevopen(&UART_tx_polling, &UART_rx_polling);	
 //	fdevopen(&UART_tx_polling(char, stdout *), &UART_rx_polling(stdin *));
 	
@@ -73,12 +76,18 @@ int main(void)
 	_delay_ms(1000);
 	load_mux_config();
 	_delay_ms(1000);
-	rd_adc();
+	//rd_adc(NULL);
 	
     while (1) 
     {	
-		_delay_ms(1000);
-		rd_adc();
+		_delay_ms(100);
+		//rd_adc(NULL);
+		struct Joystick_pos joystick = get_joystick_pos();
+		struct Slider_pos slider = get_slider_pos();
+		enum Joystick_dir direction = get_joystick_dir();
+		//printf("%i, %i, %i\n", joystick.x, joystick.y, direction);
+		printf("%i, %i\n", slider.right, slider.left);
+		
     }
 }
 
