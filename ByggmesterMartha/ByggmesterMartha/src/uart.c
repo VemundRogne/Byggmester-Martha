@@ -32,8 +32,8 @@ void init_UART(){
 	// Enable RX and TX
 	UCSR0B = (1<<RXEN0) | (1<<TXEN0);
 
-	// Set frame format: 8data, 2stop bit
-	UCSR0C = (1<<URSEL0) | (1<<USBS0) | (3<<UCSZ00);
+	// Set frame format: 8data, 1stop bit
+	UCSR0C = (1<<URSEL0) | (3<<UCSZ00);
 	
 	// Enable RX interrupt
 	UCSR0B |= (1<<RXCIE0);

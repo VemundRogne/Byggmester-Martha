@@ -69,8 +69,16 @@ int main(void)
 	
 	uint8_t number = 0;
 	
+	SRAM_test();
+	_delay_ms(1000);
+	load_mux_config();
+	_delay_ms(1000);
+	rd_adc();
+	
     while (1) 
     {	
+		_delay_ms(1000);
+		rd_adc();
     }
 }
 
