@@ -19,11 +19,11 @@ void write_d(uint8_t data);
 void init_oled();
 
 //void oled_home();
-//void oled_goto_line(line);
-//void oled_goto_collumn(collumn);
+void oled_goto_row(uint8_t row);
+void oled_goto_column(uint8_t col);
 //void oled_clear_line(line);
-//void oled_pos(row, collmn);
-//void oled_print(char*);
-
+void oled_pos(row, col);
+void oled_print(char* letter);
+void clear_screen();
 
 #endif /* OLED_H_ */
