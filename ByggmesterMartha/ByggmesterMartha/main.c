@@ -19,6 +19,7 @@
 #include "inc/uart.h"
 #include "inc/adc.h"
 #include "inc/mmi.h"
+#include "inc/oled.h"
 
 #include <stdlib.h>
 
@@ -62,6 +63,7 @@ int main(void)
 	init_UART();
 	init_XMEM();
 	init_adc();
+	init_oled();
 
 	init_joystick();
 	

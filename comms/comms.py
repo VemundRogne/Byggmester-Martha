@@ -15,7 +15,7 @@ def establish_connection(port):
 
 
 if __name__ == '__main__':
-    ser = establish_connection('COM3')
+    ser = establish_connection('COM7')
     
     while True:
         print(ser.readline())
