@@ -5,7 +5,7 @@
  *  Author: vemun
  */ 
 
-#include <avr/io.h
+#include <avr/io.h>
 
 #include <stdlib.h>
 void SRAM_test(void)

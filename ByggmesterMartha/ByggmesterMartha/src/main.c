@@ -15,14 +15,15 @@
 #define MYUBRR	F_CPU/16/BAUD-1
 
 #include <util/delay.h>
-#include "inc/xmem.h"
-#include "inc/uart.h"
-#include "inc/adc.h"
-#include "inc/mmi.h"
-#include "inc/oled.h"
+#include "../inc/xmem.h"
+#include "../inc/uart.h"
+#include "../inc/adc.h"
+#include "../inc/mmi.h"
+#include "../inc/oled.h"
 
 #include <stdlib.h>
 
+/*
 void SRAM_test(void)
 {
 	volatile char *ext_ram = (char *) 0x1800; // Start address for the SRAM
@@ -56,7 +57,7 @@ void SRAM_test(void)
 		}
 	}
 	printf("SRAM test completed with \n%4d errors in write phase and \n%4d errors in retrieval phase\n\n", write_errors, retrieval_errors);
-}
+}*/
 
 int main(void)
 {
