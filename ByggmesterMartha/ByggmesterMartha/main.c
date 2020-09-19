@@ -78,17 +78,27 @@ int main(void)
 	_delay_ms(1000);
 	load_mux_config();
 	_delay_ms(1000);
-	//rd_adc(NULL);
+	rd_adc(NULL);
 	
     while (1) 
     {	
+		for(uint8_t i=0; i<255; i++){
+			write_d(i);
+			_delay_ms(10);
+		}
+		for(uint8_t i=255; i>0; i--){
+			write_d(i);
+			_delay_ms(10);
+		}
 		_delay_ms(100);
-		//rd_adc(NULL);
+		rd_adc(NULL);
 		struct Joystick_pos joystick = get_joystick_pos();
 		struct Slider_pos slider = get_slider_pos();
 		enum Joystick_dir direction = get_joystick_dir();
-		//printf("%i, %i, %i\n", joystick.x, joystick.y, direction);
-		printf("%i, %i\n", slider.right, slider.left);
+		printf("%i, %i, %i\n", joystick.x, joystick.y, direction);
+		//printf("%i, %i\n", slider.right, slider.left);
+	//	_delay_ms(100);
+		//write_d(10);
 		
     }
 }

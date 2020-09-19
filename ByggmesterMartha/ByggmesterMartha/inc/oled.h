@@ -14,6 +14,7 @@
 #define OLED_DATA_ADDRESS 0x1200
 
 void write_c(uint8_t command);
+void write_d(uint8_t data);
 
 void init_oled();
 

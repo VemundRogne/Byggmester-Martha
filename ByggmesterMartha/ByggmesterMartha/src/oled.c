@@ -14,6 +14,10 @@ void write_c(uint8_t command){
 	ext_oled_cmd[0] = command;
 }
 
+void write_d(uint8_t data){
+	ext_oled_data[0] = data;
+}
+
 void init_oled(){
 	write_c(0xae); // display off
 	write_c(0xa1); //segment remap
