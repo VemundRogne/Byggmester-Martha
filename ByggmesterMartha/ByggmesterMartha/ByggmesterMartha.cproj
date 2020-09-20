@@ -151,7 +151,13 @@
     <Compile Include="inc\adc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\hmi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="inc\menu.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="inc\mmi.h">
@@ -166,13 +172,16 @@
     <Compile Include="inc\xmem.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\adc.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\hmi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\mmi.c">

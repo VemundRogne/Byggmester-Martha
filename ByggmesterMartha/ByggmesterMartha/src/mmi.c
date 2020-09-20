@@ -21,6 +21,7 @@ struct Joystick_pos get_joystick_pos(){
 	uint8_t adc_values[4];
 	adc_get_values(&adc_values);
 	struct Joystick_pos joystick;
+
 	joystick.x = (int)(adc_values[0]) - joystick_offset_x;
 	joystick.y = (int)(adc_values[1]) - joystick_offset_y;
 	return joystick;

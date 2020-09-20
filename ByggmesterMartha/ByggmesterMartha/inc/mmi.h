@@ -33,4 +33,6 @@ enum Joystick_dir get_joystick_dir();
 
 struct Slider_pos get_slider_pos();
 
+//joystick_press(); return true if pressed or something 
+
 #endif /* MMI_H_ */
