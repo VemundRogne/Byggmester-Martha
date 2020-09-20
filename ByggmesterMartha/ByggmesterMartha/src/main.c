@@ -28,7 +28,7 @@ int main(void)
 	init_UART();
 	init_XMEM();
 	init_adc();
-	init_oled();
+	oled_init();
 
 	init_joystick();
 	
@@ -41,34 +41,61 @@ int main(void)
 	
 	//SRAM_test();
 	//delay_ms(1000);
-	load_mux_config();
-	_delay_ms(1000);
-	rd_adc(NULL);
+	//load_mux_config();
+	//_delay_ms(1000);
+	//rd_adc(NULL);
 	
     while (1) 
     {	
 
-
-    	oled_goto_row(1);
-    	oled_goto_column(0);
-    	char bokstav = 54;
+    	char bokstav = 'B';
+    	printf("%d\n", bokstav);
     	char* letter = &bokstav;
-    	while (1){
-    		oled_print(letter);
-    		_delay_ms(100);
 
-    	}
 
-		_delay_ms(100);
+    	char kielder[13] = {'B','Y','G','G','M','E','S','T','E','R','E','!','\0'};
+
+    	oled_clear();
+
+    	
+    	char* ting = &kielder[0];
+		for (uint8_t j = 0; j < 8; j++){
+			oled_goto_column(0);
+			oled_goto_row(j);
+	    	oled_print_string("martha");
+	    	ting = &kielder[0];
+	    	_delay_ms(500);
+	    }
+
+		_delay_ms(1000);
+		
+		
+		/*
 		rd_adc(NULL);
 		struct Joystick_pos joystick = get_joystick_pos();
 		struct Slider_pos slider = get_slider_pos();
 		enum Joystick_dir direction = get_joystick_dir();
 		printf("%i, %i, %i\n", joystick.x, joystick.y, direction);
-		//printf("%i, %i\n", slider.right, slider.left);
-	//	_delay_ms(100);
-		//write_d(10);
+		*/
+		
 		
     }
+    
 }
 
+/*
+'A':
+
+00000
+11011
+11011
+11111
+11011
+11011
+0111
+0010
+
+
+
+
+*/

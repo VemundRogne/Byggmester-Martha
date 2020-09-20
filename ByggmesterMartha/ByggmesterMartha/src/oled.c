@@ -24,11 +24,6 @@ void oled_goto_row(uint8_t row){
 	write_c(0xB0 | row);
 };
 
-void clear_row(uint8_t row){
-	for(uint8_t j = 0; j < 128; j++){
-		write_d(0);
-	}
-};
 
 void oled_goto_column(uint8_t col){
 	uint8_t upper_address = col >> 4;
@@ -39,29 +34,55 @@ void oled_goto_column(uint8_t col){
 };
 
 void oled_pos(row, col){
-	oled_goto_column(col);
 	oled_goto_row(row);
+	oled_goto_column(col);
 };
 
-void clear_screen(){
-	for(uint8_t i=0; i<8; i++){
-			oled_goto_row(i);
-			for(uint8_t j = 0; j < 128; j++){
-				write_d(0);
-				_delay_ms(5);
-			}
-		}
-}
 
-void oled_print(char* letter){
-	for (int i = 0; i < sizeof(font8[*letter]); i++){
-		uint8_t tall = font8[*letter][0];
-		write_d(tall);
+void oled_clear_row(row){
+	oled_goto_row(row);
+	for(uint8_t j = 0; j < 128; j++){
+		write_d(0);
+		_delay_ms(5);
+	}
+};
+
+void oled_fill_row(row){
+	oled_goto_row(row);
+	for(uint8_t j = 0; j < 128; j++){
+		write_d(255);
+		_delay_ms(5);
+	}
+};
+
+
+
+
+
+void oled_clear(){
+	for(uint8_t row=0; row<8; row++){
+		oled_clear_row(row);
+	}
+};
+
+void oled_print_char(char* letter){
+	uint8_t offset = 32;
+	for (int i = 0; i < 8; i++){
+		uint8_t data = pgm_read_byte(&(font8[*letter - offset][i]));
+		write_d(data);
 	} 
 };
 
+void oled_print_string(char* char_pointer){
+	while (*char_pointer != '\0'){
+		oled_print_char(char_pointer);
+		char_pointer++;
+		_delay_ms(5);
+	}
+};
 
-void init_oled(){
+
+void oled_init(){
 	write_c(0xae); // display off
 	write_c(0xa1); //segment remap
 	write_c(0xda); //common pads hardware: alternative
