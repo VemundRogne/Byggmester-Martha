@@ -11,7 +11,7 @@
 #include <util/delay.h>
 
 void init_joystick(){
-	_delay_ms(100);
+	_delay_ms(1000);
 	struct Joystick_pos joystick = get_joystick_pos();
 	joystick_offset_x = joystick.x;
 	joystick_offset_y = joystick.y;
@@ -19,34 +19,28 @@ void init_joystick(){
 
 struct Joystick_pos get_joystick_pos(){
 	uint8_t adc_values[4];
-	rd_adc(&adc_values);
+	adc_get_values(&adc_values);
 	struct Joystick_pos joystick;
-	joystick.x = (int) (((adc_values[0]-128)*100)/128) - joystick_offset_x;
-	joystick.y = (int) (((adc_values[1]-128)*100)/128) - joystick_offset_y;
+	joystick.x = (int)(adc_values[0]) - joystick_offset_x;
+	joystick.y = (int)(adc_values[1]) - joystick_offset_y;
 	return joystick;
 }
 
 enum Joystick_dir get_joystick_dir(){
 	struct Joystick_pos joystick = get_joystick_pos();
 	
-//	uint8_t adc_values[4];
-//	rd_adc(&adc_values);
-	
-//	int x = adc_values[0];
-//	int y = adc_values[1];
-	
 	if ((abs(joystick.x) < 50) && (abs(joystick.y) < 50)){
 		return NEUTRAL;
 	}
 	
 	if (abs(joystick.y)>abs(joystick.x)){
-		if (joystick.y < 0){
+		if (joystick.y < -35){
 			return DOWN;
 		}
 		return UP;
 	}
 	
-	if (joystick.x < 0){
+	if (joystick.x < -35){
 		return LEFT;
 	}
 	return RIGHT;
