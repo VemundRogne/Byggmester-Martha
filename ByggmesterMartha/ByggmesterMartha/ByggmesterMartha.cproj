@@ -190,6 +190,12 @@
     <Compile Include="src\oled.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\sram_test.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\timers.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\uart.c">
       <SubType>compile</SubType>
     </Compile>

@@ -8,6 +8,7 @@
 #include "../inc/menu.h"
 #include "../inc/oled.h"
 #include "../inc/mmi.h"
+#include <string.h>
 
 enum Joystick_dir last_joystick_dir = NEUTRAL;
 
@@ -34,6 +35,13 @@ void menu_draw_item(uint8_t position, char *menu){
 	memcpy(&_item[0], &menu[position*LINELENGTH], LINELENGTH);
 	_item[LINELENGTH] = '\0';
 	
+	if(current_selection == position){
+		_item[0] = 42;
+	}
+	else{
+		_item[0] = 32;
+	}
+	
 	for(uint8_t i = 0; i<LINELENGTH; i++){
 		oled_print_char(&_item[i], position);
 	}
@@ -55,8 +63,8 @@ void menu_go_up(){
 };
 
 void menu_go_down(){
-	if (current_selection != 8){
-		current_selection += 1;	
+	if (current_selection < 7){
+		current_selection += 1;
 	}
 	
 };

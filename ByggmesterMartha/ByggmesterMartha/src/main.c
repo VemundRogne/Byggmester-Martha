@@ -21,6 +21,7 @@
 #include "../inc/mmi.h"
 #include "../inc/oled.h"
 #include "../inc/menu.h"
+#include "../inc/timers.h"
 
 #include <stdlib.h>
 
@@ -31,27 +32,22 @@ int main(void)
 	init_adc();
 	oled_init();
 	//menu_init();
+	init_timer0();
 
-	init_joystick();
 	
 	fdevopen(&UART_tx_polling, &UART_rx_polling);	
-	//fdevopen(&UART_tx_polling(char, stdout *), &UART_rx_polling(stdin *));
 	
 	sei();
-	
-	uint8_t number = 0;
-	
-	//SRAM_test();
-	//delay_ms(1000);
+
 	load_mux_config();
+	init_joystick();
 	
     while (1) 
     {
 		menu_home();
 		menu_draw(&home_menu);
 		_delay_ms(100);
-		
-		//menu_navigate();
+		menu_navigate();
 		
 		
 		
