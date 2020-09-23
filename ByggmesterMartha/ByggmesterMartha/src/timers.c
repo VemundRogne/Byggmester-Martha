@@ -7,9 +7,12 @@
 
 #include "../inc/timers.h"
 #include <avr/io.h>
+#include "../inc/adc.h"
+#include <avr/interrupt.h>
 
 // This ISR is called approximately 18.75 times per second, as per init_timer0();
 ISR(TIMER0_OVF_vect){
+	rd_adc();
 }
 
 // Configures timer0 to be a system-wide interrupt generator at ~18.75 Hz
