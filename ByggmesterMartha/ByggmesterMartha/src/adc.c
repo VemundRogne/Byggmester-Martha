@@ -6,6 +6,7 @@
  */ 
 
 #include "../inc/adc.h"
+#include "../inc/timers.h"
 #include <avr/io.h>
 #include "../inc/xmem.h"
 
@@ -14,21 +15,7 @@
 
 // Sets up Timer1 to be a PWM output on PD5 (OC1A)
 void init_adc(){
-	// Sets Waveform Generation Mode to mode 5: Fast PWM, 8-bit
-	TCCR1A |= (1<<WGM10);
-	TCCR1B |= (1<<WGM12);
-	
-	// Set the OC1A pin as output
-	DDRD |= (1<<PD5);
-	
-	// Sets output compare
-	OCR1AL = 128;
-	
-	// Sets up OC1A to "Clear OC1A on Compare Match, set OC1A at TOP"
-	TCCR1A |= (1<< COM1A1);
-	
-	// Clock select: No prescaling
-	TCCR1B |= (1<<CS10);
+	init_timer1();
 }
 
 // Loads configuration of each channel according to figura 4a (page 11) in datasheet
