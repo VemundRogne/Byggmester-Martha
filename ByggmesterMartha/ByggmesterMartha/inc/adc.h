@@ -14,7 +14,7 @@
 // See: https://www.mikrocontroller.net/attachment/139580/schift-filter-tp.pdf
 // for info about the filter
 volatile uint16_t _adc_values[4];
-#define FILTER_CONSTANT 2
+#define FILTER_CONSTANT 3
 
 // Configuration registers
 #define ADC_A0		0x00

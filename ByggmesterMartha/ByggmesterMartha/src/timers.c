@@ -10,19 +10,19 @@
 #include "../inc/adc.h"
 #include <avr/interrupt.h>
 
-// This ISR is called approximately 18.75 times per second, as per init_timer0();
+// This ISR is called approximately 70 times per second, as per init_timer0();
 ISR(TIMER0_OVF_vect){
 	rd_adc();
 }
 
-// Configures timer0 to be a system-wide interrupt generator at ~18.75 Hz
+// Configures timer0 to be a system-wide interrupt generator at ~70 Hz
 void init_timer0(){
 	// Waveform generation defaults to "Normal"
 	// We configure no direct outputs
 	
-	// Clock select: prescale F_CPU by 1024.
-	// This results in a frequency of (F_CPU / prescaler) / 2**8 = 18.75 Hz
-	TCCR0 |= (1<<CS02) | (1<<CS00);
+	// Clock select: prescale F_CPU by 256.
+	// This results in a frequency of (F_CPU / prescaler) / 2**8 = 70 Hz
+	TCCR0 |= (1<<CS02);
 	
 	// Enable Timer0 Overflow interrupt
 	TIMSK |= (1<<TOIE0);
