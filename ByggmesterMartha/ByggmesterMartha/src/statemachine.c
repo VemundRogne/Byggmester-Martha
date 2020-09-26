@@ -44,10 +44,12 @@ void statemachine_execute_current_state(){
 	switch(current_state){
 		case HOME_MENU:
 			menu_draw(&home_menu);
+			menu_navigate();
 			break;
 
 		case HIGHSCORE:
 			menu_draw(&hs_menu);
+			menu_navigate();
 			break;
 	}
 }

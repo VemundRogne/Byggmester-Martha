@@ -43,12 +43,11 @@ int main(void)
 	load_mux_config();
 	init_joystick();
 	
+	menu_home();
+	menu_highscores();
+	
     while (1) 
     {
-		menu_home();
-		menu_highscores();
 		statemachine_execute_current_state();
-		_delay_ms(100);
-		menu_navigate();
     }
 }
