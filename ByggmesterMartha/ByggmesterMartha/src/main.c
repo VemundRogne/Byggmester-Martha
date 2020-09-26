@@ -22,6 +22,7 @@
 #include "../inc/oled.h"
 #include "../inc/menu.h"
 #include "../inc/timers.h"
+#include "../inc/statemachine.h"
 
 #include <stdlib.h>
 
@@ -33,6 +34,7 @@ int main(void)
 	oled_init();
 	//menu_init();
 	init_timer0();
+	init_statemachine();
 	
 	fdevopen(&UART_tx_polling, &UART_rx_polling);	
 	
@@ -45,7 +47,7 @@ int main(void)
     {
 		menu_home();
 		menu_highscores();
-		menu_draw(&hs_menu);
+		statemachine_execute_current_state();
 		_delay_ms(100);
 		menu_navigate();
     }

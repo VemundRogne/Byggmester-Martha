@@ -8,6 +8,7 @@
 #include "../inc/menu.h"
 #include "../inc/oled.h"
 #include "../inc/mmi.h"
+#include "../inc/statemachine.h"
 #include <string.h>
 
 enum Joystick_dir last_joystick_dir = NEUTRAL;
@@ -75,8 +76,7 @@ void menu_navigate(){
 		menu_go_up();
 	}
 	if ((direction == LEFT) && (last_joystick_dir != LEFT)){
-		menu_select();
-		
+		statemachine_handle_menu_execute();
 	}
 	
 		
