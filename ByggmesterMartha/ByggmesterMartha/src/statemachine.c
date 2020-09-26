@@ -20,8 +20,8 @@ void statemachine_handle_menu_execute(){
 	switch(current_state){
 		case HOME_MENU:
 			switch(current_selection){
-				default:
-					current_state = HIGHSCORE;
+				case 4:
+					enter_highscore_menu();
 					break;
 			}
 			break;
@@ -30,6 +30,9 @@ void statemachine_handle_menu_execute(){
 			switch(current_selection){
 				default:
 					current_state = HOME_MENU;
+					current_selection = 3;
+					menu_upper_bound = 3;
+					menu_lower_bound = 5;
 					break;
 			}
 			break;
@@ -37,6 +40,16 @@ void statemachine_handle_menu_execute(){
 		default:
 			break;
 	}
+}
+
+void enter_highscore_menu(){
+	current_state = HIGHSCORE;
+
+	menu_highscores();
+
+	current_selection = 5;
+	menu_lower_bound = 5;
+	menu_upper_bound = 5;
 }
 
 

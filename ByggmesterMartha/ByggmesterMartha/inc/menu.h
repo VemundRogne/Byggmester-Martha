@@ -15,6 +15,9 @@ volatile char home_menu[8*LINELENGTH + 1];
 volatile char hs_menu[8*LINELENGTH + 1];
 
 uint8_t current_selection;
+uint8_t menu_upper_bound;
+uint8_t menu_lower_bound;
+
 
 void menu_init();
 

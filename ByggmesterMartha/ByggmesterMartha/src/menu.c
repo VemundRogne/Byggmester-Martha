@@ -16,7 +16,10 @@ enum Joystick_dir last_joystick_dir = NEUTRAL;
 void menu_init(){
 	memset(&inversion_mask[0], 0, 8);
 	oled_clear();
-	current_selection = 0;
+	
+	current_selection = 3;
+	menu_upper_bound = 3;
+	menu_lower_bound = 5;
 };
 
 void menu_insert_item(char* menu, char *element, uint8_t len, uint8_t position){
@@ -54,13 +57,13 @@ void menu_draw(char *menu){
 };
 
 void menu_go_up(){
-	if (current_selection != 0){ //Upper bound){
+	if (current_selection > menu_upper_bound){ //Upper bound){
 		current_selection -= 1;
 	}
 };
 
 void menu_go_down(){
-	if (current_selection < 7){ //Lower Bound){
+	if (current_selection < menu_lower_bound){ //Lower Bound){
 		current_selection += 1;
 	}
 	

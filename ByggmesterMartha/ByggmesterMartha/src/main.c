@@ -32,7 +32,7 @@ int main(void)
 	init_XMEM();
 	init_adc();
 	oled_init();
-	//menu_init();
+	menu_init();
 	init_timer0();
 	init_statemachine();
 	
@@ -44,7 +44,6 @@ int main(void)
 	init_joystick();
 	
 	menu_home();
-	menu_highscores();
 	
     while (1) 
     {
