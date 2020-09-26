@@ -57,13 +57,13 @@ void menu_draw(char *menu){
 };
 
 void menu_go_up(){
-	if (current_selection != 0){
+	if (current_selection != 0){ //Upper bound){
 		current_selection -= 1;
 	}
 };
 
 void menu_go_down(){
-	if (current_selection < 7){
+	if (current_selection < 7){ //Lower Bound){
 		current_selection += 1;
 	}
 	
@@ -77,16 +77,18 @@ void menu_navigate(){
 	}
 	if ((direction == UP) && (last_joystick_dir != UP)){
 		menu_go_up();
-	}	
+	}
+	if ((direction == LEFT) && (last_joystick_dir != LEFT)){
+		menu_select();
+		
+	}
+	
+		
 	last_joystick_dir = direction;
 };
 
 uint8_t menu_select(){
-	//if (joystick_press == True){
-		selected_option = current_selection;
-		current_selection = 0;
-		return selected_option;
-	//}	
+	printf("HEEEEEEEEEI <3333");
 };
 
 void menu_home(){
@@ -106,7 +108,23 @@ void menu_home(){
 	menu_insert_item(&home_menu, &option3, strlen(option3), 5);
 	menu_insert_item(&home_menu, NULL, 0, 6);
 	menu_insert_item(&home_menu, NULL, 0, 7);
+};
 
+void menu_highscores(){
+	char title[LINELENGTH] = "  HIGH SCORE!";
+	menu_insert_item(&hs_menu, &title, strlen(title), 0);
 	
-
+	//Options
+	char option1[LINELENGTH] = " Oskar 100";
+	char option2[LINELENGTH] = " Vemund 50";
+	char option3[LINELENGTH] = " Martha 3";
+	char option4[LINELENGTH] = " Back";
+	
+	menu_insert_item(&hs_menu, NULL, 0, 1);
+	menu_insert_item(&hs_menu, &option1, strlen(option1), 2);
+	menu_insert_item(&hs_menu, &option2, strlen(option2), 3);
+	menu_insert_item(&hs_menu, &option3, strlen(option3), 4);
+	menu_insert_item(&hs_menu, &option4, strlen(option4), 5);
+	menu_insert_item(&hs_menu, NULL, 0, 6);
+	menu_insert_item(&hs_menu, NULL, 0, 7);
 };

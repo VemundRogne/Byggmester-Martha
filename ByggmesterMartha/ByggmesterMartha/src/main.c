@@ -44,7 +44,8 @@ int main(void)
     while (1) 
     {
 		menu_home();
-		menu_draw(&home_menu);
+		menu_highscores();
+		menu_draw(&hs_menu);
 		_delay_ms(100);
 		menu_navigate();
     }

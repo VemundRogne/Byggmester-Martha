@@ -12,6 +12,7 @@
 
 #define LINELENGTH	16
 volatile char home_menu[8*LINELENGTH + 1];
+volatile char hs_menu[8*LINELENGTH + 1];
 //volatile char sub_menu1[8*LINELENGTH + 1]; implementation for sub menus
 
 //uint8_t current_selection;
@@ -34,7 +35,11 @@ uint8_t menu_select(); //Må kanskje gjøres om til en interrupt.
 
 void menu_home();
 
+void menu_highscores();
+
 void menu_draw(char *menu);
+
+void menu_test();
 
 //void menu_highscorse(); //TODO
 //void menu_play_game(); //TODO
