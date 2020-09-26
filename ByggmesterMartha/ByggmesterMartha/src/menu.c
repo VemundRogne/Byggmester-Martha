@@ -12,10 +12,6 @@
 
 enum Joystick_dir last_joystick_dir = NEUTRAL;
 
-uint8_t current_selection = 0;
-
-uint8_t selected_option = 0;
-
 void menu_init(){
 	memset(&inversion_mask[0], 0, 8);
 	oled_clear();
