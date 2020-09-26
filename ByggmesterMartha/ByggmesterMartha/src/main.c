@@ -33,7 +33,6 @@ int main(void)
 	oled_init();
 	//menu_init();
 	init_timer0();
-
 	
 	fdevopen(&UART_tx_polling, &UART_rx_polling);	
 	
@@ -48,32 +47,5 @@ int main(void)
 		menu_draw(&home_menu);
 		_delay_ms(100);
 		menu_navigate();
-		
-		
-		
-		//rd_adc(NULL);
-		//struct Joystick_pos joystick = get_joystick_pos();
-		//struct Slider_pos slider = get_slider_pos();
-		//enum Joystick_dir direction = get_joystick_dir();
-		//printf("%i, %i, %i\n", joystick.x, joystick.y, direction);		
-		
     }
-    
 }
-
-/*
-'A':
-
-00000
-11011
-11011
-11111
-11011
-11011
-0111
-0010
-
-
-
-
-*/
