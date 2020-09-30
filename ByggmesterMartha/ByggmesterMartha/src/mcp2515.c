@@ -30,9 +30,11 @@ void mcp2515_init(enum mode CANmode){
 
 	//Should we add self-test?
 
+	mcp2515_select();
 	//Select mode
 	uint8_t command[3] = {MCP_WRITE, MCP_CANCTRL, CANmode};
 	spi_write(&command[0], 3);
+	mcp2515_deselect();
 }
 
 /*
@@ -163,7 +165,7 @@ void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t bit, uint8_t value){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
 	
-	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, 1 << bit, 1 << value};
+	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, 1 << bit, value << bit};
 	spi_write(&modify_command[0], 4);
 
 	// Deselect MCP2515 (release CS)
