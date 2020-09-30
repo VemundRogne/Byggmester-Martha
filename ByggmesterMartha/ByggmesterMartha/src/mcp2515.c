@@ -10,21 +10,8 @@
 #include <util/delay.h>
 #include <avr/io.h>
 
-//#include "../inc/spi.h"
+#include "../inc/spi.h"
 #include "../inc/mcp2515.h"
-
-void spi_write(uint8_t* command, uint8_t n){
-	//Do stuff
-}
-
-void spi_read(uint8_t* read_buffer, uint8_t n){
-	//Do stuff
-}
-
-void spi_init(){
-	//Do stuff
-}
-
 
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
