@@ -185,15 +185,12 @@ void mcp2515_RESET();
 */
 void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n);
 
-void mcp2515_READ_RX_BUFFER();
-
 /*
  * Function: Write n bytes to the MCP2515
  * --------------------------------------
  * Write n bytes to the MCP2515 starting at address
 */
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
-void mcp2515_LOAD_TX_BUFFER();
 
 void mcp2515_RTS();
 
