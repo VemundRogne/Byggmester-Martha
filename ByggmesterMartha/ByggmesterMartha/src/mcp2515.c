@@ -39,7 +39,7 @@ void mcp2515_init(enum mode CANmode){
 	spi_write(&command[0], 3);
 }
 
-void mcp2515_reset(){
+void mcp2515_RESET(){
 	mcp2515_select();
 
 	uint8_t reset_command = RESET;
@@ -48,7 +48,7 @@ void mcp2515_reset(){
 	mcp2515_deselect();
 }
 
-void mcp2515_read(uint8_t address, uint8_t *read_buffer, uint8_t n){
+void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n){
 	mcp2515_select();
 
 	uint8_t command[2] = {READ, address};
@@ -59,7 +59,7 @@ void mcp2515_read(uint8_t address, uint8_t *read_buffer, uint8_t n){
 	mcp2515_deselect();
 }
 
-void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n){
+void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
 	mcp2515_select();
 
 	uint8_t write_command[2] = {WRITE, address};
@@ -68,3 +68,18 @@ void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n){
 
 	mcp2515_deselect();
 }
+
+//First register [0, 0, 0, 0, 1, 0, 0, 0]
+//Second register [0, 0, 0,]
+
+//Finn en buffer med TXREQ = 0, altså en som er ledig
+//Skriv data til buffer
+//Marker at buffer er klar til å sendes med TXREQ = 1
+
+//Lage funksjon som fyller n bytes med
+
+
+// Initialize transmission buffer
+// SJekk om buffer er klar til å sende
+// Skriv data til buffer
+// Buffer sender interrupt "transmition finished"
