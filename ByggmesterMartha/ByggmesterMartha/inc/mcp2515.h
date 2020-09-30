@@ -156,4 +156,22 @@ Copyright 2003 Kimberly Otten Software Consulting
 
 
 
+//mcp functions
+#include <stdio.h>
+
+enum mode{
+	NORMAL = 0b000,
+	SLEEP = 0b001,
+	LOOPBACK = 0b010,
+	LISTEN = 0b011,
+	CONFIG = 0b100
+};
+
+
+void mcp2515_init(enum mode MCP_MODE);
+
+void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n);
+
+void mcp2515_read(uint8_t address, uint8_t *read_buffer, uint8_t n);
+
 #endif
