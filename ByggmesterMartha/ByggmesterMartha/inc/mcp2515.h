@@ -170,11 +170,28 @@ enum mode{
 
 void mcp2515_init(enum mode MCP_MODE);
 
+/*
+ * Function: Send reset command to mcp2515
+ * ---------------------------------------
+ * Single-byte instruction to re-initialize the internal registers
+ * of the MCP2515 and set Configuration mode.
+*/
 void mcp2515_RESET();
 
+/*
+ * Function: Read n bytes from MCP2515
+ * -----------------------------------
+ * Reads n bytes from MCP2515 starting from address
+*/
 void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n);
+
 void mcp2515_READ_RX_BUFFER();
 
+/*
+ * Function: Write n bytes to the MCP2515
+ * --------------------------------------
+ * Write n bytes to the MCP2515 starting at address
+*/
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
 void mcp2515_LOAD_TX_BUFFER();
 

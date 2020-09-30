@@ -1,7 +1,3 @@
-#define READ 	0b00000011
-#define WRITE 	0b00000010
-#define RESET 	0b11000000
-
 #define MCP_CS_PORT PORTB
 #define MCP_CS_PIN	4
 #define MCP_CS_DDR	DDRB
@@ -39,33 +35,62 @@ void mcp2515_init(enum mode CANmode){
 	spi_write(&command[0], 3);
 }
 
+/*
+ * Function: Send reset command to mcp2515
+ * ---------------------------------------
+ * Single-byte instruction to re-initialize the internal registers
+ * of the MCP2515 and set Configuration mode.
+*/
 void mcp2515_RESET(){
+	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
 
-	uint8_t reset_command = RESET;
-	spi_write(&reset_command, 1);
+	// Creates a reset instruction and writes it to the MCP2515
+	uint8_t reset_instruction = MCP_RESET;
+	spi_write(&reset_instruction, 1);
 
+	// Deselect MCP2515 (release CS)
 	mcp2515_deselect();
 }
 
+
+/*
+ * Function: Read n bytes from MCP2515
+ * -----------------------------------
+ * Reads n bytes from MCP2515 starting from address
+*/
 void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n){
+	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
 
-	uint8_t command[2] = {READ, address};
-	spi_write(&command[0], 2);
-	
+	// Create a read instruction and writes it to MCP2515
+	uint8_t read_instruction[2] = {MCP_READ, address};
+	spi_write(&read_instruction[0], 2);
+
+	// Reads the data from MCP2515
 	spi_read(read_buffer, n);
 
 	mcp2515_deselect();
 }
 
-void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
-	mcp2515_select();
 
-	uint8_t write_command[2] = {WRITE, address};
-	spi_write(&write_command[0], 2);
+/*
+ * Function: Write n bytes to the MCP2515
+ * --------------------------------------
+ * Write n bytes to the MCP2515 starting at address
+*/
+void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
+	// Select the MCP2515 (pull CS low)
+	mcp2515_select();
+	
+	// Create a write instruction and send it to MCP2515
+	uint8_t write_instruction[2] = {MCP_WRITE, address};
+	spi_write(&write_instruction[0], 2);
+
+	// Write the data to MCP2515
 	spi_write(write_buffer, n);
 
+	// Deselect MCP2515 (release CS)
 	mcp2515_deselect();
 }
 
