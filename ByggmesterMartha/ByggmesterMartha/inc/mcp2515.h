@@ -192,7 +192,7 @@ void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n);
 */
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
 
-void mcp2515_RTS();
+void mcp2515_RTS(uint8_t RTS_selection);
 
 /*
  * Function: Read most used status bits for message transmission and reception

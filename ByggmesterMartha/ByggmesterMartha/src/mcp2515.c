@@ -146,3 +146,26 @@ uint8_t mcp2515_READ_STATUS(){
 // SJekk om buffer er klar til å sende
 // Skriv data til buffer
 // Buffer sender interrupt "transmition finished"
+
+
+/*
+ * Function: Request to send for MCP2515
+ * --------------------------------------
+	Gets selected transmit buffer(s) as input
+	and initiates message transmission for the selected transmit buffer(s). 
+ * 
+*/
+void mcp2515_RTS(uint8_t RTS_selection){
+	// Select the MCP2515 (pull CS low)
+	mcp2515_select();
+	
+	// Create a RTS instruction and send it to MCP2515
+	// logic for rts_instruction variable permits using 
+	// both the defined MCP_RTS_TX as input, as well as 1, 2, 4 and 7
+	
+	uint8_t rts_instruction = (0x80 | RTS_selection);
+	spi_write(&rts_instruction, 1);
+	
+	// Deselect MCP2515 (release CS)
+	mcp2515_deselect();	
+}
