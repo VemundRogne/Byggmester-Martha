@@ -32,8 +32,7 @@ void mcp2515_init(enum mode CANmode){
 
 	mcp2515_select();
 	//Select mode
-	uint8_t command[3] = {MCP_WRITE, MCP_CANCTRL, CANmode};
-	spi_write(&command[0], 3);
+	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
 	mcp2515_deselect();
 }
 
@@ -161,11 +160,11 @@ uint8_t mcp2515_READ_STATUS(){
  * --------------------------------------
  * Sets bit in register_addr to value (0/1)
 */
-void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t bit, uint8_t value){
+void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_byte){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
 	
-	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, 1 << bit, value << bit};
+	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, mask_byte, value_byte};
 	spi_write(&modify_command[0], 4);
 
 	// Deselect MCP2515 (release CS)

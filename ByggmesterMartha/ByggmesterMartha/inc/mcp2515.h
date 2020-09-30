@@ -213,7 +213,7 @@ uint8_t mcp2515_READ_STATUS();
 
 uint8_t mcp2515_RX_STATUS();
 
-void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t bit, uint8_t value);
+void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_byte);
 
 
 #endif
