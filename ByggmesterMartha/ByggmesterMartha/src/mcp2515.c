@@ -95,22 +95,43 @@ void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
 }
 
 
+/*
+ * Function: Get status of receive buffers
+ * --------------------------------------
+ * See FIGURE 12-9 in MCP2515 datasheet for description of the byte returned
+*/
+uint8_t mcp2515_RX_STATUS(){
+	uint8_t rx_status;
+
+	// Select the MCP2515 (pull CS low)
+	mcp2515_select();
+
+	// Create a write instruction and send it to MCP2515
+	uint8_t status_command = MCP_RX_STATUS;
+	spi_write(&status_command, 1);
+
+	// Loads status to rx_status pointer
+	spi_read(&rx_status, 1);
+
+	// Deselect MCP2515 (release CS)
+	mcp2515_deselect();
+	return rx_status;
+}
+
+
+
+/*
+ * Function: Modify a bit in a chosen register in MCP2515
+ * --------------------------------------
+ * Sets bit in register_addr to value (0/1)
+*/
 void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t bit, uint8_t value){
+	// Select the MCP2515 (pull CS low)
+	mcp2515_select();
+	
 	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, 1 << bit, 1 << value};
 	spi_write(&modify_command[0], 4);
+
+	// Deselect MCP2515 (release CS)
+	mcp2515_deselect();
 };
-
-//First register [0, 0, 0, 0, 1, 0, 0, 0]
-//Second register [0, 0, 0,]
-
-//Finn en buffer med TXREQ = 0, altså en som er ledig
-//Skriv data til buffer
-//Marker at buffer er klar til å sendes med TXREQ = 1
-
-//Lage funksjon som fyller n bytes med
-
-
-// Initialize transmission buffer
-// SJekk om buffer er klar til å sende
-// Skriv data til buffer
-// Buffer sender interrupt "transmition finished"
