@@ -170,8 +170,9 @@ enum mode{
 
 void mcp2515_init(enum mode MCP_MODE);
 
-void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n);
+void mcp2515_reset();
 
+void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n);
 void mcp2515_read(uint8_t address, uint8_t *read_buffer, uint8_t n);
 
 #endif

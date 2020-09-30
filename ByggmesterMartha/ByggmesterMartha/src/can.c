@@ -1,7 +1,3 @@
-#include "../inc/can.h"
-#include "../inc/mcp2515.h"
-#include <avr/io.h>
-
 #define READ 	0b00000011
 #define WRITE 	0b00000010
 #define RESET 	0b11000000
@@ -9,6 +5,13 @@
 #define MCP_CS_PORT PORTB
 #define MCP_CS_PIN	4
 #define MCP_CS_DDR	DDRB
+
+#define F_CPU	4915200
+#include <util/delay.h>
+#include <avr/io.h>
+
+//#include "../inc/spi.h"
+#include "../inc/mcp2515.h"
 
 void spi_write(uint8_t* command, uint8_t n){
 	//Do stuff
@@ -38,19 +41,25 @@ void mcp2515_init(enum mode CANmode){
 	// Setting direction of slave_select pin and deselecting mcp
 	MCP_CS_DDR |= (1 << MCP_CS_PIN);
 	mcp2515_deselect();
-
+	_delay_ms(10);
 	//Reset mcp2515 on initialization
-	uint8_t reset_command = RESET;
-	spi_write(&reset_command, 1);
+	mcp2515_reset();
 
 	//Should we add self-test?
 
 	//Select mode
 	uint8_t command[3] = {WRITE, MCP_CANCTRL, CANmode};
 	spi_write(&command[0], 3);
-};
+}
 
+void mcp2515_reset(){
+	mcp2515_select();
 
+	uint8_t reset_command = RESET;
+	spi_write(&reset_command, 1);
+
+	mcp2515_deselect();
+}
 
 void mcp2515_read(uint8_t address, uint8_t *read_buffer, uint8_t n){
 	mcp2515_select();
@@ -71,4 +80,4 @@ void mcp2515_write(uint8_t address, uint8_t *write_buffer, uint8_t n){
 	spi_write(write_buffer, n);
 
 	mcp2515_deselect();
-};
+}
