@@ -94,11 +94,43 @@ void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
 	mcp2515_deselect();
 }
 
-
 void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t bit, uint8_t value){
 	uint8_t modify_command[4] = {MCP_BITMOD, register_addr, 1 << bit, 1 << value};
 	spi_write(&modify_command[0], 4);
 };
+
+/*
+ * Function: Read most used status bits for message transmission and reception
+ * ---------------------------------------------------------------------------
+ * This is a single-instruction way to find many status bits:
+ *
+ * Returns status byte:
+ *  Bit 7: CANINTF.TX2IF	- Flag is set when transmission completes
+ *  Bit 6: TXB2CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 5: CANINTF.TX1IF	- Flag is set when transmission completes
+ *  Bit 4: TXB1CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 3: CANINTF.TX0IF	- Flag is set when transmission completes
+ *  Bit 2: TXB0CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 1: CANINTFL.RX1IF	- Indicates that a message has been received into Receive buffer 1
+ *  Bit 0: CANINTF.RX0IF	- Indicates that a message has been received into Receive buffer 0
+*/
+uint8_t mcp2515_READ_STATUS(){
+	// Select the MCP2515 (pull CS low)
+	mcp2515_select();
+	
+	// Create and transmit READ STATUS instruction
+	uint8_t read_status_instruction = MCP_READ_STATUS;
+	spi_write(&read_status_instruction, 1);
+
+	// Read the returned status register	
+	uint8_t status_register = 0;
+	spi_read(&status_register, 1);
+	
+	// Deselect MCP2515 (release CS)
+	mcp2515_deselect();
+	
+	return status_register;
+}
 
 //First register [0, 0, 0, 0, 1, 0, 0, 0]
 //Second register [0, 0, 0,]

@@ -194,7 +194,22 @@ void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
 
 void mcp2515_RTS();
 
-void mcp2515_READ_STATUS();
+/*
+ * Function: Read most used status bits for message transmission and reception
+ * ---------------------------------------------------------------------------
+ * This is a single-instruction way to find many status bits:
+ *
+ * Returns status byte:
+ *  Bit 7: CANINTF.TX2IF	- Flag is set when transmission completes
+ *  Bit 6: TXB2CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 5: CANINTF.TX1IF	- Flag is set when transmission completes
+ *  Bit 4: TXB1CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 3: CANINTF.TX0IF	- Flag is set when transmission completes
+ *  Bit 2: TXB0CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
+ *  Bit 1: CANINTFL.RX1IF	- Indicates that a message has been received into Receive buffer 1
+ *  Bit 0: CANINTF.RX0IF	- Indicates that a message has been received into Receive buffer 0
+*/
+uint8_t mcp2515_READ_STATUS();
 
 void mcp2515_RX_STATUS();
 
