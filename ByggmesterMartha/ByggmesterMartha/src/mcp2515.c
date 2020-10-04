@@ -17,7 +17,7 @@ void mcp2515_deselect(){
 	MCP_CS_PORT |= (1 << MCP_CS_PIN);
 }
 
-void mcp2515_init(enum mode CANmode){
+void mcp2515_init(enum mcp2515_mode CANmode){
 	//Initialize SPI to be able to communicate with mcp2515
 	spi_init();
 

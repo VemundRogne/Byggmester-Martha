@@ -58,6 +58,7 @@ Copyright 2003 Kimberly Otten Software Consulting
 #define MCP_CANINTF		0x2C
 #define MCP_EFLG		0x2D
 #define MCP_TXB0CTRL	0x30
+#define MCP_TXB0D0		0x36
 #define MCP_TXB1CTRL	0x40
 #define MCP_TXB2CTRL	0x50
 #define MCP_RXB0CTRL	0x60
@@ -159,7 +160,7 @@ Copyright 2003 Kimberly Otten Software Consulting
 //mcp functions
 #include <stdio.h>
 
-enum mode{
+enum mcp2515_mode{
 	NORMAL = 0b000,
 	SLEEP = 0b001,
 	LOOPBACK = 0b010,
@@ -168,7 +169,7 @@ enum mode{
 };
 
 
-void mcp2515_init(enum mode MCP_MODE);
+void mcp2515_init(enum mcp2515_mode MCP_MODE);
 
 /*
  * Function: Send reset command to mcp2515
