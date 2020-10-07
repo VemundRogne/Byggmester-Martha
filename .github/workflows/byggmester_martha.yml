@@ -1,0 +1,13 @@
+name: Byggmester Martha, klart vi kan
+
+on: push
+
+jobs:
+  build_firmware:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build ByggmesterMartha in AtmelStudio
+      run: |
+        CI/build.bat
