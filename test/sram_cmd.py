@@ -13,7 +13,7 @@ def sram_write(ser, address, value):
 
     returncode = ser.read(1)
 
-    if returncode is not b'':
+    if returncode != b'':
         return int.from_bytes(returncode, byteorder='big')
     return -1
 
@@ -24,7 +24,7 @@ def sram_read(ser, address):
 
     returncode = ser.read(1)
 
-    if returncode is not b'':
+    if returncode != b'':
         return int.from_bytes(returncode, byteorder='big')
     return -1
 
