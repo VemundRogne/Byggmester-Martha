@@ -30,10 +30,21 @@ ISR(USART0_RXC_vect){
 }
 
 void UART_execute_cmd(){
+	if(cmd_buffer[0] == UART_BASIC_CMD){
+		UART_execute_basic_cmd();
+	}
+}
+
+void UART_execute_basic_cmd(){
+	// Synchronize CMD
+	if(cmd_buffer[1] == UART_BASIC_CMD_SYNCHRONIZE){
+		UART_tx_polling(1);
+	}
+	
 	// ECHO CMD
-	if(cmd_buffer[0] == 1){
-		for(uint8_t i=0; i < (CMD_LEN - 1); i++){
-			UART_tx_polling(cmd_buffer[i + 1]);
+	if(cmd_buffer[0] == UART_BASIC_CMD_ECHO){
+		for(uint8_t i=ARG_OFFSET; i < (CMD_LEN); i++){
+			UART_tx_polling(cmd_buffer[i]);
 		}
 	}
 }
