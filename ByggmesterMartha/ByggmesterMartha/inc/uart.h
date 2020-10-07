@@ -43,6 +43,7 @@ void UART_execute_basic_cmd();
 #define UART_MCP2515_CMD_READSTATUS 0
 #define UART_MCP2515_CMD_INIT 1
 #define UART_MCP2515_CMD_WRITE 2
+#define UART_MCP2515_CMD_READ 3
 void UART_execute_mcp2515_cmd();
 
 
