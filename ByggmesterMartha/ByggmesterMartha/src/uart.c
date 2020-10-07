@@ -20,9 +20,20 @@
 // NOTE: This has not been verified to work after refactoring, but I think
 // it should work just fine.
 ISR(USART0_RXC_vect){
-	cli();
+	cmd_buffer[cmd_receive_counter] = UDR0;
+	cmd_receive_counter += 1;
+	
+	if(cmd_receive_counter == CMD_LEN){
+		UART_execute_cmd();
+		cmd_receive_counter = 0;
+	}
+}
 
-	sei();
+void UART_execute_cmd(){
+	// ECHO CMD
+	if(cmd_buffer[0] == 1){
+		UART_tx_polling(cmd_buffer[1]);
+	}
 }
 
 void init_UART(){
@@ -37,6 +48,8 @@ void init_UART(){
 	
 	// Enable RX interrupt
 	UCSR0B |= (1<<RXCIE0);
+	
+	cmd_receive_counter = 0;
 }
 
 // receives one byte in polling mode
