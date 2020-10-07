@@ -112,6 +112,18 @@ void UART_execute_mcp2515_cmd(){
 			break;
 		}
 
+		// Modifies a given register, cmd_buffer should include address, data_byte and mask_byte
+		// Writes 0x01 to pytest for confirmation
+		case UART_MCP2515_CMD_BIT_MODIFY:{
+			uint8_t address = cmd_buffer[ARG_OFFSET];
+			uint8_t data_byte = cmd_buffer[ARG_OFFSET+1];
+			uint8_t mask_byte = cmd_buffer[ARG_OFFSET+2];
+			
+			mcp2515_BIT_MODIFY(address, data_byte, mask_byte);
+			UART_tx_polling(0x01);
+
+			break;
+		}
 	}
 }
 
