@@ -61,6 +61,7 @@ void UART_execute_sram_cmd();
 #define UART_MCP2515_CMD_RX_STATUS 4
 #define UART_MCP2515_CMD_BIT_MODIFY 5
 #define UART_MCP2515_CMD_RESET 6
+#define UART_MCP2515_CMD_RTS 7
 void UART_execute_mcp2515_cmd();
 
 

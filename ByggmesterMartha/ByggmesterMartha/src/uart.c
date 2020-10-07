@@ -136,6 +136,15 @@ void UART_execute_mcp2515_cmd(){
 			UART_tx_polling(0x01);
 			break;
 		}
+		
+		// Request to send transmissino buffer of MCP2515
+		// Writes back the buffer-selection to pytest for confirmation 
+		case UART_MCP2515_CMD_RTS:{
+			uint8_t buffer_selection = cmd_buffer[ARG_OFFSET];  //Get the buffers that should request to send
+			mcp2515_RTS(buffer_selection);
+			UART_tx_polling(buffer_selection);
+			break;
+		}
     }
 }
 
