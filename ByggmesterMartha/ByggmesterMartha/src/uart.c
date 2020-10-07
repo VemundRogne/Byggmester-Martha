@@ -42,7 +42,7 @@ void UART_execute_basic_cmd(){
 	}
 	
 	// ECHO CMD
-	if(cmd_buffer[0] == UART_BASIC_CMD_ECHO){
+	if(cmd_buffer[1] == UART_BASIC_CMD_ECHO){
 		for(uint8_t i=ARG_OFFSET; i < (CMD_LEN); i++){
 			UART_tx_polling(cmd_buffer[i]);
 		}
