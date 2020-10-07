@@ -14,7 +14,7 @@ def open_serial_connection(com_port):
     return ser
 
 def echo(ser, number_list):
-    cmd = [1, 1]
+    cmd = [0, 1]
     cmd.extend(number_list)
     send_cmd(ser, cmd)
     returnvalue = ser.read(8)
