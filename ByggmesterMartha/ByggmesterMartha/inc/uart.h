@@ -24,8 +24,9 @@ ISR(USART0_RXC_vect);
 
 // Points to the correct CMDs
 #define UART_BASIC_CMD	0	// NOTE: This _must_ be at number 0
-
+#define UART_SRAM 1 
 #define UART_MCP2515_CMD 2
+
 void UART_execute_cmd();
 
 // Basic commands
@@ -34,12 +35,25 @@ void UART_execute_cmd();
 //   1: ECHO - return the full argument
 #define UART_BASIC_CMD_SYNCHRONIZE	0	// Note: THIS _must_ be at number 0
 #define UART_BASIC_CMD_ECHO			1
+
+// SRAM commands
+// CMD_SUBNO:
+// 0: Write - writes cmd_buffer[4] to SRAM 
+// 1: Read - reads from SRAM
+#define UART_SRAM_WRITE 0
+#define UART_SRAM_READ 1
 void UART_execute_basic_cmd();
+void UART_execute_sram_cmd();
 
 
 // MCP2515 commands
 // CMD_SUBNO:
 //   0: Read status - Checks if possible to read status of CAN controller
+//   1: Initialize - Initialize can controller with mode cmd_buffer[3]
+//   2: Write - Write to MCP2515
+//   3: Read - Reads from MCP2515
+//   4: RX status - Reads receive buffer status
+//   5: Bit modify - Modifies spesific bits in a given address of MCP2515
 #define UART_MCP2515_CMD_READSTATUS 0
 #define UART_MCP2515_CMD_INIT 1
 #define UART_MCP2515_CMD_WRITE 2

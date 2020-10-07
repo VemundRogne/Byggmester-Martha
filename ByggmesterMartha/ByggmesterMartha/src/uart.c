@@ -34,11 +34,14 @@ void UART_execute_cmd(){
 	if(cmd_buffer[0] == UART_BASIC_CMD){
 		UART_execute_basic_cmd();
 	}
-
 	if(cmd_buffer[0] == UART_MCP2515_CMD){
 		UART_execute_mcp2515_cmd();
 	}
+	if(cmd_buffer[0] == UART_SRAM){
+		UART_execute_sram_cmd();
+	}
 }
+
 
 void UART_execute_basic_cmd(){
 	// Synchronize CMD
@@ -53,6 +56,7 @@ void UART_execute_basic_cmd(){
 		}
 	}
 }
+
 
 void UART_execute_mcp2515_cmd(){
 	switch(cmd_buffer[1]){
@@ -124,6 +128,32 @@ void UART_execute_mcp2515_cmd(){
 
 			break;
 		}
+
+
+void UART_execute_sram_cmd(){
+	
+	volatile char *ext_ram = (char *) 0x1800; // Start address for the SRAM
+
+	// SRAM write
+	// sram_address_H = cmd_buffer[2]
+	// sram_address_L = cmd_buffer[3]
+	// value to write at address = cmd_buffer[4]
+	// Returns 0 to UART
+	if (cmd_buffer[1] == UART_SRAM_WRITE){
+		uint16_t sram_address = (cmd_buffer[2] << 8) | cmd_buffer[3];
+		uint8_t sram_value = cmd_buffer[4];
+		ext_ram[sram_address] = sram_value;
+		UART_tx_polling(0);
+	}
+	
+	// SRAM read
+	// sram_address_H = cmd_buffer[2]
+	// sram_address_L = cmd_buffer[3]
+	// value to retrieve at address = ext_ram[sram_address]
+	// returns 0 to UART
+	if (cmd_buffer[1] == UART_SRAM_READ){
+		uint16_t sram_address = (cmd_buffer[2] << 8) | cmd_buffer[3];
+		UART_tx_polling(ext_ram[sram_address]);
 	}
 }
 
