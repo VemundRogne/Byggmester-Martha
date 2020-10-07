@@ -24,7 +24,7 @@ def test_sram_read(ser):
 
 def test_sram(ser):
     random_val = random.randint(0, 255)
-    sram_cmd.sram_write(ser, 1, random_val)
+    assert sram_cmd.sram_write(ser, 1, random_val) == 0
     read_val = sram_cmd.sram_read(ser, 1)
     assert read_val == random_val
 
