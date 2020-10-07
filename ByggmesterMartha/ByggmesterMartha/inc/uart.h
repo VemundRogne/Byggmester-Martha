@@ -24,6 +24,7 @@ ISR(USART0_RXC_vect);
 
 // Points to the correct CMDs
 #define UART_BASIC_CMD	0	// NOTE: This _must_ be at number 0
+#define UART_SRAM 1 
 void UART_execute_cmd();
 
 // Basic commands
@@ -32,6 +33,14 @@ void UART_execute_cmd();
 //   1: ECHO - return the full argument
 #define UART_BASIC_CMD_SYNCHRONIZE	0	// Note: THIS _must_ be at number 0
 #define UART_BASIC_CMD_ECHO			1
+
+// SRAM commands
+// CMD_SUBNO:
+// 0: Write - writes cmd_buffer[4] to SRAM 
+// 1: Read - reads from SRAM
+#define UART_SRAM_WRITE 0
+#define UART_SRAM_READ 1
 void UART_execute_basic_cmd();
+void UART_execute_sram_cmd();
 
 #endif /* UART_H_ */
