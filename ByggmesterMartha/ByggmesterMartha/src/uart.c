@@ -34,7 +34,7 @@ void UART_execute_cmd(){
 		UART_execute_basic_cmd();
 	}
 	if(cmd_buffer[0] == UART_SRAM){
-		
+		UART_execute_sram_cmd();
 	}
 }
 
