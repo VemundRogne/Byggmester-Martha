@@ -19,3 +19,11 @@ jobs:
     - name: Flash program to device
       run: |
         CI/program.bat
+
+  run_tests:
+    runs-on: [self-hosted, windows]
+    needs: [build_firmware, flash_firmware]
+    steps:
+    - name: run pytest
+      run: |
+        pytest -v --durations=0
