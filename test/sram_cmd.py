@@ -11,6 +11,8 @@ def sram_write(ser, address, value):
     cmd.append(value)
     cmd.extend([0,0,0,0,0,0])
 
+    comms.send_cmd(ser, cmd)
+
     returncode = ser.read(1)
 
     if returncode != b'':
@@ -21,6 +23,8 @@ def sram_read(ser, address):
     cmd = [1, 1]
     cmd.extend(list(address.to_bytes(2, byteorder='big')))
     cmd.extend([0,0,0,0,0,0,0])
+    
+    comms.send_cmd(ser, cmd)
 
     returncode = ser.read(1)
 
