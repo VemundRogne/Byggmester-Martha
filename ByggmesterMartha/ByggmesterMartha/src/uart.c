@@ -16,6 +16,7 @@
 #include <util/delay.h>
 
 #include "../inc/uart.h"
+#include "../inc/mcp2515.h"
 
 // NOTE: This has not been verified to work after refactoring, but I think
 // it should work just fine.
@@ -33,6 +34,10 @@ void UART_execute_cmd(){
 	if(cmd_buffer[0] == UART_BASIC_CMD){
 		UART_execute_basic_cmd();
 	}
+
+	if(cmd_buffer[0] == UART_MCP2515_CMD){
+		UART_execute_mcp2515_cmd();
+	}
 }
 
 void UART_execute_basic_cmd(){
@@ -46,6 +51,22 @@ void UART_execute_basic_cmd(){
 		for(uint8_t i=ARG_OFFSET; i < (CMD_LEN); i++){
 			UART_tx_polling(cmd_buffer[i]);
 		}
+	}
+}
+
+void UART_execute_mcp2515_cmd(){
+	switch(cmd_buffer[1]){
+		case UART_MCP2515_CMD_READSTATUS:{
+			uint8_t status = mcp2515_READ_STATUS();
+			UART_tx_polling(status);
+			break;
+		}
+
+		default:{
+			uint8_t error_val = 0x00;
+			UART_tx_polling(error_val);
+		}
+
 	}
 }
 

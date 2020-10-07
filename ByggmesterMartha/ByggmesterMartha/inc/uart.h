@@ -24,6 +24,8 @@ ISR(USART0_RXC_vect);
 
 // Points to the correct CMDs
 #define UART_BASIC_CMD	0	// NOTE: This _must_ be at number 0
+
+#define UART_MCP2515_CMD 2
 void UART_execute_cmd();
 
 // Basic commands
@@ -33,5 +35,13 @@ void UART_execute_cmd();
 #define UART_BASIC_CMD_SYNCHRONIZE	0	// Note: THIS _must_ be at number 0
 #define UART_BASIC_CMD_ECHO			1
 void UART_execute_basic_cmd();
+
+
+// MCP2515 commands
+// CMD_SUBNO:
+//   0: Read status - Checks if possible to read status of CAN controller
+#define UART_MCP2515_CMD_READSTATUS 0
+void UART_execute_mcp2515_cmd();
+
 
 #endif /* UART_H_ */
