@@ -104,6 +104,14 @@ void UART_execute_mcp2515_cmd(){
 			break;
 		}
 
+		// Reads status of receive buffers of MCP2515
+		// Writes status back to pytest
+		case UART_MCP2515_CMD_RX_STATUS:{
+			uint8_t status = mcp2515_RX_STATUS();
+			UART_tx_polling(status);
+			break;
+		}
+
 	}
 }
 
