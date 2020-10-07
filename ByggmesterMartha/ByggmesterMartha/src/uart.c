@@ -56,21 +56,37 @@ void UART_execute_basic_cmd(){
 
 void UART_execute_mcp2515_cmd(){
 	switch(cmd_buffer[1]){
+
+		// Reads status of MCP2515
+		// Writes status back to pytest
 		case UART_MCP2515_CMD_READSTATUS:{
 			uint8_t status = mcp2515_READ_STATUS();
 			UART_tx_polling(status);
 			break;
 		}
 
-		case UART_MCP2515_CMD_INIT_LOOPBACK:{
-			mcp2515_init(LOOPBACK);
-			UART_tx_polling(0x01);			//Tell pytest that it received this command?
+		// Initialize MCP2515
+		// Mode is given by cmd_buffer[ARG_OFFSET]
+		// Writes mode back to pytest for confirmation
+		case UART_MCP2515_CMD_INIT:{
+			uint8_t mcp2515_mode = cmd_buffer[ARG_OFFSET];
+			mcp2515_init(mcp2515_mode);
+			UART_tx_polling(mcp2515_mode);			//Tell pytest that it received this command?
+
 			break;
 		}
 
-		default:{
-			uint8_t error_val = 0x00;
-			UART_tx_polling(error_val);
+		// Writes data to MCP2515
+		// Address is cmd_buffer[ARG_OFFSET]
+		// Data length is cmd_buffer[ARG_OFFSET+1] (maximum 6 bytes)
+		// Writes 0x01 to pytest for confirmation
+		case UART_MCP2515_CMD_WRITE:{
+			uint8_t address = cmd_buffer[ARG_OFFSET];
+			uint8_t data_length = cmd_buffer[ARG_OFFSET+1];
+			mcp2515_WRITE(address, cmd_buffer[ARG_OFFSET+2], data_length);
+			UART_tx_polling(0x01);
+
+			break;
 		}
 
 	}
