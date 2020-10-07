@@ -11,3 +11,6 @@ jobs:
     - name: Build ByggmesterMartha in AtmelStudio
       run: |
         CI/build.bat
+    - name: Flash program to device
+      run: |
+        CI/program.bat
