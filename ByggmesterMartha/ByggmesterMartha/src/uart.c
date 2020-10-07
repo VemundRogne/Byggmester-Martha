@@ -128,6 +128,16 @@ void UART_execute_mcp2515_cmd(){
 
 			break;
 		}
+		
+		// Reset MCP2515
+		// Writes 0x01 to pytest for confirmation 
+		case UART_MCP2515_CMD_RESET:{
+			mcp2515_RESET();
+			UART_tx_polling(0x01);
+			break;
+		}
+    }
+}
 
 
 void UART_execute_sram_cmd(){
