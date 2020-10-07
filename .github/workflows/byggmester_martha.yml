@@ -11,6 +11,11 @@ jobs:
     - name: Build ByggmesterMartha in AtmelStudio
       run: |
         CI/build.bat
+
+  flash_firmware:
+    runs-on: [self-hosted, windows]
+    needs: build_firmware
+    steps:
     - name: Flash program to device
       run: |
         CI/program.bat
