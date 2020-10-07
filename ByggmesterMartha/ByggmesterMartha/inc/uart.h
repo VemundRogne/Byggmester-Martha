@@ -9,7 +9,7 @@
 #define UART_H_
 
 // This is the CMD receive buffer, when it is filled we know we have a full CMD
-#define CMD_LEN 2
+#define CMD_LEN 10
 volatile uint8_t cmd_buffer[CMD_LEN];
 volatile uint8_t cmd_receive_counter;
 

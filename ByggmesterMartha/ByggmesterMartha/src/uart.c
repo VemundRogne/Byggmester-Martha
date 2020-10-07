@@ -32,7 +32,9 @@ ISR(USART0_RXC_vect){
 void UART_execute_cmd(){
 	// ECHO CMD
 	if(cmd_buffer[0] == 1){
-		UART_tx_polling(cmd_buffer[1]);
+		for(uint8_t i=0; i < (CMD_LEN - 1); i++){
+			UART_tx_polling(cmd_buffer[i + 1]);
+		}
 	}
 }
 

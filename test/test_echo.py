@@ -13,13 +13,15 @@ def open_serial_connection(com_port):
     ser.open()
     return ser
 
-def echo(ser, number):
-    cmd = [1, number]
+def echo(ser, number_list):
+    cmd = [1]
+    cmd.extend(number_list)
     send_cmd(ser, cmd)
-    returnvalue = ser.read(1)
+    returnvalue = ser.read(9)
 
     if returnvalue != b'':
-        return int.from_bytes(returnvalue, byteorder='big')
+        return list(returnvalue)
+
 
 def send_cmd(ser, cmd):
     for byte in cmd:
@@ -27,7 +29,11 @@ def send_cmd(ser, cmd):
         time.sleep(0.001)
 # End of comms library
 
-
+def make_random_list(length, minimum_value, maximum_value):
+    random_list = []
+    for i in range(0, length):
+        random_list.append(random.randint(minimum_value, maximum_value))
+    return random_list
 
 # Tests are below this line:
 @pytest.fixture(scope='module')
@@ -38,5 +44,5 @@ def ser():
 
 
 def test_echo(ser):
-    random_number = random.randint(0, 255)
-    assert echo(ser, random_number) == random_number
+    random_list = make_random_list(9, 0, 255)
+    assert echo(ser, random_list) == random_list
