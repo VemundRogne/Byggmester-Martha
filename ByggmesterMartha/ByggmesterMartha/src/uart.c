@@ -62,6 +62,12 @@ void UART_execute_mcp2515_cmd(){
 			break;
 		}
 
+		case UART_MCP2515_CMD_INIT_LOOPBACK:{
+			mcp2515_init(LOOPBACK);
+			UART_tx_polling(0x01);			//Tell pytest that it received this command?
+			break;
+		}
+
 		default:{
 			uint8_t error_val = 0x00;
 			UART_tx_polling(error_val);

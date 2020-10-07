@@ -41,6 +41,7 @@ void UART_execute_basic_cmd();
 // CMD_SUBNO:
 //   0: Read status - Checks if possible to read status of CAN controller
 #define UART_MCP2515_CMD_READSTATUS 0
+#define UART_MCP2515_CMD_INIT_LOOPBACK 1
 void UART_execute_mcp2515_cmd();
 
 
