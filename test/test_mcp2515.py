@@ -19,6 +19,6 @@ def test_mcp2515_init(ser):
     cmd.mcp2515_init(ser, mode_id)
 
     canctrl_adr = 0x0F
-    assert mcp2525_read(ser, canctrl_adr, 1) >> 5 == mode_id
+    assert cmd.mcp2525_read(ser, canctrl_adr, 1) >> 5 == mode_id
 
 
