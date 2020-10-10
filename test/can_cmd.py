@@ -7,7 +7,6 @@ import comms
 
 def can_transmit(ser, msg_id, msg_len, msg_data):
     cmd = [3, 0]
-    cmd.extend(list(address.to_bytes(2, byteorder='big')))
     cmd.append(msg_id)
     cmd.append(msg_len)
     cmd.extend(msg_data)
