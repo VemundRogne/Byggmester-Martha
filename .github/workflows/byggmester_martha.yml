@@ -1,0 +1,29 @@
+name: Byggmester Martha, klart vi kan
+
+on: push
+
+jobs:
+  build_firmware:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build ByggmesterMartha in AtmelStudio
+      run: |
+        CI/build.bat
+
+  flash_firmware:
+    runs-on: [self-hosted, windows]
+    needs: build_firmware
+    steps:
+    - name: Flash program to device
+      run: |
+        CI/program.bat
+
+  run_tests:
+    runs-on: [self-hosted, windows]
+    needs: [build_firmware, flash_firmware]
+    steps:
+    - name: run pytest
+      run: |
+        pytest -v --durations=0

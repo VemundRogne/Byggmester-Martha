@@ -1,0 +1,1 @@
+atprogram -t atmelice -i JTAG -d atmega162 program -c -fl -f ByggmesterMartha/ByggmesterMartha/Debug/ByggmesterMartha.hex
