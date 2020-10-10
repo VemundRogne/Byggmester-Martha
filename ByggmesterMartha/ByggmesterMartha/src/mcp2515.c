@@ -34,6 +34,19 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	//Select mode
 	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
 	mcp2515_deselect();
+	
+	
+	//T_osc = 62.5 ns
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0x3F, 0x04); //BRP<5:0>, T_q = 625 ns
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0xC0, 0); //SJW<1:0>
+
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0x3F, 0); //PHSEG<12:0>
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0x40, 0); //SAM<bit 6>
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0x80, 0); //BTLMODE<bit 7>
+	
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0x07, 0); //PHSEG<22:20>
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0x40, 0); //WAKFIL<bit 6>
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0x80, 0); //SOF<bit 7
 }
 
 /*

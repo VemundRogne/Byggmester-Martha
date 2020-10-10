@@ -156,6 +156,11 @@ Copyright 2003 Kimberly Otten Software Consulting
 #define MCP_MERRF		0x80
 
 
+#define N_TIMEQUANTAS 16
+#define MCK 16000000
+#define CAN_BAUDRATE 500000
+#define BIT_TIME 1/CAN_BAUDRATE
+#define TQ N_TIMEQUANTAS*BIT_TIME
 
 //mcp functions
 #include <stdio.h>
