@@ -1,1 +1,1 @@
-atprogram -t atmelice -i JTAG -d atmega162 program -c -fl -f ByggmesterMartha/ByggmesterMartha/Debug/ByggmesterMartha.hex
+atprogram -t atmelice -i JTAG -d atmega162 -s J41800035686 program -c -fl -f ByggmesterMartha/ByggmesterMartha/Debug/ByggmesterMartha.hex --verify
