@@ -22,6 +22,6 @@ def mcp2515_read(ser, address, data_length):
     returncode = ser.read(data_length)
 
     if returncode != b'':
-        return list(returncode)
+        return int.from_bytes(returncode, byteorder='big')
     return -1
 
