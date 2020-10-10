@@ -170,7 +170,9 @@ void UART_execute_can_cmd(){
 		polling_array[1] = (uint8_t) msg_r.ID;
 		polling_array[2] = msg_r.len;
 		memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
-		UART_tx_polling(polling_array);
+		for ( uint8_t i = 0; i < 11; i++){
+			UART_tx_polling(polling_array[i]);
+		}
 	}
 	
 }
