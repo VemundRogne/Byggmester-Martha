@@ -1,0 +1,29 @@
+name: Node2, build, program and test
+
+on: push
+
+jobs:
+  build_firmware:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Node2 in AtmelStudio
+      run: |
+        CI/build_node2.bat
+
+  flash_firmware:
+    runs-on: [self-hosted, windows]
+    needs: build_firmware
+    steps:
+    - name: Flash program to device
+      run: |
+        CI/program_node2.bat
+
+#  run_tests:
+#    runs-on: [self-hosted, windows]
+#    needs: [build_firmware, flash_firmware]
+#    steps:
+#    - name: run pytest
+#      run: |
+#        pytest -v --durations=0
