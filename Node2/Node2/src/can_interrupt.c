@@ -8,14 +8,14 @@
  *
  */ 
 
-#include "can_interrupt.h"
+#include "../inc/can_interrupt.h"
 
 #include <stdio.h>
 #include "sam.h"
 
-#include "../uart_and_printf/printf-stdarg.h"
+#include "../inc/printf-stdarg.h"
 
-#include "can_controller.h"
+#include "../inc/can_controller.h"
 
 #define DEBUG_INTERRUPT 0
 

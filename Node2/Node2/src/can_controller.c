@@ -8,11 +8,11 @@
  *
  */ 
 
-#include "can_controller.h"
+#include "../inc/can_controller.h"
 
 #include "sam.h"
 
-#include "../uart_and_printf/printf-stdarg.h"
+#include "../inc/printf-stdarg.h"
 
 
 /**

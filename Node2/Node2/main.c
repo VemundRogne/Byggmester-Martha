@@ -8,11 +8,15 @@
 
 #include "sam.h"
 #include "inc/printf-stdarg.h"
+#include "inc/can_controller.h"
+#include "inc/can_interrupt.h"
+#include "inc/uart.h"
 
 int main(void)
 {
     /* Initialize the SAM system */
     SystemInit();
+	configure_uart();
 	
 	REG_PIOA_OER |= (1<<19);
 

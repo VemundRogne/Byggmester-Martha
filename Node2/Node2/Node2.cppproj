@@ -194,12 +194,38 @@
     <Compile Include="Device_Startup\system_sam3xa.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="main.cpp">
+    <Compile Include="inc\can_controller.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="inc\can_interrupt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="inc\printf-stdarg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="inc\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\can_controller.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\can_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\printf-stdarg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\uart.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Device_Startup\" />
+    <Folder Include="inc" />
+    <Folder Include="src" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Device_Startup\sam3x8e_flash.ld">
