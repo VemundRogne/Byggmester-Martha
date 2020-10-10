@@ -15,7 +15,7 @@ def ser():
 def test_can_transmit(ser):
     msg_id = 10
     msg_data = [1, 2, 3, 4, 5]
-    msg_len = len(data)
+    msg_len = len(msg_data)
     assert can_cmd.can_transmit(ser, msg_id, msg_len, msg_data) == 0
 
 
@@ -30,7 +30,7 @@ def test_can(ser):
     transmit_msg = [msg_id, msg_len]
     transmit_msg.extend(msg_data)
 
-    assert can_cmd.can_transmit(ser,msg_id, msg_len, msg_data) == 0
+    assert can_cmd.can_transmit(ser, msg_id, msg_len, msg_data) == 0
     receive_msg = can_cmd.can_receive(ser)
     assert receive_msg == transmit_msg
 

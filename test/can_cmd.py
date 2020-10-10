@@ -24,13 +24,12 @@ def can_transmit(ser, msg_id, msg_len, msg_data):
 
 def can_receive(ser):
     cmd = [3, 1]
-    cmd.extend(list(address.to_bytes(2, byteorder='big')))
-    cmd.extend([0,0,0,0,0,0])
+    cmd.extend([0,0,0,0,0,0,0])
 
     comms.send_cmd(ser, cmd)
 
-    returncode = ser.read(1)
+    returncode = ser.read(11)
 
     if returncode != b'':
-        return int.from_bytes(returncode, byteorder='big')
+        return list(returncode)
     return -1
