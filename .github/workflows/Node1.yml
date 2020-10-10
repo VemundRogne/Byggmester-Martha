@@ -14,6 +14,7 @@ jobs:
 
   Build_node_1:
     needs: Checkout
+    steps:
     - name: Build ByggmesterMartha in AtmelStudio
       run: |
         CI/build.bat
@@ -28,12 +29,14 @@ jobs:
   
   Build_node_2:
     needs: Checkout
+    steps:
     - name: Build node 2 in AtmelStudio
       run: |
         CI/build_node2.bat
   
   program_node_2:
     needs: Build_node_2
+    steps:
     - name: Program node 2
       run: |
         CI/program_node2.bat
