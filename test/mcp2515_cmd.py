@@ -24,3 +24,14 @@ def mcp2515_read(ser, address, data_length):
     if returncode != b'':
         return int.from_bytes(returncode, byteorder='big')
     return -1
+
+def mcp2515_write(ser, address, data_length):
+    cmd = [2, 2, address, data_length, 0, 0, 0, 0, 0, 0]
+    comms.send_cmd(ser, cmd)
+
+    returncode = ser.read(1)
+
+    if returncode != b'':
+        return int.from_bytes(returncode, byteorder='big')
+    return -1
+
