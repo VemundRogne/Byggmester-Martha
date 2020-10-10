@@ -3,26 +3,41 @@ name: Node1, build, program and test
 on: push
 
 jobs:
-  build_firmware:
+  Checkout:
     runs-on: [self-hosted, windows]
     
     steps:
     - uses: actions/checkout@v2
+
+  Build_node_1:
+    needs: Checkout
     - name: Build ByggmesterMartha in AtmelStudio
       run: |
         CI/build.bat
 
-  flash_firmware:
+  flash_firmware_node_1:
     runs-on: [self-hosted, windows]
-    needs: build_firmware
+    needs: Build_node_1
     steps:
     - name: Flash program to device
       run: |
         CI/program.bat
+  
+  Build_node_2:
+    needs: Checkout
+    - name: Build node 2 in AtmelStudio
+      run: |
+        CI/build_node2.bat
+  
+  program_node_2:
+    needs: Build_node_2
+    - name: Program node 2
+      run: |
+        CI/program_node2.bat
 
   run_tests:
     runs-on: [self-hosted, windows]
-    needs: [build_firmware, flash_firmware]
+    needs: [flash_firmware_node_1, program_node_2]
     steps:
     - name: run pytest
       run: |
