@@ -10,7 +10,7 @@
 #include <stdint.h>
 
 #include "sam.h"
-#include "uart.h"
+#include "../inc/uart.h"
 
 //Ringbuffer for receiving multiple characters
 uart_ringbuffer rx_buffer;
