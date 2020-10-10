@@ -24,8 +24,9 @@ ISR(USART0_RXC_vect);
 
 // Points to the correct CMDs
 #define UART_BASIC_CMD	0	// NOTE: This _must_ be at number 0
-#define UART_SRAM 1 
+#define UART_SRAM_CMD 1 
 #define UART_MCP2515_CMD 2
+#define UART_CAN_CMD 3
 
 void UART_execute_cmd();
 
@@ -38,13 +39,10 @@ void UART_execute_cmd();
 
 // SRAM commands
 // CMD_SUBNO:
-// 0: Write - writes cmd_buffer[4] to SRAM 
-// 1: Read - reads from SRAM
+//	0: Write - writes cmd_buffer[4] to SRAM 
+//	1: Read - reads from SRAM
 #define UART_SRAM_WRITE 0
 #define UART_SRAM_READ 1
-void UART_execute_basic_cmd();
-void UART_execute_sram_cmd();
-
 
 // MCP2515 commands
 // CMD_SUBNO:
@@ -62,6 +60,17 @@ void UART_execute_sram_cmd();
 #define UART_MCP2515_CMD_BIT_MODIFY 5
 #define UART_MCP2515_CMD_RESET 6
 #define UART_MCP2515_CMD_RTS 7
+
+// CAN commands
+// CMD_SUBNO:
+//	0: Transmits data over CAN bus
+//	1: Receives data from CAN bus
+#define UART_CAN_CMD_TRANSMIT 0
+#define UART_CAN_CMD_RECEIVE 1
+
+void UART_execute_basic_cmd();
+void UART_execute_sram_cmd();
+void UART_execute_can_cmd();
 void UART_execute_mcp2515_cmd();
 
 
