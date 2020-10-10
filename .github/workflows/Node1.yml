@@ -13,6 +13,7 @@ jobs:
         dir
 
   Build_node_1:
+    runs-on: [self-hosted, windows]
     needs: Checkout
     steps:
     - name: Build ByggmesterMartha in AtmelStudio
@@ -28,6 +29,7 @@ jobs:
         CI/program.bat
   
   Build_node_2:
+    runs-on: [self-hosted, windows]
     needs: Checkout
     steps:
     - name: Build node 2 in AtmelStudio
@@ -35,6 +37,7 @@ jobs:
         CI/build_node2.bat
   
   program_node_2:
+    runs-on: [self-hosted, windows]
     needs: Build_node_2
     steps:
     - name: Program node 2
