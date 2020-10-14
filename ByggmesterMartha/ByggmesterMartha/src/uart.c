@@ -8,6 +8,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
+#include <string.h>
 
 #define F_CPU	4915200
 #define BAUD	9600
@@ -158,8 +159,8 @@ void UART_execute_can_cmd(){
 		struct can_msg msg_t;
 		msg_t.ID = (cmd_buffer[2] << 8) | cmd_buffer[3];
 		msg_t.len = cmd_buffer[4];
-		memcpy(&msg_t.data[0], &cmd_buffer[5], msg_t.len);
-		can_transmit_message(msg_t);
+		//memcpy(&msg_t.data[0], &cmd_buffer[5], msg_t.len);
+		can_transmit_message(&msg_t);
 		UART_tx_polling(0);
 	}
 	if (cmd_buffer[1] == UART_CAN_CMD_RECEIVE){
@@ -169,7 +170,10 @@ void UART_execute_can_cmd(){
 		polling_array[0] = (uint8_t) (msg_r.ID >> 8);
 		polling_array[1] = (uint8_t) msg_r.ID;
 		polling_array[2] = msg_r.len;
-		memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
+		polling_array[3] = msg_r.data[0];
+		polling_array[4] = msg_r.data[1];
+		polling_array[5] = msg_r.data[2];
+		//memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
 		for ( uint8_t i = 0; i < 11; i++){
 			UART_tx_polling(polling_array[i]);
 		}
@@ -178,14 +182,17 @@ void UART_execute_can_cmd(){
 	if (cmd_buffer[1] == UART_CAN_CMD_TX_BUFFER){
 		uint8_t tx_buffer_address = 3;
 		uint8_t valdi_tx_buffer = can_valid_transmit_buffer(&tx_buffer_address);
-		uint8_t polling_array[2] = {tx_buffer_address, valdi_tx_buffer};
+		uint8_t polling_array[2];
+		polling_array[0] = tx_buffer_address;
+		polling_array[1] = valdi_tx_buffer;
 		for ( uint8_t i = 0; i < 2; i++){
 			UART_tx_polling(polling_array[i]);
 		}
 	}
+	
 	if (cmd_buffer[1] == UART_CAN_CMD_RX_BUFFER){
 		uint8_t rx_buffer_address = 3;
-		uint8_t pending_rx_buffer = can_valid_transmit_buffer(&pending_rx_buffer);
+		uint8_t pending_rx_buffer = can_pending_receive_buffer(&rx_buffer_address);
 		uint8_t polling_array[2] = {rx_buffer_address, pending_rx_buffer};
 		for ( uint8_t i = 0; i < 2; i++){
 			UART_tx_polling(polling_array[i]);

@@ -47,5 +47,15 @@ def mcp2515_rx_status(ser):
         return int.from_bytes(rx_status, byteorder='big')
     return None
 
+def mcp2515_read_status(ser):
+    cmd = [2, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    comms.send_cmd(ser, cmd)
+
+    read_status = ser.read(1)
+
+    if read_status != b'':
+        return int.from_bytes(read_status, byteorder='big')
+    return None
+
 if __name__ == '__main__':
     pass

@@ -23,6 +23,7 @@ def can_pending_rx_buffer(ser):
     cmd.extend([0,0,0,0,0,0,0,0])
     comms.send_cmd(ser, cmd)
     returncode = ser.read(2)
+    print(returncode, list(returncode))
 
     if returncode != b'':
         return list(returncode)

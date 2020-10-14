@@ -35,7 +35,7 @@ def test_can_pending_rx_buffer(ser):
 
 def test_can(ser):
     assert mcp.mcp2515_init(ser, mcp.MCP_MODE.LOOPBACK) == mcp.MCP_MODE.LOOPBACK 
-    msg_id = 10
+    msg_id = 200
     msg_data = [1, 2, 3, 4, 5]
     msg_len = len(msg_data)
 
@@ -44,6 +44,9 @@ def test_can(ser):
     transmit_msg.extend(msg_data)
 
     assert can_cmd.can_transmit(ser, msg_id, msg_len, msg_data) == 0
+    test_can_pending_rx_buffer(ser)
+    #print("STATUS:", mcp.read_status(ser))
     receive_msg = can_cmd.can_receive(ser)
+    print("receive_msg:", receive_msg)
     assert receive_msg == transmit_msg
 
