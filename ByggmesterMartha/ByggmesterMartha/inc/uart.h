@@ -69,6 +69,7 @@ void UART_execute_cmd();
 #define UART_CAN_CMD_TRANSMIT 0
 #define UART_CAN_CMD_RECEIVE 1
 #define UART_CAN_CMD_TX_BUFFER 2
+#define  UART_CAN_CMD_RX_BUFFER 3
 
 void UART_execute_basic_cmd();
 void UART_execute_sram_cmd();

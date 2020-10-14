@@ -18,7 +18,16 @@ def can_valid_tx_buffer(ser):
         return list(returncode)
     return None
 
+def can_pending_rx_buffer(ser):
+    cmd = [3, 3]
+    cmd.extend([0,0,0,0,0,0,0,0])
+    comms.send_cmd(ser, cmd)
+    returncode = ser.read(2)
 
+    if returncode != b'':
+        return list(returncode)
+    return None
+    
 
 def can_transmit(ser, msg_id, msg_len, msg_data):
     cmd = [3, 0]

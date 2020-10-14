@@ -38,7 +38,7 @@ uint8_t can_valid_transmit_buffer(uint8_t *tx_buffer_address){
 	
 }
 
-int8_t can_pending_receive_buffer(uint8_t *rx_buffer_address){
+uint8_t can_pending_receive_buffer(uint8_t *rx_buffer_address){
 	uint8_t status_reg = mcp2515_READ_STATUS();
 	if  ((status_reg & (1 << 0)) == 0){
 		*rx_buffer_address = MCP_RXB0CTRL;
@@ -48,7 +48,7 @@ int8_t can_pending_receive_buffer(uint8_t *rx_buffer_address){
 		*rx_buffer_address = MCP_RXB1CTRL;
 		return 1;
 	}
-	return -1;
+	return 3;
 }
 
 uint8_t can_transmit_message(struct can_msg msg){

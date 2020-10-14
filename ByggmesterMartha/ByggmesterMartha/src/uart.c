@@ -183,6 +183,14 @@ void UART_execute_can_cmd(){
 			UART_tx_polling(polling_array[i]);
 		}
 	}
+	if (cmd_buffer[1] == UART_CAN_CMD_RX_BUFFER){
+		uint8_t rx_buffer_address = 3;
+		uint8_t pending_rx_buffer = can_valid_transmit_buffer(&pending_rx_buffer);
+		uint8_t polling_array[2] = {rx_buffer_address, pending_rx_buffer};
+		for ( uint8_t i = 0; i < 2; i++){
+			UART_tx_polling(polling_array[i]);
+		}
+	}
 	
 }
 
