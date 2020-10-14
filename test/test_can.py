@@ -24,6 +24,9 @@ def test_can_transmit(ser):
 def test_can_receive(ser):
     assert can_cmd.can_receive(ser) != -1
 
+def test_can_valid_tx_buffer(ser):
+    assert can_cmd.can_valid_tx_buffer[1] != 3
+
 def test_can(ser):
     assert mcp.mcp2515_init(ser, mcp.MCP_MODE.LOOPBACK) == mcp.MCP_MODE.LOOPBACK 
     msg_id = 10

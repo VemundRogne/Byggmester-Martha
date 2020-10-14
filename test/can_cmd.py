@@ -5,6 +5,20 @@ import time
 
 import comms
 
+def can_valid_tx_buffer(ser):
+    cmd = [3, 2]
+    cmd.extend([0,0,0,0,0,0,0,0])
+
+    comms.send_cmd(ser, cmd)
+
+    returncode = ser.read(2)
+
+    if returncode != b'':
+        return list(returncode)
+    return None
+
+
+
 def can_transmit(ser, msg_id, msg_len, msg_data):
     cmd = [3, 0]
     cmd.append(msg_id)
