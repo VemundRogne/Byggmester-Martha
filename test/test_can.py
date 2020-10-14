@@ -5,12 +5,14 @@ import time
 
 import comms
 import can_cmd
+import mcp2515_cmd as mcp
 
 @pytest.fixture(scope='module')
 def ser():
     ser = comms.open_serial_connection('COM3')
     yield ser
     ser.close()
+
 
 def test_can_transmit(ser):
     msg_id = 10
@@ -23,6 +25,7 @@ def test_can_receive(ser):
     assert can_cmd.can_receive(ser) != -1
 
 def test_can(ser):
+    assert mcp.mcp2515_init(ser, mcp.MCP_MODE.LOOPBACK) == mcp.MCP_MODE.LOOPBACK 
     msg_id = 10
     msg_data = [1, 2, 3, 4, 5]
     msg_len = len(msg_data)
