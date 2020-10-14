@@ -11,7 +11,7 @@ def can_transmit(ser, msg_id, msg_len, msg_data):
     cmd.append(msg_len)
     cmd.extend(msg_data)
     cmd_empty_len = 10 - (msg_len + 5)
-    empty_vector = [0] * cmd_empty_len
+    empty_vector = [0] * (cmd_empty_len + 1)
     cmd.extend(empty_vector)
 
     comms.send_cmd(ser, cmd)
@@ -23,7 +23,7 @@ def can_transmit(ser, msg_id, msg_len, msg_data):
 
 def can_receive(ser):
     cmd = [3, 1]
-    cmd.extend([0,0,0,0,0,0,0])
+    cmd.extend([0,0,0,0,0,0,0,0])
 
     comms.send_cmd(ser, cmd)
 
@@ -31,4 +31,4 @@ def can_receive(ser):
 
     if returncode != b'':
         return list(returncode)
-    return -1
+    return None
