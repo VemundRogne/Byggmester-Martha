@@ -12,6 +12,7 @@ def open_serial_connection(com_port):
     return ser
 
 def send_cmd(ser, cmd):
+    print("CMD: {}, len: {}".format(cmd, len(cmd)))
     for byte in cmd:
         ser.write(bytes([byte]))
         time.sleep(0.001)

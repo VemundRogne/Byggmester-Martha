@@ -17,6 +17,7 @@
 
 #include "../inc/uart.h"
 #include "../inc/mcp2515.h"
+#include "../inc/can.h"
 
 // NOTE: This has not been verified to work after refactoring, but I think
 // it should work just fine.
@@ -37,8 +38,11 @@ void UART_execute_cmd(){
 	if(cmd_buffer[0] == UART_MCP2515_CMD){
 		UART_execute_mcp2515_cmd();
 	}
-	if(cmd_buffer[0] == UART_SRAM){
+	if(cmd_buffer[0] == UART_SRAM_CMD){
 		UART_execute_sram_cmd();
+	}
+	if(cmd_buffer[0]== UART_CAN_CMD){
+		UART_execute_can_cmd();
 	}
 }
 
@@ -146,6 +150,31 @@ void UART_execute_mcp2515_cmd(){
 			break;
 		}
     }
+}
+
+void UART_execute_can_cmd(){
+ 
+	if (cmd_buffer[1] == UART_CAN_CMD_TRANSMIT){
+		struct can_msg msg_t;
+		msg_t.ID = (cmd_buffer[2] << 8) | cmd_buffer[3];
+		msg_t.len = cmd_buffer[4];
+		memcpy(&msg_t.data[0], &cmd_buffer[5], msg_t.len);
+		can_transmit_message(msg_t);
+		UART_tx_polling(0);
+	}
+	if (cmd_buffer[1] == UART_CAN_CMD_RECEIVE){
+		struct can_msg msg_r;
+		can_receive_message(&msg_r);
+		uint8_t polling_array[11];
+		polling_array[0] = (uint8_t) (msg_r.ID >> 8);
+		polling_array[1] = (uint8_t) msg_r.ID;
+		polling_array[2] = msg_r.len;
+		memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
+		for ( uint8_t i = 0; i < 11; i++){
+			UART_tx_polling(polling_array[i]);
+		}
+	}
+	
 }
 
 
