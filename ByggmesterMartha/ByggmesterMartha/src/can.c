@@ -17,7 +17,41 @@ void can_init(){
 	mcp2515_init(LOOPBACK);
 }
 
-void can_transmit_message(struct can_msg msg){
+// Looks for valid transmit buffer, if non returns -1
+// If valid transmit buffer found tx_buffer_address points to
+// the valid register. 
+int8_t can_valid_tramsit_buffer(uint8_t *tx_buffer_address){
+	uint8_t status_reg = mcp2515_READ_STATUS();
+	if  ((status_reg & (1 << 2)) == 0){
+		tx_buffer_address = MCP_TXB0CTRL;
+		return 0;
+	}
+	if (status_reg & ( 1 << 4) == 0){
+		tx_buffer_address = MCP_TXB1CTRL;
+		return 1;
+	}
+	if (status_reg & ( 1 << 6) == 0){
+		tx_buffer_address = MCP_TXB2CTRL;	
+		return 2;
+	}
+	return -1;
+	
+}
+
+int can_pending_receive_buffer(uint8_t *rx_buffer_address){
+	uint8_t status_reg = mcp2515_READ_STATUS();
+	if  ((status_reg & (1 << 0)) == 0){
+		rx_buffer_address = MCP_RXB0CTRL;
+		return 0;
+	}
+	if (status_reg & ( 1 << 1) == 0){
+		rx_buffer_address = MCP_RXB1CTRL;
+		return 1;
+	}
+	return -1;
+}
+
+uint8_t can_transmit_message(struct can_msg msg){
 	// Write ID
 	// Write length
 	// Write data
@@ -31,16 +65,26 @@ void can_transmit_message(struct can_msg msg){
 	buffer[4] = (uint8_t)(msg.len);
 	memcpy(&buffer[5], &msg.data[0], msg.len);
 	
-	mcp2515_WRITE(MCP_TXB0CTRL + 1, &buffer[0], 5+msg.len);
+	uint8_t tx_buffer_address; 
+	
+	if (can_valid_tramsit_buffer(&tx_buffer_address) != -1){
+		mcp2515_WRITE(tx_buffer_address + 1, &buffer[0], 5+msg.len);
+		return 0;
+	}
+	return 1;		
 }
 
-void can_receive_message(struct can_msg *msg){
+uint8_t can_receive_message(struct can_msg *msg){
 	uint8_t buffer[13];
 	
-	mcp2515_READ(MCP_RXB0CTRL + 1, &buffer[0], 13);
-	
-	msg->ID = buffer[0] << 8;
-	msg->ID = (msg->ID | buffer[1]);
-	msg->len = buffer[4];
-	memcpy(&(msg->data[0]), &buffer[5], msg->len);
+	uint8_t rx_buffer_address;
+	if (can_pending_receive_buffer(&rx_buffer_address) != -1){
+		mcp2515_READ(rx_buffer_address + 1, &buffer[0], 13);
+		msg->ID = buffer[0] << 8;
+		msg->ID = (msg->ID | buffer[1]);
+		msg->len = buffer[4];
+		memcpy(&(msg->data[0]), &buffer[5], msg->len);
+		return 0;
+	}
+	return 1;	
 }
