@@ -14,6 +14,42 @@
 
 #include "../inc/printf-stdarg.h"
 
+/*
+ * Sets all the correct bits for a CAN Baudrate Register to match Node1
+ * --------------------------------------------------------------------
+ * The CAN_BAUDRATE of node1 = 7874
+ * 
+ * Using the formula: prescaler = ((1/CAN_BAUDRATE)/n_timequantas * MCK) - 1
+ *                              = 380
+ *   with mck = 48M and n_timequantas = 16 (see page 1194)
+ *
+ * Now we match as closely as possible the configuration in node1:
+ *     SyncSeg = 1 TQ
+ *     PropSeg = 2 TQ
+ *     PS1 = 7 TQ
+ *     PS2 = 6 TQ
+ *     SJW = 1 TQ
+*/
+uint32_t construct_can_br_register(){
+	uint32_t can_br;
+
+	// Setting prescaler:
+	can_br |= (380 << 16);
+
+	// Setting SJW
+	can_br |= (1<<12);
+
+	// Setting PropSeg
+	can_br |= (2<<8);
+
+	// Setting PHASE1
+	can_br |= (7<<4);
+
+	// Setting PHASE2
+	can_br |= (6<<0);
+
+	return can_br;
+}
 
 /**
  * \brief Initialize can bus with predefined number of rx and tx mailboxes, 
