@@ -20,7 +20,7 @@ void can_init(){
 // Looks for valid transmit buffer, if non returns -1
 // If valid transmit buffer found tx_buffer_address points to
 // the valid register. 
-int8_t can_valid_tramsit_buffer(uint8_t *tx_buffer_address){
+uint8_t can_valid_transmit_buffer(uint8_t *tx_buffer_address){
 	uint8_t status_reg = mcp2515_READ_STATUS();
 	if  ((status_reg & (1 << 2)) == 0){
 		tx_buffer_address = MCP_TXB0CTRL;
@@ -34,11 +34,11 @@ int8_t can_valid_tramsit_buffer(uint8_t *tx_buffer_address){
 		tx_buffer_address = MCP_TXB2CTRL;	
 		return 2;
 	}
-	return -1;
+	return 3;
 	
 }
 
-int can_pending_receive_buffer(uint8_t *rx_buffer_address){
+int8_t can_pending_receive_buffer(uint8_t *rx_buffer_address){
 	uint8_t status_reg = mcp2515_READ_STATUS();
 	if  ((status_reg & (1 << 0)) == 0){
 		rx_buffer_address = MCP_RXB0CTRL;
@@ -67,7 +67,7 @@ uint8_t can_transmit_message(struct can_msg msg){
 	
 	uint8_t tx_buffer_address; 
 	
-	if (can_valid_tramsit_buffer(&tx_buffer_address) != -1){
+	if (can_valid_transmit_buffer(&tx_buffer_address) != 3){
 		mcp2515_WRITE(tx_buffer_address + 1, &buffer[0], 5+msg.len);
 		return 0;
 	}

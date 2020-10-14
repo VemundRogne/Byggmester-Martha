@@ -175,6 +175,15 @@ void UART_execute_can_cmd(){
 		}
 	}
 	
+	if (cmd_buffer[1] == UART_CAN_CMD_TX_BUFFER){
+		uint8_t tx_buffer_address = 3;
+		uint8_t valdi_tx_buffer = can_valid_transmit_buffer(&tx_buffer_address);
+		uint8_t polling_array[2] = {tx_buffer_address, valdi_tx_buffer};
+		for ( uint8_t i = 0; i < 2; i++){
+			UART_tx_polling(polling_array[i]);
+		}
+	}
+	
 }
 
 
