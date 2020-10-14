@@ -25,3 +25,12 @@ def mcp2515_read(ser, address, data_length):
         return int.from_bytes(returncode, byteorder='big')
     return -1
 
+def mcp2515_rx_status(ser):
+    cmd = [2, 4, 0, 0, 0, 0, 0, 0, 0, 0]
+    comms.send_cmd(ser, cmd)
+
+    rx_status = ser.read(1)
+
+    if rx_status != b'':
+        return int.from_bytes(rx_status, byteorder='big')
+    return None
