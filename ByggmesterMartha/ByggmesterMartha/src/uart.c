@@ -156,12 +156,15 @@ void UART_execute_mcp2515_cmd(){
 void UART_execute_can_cmd(){
  
 	if (cmd_buffer[1] == UART_CAN_CMD_TRANSMIT){
-		struct can_msg msg_t;
-		msg_t.ID = (cmd_buffer[2] << 8) | cmd_buffer[3];
-		msg_t.len = cmd_buffer[4];
-		//memcpy(&msg_t.data[0], &cmd_buffer[5], msg_t.len);
-		can_transmit_message(&msg_t);
-		UART_tx_polling(0);
+		struct can_msg tx_msg;
+		tx_msg.ID = (cmd_buffer[2] << 8) | cmd_buffer[3];
+		tx_msg.len = cmd_buffer[4];
+		for(uint8_t i = 0; i<tx_msg.len; i++){
+			tx_msg.data[i] = cmd_buffer[5+i];
+		}
+
+		uint8_t can_status = can_transmit_message(&tx_msg);
+		UART_tx_polling(can_status);
 	}
 	if (cmd_buffer[1] == UART_CAN_CMD_RECEIVE){
 		struct can_msg msg_r;

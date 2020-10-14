@@ -17,7 +17,7 @@ void can_init(){
 	mcp2515_init(LOOPBACK);
 }
 
-// Looks for valid transmit buffer, if non returns -1
+// Looks for valid transmit buffer, if non returns 3
 // If valid transmit buffer found tx_buffer_address points to
 // the valid register. 
 uint8_t can_valid_transmit_buffer(uint8_t *tx_buffer_address){
@@ -51,27 +51,49 @@ uint8_t can_pending_receive_buffer(uint8_t *rx_buffer_address){
 	return 3;
 }
 
+/*
+ * Loads a transmit buffer with ID, length and data
+*/
 uint8_t can_transmit_message(struct can_msg *msg){
 	// Write ID
 	// Write length
 	// Write data
 	// Request to send TX buffer
+	
+	// The length CAN NOT be greater than four bits.
+	if (msg->len > 0x0F){
+		return 1;
+	}
+	
+	// This buffer is used to get info from the *msg and store it in a format that the MCP likes
 	uint8_t buffer[5+msg->len];
 	
-	buffer[0] = (uint8_t)(msg->ID >> 8);
-	buffer[1] = (uint8_t)(msg->ID);
-	buffer[2] = 0;	// extended ID
-	buffer[3] = 0;	// extended ID
+	// LOAD ID into buffer:
+	// TXBnSIDH - Transmit Buffer n Standard identifier HIGH contains SID<10:3>
+	buffer[0] = (uint8_t)(msg->ID >> 3);
+	// TXBnSIDL - Transmit Buffer n Standard identifier LOW contains SID<2:0>
+	buffer[1] = (uint8_t)(msg->ID << 5);
+	// Since we do not support extended ID's we leave the remaining bits as 0
+
+	// NOTE: Here we skip two buffers, as they are the extended IDs
+	buffer[2] = 0;
+	buffer[3] = 0;
+
+	// LOAD LENGTH into buffer:
 	buffer[4] = (uint8_t)(msg->len);
-	//memcpy(&buffer[5], &msg.data[0], msg.len);
-	
+
+	// LOAD DATA
+	for(uint8_t i = 0; i<msg->len; i++){
+		buffer[5+i] = msg->data[i];
+	}
+
 	uint8_t tx_buffer_address; 
-	
+
 	if (can_valid_transmit_buffer(&tx_buffer_address) != 3){
 		mcp2515_WRITE(tx_buffer_address + 1, &buffer[0], 5+msg->len);
 		return 0;
 	}
-	return 1;		
+	return 1;
 }
 
 uint8_t can_receive_message(struct can_msg *msg){
