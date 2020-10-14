@@ -31,22 +31,98 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	//Should we add self-test?
 
 	mcp2515_select();
+	mcp2515_configure_bit_timing();
+	
 	//Select mode
 	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
 	mcp2515_deselect();
-	
-	
-	//T_osc = 62.5 ns
-	mcp2515_BIT_MODIFY(MCP_CNF1, 0x3F, 0x04); //BRP<5:0>, T_q = 625 ns
-	mcp2515_BIT_MODIFY(MCP_CNF1, 0xC0, 0); //SJW<1:0>
+}
 
-	mcp2515_BIT_MODIFY(MCP_CNF2, 0x3F, 0); //PHSEG<12:0>
-	mcp2515_BIT_MODIFY(MCP_CNF2, 0x40, 0); //SAM<bit 6>
-	mcp2515_BIT_MODIFY(MCP_CNF2, 0x80, 0); //BTLMODE<bit 7>
+
+/*
+ * Function: Configure the bit-timing of the CAN bus
+ * -------------------------------------------------
+ * Theory:
+ *   CAN BIT TIME SEGMENTS:
+ *         |Sync|Prop|PhaseSeg1|PhaseSeg2|
+ *   The sampling time is between PS1 and PS2.
+ * 
+ *   The full length is the time for ONE BIT. The length of each segment is
+ *   some amount of time-quantas TQ. The full length of one bit is typically 16 Tq
+ *
+ *   The point of this configuration is to configure the sync-process.
+ '   The device will shorten or extend its bit-time to match the sender. 
+ * 
+ *   The device expects an edge (a bit) within the Sync-segment. If the bit falls
+ *   within the segment then we have synchronization. If the bit falls after the 
+ *   sync segment [The transmitter is slower than expected] - we extend the 
+ *   duration of PhaseSeg2 (PS2). If the bit falls before the sync segment
+ *   [The transmitter is faster than expected] we shorten the duration of PS2.
+ *
+ *   The length of extension or shortening is configured by the Synchronization
+ *   jump width (SJW).
+ *
+ *   Some requirements for the programming of the segments (see page 43 in MCP2515 datasheet):
+ *    - PropSeg + PhaseSeg1 (PS1) >= PS2
+ *    - PropSeg + PS1 >= T_delay
+ *    - PS2 > SJW
+ *
+ * Configuration-register explanation:
+ *   CNF1 - Configuration 1:
+ *     bit 7-6 : Synchronization Jump Width Length
+ *     bit 5-0 : Baud Rate Prescaler Bits
+ *
+ *   CNF2 - Configuration 2:
+ *     bit 7   : PS2 Bit Time Length bit
+ *     bit 6   : Sample Point Configuration bit
+ *     bit 5-3 : PS1 Length bits
+ *     bit 2-0 : Propagation Segments Length bits
+ *
+ *   CNF3 - Configuration 3:
+ *     bit 7   : Start-of-Frame signal bit
+ *     bit 6   : Wake-up Filter bit
+ *     bit 5-3 : Unimplemented
+ *     bit 2-0 : PS2 Length bits
+ *
+ * Configuration:
+ *   We target a CAN_BAUDRATE of 9600 Hz
+ *   The oscillator on the MCP2515 is 16 MHz
+ *
+ *   Prescaling the OSCILLATOR with 2^6 - 1 (max prescaling, slowest timequanta)
+ *   results in F_Tq = 125 984.252. If we then have 16 Tq per bit we get a
+ *   CAN_BAUDRATE = 7874.
+ *
+ *   These durations are from page 43 in the datasheet:
+ *     SyncSeg = 1 TQ
+ *     PropSeg = 2 TQ
+ *     PS1 = 7 TQ
+ *     PS2 = 6 TQ
+ *     SJW = 1
+*/
+void mcp2515_configure_bit_timing(){
+	// Setting TQ duration: 0x3F in both mask and value gives the maximum prescaling
+	// and the lowest baudrate.
+	// TQ = 2*(BRP/F_OSC) = 63uS
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0x3F, 0x3F);
 	
-	mcp2515_BIT_MODIFY(MCP_CNF3, 0x07, 0); //PHSEG<22:20>
-	mcp2515_BIT_MODIFY(MCP_CNF3, 0x40, 0); //WAKFIL<bit 6>
-	mcp2515_BIT_MODIFY(MCP_CNF3, 0x80, 0); //SOF<bit 7
+	// Setting Synchronization Jump Width: 0x00 results in SJW = 1
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0xC0, 0x00);
+
+	// Setting PropSeg = 2 TQ
+	// CNF2 bits 2-0 (PRSEG2, 1, 0) configures the PropSeg length: 
+	// (PRSEG + 1) x TQ. Thus PRSEG = 1 gives PropSeg = 2
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0x07, 0x01);
+	
+	// Setting PS1 length:
+	// We target a length of 7 TQ.
+	// (PHSEG1 + 1) = 7 -> PHSEG1 = 6
+	// This is done with bit 5-3.
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0x07 << 3, 0x06 << 3);
+	
+	// Setting PS2 length:
+	// We target a lenght of 6 TQ
+	// (PHSEG2 + 1) = 6 -> PHSEG2 = 5
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0x07, 0x05);
 }
 
 /*
