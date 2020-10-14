@@ -12,6 +12,7 @@ def can_valid_tx_buffer(ser):
     comms.send_cmd(ser, cmd)
 
     returncode = ser.read(2)
+    print(returncode)
 
     if returncode != b'':
         return list(returncode)
@@ -42,6 +43,8 @@ def can_receive(ser):
     comms.send_cmd(ser, cmd)
 
     returncode = ser.read(11)
+
+    print(returncode, list(returncode))
 
     if returncode != b'':
         return list(returncode)
