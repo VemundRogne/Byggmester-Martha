@@ -15,6 +15,16 @@ void init_statemachine(){
 	current_state = HOME_MENU;
 }
 
+void enter_highscore_menu(){
+	current_state = HIGHSCORE;
+
+	menu_highscores();
+
+	current_selection = 5;
+	menu_lower_bound = 5;
+	menu_upper_bound = 5;
+}
+
 
 void statemachine_handle_menu_execute(){
 	switch(current_state){
@@ -42,26 +52,16 @@ void statemachine_handle_menu_execute(){
 	}
 }
 
-void enter_highscore_menu(){
-	current_state = HIGHSCORE;
-
-	menu_highscores();
-
-	current_selection = 5;
-	menu_lower_bound = 5;
-	menu_upper_bound = 5;
-}
-
 
 void statemachine_execute_current_state(){
 	switch(current_state){
 		case HOME_MENU:
-			menu_draw(&home_menu);
+			menu_draw((char*)&home_menu[0]);
 			menu_navigate();
 			break;
 
 		case HIGHSCORE:
-			menu_draw(&hs_menu);
+			menu_draw((char*)&hs_menu[0]);
 			menu_navigate();
 			break;
 	}

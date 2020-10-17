@@ -22,9 +22,9 @@ void menu_init(){
 	menu_lower_bound = 5;
 };
 
-void menu_insert_item(char* menu, char *element, uint8_t len, uint8_t position){
-	memcpy(&menu[position*LINELENGTH], element, len);
-	memset(&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
+void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position){
+	memcpy((char*)&menu[position*LINELENGTH], element, len);
+	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
 }
 
 void menu_draw_item(uint8_t position, char *menu){
@@ -91,27 +91,29 @@ uint8_t menu_select(){
 };
 
 void menu_home(){
+	volatile char* menu_pointer = &home_menu[0];
 	//Title
 	char title[LINELENGTH] = "    WELCOME!";
-	menu_insert_item(&home_menu, &title, strlen(title), 0);
+	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
 	//Options
 	char option1[LINELENGTH] = " Play ping pong";
 	char option2[LINELENGTH] = " High scores";
 	char option3[LINELENGTH] = " End game";
 	
-	menu_insert_item(&home_menu, NULL, 0, 1);
-	menu_insert_item(&home_menu, NULL, 0, 2);
-	menu_insert_item(&home_menu, &option1, strlen(option1), 3);
-	menu_insert_item(&home_menu, &option2, strlen(option2), 4);
-	menu_insert_item(&home_menu, &option3, strlen(option3), 5);
-	menu_insert_item(&home_menu, NULL, 0, 6);
-	menu_insert_item(&home_menu, NULL, 0, 7);
+	menu_insert_item(menu_pointer, NULL, 0, 1);
+	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 3);
+	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 4);
+	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 5);
+	menu_insert_item(menu_pointer, NULL, 0, 6);
+	menu_insert_item(menu_pointer, NULL, 0, 7);
 };
 
 void menu_highscores(){
+	volatile char* menu_pointer = &hs_menu[0];
 	char title[LINELENGTH] = "  HIGH SCORE!";
-	menu_insert_item(&hs_menu, &title, strlen(title), 0);
+	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
 	//Options
 	char option1[LINELENGTH] = " Oskar 100";
@@ -119,11 +121,11 @@ void menu_highscores(){
 	char option3[LINELENGTH] = " Martha 3";
 	char option4[LINELENGTH] = " Back";
 	
-	menu_insert_item(&hs_menu, NULL, 0, 1);
-	menu_insert_item(&hs_menu, &option1, strlen(option1), 2);
-	menu_insert_item(&hs_menu, &option2, strlen(option2), 3);
-	menu_insert_item(&hs_menu, &option3, strlen(option3), 4);
-	menu_insert_item(&hs_menu, &option4, strlen(option4), 5);
-	menu_insert_item(&hs_menu, NULL, 0, 6);
-	menu_insert_item(&hs_menu, NULL, 0, 7);
+	menu_insert_item(menu_pointer, NULL, 0, 1);
+	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 2);
+	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
+	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
+	menu_insert_item(menu_pointer, &option4[0], strlen(option4), 5);
+	menu_insert_item(menu_pointer, NULL, 0, 6);
+	menu_insert_item(menu_pointer, NULL, 0, 7);
 };
