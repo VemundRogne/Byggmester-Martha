@@ -157,16 +157,13 @@
     <Compile Include="inc\fonts.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="inc\hmi.h">
+    <Compile Include="inc\funkyboard.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="inc\mcp2515.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="inc\menu.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="inc\mmi.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="inc\oled.h">
@@ -193,7 +190,7 @@
     <Compile Include="src\can.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\hmi.c">
+    <Compile Include="src\funkyboard.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
@@ -203,9 +200,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\menu.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\mmi.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\oled.c">
