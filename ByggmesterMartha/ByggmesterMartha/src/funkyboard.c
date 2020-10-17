@@ -67,12 +67,15 @@ uint8_t Joystick_can(){
 	
 	struct Joystick_pos js_pos = get_joystick_pos();
 	struct can_msg js_msg;
-	js_msg.ID = 69;
+	union Data data;
 	
+	js_msg.ID = 69;
 	js_msg.len = 2;
 	
-	js_msg.data[0] = js_pos.x;
-	js_msg.data[1] = js_pos.y;
+	data.i = js_pos.x;
+	js_msg.data[0] = data.u;
+	data.i = js_pos.y;
+	js_msg.data[1] = data.u;
 	
 	if(can_transmit_message(&js_msg) != 1){
 		return 0;

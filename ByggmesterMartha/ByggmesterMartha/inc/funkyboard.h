@@ -14,6 +14,11 @@
 int joystick_offset_x;
 int joystick_offset_y;
 
+union Data {
+	uint8_t u;
+	int8_t i;
+};
+
 struct Joystick_pos{
 	int x; 
 	int y;
