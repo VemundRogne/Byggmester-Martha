@@ -64,9 +64,23 @@ def can_receive(ser):
             print("No message received")
             return 1
 
-    data = ser.read(11)
-    print(data, list(data))
+    raw_data = ser.read(11)
+    print("Raw_data:", raw_data, list(raw_data))
 
-    if data != b'':
-        return list(data)
+    if raw_data != b'':
+        # Convert the data into a nicer format
+        # The main thing is to combine two bytes into the ID,
+        # and throw away data bytes that are not actually valid. (We will always
+        # get 11 bytes, but not all are valid data because the data.len matters)
+        ID = int.from_bytes(raw_data[0:2], byteorder='big')
+        print(ID)
+        Length = int.from_bytes(raw_data[2:3], byteorder='big')
+        print(Length)
+        data = list(raw_data[3:4+Length-1])
+        print(data)
+
+        returnlist = [ID, Length]
+        returnlist.extend(data)
+        return returnlist
+
     return 1
