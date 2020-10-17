@@ -5,7 +5,7 @@
  *  Author: vemun
  */ 
 
-#include "../inc/mmi.h"
+#include "../inc/funkyboard.h"
 #include "../inc/adc.h"
 #define F_CPU	4915200
 #include <util/delay.h>

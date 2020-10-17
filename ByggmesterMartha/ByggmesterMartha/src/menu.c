@@ -7,7 +7,7 @@
 
 #include "../inc/menu.h"
 #include "../inc/oled.h"
-#include "../inc/mmi.h"
+#include "../inc/funkyboard.h"
 #include "../inc/statemachine.h"
 #include <string.h>
 

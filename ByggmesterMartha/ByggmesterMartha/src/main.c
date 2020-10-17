@@ -19,7 +19,7 @@
 #include "../inc/xmem.h"
 #include "../inc/uart.h"
 #include "../inc/adc.h"
-#include "../inc/mmi.h"
+#include "../inc/funkyboard.h"
 #include "../inc/oled.h"
 #include "../inc/menu.h"
 #include "../inc/timers.h"
@@ -54,7 +54,7 @@ int main(void)
 
 	//printf("Starting main:\n");
     while (1) 
-    {
+    {	
 		//printf("START OF MAINLOOP!\n");
 		//adc_get_values(&rd_adc_values[0]);
 		//printf("ADC: %u, %u, %u, %u \n", rd_adc_values[0], rd_adc_values[1], rd_adc_values[2], rd_adc_values[3]);
