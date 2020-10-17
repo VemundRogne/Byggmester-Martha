@@ -179,13 +179,15 @@ void UART_execute_can_cmd(){
 		if (can_status == 0){
 			// Transfer the message
 			uint8_t polling_array[11];
-			polling_array[0] = (uint8_t) (msg_r.ID >> 8);
-			polling_array[1] = (uint8_t) msg_r.ID;
+			polling_array[0] = (uint8_t) (msg_r.ID << 8);
+			polling_array[1] = (uint8_t) (msg_r.ID);
 			polling_array[2] = msg_r.len;
-			polling_array[3] = msg_r.data[0];
-			polling_array[4] = msg_r.data[1];
-			polling_array[5] = msg_r.data[2];
-			//memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
+			
+			// Copy out the data into a nice buffer
+			for (uint8_t i=0; i<msg_r.len; i++){
+				polling_array[3+i] = msg_r.data[i];
+			}
+			
 			for ( uint8_t i = 0; i < 11; i++){
 				UART_tx_polling(polling_array[i]);
 			}
