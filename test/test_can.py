@@ -16,7 +16,7 @@ def ser():
 
 def test_can_pending_rx_buffer_0(ser):
     result = can_cmd.can_pending_rx_buffer(ser)
-    assert result[1] != 3
+    assert result[1] == 3
 
 
 def test_can_transmit(ser):
