@@ -8,7 +8,6 @@
 
 #include "../inc/spi.h"
 #include "../inc/mcp2515.h"
-#include "../inc/can.h"
 
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
@@ -29,16 +28,15 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	//Reset mcp2515 on initialization
 	mcp2515_RESET();
 
-	//Should we add self-test?
-
-	mcp2515_select();
+	//Set up timing for CAN bus
 	mcp2515_configure_bit_timing();
 	
 	//Select mode
 	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
-	mcp2515_deselect();
 	
-	can_init();
+	// Enable buffer 0 to receive all messages
+	// This turns off the mask and fileter -> receive any message
+	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
 }
 
 

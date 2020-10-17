@@ -13,12 +13,6 @@
 #include "../inc/mcp2515.h"
 #include "../inc/can.h"
 
-void can_init(){
-	// Enable buffer 0 to receive all messages
-	// This turns off the mask and fileter -> receive any message
-	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
-}
-
 // Looks for valid transmit buffer, if non returns 3
 // If valid transmit buffer found tx_buffer_address points to
 // the valid register. 
