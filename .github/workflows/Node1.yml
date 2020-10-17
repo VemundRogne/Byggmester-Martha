@@ -1,0 +1,53 @@
+name: Node1, build, program and test
+
+on: push
+
+jobs:
+  Checkout:
+    runs-on: [self-hosted, windows]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout and print directory
+      run: |
+        dir
+
+  Build_node_1:
+    runs-on: [self-hosted, windows]
+    needs: Checkout
+    steps:
+    - name: Build ByggmesterMartha in AtmelStudio
+      run: |
+        CI/build.bat
+
+  flash_firmware_node_1:
+    runs-on: [self-hosted, windows]
+    needs: Build_node_1
+    steps:
+    - name: Flash program to device
+      run: |
+        CI/program.bat
+  
+  Build_node_2:
+    runs-on: [self-hosted, windows]
+    needs: Checkout
+    steps:
+    - name: Build node 2 in AtmelStudio
+      run: |
+        CI/build_node2.bat
+  
+  program_node_2:
+    runs-on: [self-hosted, windows]
+    needs: Build_node_2
+    steps:
+    - name: Program node 2
+      run: |
+        CI/program_node2.bat
+
+  run_tests:
+    runs-on: [self-hosted, windows]
+    needs: [flash_firmware_node_1, program_node_2]
+    steps:
+    - name: run pytest
+      run: |
+        pytest -v --durations=0

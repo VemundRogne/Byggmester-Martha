@@ -155,8 +155,6 @@ Copyright 2003 Kimberly Otten Software Consulting
 #define MCP_WAKIF		0x40
 #define MCP_MERRF		0x80
 
-
-
 //mcp functions
 #include <stdio.h>
 
@@ -170,6 +168,13 @@ enum mcp2515_mode{
 
 
 void mcp2515_init(enum mcp2515_mode MCP_MODE);
+
+/*
+ * Function: Configure the bit timing of the CAN bus
+ * This function is called in the mcp2515_init function and
+ * does not need to be manually modified.
+*/
+void mcp2515_configure_bit_timing();
 
 /*
  * Function: Send reset command to mcp2515

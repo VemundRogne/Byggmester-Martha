@@ -20,8 +20,10 @@ struct can_msg{
 
 void can_init();
 
-void can_transmit_message(struct can_msg msg);
-void can_receive_message(struct can_msg *msg);
+uint8_t can_valid_transmit_buffer(uint8_t *tx_buffer_address);
+uint8_t can_pending_receive_buffer(uint8_t *rx_buffer_address);
+uint8_t can_transmit_message(struct can_msg *msg);
+uint8_t can_receive_message(struct can_msg *msg);
 
 
 #endif /* CAN_H_ */
