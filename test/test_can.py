@@ -26,6 +26,11 @@ def test_can_transmit(ser):
     assert can_cmd.can_transmit(ser, msg_id, msg_len, msg_data) == 0
 
 
+def test_can_pending_rx_buffer(ser):
+    result = can_cmd.can_pending_rx_buffer(ser)
+    assert result[1] != 3
+
+
 def test_can_receive(ser):
     assert can_cmd.can_receive(ser) != -1
 
@@ -33,11 +38,6 @@ def test_can_receive(ser):
 def test_can_valid_tx_buffer(ser):
     result = can_cmd.can_valid_tx_buffer(ser)
     print(result)
-    assert result[1] != 3
-
-
-def test_can_pending_rx_buffer(ser):
-    result = can_cmd.can_pending_rx_buffer(ser)
     assert result[1] != 3
 
 
