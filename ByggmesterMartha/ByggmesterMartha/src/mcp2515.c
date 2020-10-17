@@ -8,6 +8,7 @@
 
 #include "../inc/spi.h"
 #include "../inc/mcp2515.h"
+#include "../inc/can.h"
 
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
@@ -36,6 +37,8 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	//Select mode
 	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
 	mcp2515_deselect();
+	
+	can_init();
 }
 
 

@@ -168,17 +168,27 @@ void UART_execute_can_cmd(){
 	}
 	if (cmd_buffer[1] == UART_CAN_CMD_RECEIVE){
 		struct can_msg msg_r;
-		can_receive_message(&msg_r);
-		uint8_t polling_array[11];
-		polling_array[0] = (uint8_t) (msg_r.ID >> 8);
-		polling_array[1] = (uint8_t) msg_r.ID;
-		polling_array[2] = msg_r.len;
-		polling_array[3] = msg_r.data[0];
-		polling_array[4] = msg_r.data[1];
-		polling_array[5] = msg_r.data[2];
-		//memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
-		for ( uint8_t i = 0; i < 11; i++){
-			UART_tx_polling(polling_array[i]);
+		
+		// Try to receive a message
+		uint8_t can_status = can_receive_message(&msg_r);
+		
+		UART_tx_polling(can_status);	// Send out the status so the master knows if there
+		// will be a message soon.
+		
+		// We actually got a message
+		if (can_status == 0){
+			// Transfer the message
+			uint8_t polling_array[11];
+			polling_array[0] = (uint8_t) (msg_r.ID >> 8);
+			polling_array[1] = (uint8_t) msg_r.ID;
+			polling_array[2] = msg_r.len;
+			polling_array[3] = msg_r.data[0];
+			polling_array[4] = msg_r.data[1];
+			polling_array[5] = msg_r.data[2];
+			//memcpy(&polling_array[3], &msg_r.data[0], msg_r.len);
+			for ( uint8_t i = 0; i < 11; i++){
+				UART_tx_polling(polling_array[i]);
+			}
 		}
 	}
 	

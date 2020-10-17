@@ -52,10 +52,20 @@ def can_receive(ser):
 
     comms.send_cmd(ser, cmd)
 
-    returncode = ser.read(11)
-
-    print(returncode, list(returncode))
-
+    # Check the can_status.
+    # The first byte returned will be the can_status. A 0 indicated that
+    # we received a message, a 1 indicates that we did not
+    returncode = ser.read(1)
+    print("Returncode:", returncode)
     if returncode != b'':
-        return list(returncode)
-    return None
+        # Not a zero indicates no message received. Return 1 to indicate failiure
+        if int.from_bytes(returncode, byteorder='big') != 0:
+            print("No message received")
+            return 1
+
+    data = ser.read(11)
+    print(data, list(data))
+
+    if data != b'':
+        return list(data)
+    return 1
