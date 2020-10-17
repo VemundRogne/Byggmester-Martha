@@ -64,7 +64,7 @@ uint8_t can_transmit_message(struct can_msg *msg){
 	// Request to send TX buffer
 	
 	// The length CAN NOT be greater than four bits.
-	if (msg->len > 0x0F){
+	if (msg->len > 8){
 		return 1;
 	}
 	
