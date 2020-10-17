@@ -6,8 +6,9 @@
  */ 
 
 #include <avr/io.h>
-
+#include <stdio.h>
 #include <stdlib.h>
+
 void SRAM_test(void)
 {
 	volatile char *ext_ram = (char *) 0x1800; // Start address for the SRAM

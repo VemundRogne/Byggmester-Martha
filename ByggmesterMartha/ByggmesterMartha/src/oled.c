@@ -5,12 +5,14 @@
  *  Author: marth
  */ 
 
+#define F_CPU	4915200
 #include <util/delay.h>
+#include <string.h>
 #include "../inc/oled.h"
 #include "../inc/fonts.h"
 
-volatile char *ext_oled_cmd = OLED_COMMAND_ADDRESS;
-volatile char *ext_oled_data = OLED_DATA_ADDRESS;
+volatile char *ext_oled_cmd = (char*)OLED_COMMAND_ADDRESS;
+volatile char *ext_oled_data = (char*)OLED_DATA_ADDRESS;
 
 
 //Initializer
