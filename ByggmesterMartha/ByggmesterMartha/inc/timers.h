@@ -12,6 +12,7 @@
 
 // Timer 1 is used for PWM output on PD5. It's the ADC clock
 void init_timer1();
+void init_timer0();
 
 
 #endif /* TIMERS_H_ */

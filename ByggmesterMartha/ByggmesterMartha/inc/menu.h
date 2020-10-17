@@ -21,7 +21,7 @@ uint8_t menu_lower_bound;
 
 void menu_init();
 
-void menu_insert_item(char* menu, char *element, uint8_t len, uint8_t position);
+void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position);
 
 void menu_draw_item(uint8_t position, char *menu);
 
