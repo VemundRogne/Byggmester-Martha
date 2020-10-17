@@ -7,6 +7,8 @@
 
 #include "../inc/funkyboard.h"
 #include "../inc/adc.h"
+#include "../inc/can.h"
+
 #define F_CPU	4915200
 #include <util/delay.h>
 #include <stdlib.h>
@@ -57,3 +59,23 @@ struct Slider_pos get_slider_pos(){
 	slider.left = (int) (((adc_values[3]-128)*100)/128);
 	return slider;
 	};
+	
+// Sends joystick position over CAN bus
+// Returns 0 for successful transmission
+// 1 when failed. 
+uint8_t Joystick_can(){
+	
+	struct Joystick_pos js_pos = get_joystick_pos();
+	struct can_msg js_msg;
+	js_msg.ID = 69;
+	
+	js_msg.len = 2;
+	
+	js_msg.data[0] = js_pos.x;
+	js_msg.data[1] = js_pos.y;
+	
+	if(can_transmit_message(&js_msg) != 1){
+		return 0;
+	}
+	return 1;
+};	
