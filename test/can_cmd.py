@@ -32,11 +32,11 @@ def can_pending_rx_buffer(ser):
 
 def can_transmit(ser, msg_id, msg_len, msg_data):
     cmd = [3, 0]
-    cmd.append(msg_id)
+    cmd.extend(list(msg_id.to_bytes(2, byteorder='big')))
     cmd.append(msg_len)
     cmd.extend(msg_data)
     cmd_empty_len = 10 - (msg_len + 5)
-    empty_vector = [0] * (cmd_empty_len + 1)
+    empty_vector = [0] * (cmd_empty_len)
     cmd.extend(empty_vector)
 
     comms.send_cmd(ser, cmd)
@@ -45,6 +45,7 @@ def can_transmit(ser, msg_id, msg_len, msg_data):
     if returncode != b'':
         return int.from_bytes(returncode, byteorder='big')
     return -1
+
 
 def can_receive(ser):
     cmd = [3, 1]
