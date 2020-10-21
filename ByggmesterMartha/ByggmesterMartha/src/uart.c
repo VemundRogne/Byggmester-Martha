@@ -91,7 +91,7 @@ void UART_execute_mcp2515_cmd(){
 			uint8_t address = cmd_buffer[ARG_OFFSET];
 			uint8_t data_length = cmd_buffer[ARG_OFFSET+1];
 			
-			mcp2515_WRITE(address, cmd_buffer[ARG_OFFSET+2], data_length);
+			mcp2515_WRITE(address, (uint8_t*)&cmd_buffer[ARG_OFFSET+2], data_length);
 			UART_tx_polling(0x01);
 
 			break;

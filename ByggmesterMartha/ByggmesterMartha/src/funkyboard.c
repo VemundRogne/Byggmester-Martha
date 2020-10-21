@@ -11,6 +11,7 @@
 
 #define F_CPU	4915200
 #include <util/delay.h>
+#include <stdlib.h>
 
 void init_joystick(){
 	_delay_ms(1000);
@@ -21,7 +22,7 @@ void init_joystick(){
 
 struct Joystick_pos get_joystick_pos(){
 	uint8_t adc_values[4];
-	adc_get_values(&adc_values);
+	adc_get_values(&adc_values[0]);
 	struct Joystick_pos joystick;
 
 	joystick.x = (int)(adc_values[0]) - joystick_offset_x;
