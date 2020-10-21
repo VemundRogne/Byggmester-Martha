@@ -18,9 +18,9 @@ def verify_CNF_registers_are_valid(ser):
     # I've copied these expected values from the MCP_configure_bit_timing
     # function. This verifies that the init actually managed to write
     # the values as it tries to.
-    Expected_CNF1 = (0x3F) | (0x00)
-    Expected_CNF2 = (0x01) | (0x06 << 3)
-    Expected_CNF3 = (0x05)
+    Expected_CNF1 = (0x43)
+    Expected_CNF2 = (0xb5)
+    Expected_CNF3 = (0x01)
     CNF1_addr = 0x2A
     CNF2_addr = 0x29
     CNF3_addr = 0x28

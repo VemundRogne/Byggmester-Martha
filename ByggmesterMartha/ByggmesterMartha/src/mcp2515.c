@@ -27,9 +27,13 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	_delay_ms(10);
 	//Reset mcp2515 on initialization
 	mcp2515_RESET();
+	
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0xff, 0x43);
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0xff, 0xb5);
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0xff, 0x01);
 
 	//Set up timing for CAN bus
-	mcp2515_configure_bit_timing();
+	//mcp2515_configure_bit_timing();
 	
 	//Select mode
 	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
