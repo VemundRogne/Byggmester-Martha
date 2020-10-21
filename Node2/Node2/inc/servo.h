@@ -6,12 +6,12 @@
  */ 
 
 
-#ifndef TIMERS_H_
-#define TIMERS_H_
+#ifndef SERVO_H_
+#define SERVO_H_
 
 void servo_init_pwm();
 void servo_set_postition(uint8_t postition);
 
 
 
-#endif /* TIMERS_H_ */
+#endif /* SERVO_H_ */
