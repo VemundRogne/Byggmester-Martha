@@ -206,7 +206,7 @@
     <Compile Include="inc\printf-stdarg.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="inc\timers.h">
+    <Compile Include="inc\servo.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="inc\uart.h">
@@ -227,7 +227,7 @@
     <Compile Include="src\printf-stdarg.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\timers.c">
+    <Compile Include="src\servo.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\uart.c">
