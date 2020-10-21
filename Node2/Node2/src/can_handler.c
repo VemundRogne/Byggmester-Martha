@@ -10,6 +10,7 @@
 
 #include "../inc/can_controller.h"
 #include "../inc/can_handler.h"
+#include <component/tc.h>
 
 union Data {
 	uint8_t u;
@@ -28,5 +29,10 @@ void handle_can_message(struct can_message_t *message){
 		volatile int8_t joystick_y = data.i;
 		
 		REG_PIOA_SODR |= (1<<19);
+	}
+	
+	// Move servo motor <3
+	if(message->id == 50){
+		TC0->TC_CHANNEL[0].TC_RA = 53332*((float)(message->data[0]) / 100.0);
 	}
 };

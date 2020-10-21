@@ -11,12 +11,14 @@
 #include "inc/can_controller.h"
 #include "inc/can_interrupt.h"
 #include "inc/uart.h"
+#include "inc/timers.h"
 
 int main(void)
 {
     /* Initialize the SAM system */
     SystemInit();
 	configure_uart();
+	init_timer();
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
