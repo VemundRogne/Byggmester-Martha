@@ -8,13 +8,20 @@
 
 #ifndef IR_DRIVER_H_
 #define IR_DRIVER_H_
+#include "../inc/adc.h"
+#include "../inc/can_controller.h"
+#include <stdint.h>
+
+
+uint8_t prev_status_ball;
+uint8_t curr_status_ball;
 
 //IR init
 void ir_init();
 
-//IR read signal
-void ir_read();
+void ir_ball_in_beam();
 
+uint8_t ir_transmit();
 
 
 #endif /* IR_DRIVER_H_ */
