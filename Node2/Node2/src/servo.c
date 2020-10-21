@@ -58,7 +58,9 @@ void servo_init_pwm(){
 
 // Abstraction sets the duty cycle in register
 void pwm_set_duty_cycle(float duty_cycle){
-	TC0->TC_CHANNEL[0].TC_RA = 53332*0.075;
+	if (duty_cycle >= 0.045 && duty_cycle <= 0.105){
+		TC0->TC_CHANNEL[0].TC_RA = 53332*duty_cycle;
+	}
 };
 
 
@@ -66,6 +68,6 @@ void pwm_set_duty_cycle(float duty_cycle){
 void servo_set_position(uint8_t position){
 	//Position is 0-255
 	//Should scale to 4.5 - 10.5 (diff is 6)
-	float duty_cycle = 4.5 + position*6/255;
+	float duty_cycle = (4.5 + (((float)position)/255.0)*6)/100;
 	pwm_set_duty_cycle(duty_cycle);
 };
