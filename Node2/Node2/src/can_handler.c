@@ -10,6 +10,7 @@
 
 #include "../inc/can_controller.h"
 #include "../inc/can_handler.h"
+#include "../inc/servo.h"
 #include <component/tc.h>
 
 union Data {
@@ -31,8 +32,9 @@ void handle_can_message(struct can_message_t *message){
 		REG_PIOA_SODR |= (1<<19);
 	}
 	
-	// Move servo motor <3
+	// Move servo motor <3 data should contain some duty cycle?
 	if(message->id == 50){
-		TC0->TC_CHANNEL[0].TC_RA = 53332*((float)(message->data[0]) / 100.0);
+		uint8_t position = (uint8_t)(message->data[0]);
+		servo_set_position(position);
 	}
 };

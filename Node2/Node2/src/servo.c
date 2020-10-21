@@ -11,9 +11,10 @@
 #include <component/tc.h>
 #include <component/pio.h>
 
-#include "../inc/timers.h"
+#include "../inc/servo.h"
 
 #define MCK	48000000
+
 
 /*
  * Configures timer0 to provide PWM signal suitable for a servo on PWM2
@@ -31,7 +32,7 @@
  *   I/O Line:		PB25
  *   Peripheral:	B
 */
-void init_timer(){
+void servo_init_pwm(){
 	//REG_PIOB_OER |= (1<<25);
 	
 	PIOB->PIO_PDR |= (1<<25);
@@ -49,8 +50,22 @@ void init_timer(){
 	// Setup triggering on TIOA
 	TC0->TC_CHANNEL[0].TC_CMR |= TC_CMR_ACPC_SET | TC_CMR_ACPA_CLEAR;
 	
-	TC0->TC_CHANNEL[0].TC_RA = 53332*0.105;
+	TC0->TC_CHANNEL[0].TC_RA = 53332*0.075;
 	TC0->TC_CHANNEL[0].TC_RC = 53332;
 	
 	TC0->TC_CHANNEL[0].TC_CCR |= TC_CCR_CLKEN | TC_CCR_SWTRG;
 }
+
+// Abstraction sets the duty cycle in register
+void pwm_set_duty_cycle(float duty_cycle){
+	TC0->TC_CHANNEL[0].TC_RA = 53332*0.075;
+};
+
+
+// Set servo to position from 0 to 255 (defined as leftbound to rightbound)
+void servo_set_position(uint8_t position){
+	//Position is 0-255
+	//Should scale to 4.5 - 10.5 (diff is 6)
+	float duty_cycle = 4.5 + position*6/255;
+	pwm_set_duty_cycle(duty_cycle);
+};
