@@ -31,10 +31,11 @@ int main(void)
 	REG_PIOA_OER |= (1<<19);
 	
 	uint8_t can_status = 1;
-	
+	adc_init();
 
     /* Replace with your application code */
     while (1)
     {
+		uint16_t adc_val = adc_read();
     }
 }
