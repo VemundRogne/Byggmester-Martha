@@ -71,3 +71,7 @@ void servo_set_position(uint8_t position){
 	float duty_cycle = (4.5 + (((float)position)/255.0)*6)/100;
 	pwm_set_duty_cycle(duty_cycle);
 };
+
+void servo_joystick_command(int8_t position){
+	servo_set_position((uint8_t)(position + 128))
+};

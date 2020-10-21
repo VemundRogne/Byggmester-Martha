@@ -11,6 +11,7 @@
 
 void servo_init_pwm();
 void servo_set_position(uint8_t postition);
+void servo_joystick_command(int8_t position);
 
 
 
