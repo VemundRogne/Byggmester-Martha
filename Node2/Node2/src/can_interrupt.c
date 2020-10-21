@@ -17,6 +17,8 @@
 
 #include "../inc/can_controller.h"
 
+#include "../inc/can_handler.h"
+
 #define DEBUG_INTERRUPT 0
 
 /**
@@ -49,6 +51,8 @@ void CAN0_Handler( void )
 		{
 			printf("CAN0 message arrived in non-used mailbox\n\r");
 		}
+		
+		handle_can_message(&message);
 
 		if(DEBUG_INTERRUPT)printf("message id: %d\n\r", message.id);
 		if(DEBUG_INTERRUPT)printf("message data length: %d\n\r", message.data_length);

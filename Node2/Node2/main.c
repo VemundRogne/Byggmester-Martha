@@ -16,31 +16,25 @@ int main(void)
 {
     /* Initialize the SAM system */
     SystemInit();
-	//configure_uart();
+	configure_uart();
+	
+	can_init_def_tx_rx_mb(0x00290561);
+	
+	struct can_message_t msg;
+	
+	msg.id = 10;
+	msg.data_length = 3;
+	msg.data[0] = 0;
+	msg.data[1] = 1;
+	msg.data[2] = 2;
 	
 	REG_PIOA_OER |= (1<<19);
-	uint8_t can_status = can_init_def_tx_rx_mb(construct_can_br_register());
 	
+	uint8_t can_status = 1;
 	
-	if(can_status == 0){
-		//REG_PIOA_SODR |= (1<<19);
-	}
-	
-	struct can_message_t message;
-	message.id = 10;
-	message.data_length = 2;
-	message.data[0] = 1;
-	message.data[1] = 2;
 
     /* Replace with your application code */
     while (1)
     {
-		can_status = can_send(&message, 0);
-		if(can_status == 0){
-			REG_PIOA_SODR |= (1<<19);
-		}
-		else{
-			REG_PIOA_CODR |= (1<<19);
-		}
     }
 }
