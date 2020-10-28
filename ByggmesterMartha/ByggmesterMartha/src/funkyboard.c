@@ -63,12 +63,15 @@ struct Slider_pos get_slider_pos(){
 	};
 	
 
-int8_t saturate(int16_t value, int8_t lb, int8_t ub){
+int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
 	if (value < lb){
 		return lb;
 	}
 	else if (value > ub){
 		return ub;
+	}
+	else if (abs(value)<10){
+		return 0;
 	}
 	return (int8_t) value;
 }
@@ -85,9 +88,9 @@ uint8_t Joystick_can(){
 	js_msg.ID = 69;
 	js_msg.len = 2;
 	
-	data.i = saturate(js_pos.x, -127, 127);
+	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
 	js_msg.data[0] = data.u;
-	data.i = saturate(js_pos.x, -127, 127);
+	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
 	js_msg.data[1] = data.u;
 	
 	if(can_transmit_message(&js_msg) != 1){
