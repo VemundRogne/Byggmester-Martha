@@ -5,9 +5,11 @@
 #define F_CPU	4915200
 #include <util/delay.h>
 #include <avr/io.h>
+#include <avr/interrupt.h>
 
 #include "../inc/spi.h"
 #include "../inc/mcp2515.h"
+#include "../inc/can.h"
 
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
@@ -42,11 +44,38 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	// This turns off the mask and fileter -> receive any message
 	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
 	
-	// Enable interrupts for buffer reception
-	// CANINTE bits 1 and 0 enable RX1IE and RX0IE
-	mcp2515_BIT_MODIFY(MCP_CANINTE, 3, 3);
+	enable_RX_interrupts();
 }
 
+
+void enable_RX_interrupts(){
+	// Enable interrupts in MCP2515
+	// CANINTE bits 1 and 0 enable RX1IE and RX0IE
+	mcp2515_BIT_MODIFY(MCP_CANINTE, 3, 3);
+	
+	// The interrupt pin is connected to INT0 on the atmega
+	// Ensure the pin is in input mode (high impedance)
+	PORTD &= ~(1<<PD2);
+	MCUCR |= (1<<ISC01);	// INT0 interrupt triggers on falling edge
+	GICR |= (1<<INT0);		// Enable INT0 interrupts
+}
+
+
+// Interrupt service routine for INT0
+ISR(INT0_vect){
+	// Check what kind of interrupt it was
+	uint8_t CANINTF_register = 0;
+	mcp2515_READ(MCP_CANINTF, &CANINTF_register, 1);
+	
+	// This passes for both receive buffers. We don't really care which buffer got data...
+	//if ( (CANINTF_register &= (1<<0)) | (CANINTF_register &= (1<<1)) ){
+	struct can_msg msg_r;
+	uint8_t can_status = can_receive_message(&msg_r);
+		
+		// Clear the interrupt
+	mcp2515_BIT_MODIFY(MCP_CANINTF, 3, 0);
+	//}
+}
 
 /*
  * Function: Configure the bit-timing of the CAN bus

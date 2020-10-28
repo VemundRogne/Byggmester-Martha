@@ -54,7 +54,7 @@ int main(void)
 
 	//printf("Starting main:\n");
     while (1) 
-    {	
+    {
     	Joystick_can();
 		_delay_ms(50);
     }
