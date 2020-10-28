@@ -13,6 +13,8 @@
 #define SEL 2
 #define RST 1
 #define OE 0
+#define DACC_PIO 16
+
 
 //Set direction based on negative or positiv argument (int8_t dir)
 void stepper_set_direction(int8_t dir){
@@ -56,6 +58,16 @@ void stepper_enable_output(){
 
 void stepper_init(){
 	REG_PIOD_OER |= (1 << DIR) | (1 << EN) | (1 << SEL) | (1 << RST) | (1 << OE); //Enable output for our desired control pins for MJ1
+
+	//DACC stuff
+	REG_PIOB_OER |= (1<<DACC_PIO);
+
+	//PIOB->PIO_ABSR |= PIO_ABSR_P25; Dont think we need this cus dac no peripheral?
+	
+	PMC->PMC_PCER1 |= PMC_PCDR1_PID38; 
+
+	DAC->DACC_MR |= (1<<DACC_MR_TAG); //Tag selection cus studass said so
+	DAC->DACC_CHER |= (1<<1); //Enable channel 1
 }
 
 
