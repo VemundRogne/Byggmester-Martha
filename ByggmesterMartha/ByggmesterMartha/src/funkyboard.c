@@ -62,6 +62,17 @@ struct Slider_pos get_slider_pos(){
 	return slider;
 	};
 	
+
+int8_t saturate(int16_t value, int8_t lb, int8_t ub){
+	if (value < lb){
+		return lb;
+	}
+	else if (value > ub){
+		return ub;
+	}
+	return (int8_t) value;
+}
+
 // Sends joystick position over CAN bus
 // Returns 0 for successful transmission
 // 1 when failed. 
@@ -74,9 +85,9 @@ uint8_t Joystick_can(){
 	js_msg.ID = 69;
 	js_msg.len = 2;
 	
-	data.i = js_pos.x;
+	data.i = saturate(js_pos.x, -127, 127);
 	js_msg.data[0] = data.u;
-	data.i = js_pos.y;
+	data.i = saturate(js_pos.x, -127, 127);
 	js_msg.data[1] = data.u;
 	
 	if(can_transmit_message(&js_msg) != 1){
