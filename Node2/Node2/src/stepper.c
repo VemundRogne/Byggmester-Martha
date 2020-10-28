@@ -63,14 +63,18 @@ void stepper_joystick_command(int8_t stepper_speed){
 	stepper_enable_motor();
 	stepper_set_direction(stepper_speed);
 
-	uint16_t scaled_speed
+	uint16_t scaled_speed = ((uint16_t)(abs(stepper_speed))<<4);
 
 	/////////////Send analog val (0-5V)//////////////// 
 	// We will use DAC1 output pin on the shield (found on P3)
 	// This can be read from B16?
 	// DAC is 12bit
 
-	// DACC_MR (dac mode register)
+	//DAC-> DACC_MR |= (1<<) No tag selection, lets please just use user_sel default to zero and enable corresponding channel
+	DAC->DACC_CHER |= (1<<0); //Enable channel 0?
+	DAC->DACC_CDR |= scaled_speed;
+	// DACC_MR (dac mode register) Dont think we need to write to this at all, default values are fine
+
 	// DACC_CHER (channel enable register)
 	// DACC_CDR (conversion data register) <- I assume we write our data here, but our int8_t must probably be converted to 12bit 
 
