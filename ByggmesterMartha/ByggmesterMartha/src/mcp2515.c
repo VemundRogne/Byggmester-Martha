@@ -41,6 +41,10 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	// Enable buffer 0 to receive all messages
 	// This turns off the mask and fileter -> receive any message
 	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
+	
+	// Enable interrupts for buffer reception
+	// CANINTE bits 1 and 0 enable RX1IE and RX0IE
+	mcp2515_BIT_MODIFY(MCP_CANINTE, 3, 3);
 }
 
 
