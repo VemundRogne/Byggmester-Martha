@@ -10,6 +10,7 @@
 #define GAME_H_
 #include "can.h"
 #include "menu.h"
+#include "statemachine.h"
 
 uint8_t score_count;
 

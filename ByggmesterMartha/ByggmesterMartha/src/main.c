@@ -60,11 +60,12 @@ int main(void)
 	flag_msg.len = 1;
 	
 	can_transmit_message(&flag_msg);
+	
+	uint8_t test = 0;
 
 	//printf("Starting main:\n");
     while (1){
     	Joystick_can();
 		_delay_ms(50);
-    }
 	return (0);
 }

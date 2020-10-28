@@ -9,6 +9,7 @@
 
 #include "../inc/statemachine.h"
 #include "../inc/menu.h"
+#include "../inc/game.h"
 
 
 void init_statemachine(){
@@ -23,6 +24,11 @@ void enter_highscore_menu(){
 	current_selection = 5;
 	menu_lower_bound = 5;
 	menu_upper_bound = 5;
+}
+
+void enter_game_over(uint8_t score){
+	current_state = GAME_OVER;
+	menu_game_over(score);
 }
 
 
@@ -46,6 +52,15 @@ void statemachine_handle_menu_execute(){
 					break;
 			}
 			break;
+		case GAME_OVER:
+			switch(current_selection){
+				default:
+					current_state = HOME_MENU;
+					current_selection = 3;
+					menu_upper_bound = 3;
+					menu_lower_bound = 5;
+					break;
+			}
 
 		default:
 			break;
@@ -64,5 +79,11 @@ void statemachine_execute_current_state(){
 			menu_draw((char*)&hs_menu[0]);
 			menu_navigate();
 			break;
+			
+		case GAME_OVER:
+			menu_draw((char*)&go_menu[0]);
+			menu_navigate();
+			break;
+		
 	}
 }

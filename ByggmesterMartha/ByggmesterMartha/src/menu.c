@@ -137,8 +137,8 @@ void menu_game_over(uint8_t score){
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
 	//Options
-
-	char option2[LINELENGTH] = fprintf(" Score %u", score);
+	//fprintf(" Score %u", score);
+	char option2[LINELENGTH] = "ndqe";
 	char option3[LINELENGTH] = " Well done! ";
 	char option4[LINELENGTH] = " Play again!";
 	

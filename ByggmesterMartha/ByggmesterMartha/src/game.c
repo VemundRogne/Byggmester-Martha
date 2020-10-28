@@ -15,7 +15,7 @@ void game_init(){
 
 void game_score_count(uint8_t ir_status){
 	if (ir_status == 1){
-		menu_game_over(score_count);
+		enter_game_over(score_count);
 		score_count = 0;
 	}
 	else {
