@@ -48,53 +48,15 @@ int main(void)
 	
 	menu_home();
 
-	mcp2515_init(LOOPBACK);
+	mcp2515_init(NORMAL);
 
 	uint8_t rd_adc_values[4];
 
 	//printf("Starting main:\n");
     while (1) 
     {	
-		//printf("START OF MAINLOOP!\n");
-		//adc_get_values(&rd_adc_values[0]);
-		//printf("ADC: %u, %u, %u, %u \n", rd_adc_values[0], rd_adc_values[1], rd_adc_values[2], rd_adc_values[3]);
-		//_delay_ms(100);
-		//uint8_t MCP_status_register = mcp2515_READ_STATUS();
-		//printf(" MCP_status_register %u\n", MCP_status_register);
-		//uint8_t MCP_can_control_register = 0;
-		//mcp2515_READ(MCP_CANCTRL, &MCP_can_control_register, 1);
-		//printf(" MCP_can_control_register %u\n", MCP_can_control_register);
-		//
-		//struct can_msg msg;
-		//msg.ID = 5;
-		//printf("     SETTING ID = %u\n", msg.ID);
-		//msg.len = 6;
-		//uint8_t can_data[6] = {1, 2, 3, 4, 5, 6};
-		//memcpy(&msg.data[0], &can_data[0], 8);
-//
-		//printf("Writing TX buffer...\n");
-		//can_transmit_message(msg);
-		//printf("Reading TX buffer: ");
-		//for(uint8_t i=0; i<13; i++){
-			//uint8_t contents = 0;
-			//mcp2515_READ(MCP_TXB0CTRL + 1 + i, &contents, 1);
-			//printf("%u, ", contents);
-		//}
-		//printf("\n");
-		//
-		//mcp2515_RTS(1);
-		//
-		//struct can_msg read_msg;
-		//can_receive_message(&read_msg);
-		//printf("    READ ID: %u\n", read_msg.ID);
-		//printf("    READ LEN: %u\n", read_msg.len);
-		//printf("    READ DATA: ");
-		//for(uint8_t i=0; i<read_msg.len; i++){
-			//printf("%u, ", read_msg.data[i]);
-		//}
-		//printf("\n");
-//
-		//_delay_ms(2000);
+    	Joystick_can();
+		_delay_ms(5);
     }
 	return (0);
 }
