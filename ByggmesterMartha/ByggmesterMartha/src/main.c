@@ -56,7 +56,7 @@ int main(void)
     while (1) 
     {	
     	Joystick_can();
-		_delay_ms(5);
+		_delay_ms(50);
     }
 	return (0);
 }
