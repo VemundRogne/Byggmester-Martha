@@ -59,13 +59,15 @@ int main(void)
 	flag_msg.data[0] = 1;
 	flag_msg.len = 1;
 	
-	can_transmit_message(&flag_msg);
+//	can_transmit_message(&flag_msg);
 	
 	uint8_t test = 0;
 
 	//printf("Starting main:\n");
     while (1){
     	Joystick_can();
+		statemachine_execute_current_state();
 		_delay_ms(50);
+	}
 	return (0);
 }

@@ -10,6 +10,7 @@
 #include "../inc/spi.h"
 #include "../inc/mcp2515.h"
 #include "../inc/can.h"
+#include "../inc/game.h"
 
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
@@ -71,10 +72,16 @@ ISR(INT0_vect){
 	//if ( (CANINTF_register &= (1<<0)) | (CANINTF_register &= (1<<1)) ){
 	struct can_msg msg_r;
 	uint8_t can_status = can_receive_message(&msg_r);
-		
-		// Clear the interrupt
+	
+	if (can_status == 0){
+		if(msg_r.ID == 15){
+			menu_game_over(score_count);
+			game_score_count(msg_r.data[0]);
+		}
+	}
+	
+	// Clear the interrupt
 	mcp2515_BIT_MODIFY(MCP_CANINTF, 3, 0);
-	//}
 }
 
 /*

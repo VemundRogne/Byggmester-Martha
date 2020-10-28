@@ -5,6 +5,8 @@
  *  Author: marth
  */ 
 
+#include <stdio.h>
+
 #include "../inc/menu.h"
 #include "../inc/oled.h"
 #include "../inc/funkyboard.h"
@@ -138,7 +140,10 @@ void menu_game_over(uint8_t score){
 	
 	//Options
 	//fprintf(" Score %u", score);
-	char option2[LINELENGTH] = "ndqe";
+	//char option2[LINELENGTH];
+	//sprintf(&score, "Score %u", score);
+	char option2[LINELENGTH];
+	sprintf(&option2[0], " Score %u", score);
 	char option3[LINELENGTH] = " Well done! ";
 	char option4[LINELENGTH] = " Play again!";
 	

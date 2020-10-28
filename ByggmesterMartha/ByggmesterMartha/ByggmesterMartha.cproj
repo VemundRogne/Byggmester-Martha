@@ -160,6 +160,9 @@
     <Compile Include="inc\funkyboard.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\game.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\mcp2515.h">
       <SubType>compile</SubType>
     </Compile>
@@ -191,6 +194,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\funkyboard.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\game.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
