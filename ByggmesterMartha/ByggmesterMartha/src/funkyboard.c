@@ -15,6 +15,8 @@
 
 void init_joystick(){
 	_delay_ms(1000);
+	joystick_offset_x = 0;
+	joystick_offset_y = 0;
 	struct Joystick_pos joystick = get_joystick_pos();
 	joystick_offset_x = joystick.x;
 	joystick_offset_y = joystick.y;
@@ -25,8 +27,8 @@ struct Joystick_pos get_joystick_pos(){
 	adc_get_values(&adc_values[0]);
 	struct Joystick_pos joystick;
 
-	joystick.x = (int)(adc_values[0]) - joystick_offset_x;
-	joystick.y = (int)(adc_values[1]) - joystick_offset_y;
+	joystick.x = (int16_t)(adc_values[0]) - joystick_offset_x;
+	joystick.y = (int16_t)(adc_values[1]) - joystick_offset_y;
 	return joystick;
 }
 
