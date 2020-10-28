@@ -73,5 +73,5 @@ void servo_set_position(uint8_t position){
 };
 
 void servo_joystick_command(int8_t position){
-	servo_set_position((uint8_t)(position + 128))
+	servo_set_position((uint8_t)(position + 128));
 };

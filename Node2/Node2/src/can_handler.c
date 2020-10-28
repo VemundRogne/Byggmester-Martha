@@ -39,7 +39,7 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
-		servo_joystick_command(data.i)
+		servo_joystick_command(data.i);
 	}
 
 
