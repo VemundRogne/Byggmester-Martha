@@ -61,6 +61,7 @@ void stepper_enable_output(){
 
 void stepper_init(){
 	REG_PIOD_OER |= (1 << DIR) | (1 << EN) | (1 << SEL) | (1 << RST) | (1 << OE); //Enable output for our desired control pins for MJ1
+	stepper_enable_motor();
 
 	//DACC stuff
 	//REG_PIOB_OER |= (1<<DACC_PIO);
@@ -84,7 +85,7 @@ void stepper_joystick_command(int8_t stepper_speed){
 	stepper_set_direction(stepper_speed);
 
 	uint16_t val = abs(stepper_speed);
-	val = val << 5;
+	val = val << 4;
 
 	//DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so
 	//uint16_t tag_channel_enabler = (1<<13); //Tag channel 1

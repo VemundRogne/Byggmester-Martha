@@ -3,6 +3,9 @@
 
 
 #include <stdint.h>
+
+void stepper_set_direction(int8_t dir);
+
 void stepper_init();
 
 // Stepper speed should be commanded by joystick (-127, 127)
