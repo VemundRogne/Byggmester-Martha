@@ -12,6 +12,8 @@
 #include "inc/can_interrupt.h"
 #include "inc/uart.h"
 #include "inc/servo.h"
+#include "inc/adc.h"
+#include "inc/ir_driver.h"
 
 int main(void)
 {
@@ -19,6 +21,10 @@ int main(void)
     SystemInit();
 	configure_uart();
 	servo_init_pwm();
+	ir_init();
+	
+	// Disable watchdog
+	WDT->WDT_MR = WDT_MR_WDDIS;
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
@@ -33,10 +39,16 @@ int main(void)
 	REG_PIOA_OER |= (1<<19);
 	
 	uint8_t can_status = 1;
+	// can message ID 15 => IR 
+	// can message ID 5 => ACK
 	
-
     /* Replace with your application code */
     while (1)
     {
+		//Checks for ball in beam
+		ir_ball_in_beam();
+		// Sends ball status to node 1
+		ir_transmit();
+
     }
 }

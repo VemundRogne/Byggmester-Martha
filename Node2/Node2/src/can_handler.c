@@ -12,6 +12,8 @@
 #include "../inc/can_handler.h"
 #include "../inc/servo.h"
 #include <component/tc.h>
+#include "../inc/joystick.h"
+#include "../inc/ir_driver.h"
 
 union Data {
 	uint8_t u;
@@ -26,9 +28,11 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
+		joystick_values[0] = data.i;
 		volatile int8_t joystick_x = data.i;
 
 		data.u = message->data[1];
+		joystick_values[1] = data.i;
 		volatile int8_t joystick_y = data.i;
 		
 		REG_PIOA_SODR |= (1<<19);
@@ -47,5 +51,9 @@ void handle_can_message(struct can_message_t *message){
 	if(message->id == 50){
 		uint8_t position = (uint8_t)(message->data[0]);
 		servo_set_position(position);
+	}
+
+	if (message->id == 5){
+		transmit_ball_status_flag = message->data[0];
 	}
 };
