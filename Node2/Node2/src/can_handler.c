@@ -56,4 +56,6 @@ void handle_can_message(struct can_message_t *message){
 	if (message->id == 5){
 		transmit_ball_status_flag = message->data[0];
 	}
+	
+	ir_transmit();
 };

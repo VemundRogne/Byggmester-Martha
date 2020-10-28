@@ -39,7 +39,7 @@ int main(void)
 	REG_PIOA_OER |= (1<<19);
 	
 	uint8_t can_status = 1;
-	// can message ID 15 => IR 
+	// can message ID 15 => IR
 	// can message ID 5 => ACK
 	
     /* Replace with your application code */
@@ -48,7 +48,6 @@ int main(void)
 		//Checks for ball in beam
 		ir_ball_in_beam();
 		// Sends ball status to node 1
-		ir_transmit();
 
     }
 }
