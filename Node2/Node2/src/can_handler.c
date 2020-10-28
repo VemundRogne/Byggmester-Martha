@@ -11,6 +11,7 @@
 #include "../inc/can_controller.h"
 #include "../inc/can_handler.h"
 #include "../inc/joystick.h"
+#include "../inc/ir_driver.h"
 
 union Data {
 	uint8_t u;
@@ -34,6 +35,5 @@ void handle_can_message(struct can_message_t *message){
 	}
 	if (message->id == 5){
 		transmit_ball_status_flag = message->data[0];
-		
 	}
 };
