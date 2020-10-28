@@ -1,5 +1,8 @@
 #include "../inc/stepper.h"
 
+#include <sam.h>
+#include <stdint.h>
+#include <component/dacc.h>
 
 
 // MJ1 output from shield
@@ -60,28 +63,34 @@ void stepper_init(){
 	REG_PIOD_OER |= (1 << DIR) | (1 << EN) | (1 << SEL) | (1 << RST) | (1 << OE); //Enable output for our desired control pins for MJ1
 
 	//DACC stuff
-	REG_PIOB_OER |= (1<<DACC_PIO);
+	//REG_PIOB_OER |= (1<<DACC_PIO);
 
 	//PIOB->PIO_ABSR |= PIO_ABSR_P25; Dont think we need this cus dac no peripheral?
 	
 	PMC->PMC_PCER1 |= PMC_PCDR1_PID38; 
 
-	DAC->DACC_MR |= (1<<DACC_MR_TAG); //Tag selection cus studass said so
-	DAC->DACC_CHER |= (1<<1); //Enable channel 1
+	DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so
+	DACC->DACC_CHER |= (1<<1); //Enable channel 1
+	
+	//DACC->DACC_CDR = 1000 | (1<<12);
 }
 
 
+
+
+// Vi vil gi DACCen en verdi mellom 0 og 2048 (altså en 12-bit verdi)
 void stepper_joystick_command(int8_t stepper_speed){
 	stepper_enable_motor();
 	stepper_set_direction(stepper_speed);
 
-	uint16_t scaled_speed = ((uint16_t)(abs(stepper_speed))<<4); //Scale speed from 8-bit to 12-bit, effectively ignoring lower value bits 0-3 cus they dont matter
+	uint16_t val = abs(stepper_speed);
+	val = val << 5;
 
-	DAC->DACC_MR |= (1<<DACC_MR_TAG) //Tag selection cus studass said so
-	uint16_t tag_channel_enabler = (1<<13); //Tag channel 1
+	//DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so
+	//uint16_t tag_channel_enabler = (1<<13); //Tag channel 1
 
-	DAC->DACC_CHER |= (1<<1); //Enable channel 1
-	DAC->DACC_CDR |= (scaled_speed | tag_channel_enabler); //Channel data register gets tag-bit + digital value to convert
+	DACC->DACC_CHER |= (1<<1); //Enable channel 1
+	DACC->DACC_CDR |= (val | (1<<12)); //Channel data register gets tag-bit + digital value to convert
 };
 
 /*

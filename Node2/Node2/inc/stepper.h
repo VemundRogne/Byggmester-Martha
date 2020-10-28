@@ -1,6 +1,8 @@
 #ifndef STEPPER_H_
 #define STEPPER_H_
 
+
+#include <stdint.h>
 void stepper_init();
 
 // Stepper speed should be commanded by joystick (-127, 127)
