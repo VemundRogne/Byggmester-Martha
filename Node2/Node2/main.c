@@ -12,6 +12,7 @@
 #include "inc/can_interrupt.h"
 #include "inc/uart.h"
 #include "inc/servo.h"
+#include "inc/stepper.h"
 
 int main(void)
 {
@@ -19,6 +20,7 @@ int main(void)
     SystemInit();
 	configure_uart();
 	servo_init_pwm();
+	stepper_init();
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
