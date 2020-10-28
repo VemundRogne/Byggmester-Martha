@@ -7,12 +7,16 @@
 
 #include "../inc/funkyboard.h"
 #include "../inc/adc.h"
+#include "../inc/can.h"
+
 #define F_CPU	4915200
 #include <util/delay.h>
 #include <stdlib.h>
 
 void init_joystick(){
 	_delay_ms(1000);
+	joystick_offset_x = 0;
+	joystick_offset_y = 0;
 	struct Joystick_pos joystick = get_joystick_pos();
 	joystick_offset_x = joystick.x;
 	joystick_offset_y = joystick.y;
@@ -23,8 +27,8 @@ struct Joystick_pos get_joystick_pos(){
 	adc_get_values(&adc_values[0]);
 	struct Joystick_pos joystick;
 
-	joystick.x = (int)(adc_values[0]) - joystick_offset_x;
-	joystick.y = (int)(adc_values[1]) - joystick_offset_y;
+	joystick.x = (int16_t)(adc_values[0]) - joystick_offset_x;
+	joystick.y = (int16_t)(adc_values[1]) - joystick_offset_y;
 	return joystick;
 }
 
@@ -57,3 +61,40 @@ struct Slider_pos get_slider_pos(){
 	slider.left = (int) (((adc_values[3]-128)*100)/128);
 	return slider;
 	};
+	
+
+int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
+	if (value < lb){
+		return lb;
+	}
+	else if (value > ub){
+		return ub;
+	}
+	else if (abs(value)<10){
+		return 0;
+	}
+	return (int8_t) value;
+}
+
+// Sends joystick position over CAN bus
+// Returns 0 for successful transmission
+// 1 when failed. 
+uint8_t Joystick_can(){
+	
+	struct Joystick_pos js_pos = get_joystick_pos();
+	struct can_msg js_msg;
+	union Data data;
+	
+	js_msg.ID = 69;
+	js_msg.len = 2;
+	
+	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
+	js_msg.data[0] = data.u;
+	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
+	js_msg.data[1] = data.u;
+	
+	if(can_transmit_message(&js_msg) != 1){
+		return 0;
+	}
+	return 1;
+};	

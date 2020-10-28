@@ -31,7 +31,7 @@
  *     SJW = 1 TQ
 */
 uint32_t construct_can_br_register(){
-	uint32_t can_br;
+	uint32_t can_br = 0;
 
 	// Setting prescaler:
 	can_br |= (380 << 16);
