@@ -21,6 +21,9 @@ int main(void)
 	configure_uart();
 	ir_init();
 	
+	// Disable watchdog
+	WDT->WDT_MR = WDT_MR_WDDIS;
+	
 	can_init_def_tx_rx_mb(0x00290561);
 	
 	struct can_message_t msg;

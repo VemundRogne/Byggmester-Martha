@@ -48,7 +48,7 @@ int main(void)
 	
 	menu_home();
 
-	mcp2515_init(LOOPBACK);
+	mcp2515_init(NORMAL);
 
 	uint8_t rd_adc_values[4];
 

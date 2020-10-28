@@ -57,15 +57,15 @@ def can_receive(ser):
     # The first byte returned will be the can_status. A 0 indicated that
     # we received a message, a 1 indicates that we did not
     returncode = ser.read(1)
-    print("Returncode:", returncode)
+    #print("Returncode:", returncode)
     if returncode != b'':
         # Not a zero indicates no message received. Return 1 to indicate failiure
         if int.from_bytes(returncode, byteorder='big') != 0:
-            print("No message received")
+    #        print("No message received")
             return 1
 
     raw_data = ser.read(11)
-    print("Raw_data:", raw_data, list(raw_data))
+    #print("Raw_data:", raw_data, list(raw_data))
 
     if raw_data != b'':
         # Convert the data into a nicer format
@@ -73,11 +73,12 @@ def can_receive(ser):
         # and throw away data bytes that are not actually valid. (We will always
         # get 11 bytes, but not all are valid data because the data.len matters)
         ID = int.from_bytes(raw_data[0:2], byteorder='big')
-        print(ID)
         Length = int.from_bytes(raw_data[2:3], byteorder='big')
-        print(Length)
         data = list(raw_data[3:4+Length-1])
-        print(data)
+
+        print("Received a message width ID={}, len={}, data={}".format(
+            ID, Length, data
+        ))
 
         returnlist = [ID, Length]
         returnlist.extend(data)
