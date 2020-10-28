@@ -129,3 +129,24 @@ void menu_highscores(){
 	menu_insert_item(menu_pointer, NULL, 0, 6);
 	menu_insert_item(menu_pointer, NULL, 0, 7);
 };
+
+
+void menu_game_over(uint8_t score){
+	volatile char* menu_pointer = &go_menu[0];
+	char title[LINELENGTH] = "  GAME OVER!";
+	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
+	
+	//Options
+
+	char option2[LINELENGTH] = fprintf(" Score %u", score);
+	char option3[LINELENGTH] = " Well done! ";
+	char option4[LINELENGTH] = " Play again!";
+	
+	menu_insert_item(menu_pointer, NULL, 0, 1);
+	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
+	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
+	menu_insert_item(menu_pointer, &option4[0], strlen(option4), 5);
+	menu_insert_item(menu_pointer, NULL, 0, 6);
+	menu_insert_item(menu_pointer, NULL, 0, 7);
+}

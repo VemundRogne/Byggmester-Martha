@@ -13,6 +13,7 @@
 #define LINELENGTH	16
 volatile char home_menu[8*LINELENGTH + 1];
 volatile char hs_menu[8*LINELENGTH + 1];
+volatile char go_menu[8*LINELENGTH + 1];
 
 uint8_t current_selection;
 uint8_t menu_upper_bound;
@@ -36,6 +37,8 @@ uint8_t menu_select(); //Må kanskje gjøres om til en interrupt.
 void menu_home();
 
 void menu_highscores();
+
+void menu_game_over(uint8_t score);
 
 void menu_draw(char *menu);
 

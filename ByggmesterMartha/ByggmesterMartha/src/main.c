@@ -26,7 +26,7 @@
 #include "../inc/statemachine.h"
 #include "../inc/mcp2515.h"
 #include "../inc/can.h"
-
+#include "../inc/game.h"
 #include <stdlib.h>
 
 int main(void)
@@ -40,6 +40,7 @@ int main(void)
 	menu_init();
 	init_timer0();
 	init_statemachine();	
+	game_init();
 	
 	sei();
 
@@ -51,10 +52,17 @@ int main(void)
 	mcp2515_init(NORMAL);
 
 	uint8_t rd_adc_values[4];
+	uint8_t ir_status = 0;
+	
+	struct can_msg flag_msg;
+	flag_msg.ID = 5;
+	flag_msg.data[0] = 1;
+	flag_msg.len = 1;
+	
+	can_transmit_message(&flag_msg);
 
 	//printf("Starting main:\n");
-    while (1) 
-    {
+    while (1){
     	Joystick_can();
 		_delay_ms(50);
     }
