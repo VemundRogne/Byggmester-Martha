@@ -13,8 +13,9 @@
 #include <stdint.h>
 
 
-uint8_t prev_status_ball;
-uint8_t curr_status_ball;
+//uint8_t prev_status_ball;
+uint8_t status_ball;
+volatile uint8_t transmit_ball_status_flag;
 
 //IR init
 void ir_init();

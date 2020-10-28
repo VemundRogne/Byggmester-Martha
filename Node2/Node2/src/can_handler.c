@@ -32,4 +32,8 @@ void handle_can_message(struct can_message_t *message){
 		
 		REG_PIOA_SODR |= (1<<19);
 	}
+	if (message->id == 5){
+		transmit_ball_status_flag = message->data[0];
+		
+	}
 };

@@ -35,18 +35,15 @@ int main(void)
 	
 	uint8_t can_status = 1;
 	// can message ID 15 => IR 
+	// can message ID 5 => ACK
 	
     /* Replace with your application code */
     while (1)
     {
-		//Cheks for ball in beam
+		//Checks for ball in beam
 		ir_ball_in_beam();
-		// Checks if status for ball has changed
-		if(curr_status_ball != prev_status_ball){
-			ir_transmit();
-		}
-		prev_status_ball = curr_status_ball;
-		
-		//uint16_t adc_val = adc_read();
+		// Sends ball status to node 1
+		ir_transmit();
+
     }
 }

@@ -17,8 +17,9 @@
 */
 void ir_init(){
 	adc_init();
-	prev_status_ball = 0;
-	curr_status_ball = 0;
+	//prev_status_ball = 0;
+	status_ball = 0;
+	transmit_ball_status_flag = 1;
 }
 
 
@@ -30,11 +31,13 @@ void ir_init(){
  * If ADC value is above this the current status is set to 0
 */
 void ir_ball_in_beam(){
-	uint8_t threshold = 1000;
+	uint16_t threshold = 1000;
 	if (adc_read() <= threshold ){
-		curr_status_ball = 1;
+		status_ball = 1;
 	}
-	curr_status_ball = 0;
+	else {
+		status_ball = 0;
+	}
 }
 
 
@@ -45,10 +48,13 @@ void ir_ball_in_beam(){
 uint8_t ir_transmit(){
 	struct can_message_t ir_msg;
 	ir_msg.id = 15;
-	ir_msg.data[0] = curr_status_ball;
+	ir_msg.data[0] = status_ball;
 	ir_msg.data_length = 1;
 	
 	uint8_t s_mailbox = 0;
 	
-	can_send(&ir_msg, s_mailbox);
+	if(transmit_ball_status_flag == 1){
+		can_send(&ir_msg, s_mailbox);		
+	}	
+
 }
