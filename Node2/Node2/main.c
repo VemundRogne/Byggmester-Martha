@@ -23,6 +23,7 @@ int main(void)
 	configure_uart();
 	servo_init_pwm();
 	ir_init();
+	solenoid_init();
 	
 	// Disable watchdog
 	WDT->WDT_MR = WDT_MR_WDDIS;

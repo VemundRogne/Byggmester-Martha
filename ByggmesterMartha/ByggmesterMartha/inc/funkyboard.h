@@ -40,6 +40,8 @@ enum Joystick_dir get_joystick_dir();
 
 struct Slider_pos get_slider_pos();
 
+void get_button_press();
+
 uint8_t Joystick_can();
 
 //joystick_press(); return true if pressed or something 

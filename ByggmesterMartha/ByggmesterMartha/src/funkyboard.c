@@ -62,6 +62,19 @@ struct Slider_pos get_slider_pos(){
 	return slider;
 	};
 	
+	
+void send_button_press(){
+	if ((PINB &= ( 1 << 3)) == ( 1 << 3)){
+		struct can_msg button_msg;
+		uint8_t pulse_length = 2;
+		button_msg.ID = 52;
+		button_msg.data[0] = 1;
+		button_msg.data[1] = pulse_length;
+		button_msg.len = 2;
+		
+		can_transmit_message(&button_msg);
+	}
+}	
 
 int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
 	if (value < lb){

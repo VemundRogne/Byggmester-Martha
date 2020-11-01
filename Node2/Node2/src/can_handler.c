@@ -15,6 +15,7 @@
 #include <component/tc.h>
 #include "../inc/joystick.h"
 #include "../inc/ir_driver.h"
+#include "../inc/solenoid.h"
 
 union Data {
 	uint8_t u;
@@ -59,6 +60,11 @@ void handle_can_message(struct can_message_t *message){
 
 	if (message->id == 5){
 		transmit_ball_status_flag = message->data[0];
+	}
+	
+	if ((message->id == 52) && (message->data[0] == 1)){
+		uint8_t pulse_length = message->data[1];
+		solenoid_push_ball(pulse_length);
 	}
 	
 	ir_transmit();
