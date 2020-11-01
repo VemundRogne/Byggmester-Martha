@@ -11,6 +11,7 @@
 #include "../inc/can_controller.h"
 #include "../inc/can_handler.h"
 #include "../inc/servo.h"
+#include "../inc/stepper.h"
 #include <component/tc.h>
 #include "../inc/joystick.h"
 #include "../inc/ir_driver.h"
@@ -38,11 +39,14 @@ void handle_can_message(struct can_message_t *message){
 		REG_PIOA_SODR |= (1<<19);
 	}
 
-	// Move servo from joystick! We only care about joystick in x-direction
+	// Move servo and stepper from joystick! 
 	if (message->id == 69){
 		union Data data;
 		
 		data.u = message->data[0];
+		stepper_joystick_command(data.i);
+
+		data.u = message->data[1];
 		servo_joystick_command(data.i);
 	}
 

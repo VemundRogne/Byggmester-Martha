@@ -90,7 +90,7 @@ uint8_t Joystick_can(){
 	
 	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
 	js_msg.data[0] = data.u;
-	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
+	data.i = saturate_and_filter_noise(js_pos.y, -127, 127);
 	js_msg.data[1] = data.u;
 	
 	if(can_transmit_message(&js_msg) != 1){

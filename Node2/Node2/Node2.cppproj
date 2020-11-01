@@ -215,6 +215,9 @@
     <Compile Include="inc\servo.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\stepper.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\uart.h">
       <SubType>compile</SubType>
     </Compile>
@@ -240,6 +243,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\servo.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\stepper.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\uart.c">

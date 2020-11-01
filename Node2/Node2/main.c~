@@ -17,7 +17,7 @@
 #include "inc/ir_driver.h"
 =======
 #include "inc/stepper.h"
->>>>>>> stepper_and_solenoid
+>>>>>>> 679caae... initialize stepper from main
 
 int main(void)
 {
@@ -32,7 +32,7 @@ int main(void)
 	WDT->WDT_MR = WDT_MR_WDDIS;
 =======
 	stepper_init();
->>>>>>> stepper_and_solenoid
+>>>>>>> 679caae... initialize stepper from main
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
@@ -53,13 +53,9 @@ int main(void)
     /* Replace with your application code */
     while (1)
     {
-<<<<<<< HEAD
 		//Checks for ball in beam
 		ir_ball_in_beam();
 		// Sends ball status to node 1
 
-=======
-		//stepper_joystick_command(12);
->>>>>>> stepper_and_solenoid
     }
 }
