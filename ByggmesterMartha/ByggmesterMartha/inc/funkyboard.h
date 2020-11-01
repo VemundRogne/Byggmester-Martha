@@ -40,6 +40,7 @@ enum Joystick_dir get_joystick_dir();
 
 struct Slider_pos get_slider_pos();
 
+void send_button_press();
 void get_button_press();
 
 uint8_t Joystick_can();

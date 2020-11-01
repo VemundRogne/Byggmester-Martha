@@ -206,6 +206,9 @@
     <Compile Include="inc\can_interrupt.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\delay.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\ir_driver.h">
       <SubType>compile</SubType>
     </Compile>
@@ -237,6 +240,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\can_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\delay.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ir_driver.c">
