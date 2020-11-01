@@ -12,12 +12,9 @@
 #include "inc/can_interrupt.h"
 #include "inc/uart.h"
 #include "inc/servo.h"
-<<<<<<< HEAD
 #include "inc/adc.h"
 #include "inc/ir_driver.h"
-=======
 #include "inc/stepper.h"
->>>>>>> stepper_and_solenoid
 
 int main(void)
 {
@@ -25,14 +22,11 @@ int main(void)
     SystemInit();
 	configure_uart();
 	servo_init_pwm();
-<<<<<<< HEAD
 	ir_init();
 	
 	// Disable watchdog
 	WDT->WDT_MR = WDT_MR_WDDIS;
-=======
 	stepper_init();
->>>>>>> stepper_and_solenoid
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
@@ -53,13 +47,10 @@ int main(void)
     /* Replace with your application code */
     while (1)
     {
-<<<<<<< HEAD
 		//Checks for ball in beam
 		ir_ball_in_beam();
 		// Sends ball status to node 1
 
-=======
 		//stepper_joystick_command(12);
->>>>>>> stepper_and_solenoid
     }
 }
