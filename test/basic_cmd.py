@@ -14,6 +14,15 @@ def echo(ser, number_list):
     if returnvalue != b'':
         return list(returnvalue)
 
+def get_joystick(ser):
+    cmd = [0, 2]
+    cmd.extend([0,0,0,0,0,0,0,0])
+    comms.send_cmd(ser, cmd)
+
+    returnvalue = ser.read(2)
+    if returnvalue != b'':
+        return list(returnvalue)
+
 
 def synchronize(ser):
     """ Tries to sync sender and receiver.
@@ -34,3 +43,9 @@ def synchronize(ser):
                 return 0
     ser.timeout = _timeout
     return 1
+
+if __name__ == '__main__':
+    ser = comms.open_serial_connection('COM3')
+    while True:
+        print(get_joystick(ser))
+        time.sleep(0.1)
