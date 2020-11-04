@@ -77,14 +77,14 @@ void send_button_press(){
 }	
 
 int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
-	if (value < lb){
+	if (abs(value)<10){
+		return 0;
+	}
+	else if (value < lb){
 		return lb;
 	}
 	else if (value > ub){
 		return ub;
-	}
-	else if (abs(value)<10){
-		return 0;
 	}
 	return (int8_t) value;
 }
