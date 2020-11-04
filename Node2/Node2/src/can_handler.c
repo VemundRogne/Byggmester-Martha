@@ -50,18 +50,26 @@ void handle_can_message(struct can_message_t *message){
 	if (message->id == 69){
 		union Data data;
 		
+		// Get motor command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[0];
-		uint8_t value = (uint8_t)(data.i + (1<<7)); //Make positive :) 
+		float motor_ref = (float)(data.i + (1<<7)); //Make positive :) 
 
-		//Ref should be in interval 8192 er 1<<13
-		uint16_t max_val = 1<<13;
+		//Motor ref should be in interval (0, 8192)
 		uint16_t min_val = 0;
+		uint16_t max_val = 1<<13;
+		int16_t motor_ref = fit_to_interval(motor_ref, min_val, max_val);
+ 		regulator_set_ref(motor_ref);
 
-		int16_t ref = fit_to_interval((float) value, min_val, max_val);
- 		regulator_set_ref(ref);
-		
+
+		// Get servo command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[1];
-		servo_joystick_command(data.i);
+		float servo_ref = (float)(data.i + (1<<7));
+
+		// Servo ref should be in interval (0, 255)
+		uint16_t min_val = 0;
+		uint16_t max_val = 255;
+		uint8_t servo_ref = (uint8_t) fit_to_interval(servo_ref, min_val, max_val);
+		servo_set_position(motor_ref);
 	}
 
 
