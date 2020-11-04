@@ -20,7 +20,7 @@ void init_statemachine(){
 void enter_home_menu(){
 	current_state = HOME_MENU;
 	
-	struct Joystick_pos js_pos_ref = set_joystick_pos();
+	struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
 	Joystick_can(js_pos_ref);
 	
 	menu_home();
@@ -50,9 +50,8 @@ void enter_game_over(uint8_t score){
 }
 
 void enter_play_game(){
-	current_state = PLAY_GAME;
-	
 	menu_play_game();
+	current_state = PLAY_GAME;
 }
 
 void statemachine_handle_menu_execute(){

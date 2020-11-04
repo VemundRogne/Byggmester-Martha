@@ -19,7 +19,6 @@ void game_score_count(uint8_t ir_status){
 	if (ir_status == 1){
 		game_over = 1;
 		enter_game_over(score_count);
-		score_count = 0;
 	}
 	else {
 		if(game_over == 0){
@@ -38,5 +37,11 @@ void game_sequence(){
 		send_button_press();
 	}
 	
-	statemachine_execute_current_state();	
+	if(current_state == HOME_MENU){
+		score_count = 0;
+	}
+		
+	statemachine_execute_current_state();
+	
+		
 }

@@ -42,7 +42,7 @@ struct Slider_pos get_slider_pos();
 
 struct Joystick_pos get_joystick_pos();
 
-struct Joystick_pos set_joystick_pos();
+struct Joystick_pos set_joystick_pos(uint8_t x, uint8_t y);
 
 void send_button_press();
 void get_button_press();

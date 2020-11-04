@@ -32,10 +32,10 @@ struct Joystick_pos get_joystick_pos(){
 	return joystick;
 }
 
-struct Joystick_pos set_joystick_pos(){
+struct Joystick_pos set_joystick_pos(uint8_t x, uint8_t y){
 	struct Joystick_pos joystick;
-	joystick.x = 0;
-	joystick.y = 0;
+	joystick.x = x;
+	joystick.y = y;
 	return joystick;
 }
 
