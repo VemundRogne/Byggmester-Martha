@@ -80,6 +80,15 @@ void handle_can_message(struct can_message_t *message){
 		solenoid_push_ball(pulse_length);
 	}
 
+	// Command to enable/disable regulator
+	if(message->id == 900){
+		if(message->data[0] == 0){
+			disable_regulator();
+		}
+		if(message->data[1] == 1){
+			enable_regulator();
+		}
+	}
 
 	/* Set output on motor */
 	if(message->id == 1000){
