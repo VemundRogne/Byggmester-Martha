@@ -26,7 +26,7 @@ union Data {
 uint16_t fit_to_interval(float val, uint16_t min_val, uint16_t max_val){
 	float scale = (max_val-min_val)/(0xFF);
 
-	return = min_val + (uint16_t)(val*scale)
+	return min_val + (uint16_t)(val*scale);
 }
 
 
