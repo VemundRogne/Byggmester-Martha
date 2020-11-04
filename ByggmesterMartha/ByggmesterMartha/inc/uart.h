@@ -36,6 +36,7 @@ void UART_execute_cmd();
 //   1: ECHO - return the full argument
 #define UART_BASIC_CMD_SYNCHRONIZE	0	// Note: THIS _must_ be at number 0
 #define UART_BASIC_CMD_ECHO			1
+#define UART_BASIC_CMD_JOYSTICK		2
 
 // SRAM commands
 // CMD_SUBNO:
