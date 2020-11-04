@@ -19,6 +19,7 @@
 #include "../inc/uart.h"
 #include "../inc/mcp2515.h"
 #include "../inc/can.h"
+#include "../funkyboard.h"
 
 // NOTE: This has not been verified to work after refactoring, but I think
 // it should work just fine.
@@ -59,6 +60,18 @@ void UART_execute_basic_cmd(){
 		for(uint8_t i=ARG_OFFSET; i < (CMD_LEN); i++){
 			UART_tx_polling(cmd_buffer[i]);
 		}
+	}
+
+	if(cmd_buffer[1] == UART_BASIC_CMD_JOYSTICK){
+		Joystick js = get_joystick_pos();
+		int8_t = js.x;
+		uint8_t x_size = abs(js.x);
+		int8_t = js.y;
+		uint8_t y_size = abs(js.y);
+
+		UART_tx_polling(x_size);
+		UART_tx_polling(y_size);
+
 	}
 }
 
