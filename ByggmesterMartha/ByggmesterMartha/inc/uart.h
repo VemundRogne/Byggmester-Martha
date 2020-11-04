@@ -27,6 +27,7 @@ ISR(USART0_RXC_vect);
 #define UART_SRAM_CMD 1 
 #define UART_MCP2515_CMD 2
 #define UART_CAN_CMD 3
+#define UART_MOTOR_CMD 4
 
 void UART_execute_cmd();
 
@@ -71,10 +72,14 @@ void UART_execute_cmd();
 #define UART_CAN_CMD_TX_BUFFER 2
 #define  UART_CAN_CMD_RX_BUFFER 3
 
+// MOTOR commands
+#define UART_MOTOR_READ_ENCODER 1
+
 void UART_execute_basic_cmd();
 void UART_execute_sram_cmd();
 void UART_execute_can_cmd();
 void UART_execute_mcp2515_cmd();
+void UART_execute_motor_cmd();
 
 
 #endif /* UART_H_ */

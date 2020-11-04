@@ -105,6 +105,7 @@ void handle_can_message(struct can_message_t *message){
 		encoder_msg.id = 1010;
 		encoder_msg.data[0] = data.unsigned_8[0];
 		encoder_msg.data[1] = data.unsigned_8[1];
+		encoder_msg.data_length = 2;
 
 		can_send(&encoder_msg, 0);
 	}

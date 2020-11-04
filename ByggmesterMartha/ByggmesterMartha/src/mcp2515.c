@@ -78,6 +78,11 @@ ISR(INT0_vect){
 			menu_game_over(score_count);
 			game_score_count(msg_r.data[0]);
 		}
+
+		if(msg_r.ID == 1010){
+			UART_tx_polling(msg_r.data[1]);
+			UART_tx_polling(msg_r.data[0]);
+		}
 	}
 	
 	// Clear the interrupt
