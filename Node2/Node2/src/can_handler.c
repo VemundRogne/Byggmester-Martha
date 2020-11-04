@@ -12,6 +12,7 @@
 #include "../inc/can_handler.h"
 #include "../inc/servo.h"
 #include "../inc/motor.h"
+#include "../inc/regulator.h"
 #include <component/tc.h>
 #include "../inc/joystick.h"
 #include "../inc/ir_driver.h"
@@ -45,8 +46,8 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
-		// stepper_joystick_command(data.i);
-
+		regulator_set_ref(data.i);
+		
 		data.u = message->data[1];
 		servo_joystick_command(data.i);
 	}

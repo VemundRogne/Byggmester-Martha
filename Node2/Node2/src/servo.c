@@ -47,6 +47,12 @@ void servo_init_pwm(){
 	// Clock: Internal MCK/32. Set to Wave mode
 	TC0->TC_CHANNEL[0].TC_CMR |= TC_CMR_TCCLKS_TIMER_CLOCK3 | TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC;
 	
+	TC0->TC_CHANNEL[0].TC_IER = TC_IER_CPCS; // Interrupt enable on compare
+	//TC0->TC_CHANNEL[0].TC_IMR = TC_IMR_CPCS;
+	TC0->TC_CHANNEL[0].TC_IDR =~TC_IER_CPCS;
+	
+	NVIC_EnableIRQ(TC0_IRQn);
+	
 	// Setup triggering on TIOA
 	TC0->TC_CHANNEL[0].TC_CMR |= TC_CMR_ACPC_SET | TC_CMR_ACPA_CLEAR;
 	

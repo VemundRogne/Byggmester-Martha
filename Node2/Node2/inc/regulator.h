@@ -1,11 +1,13 @@
 #ifndef REGULATOR_H_
 #define REGULATOR_H_
 
-uint8_t position_ref;
 
-void regulator_timer();
+int32_t position_ref;
+int32_t integrated_error;
 
-void set_position_ref(uint8_t position);
+
+void regulator_set_ref();
+
 
 
 
