@@ -23,6 +23,11 @@ union Data {
 	int8_t i;
 };
 
+uint16_t fit_to_interval(float val, uint16_t min_val, uint16_t max_val){
+	float scale = (max_val-min_val)/(0xFF);
+
+	return = min_val + (uint16_t)(val*scale)
+}
 
 
 void handle_can_message(struct can_message_t *message){
@@ -46,8 +51,14 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
-		int16_t ref = (int16_t)(data.i) << 8;
- 		regulator_set_ref(0);
+		uint8_t value = (uint8_t)(data.i + (1<<7)); //Make positive :) 
+
+		//Ref should be in interval 8192 er 1<<13
+		uint16_t max_val = 1<<13;
+		uint16_t min_val = 0;
+
+		int16_t ref = fit_to_interval((float) value, min_val, max_val);
+ 		regulator_set_ref(ref);
 		
 		data.u = message->data[1];
 		servo_joystick_command(data.i);

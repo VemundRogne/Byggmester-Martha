@@ -25,11 +25,16 @@ void update_motor_input(int16_t current_encoder){
 	}
 	
 	uint16_t power = abs(input);
-	power = power >> 4; //Er dette tøys?
+
+	//Check for saturation to avoid integrator wind-up
+	if (!(power >> 12)){
+		integrated_error += pos_error/50; //Dette tull?
+	}
+
+	//power = power >> 4; //Ikke endre denne, da kan du heller tøyse med Kp og Ki
 	
 	motor_set_output(dir, power);
 
-	integrated_error += pos_error/50; //Dette tull?
 }
 
 void TC0_Handler(){
