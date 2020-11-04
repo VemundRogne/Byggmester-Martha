@@ -45,7 +45,7 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
-		stepper_joystick_command(data.i);
+		// stepper_joystick_command(data.i);
 
 		data.u = message->data[1];
 		servo_joystick_command(data.i);
@@ -65,6 +65,15 @@ void handle_can_message(struct can_message_t *message){
 	if ((message->id == 52) && (message->data[0] == 1)){
 		uint8_t pulse_length = message->data[1];
 		solenoid_push_ball(pulse_length);
+	}
+
+
+	/* Set output on motor */
+	if(message->id == 1000){
+		// Data format: [direction, power_MSB, power_LSB]
+		uint8_t direction = message->data[0];		
+		uint16_t power = (message->data[1] << 8) | (message->data[1]);
+		motor_set_output(direction, power);
 	}
 	
 	ir_transmit();
