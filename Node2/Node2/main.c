@@ -47,7 +47,6 @@ int main(void)
 	// can message ID 5 => ACK
 	encoder_init();
     /* Replace with your application code */
-	int16_t encoder_value;
     while (1)
     {
 		//Checks for ball in beam

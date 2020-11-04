@@ -47,7 +47,7 @@ void handle_can_message(struct can_message_t *message){
 		
 		data.u = message->data[0];
 		int16_t ref = (int16_t)(data.i) << 8;
- 		regulator_set_ref(ref);
+ 		regulator_set_ref(0);
 		
 		data.u = message->data[1];
 		servo_joystick_command(data.i);
