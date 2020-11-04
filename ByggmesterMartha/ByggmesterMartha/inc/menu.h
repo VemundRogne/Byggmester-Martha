@@ -46,7 +46,7 @@ void menu_draw(char *menu);
 void menu_test();
 
 //void menu_highscorse(); //TODO
-//void menu_play_game(); //TODO
+void menu_play_game(); //TODO
 
 
 #endif /* MENU_H_ */

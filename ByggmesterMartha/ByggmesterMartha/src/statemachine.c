@@ -51,13 +51,15 @@ void enter_game_over(uint8_t score){
 
 void enter_play_game(){
 	current_state = PLAY_GAME;
+	
+	menu_play_game();
 }
 
 void statemachine_handle_menu_execute(){
 	switch(current_state){
 		case HOME_MENU:
 			switch(current_selection){
-				case 2: 
+				case 3: 
 					enter_play_game();
 					break;
 				case 4:
