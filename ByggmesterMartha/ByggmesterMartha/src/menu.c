@@ -162,9 +162,9 @@ void menu_play_game(){
 
 	char line0[LINELENGTH] = " PING PONG! ";
 	
-	char option1[LINELENGTH] = "   ()___()";
-	char option2[LINELENGTH] = "   (=^.^=)";
-	char option3[LINELENGTH] = " \_(') (')";
+	char option1[LINELENGTH] = "  ()___()";
+	char option2[LINELENGTH] = "  (=^.^=)";
+	char option3[LINELENGTH] = "  (') (')_/";
 	char line7[LINELENGTH] = " <3 <3 <3 <3";
 	
 	menu_insert_item(menu_pointer, &line0[0], strlen(line0), 0);
