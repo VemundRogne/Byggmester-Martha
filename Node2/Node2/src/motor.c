@@ -4,23 +4,8 @@
 #include <stdint.h>
 #include <component/dacc.h>
 
-
-// MJ1 output from shield
-// DIR 		-> PIN32 	-> PD10
-// EN 		-> PIN30 	-> PD9
-// SEL 		-> PIN27 	-> PD2
-// NOT_RST	-> PIN26 	-> PD1
-// NOT_OE	-> PIN25	-> PD0
-#define DIR 10
-#define EN 9
-#define SEL 2
-#define RST 1
-#define OE 0
-#define DACC_PIO 16
-
-
 //Set direction based on negative or positiv argument (int8_t dir)
-void stepper_set_direction(int8_t dir){
+void motor_set_direction(int8_t dir){
 	if (dir > 0){
 		REG_PIOD_SODR |= (1<<DIR);
 	}
@@ -30,38 +15,38 @@ void stepper_set_direction(int8_t dir){
 }
 
 //Enable and disable motor
-void stepper_enable_motor(){
+void motor_enable_output(){
 	REG_PIOD_SODR |= (1<<EN);
 }
-void stepper_disable_motor(){
+void motor_disable_output(){
 	REG_PIOD_CODR |= (1<<EN);
 }
 
 // Select low or high byte for 8-bit encoder output on MJ2. (The encoder is 16bit) 
-void stepper_select_low_encoder_byte(){
+void motor_select_low_encoder_byte(){
 	REG_PIOD_CODR |= (1<<SEL);
 }
-void stepper_select_high_encoder_byte(){
+void motor_select_high_encoder_byte(){
 	REG_PIOD_SODR |= (1<<SEL);
 }
 
 // Set/Reset encoder (counter) by writing to MJ1
-void stepper_set_encoder(){
+void motor_set_encoder(){
 	REG_PIOD_SODR |= (1<<RST);
 }
-void stepper_reset_encoder(){
+void motor_reset_encoder(){
 	REG_PIOD_CODR |= (1<<RST);
 }
 
 //Enable output of encoder to be read in MJ2
-void stepper_enable_output(){
-	REG_PIOD_CODR |= (1<<OE);
-}
+//void motor_enable_output(){
+//	REG_PIOD_CODR |= (1<<OE);
+//}
 
 
-void stepper_init(){
+void motor_init(){
 	REG_PIOD_OER |= (1 << DIR) | (1 << EN) | (1 << SEL) | (1 << RST) | (1 << OE); //Enable output for our desired control pins for MJ1
-	stepper_enable_motor();
+	motor_enable_output();
 
 	//DACC stuff
 	//REG_PIOB_OER |= (1<<DACC_PIO);
@@ -76,15 +61,33 @@ void stepper_init(){
 	//DACC->DACC_CDR = 1000 | (1<<12);
 }
 
+/*
+ * Sets output on the motor
 
+ * Currently does no sanity-checks on the power
+*/
+void motor_set_output(uint8_t direction, uint16_t power){
+	motor_enable_output();
+
+	// This is just a hack to make it faster to test this command over CAN
+	if(direction == 0){
+		motor_set_direction(1);
+	}
+	else{
+		motor_set_direction(-1);
+	}
+
+	DACC->DACC_CHER |= (1<<1);
+	DACC->DACC_CDR |= (power | (1<<12));	// TODO: Check if this method of setting power is dangerous
+}
 
 
 // Vi vil gi DACCen en verdi mellom 0 og 2048 (alts� en 12-bit verdi)
-void stepper_joystick_command(int8_t stepper_speed){
-	stepper_enable_motor();
-	stepper_set_direction(stepper_speed);
+void motor_joystick_command(int8_t motor_speed){
+	motor_enable_motor();
+	motor_set_direction(motor_speed);
 
-	uint16_t val = abs(stepper_speed);
+	uint16_t val = abs(motor_speed);
 	val = val << 4;
 
 	//DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so

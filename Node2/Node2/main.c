@@ -28,7 +28,7 @@ int main(void)
 	
 	// Disable watchdog
 	WDT->WDT_MR = WDT_MR_WDDIS;
-	stepper_init();
+	motor_init();
 	
 	can_init_def_tx_rx_mb(0x00290561);
 	
