@@ -88,6 +88,26 @@ void handle_can_message(struct can_message_t *message){
 		uint16_t power = (message->data[1] << 8) | (message->data[1]);
 		motor_set_output(direction, power);
 	}
+
+	/* Request from Node 1 to Node 2 to transfer current encoder position */
+	if(message->id == 1010){
+		int16_t motorbox_encoder_value = 0;
+		encoder_read(&motorbox_encoder_value);
+
+		union signed_16_unsigned_8{
+			int16_t signed_16;
+			uint8_t unsigned_8[2];
+		} data;
+
+		data.signed_16 = motorbox_encoder_value;
+
+		struct can_message_t encoder_msg;
+		encoder_msg.id = 1010;
+		encoder_msg.data[0] = data.unsigned_8[0];
+		encoder_msg.data[1] = data.unsigned_8[1];
+
+		can_send(&encoder_msg, 0);
+	}
 	
 	ir_transmit();
 };
