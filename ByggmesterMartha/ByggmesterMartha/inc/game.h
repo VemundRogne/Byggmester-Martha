@@ -19,6 +19,7 @@ void game_init();
 
 void game_score_count(uint8_t ir_status);
 
+void game_sequence();
 
 
 

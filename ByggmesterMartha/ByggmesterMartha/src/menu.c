@@ -145,7 +145,7 @@ void menu_game_over(uint8_t score){
 	char option2[LINELENGTH];
 	sprintf(&option2[0], " Score %u", score);
 	char option3[LINELENGTH] = " Well done! ";
-	char option4[LINELENGTH] = " Play again!";
+	char option4[LINELENGTH] = " Play again?";
 	
 	menu_insert_item(menu_pointer, NULL, 0, 1);
 	menu_insert_item(menu_pointer, NULL, 0, 2);
@@ -154,4 +154,21 @@ void menu_game_over(uint8_t score){
 	menu_insert_item(menu_pointer, &option4[0], strlen(option4), 5);
 	menu_insert_item(menu_pointer, NULL, 0, 6);
 	menu_insert_item(menu_pointer, NULL, 0, 7);
+}
+
+void menu_play_game(){
+	volatile char* menu_pointer = &pg_menu[0];
+	
+	char line0[LINELENGTH] = " <3 <3 <3 <3 <3";
+	char option3[LINELENGTH] = " PLAYING PING PONG! ";
+	char line7[LINELENGTH] = " <3 <3 <3 <3 <3";
+	
+	menu_insert_item(menu_pointer, &line0, strlen(line0), 0);
+	menu_insert_item(menu_pointer, NULL, 0, 1);
+	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, NULL, 0, 3);
+	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
+	menu_insert_item(menu_pointer, NULL, 0, 5);
+	menu_insert_item(menu_pointer, NULL, 0, 6);
+	menu_insert_item(menu_pointer, &line7, strlen(line7), 7);
 }

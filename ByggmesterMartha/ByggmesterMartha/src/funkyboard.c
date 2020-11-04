@@ -32,6 +32,13 @@ struct Joystick_pos get_joystick_pos(){
 	return joystick;
 }
 
+struct Joystick_pos set_joystick_pos(){
+	struct Joystick_pos joystick;
+	joystick.x = 0;
+	joystick.y = 0;
+	return joystick;
+}
+
 enum Joystick_dir get_joystick_dir(){
 	struct Joystick_pos joystick = get_joystick_pos();
 	
@@ -92,9 +99,9 @@ int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
 // Sends joystick position over CAN bus
 // Returns 0 for successful transmission
 // 1 when failed. 
-uint8_t Joystick_can(){
+uint8_t Joystick_can(struct Joystick_pos js_pos){
 	
-	struct Joystick_pos js_pos = get_joystick_pos();
+	//struct Joystick_pos js_pos = get_joystick_pos();
 	struct can_msg js_msg;
 	union Data data;
 	

@@ -14,6 +14,7 @@
 volatile char home_menu[8*LINELENGTH + 1];
 volatile char hs_menu[8*LINELENGTH + 1];
 volatile char go_menu[8*LINELENGTH + 1];
+volatile char pg_menu[8*LINELENGTH + 1];
 
 uint8_t current_selection;
 uint8_t menu_upper_bound;
