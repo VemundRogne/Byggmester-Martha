@@ -11,7 +11,7 @@
 #include "../inc/can_controller.h"
 #include "../inc/can_handler.h"
 #include "../inc/servo.h"
-#include "../inc/stepper.h"
+#include "../inc/motor.h"
 #include <component/tc.h>
 #include "../inc/joystick.h"
 #include "../inc/ir_driver.h"

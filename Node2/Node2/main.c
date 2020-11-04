@@ -14,7 +14,7 @@
 #include "inc/servo.h"
 #include "inc/adc.h"
 #include "inc/ir_driver.h"
-#include "inc/stepper.h"
+#include "inc/motor.h"
 #include "inc/delay.h"
 
 int main(void)
