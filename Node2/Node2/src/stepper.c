@@ -1,4 +1,4 @@
-#include "../inc/stepper.h"
+#include "../inc/motor.h"
 
 #include <sam.h>
 #include <stdint.h>

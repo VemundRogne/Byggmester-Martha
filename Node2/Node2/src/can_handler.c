@@ -46,7 +46,7 @@ void handle_can_message(struct can_message_t *message){
 		union Data data;
 		
 		data.u = message->data[0];
-		int16_t ref = int16_t(data.i) << 8;
+		int16_t ref = (int16_t)(data.i) << 8;
  		regulator_set_ref(ref);
 		
 		data.u = message->data[1];

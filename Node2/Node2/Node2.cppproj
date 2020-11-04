@@ -221,6 +221,9 @@
     <Compile Include="inc\printf-stdarg.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="inc\regulator.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="inc\servo.h">
       <SubType>compile</SubType>
     </Compile>
@@ -257,10 +260,16 @@
     <Compile Include="src\printf-stdarg.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\regulator.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\servo.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\solenoid.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\stepper.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\uart.c">
