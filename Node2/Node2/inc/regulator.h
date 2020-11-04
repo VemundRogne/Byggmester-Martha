@@ -2,8 +2,8 @@
 #define REGULATOR_H_
 
 
-int32_t position_ref;
-int32_t integrated_error;
+int16_t position_ref;
+int16_t integrated_error;
 
 
 void regulator_set_ref();

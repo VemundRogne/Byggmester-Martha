@@ -1,14 +1,15 @@
 //regulator.c
 
 #include "../inc/regulator.h"
-#include "../inc/stepper.h"
+#include "../inc/motor.h"
 #include "sam3x4c.h"
-#include "stdint.h"
+#include <stdint.h>
+#include <stdlib.h>
 
 #define K_i 1
 #define K_p 5
 //current encoder, 32 bit, global
-int32_t current_encoder = 69; // ;)) 
+int16_t current_encoder = 69; // ;)) 
 
 void regulator_set_ref(uint8_t position){
 	position_ref = position;
@@ -21,11 +22,18 @@ void TC0_Handler(){
 
 void update_motor_input(){
 		
-	int32_t pos_error = position_ref - current_encoder;
-	int8_t input = K_p* (int8_t) pos_error + K_i* (int8_t) integrated_error;
+	int16_t pos_error = position_ref - current_encoder;
+	int16_t input = K_p*pos_error + K_i*integrated_error;
 
-	// Calculate some PI gain, should compare encoder value with position_ref
+	uint8_t dir = 0;
+	if (input < 0){
+		dir = -1;
+	}
 	
-	integrated_error = pos_error/50;
+	uint16_t power = abs(input);
+	power = power >> 4; //Er dette tøys?
+	
+	motor_set_output(dir, power);
 
+	integrated_error = pos_error/50; //Dette tull?
 }
