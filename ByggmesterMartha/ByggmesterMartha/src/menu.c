@@ -159,6 +159,7 @@ void menu_game_over(uint8_t score){
 void menu_play_game(){
 	volatile char* menu_pointer = &pg_menu[0];
 	
+
 	char line0[LINELENGTH] = " PING PONG! ";
 	
 	char option1[LINELENGTH] = "   ()___()";
