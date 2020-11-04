@@ -167,7 +167,7 @@ void menu_play_game(){
 	char option3[LINELENGTH] = " \_(') (')";
 	char line7[LINELENGTH] = " <3 <3 <3 <3";
 	
-	menu_insert_item(menu_pointer, &line0[0], strlen(line0),, 0);
+	menu_insert_item(menu_pointer, &line0[0], strlen(line0), 0);
 	menu_insert_item(menu_pointer, NULL, 0, 1);
 	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 2);
 	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
