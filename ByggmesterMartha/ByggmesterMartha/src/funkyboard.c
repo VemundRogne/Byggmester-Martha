@@ -101,9 +101,26 @@ uint8_t Joystick_can(){
 	js_msg.ID = 69;
 	js_msg.len = 2;
 	
-	data.i = saturate_and_filter_noise(js_pos.x, -127, 127);
+	// Make sure that offset saturation is equal in every direction to avoid bias //
+	int16_t relative_offset_x = joystick_offset_x - 127;
+	int16_t relative_offset_y = joystick_offset_y - 127;
+	lb_x = -127 + relative_offset_x;
+	ub_x = 127 - relative_offset_x;
+	if (relative_offset_x < 0){
+		lb_x = -127 - relative_offset_x;
+		ub_x = 127 + relative_offset_x;
+	}
+
+	lb_y = -127 + relative_offset_y;
+	ub_y = 127 - relative_offset_y;
+	if (relative_offset_y < 0){
+		lb_y = -127 - relative_offset_y;
+		ub_y = 127 + relative_offset_y;
+	}
+
+	data.i = saturate_and_filter_noise(js_pos.x, lb_x, ub_x);
 	js_msg.data[0] = data.u;
-	data.i = saturate_and_filter_noise(js_pos.y, -127, 127);
+	data.i = saturate_and_filter_noise(js_pos.y, lb_y, ub_y);
 	js_msg.data[1] = data.u;
 	
 	if(can_transmit_message(&js_msg) != 1){
