@@ -45,13 +45,18 @@ int main(void)
 	uint8_t can_status = 1;
 	// can message ID 15 => IR
 	// can message ID 5 => ACK
-	
+	encoder_init();
     /* Replace with your application code */
+	int16_t encoder_value;
     while (1)
     {
 		//Checks for ball in beam
-		ir_ball_in_beam();
+		//ir_ball_in_beam();
 		// Sends ball status to node 1
+		
+		
+		//encoder_read(&encoder_value);
+		//encoder_read(&encoder_value);
 
 		//stepper_joystick_command(12);
     }

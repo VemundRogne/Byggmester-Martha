@@ -25,10 +25,10 @@
 
 // ------------------ MOTOR -----------------------
 /* Enables output from Motorbox to motor */
-void motor_enable();
+void motor_enable_output();
 
 /* Disables output from Motorbox to motor */
-void motor_disable();
+void motor_disable_output();
 
 /* Sets the DIR pin based on positive or negative input */
 void motor_set_direction(int8_t dir);
@@ -46,6 +46,23 @@ void motor_init();
 
 // ------------------ ENCODER -----------------------
 
+/* 
+ * The encoder output is a parallell interface (DO0-7), they are connected through
+ * a logic level converter to PIN33-40 or PC1-PC8
+*/
+
+volatile int32_t motor_encoder_value;
+
+/* Resets all our internal counters and stuff */
+void encoder_init();
+
+void motorbox_reset_encoder();
+
+/* Reads the encoder value from the Motorbox */
+void encoder_read(int16_t *motorbox_encoder_value);
+
+/* Lowlevel function to get single byte from motorbox */
+void _encoder_byte_read(uint8_t *_data);
 
 
 #endif /* STEPPER_H_ */
