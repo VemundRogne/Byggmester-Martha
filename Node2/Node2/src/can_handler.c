@@ -34,6 +34,8 @@ union signed_32_unsigned_8{
 } signed_32_unsigned_8;
 
 
+
+
 /* This is a helper function to transfer a signed 32-bit number to python
 
  * This function generates a can message with ID 1000
@@ -132,30 +134,45 @@ void handle_can_message(struct can_message_t *message){
 
 	// SET REGULATOR I-GAIN
 	if(message->id == 902){
-
+		signed_16_unsigned_8.unsigned_8[0] = message->data[1];
+		signed_16_unsigned_8.unsigned_8[1] = message->data[0];
+		i_gain = signed_16_unsigned_8.signed_16;
 	}
 
-	// SET REGULATOR SETPOINT
+	// SET POSITION REFERENCE
 	if(message->id == 903){
+		signed_32_unsigned_8.unsigned_8[0] = message->data[1];
+		signed_32_unsigned_8.unsigned_8[1] = message->data[0];
+		position_reference = signed_32_unsigned_8.signed_32;
 
 	}
 
 	// Set regulator reverse_direct_action
 	if(message->id == 904){
+		reverse_dir_action = message->data[0];
 
 	}
 
 
 	/* ---------------- REGULATOR OUTPUTS --------------------------*/
 	// Read position
+	if(message->id == 952){
+		transfer_signed_32_to_python(position);
+	}
 
 	// Read error
+	if(message->id == 953){
+		transfer_signed_32_to_python(error);
+	}
 
 	// Read integral
-
-	// Read regulator_output
 	if(message->id == 954){
 		transfer_signed_32_to_python(integral);
+	}
+
+	// Read regulator_output
+	if(message->id == 955){
+		transfer_signed_32_to_python(regulator_output);
 	}
 
 
@@ -195,3 +212,4 @@ void handle_can_message(struct can_message_t *message){
 	
 	ir_transmit();
 };
+
