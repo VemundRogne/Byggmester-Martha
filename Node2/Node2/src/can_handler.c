@@ -115,7 +115,8 @@ void handle_can_message(struct can_message_t *message){
 	}
 	
 	if ((message->id == 52) && (message->data[0] == 1)){
-		uint8_t pulse_length = message->data[1];
+		//uint8_t pulse_length = message->data[1];
+		solenoid_free_flag = 1;
 		//solenoid_push_ball(pulse_length);
 	}
 

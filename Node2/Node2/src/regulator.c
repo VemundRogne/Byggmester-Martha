@@ -102,4 +102,19 @@ void TC0_Handler(){
 	else{
 		regulator_run();
 	}
+<<<<<<< HEAD
 }
+=======
+	if (solenoid_free_flag){
+		solenoid_push();
+		if (solenoid_counter == 5){
+			solenoid_contract();
+		}
+		if (solenoid_counter == 10){
+			solenoid_free_flag = 0;
+			solenoid_counter = 0;
+		}
+		solenoid_counter += 1;
+	}
+}
+>>>>>>> ea33df0... Braindead, wtf. Does it even work? La til Solenoid flag, og counter for interrupt
