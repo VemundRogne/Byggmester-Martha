@@ -6,51 +6,73 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define K_i 3
-#define K_p 2
-//current encoder, 32 bit, global
+#define Kp 3
+#define Ki 2
 
-void regulator_set_ref(int16_t ref){
-	position_ref = ref;
+#define INIT_SPEED 1000
+
+void regulator_init(){
+	init_flag = 1; // Stop regulator while initializing
+
+	//Initialize sequence
+	uint16_t power = INIT_SPEED;
+	motor_set_output(1, power); //Drive to the right
+	_delay_s(3);
+	motorbox_reset_encoder();
+
+	//Not sure if we need all these, but shouldnt hurt
+	regulator_mode = 2;
+	reverse_dir_action = 1;
+	p_gain = Kp;
+	i_gain = Ki;
+	position_reference = 0; 
+	position = 0;
+	error = 0;
+	integral = 0;
+	regulator_output = 0;
+
+	init_flag = 0;
 }
 
-void enable_regulator(){
-	regulator_enabled = 1;
-}
 
-void disable_regulator(){
-	regulator_enabled = 0;
-}
+void regulator_run(){
+	regulator_update_states();
 
-void update_motor_input(int16_t current_encoder){
-		
-	int16_t pos_error = position_ref - current_encoder;
-	int16_t input = K_p*pos_error + K_i*integrated_error;
-
-	uint8_t dir = 0;
-	if (input > 0){
-		dir = 1;
+	if (regulator_mode){
+		regulator_calc_output();
+		regulator_set_output();
 	}
-	
-	uint16_t power = abs(input);
+}
 
-	//Check for saturation to avoid integrator wind-up
-	if (!(power >> 12)){
-		integrated_error += pos_error/50; //Dette tull?
+void regulator_update_states(){
+	position = (int32_t)motor_encoder_value;
+	error = (int32_t)position - position_reference;
+	if (regulator_mode == 2){
+		integral += error; //ignore time interval here to make smooth, make sure you include T_i when calculating output
+	}
+	else{
+		integral = 0;
+	}
+}
+
+void regulator_calc_output(){
+	regulator_output = reverse_dir_action*(p_gain*error + (i_gain*integral)>>6);
+}
+
+void regulator_set_output(){
+	uint8_t dir = 0; //Positive direction
+	if (regulator_output < 0){
+		dir = 1; //Negative direction;
 	}
 
-	power = power >> 1; //Ikke endre denne, da kan du heller tøyse med Kp og Ki
-	
+	uint16_t power = (uint16_t)abs(regulator_output) >> DECIMATION_GAIN; //Compensate for potential decimations in gains
 	motor_set_output(dir, power);
+};
 
-}
 
 void TC0_Handler(){
-	uint32_t dummy = REG_TC0_SR0;
-	int16_t current_encoder_position = 0;
-	
-	//if(regulator_enabled == 1){
-	//encoder_read(&current_encoder_position);
-	//update_motor_input(current_encoder_position);
-	//}
+	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
+	if (!init_flag){
+		regulator_run();
+	}
 }

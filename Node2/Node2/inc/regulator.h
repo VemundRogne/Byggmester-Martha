@@ -8,6 +8,8 @@
 */
 #define DECIMATION_GAIN	2
 
+uint8_t init_flag; //Flag to tell whether initialize sequence is finished
+
 // Regulator parameters
 
 /* 
@@ -21,19 +23,19 @@ volatile uint8_t regulator_mode;
  * -1 or 1 sets if regulator is direct-action or reverse action
  * Should a positive error yield a positive output?
 */
-volatile int8_t reverse_direct_action;
+volatile int8_t reverse_dir_action;
 
 // Regulator variables
 volatile uint16_t p_gain;
 volatile uint16_t i_gain;
 
-volatile int64_t position_reference;
-int64_t position;
+volatile int32_t position_reference;
+volatile int32_t position;
 
-int64_t error;
-int64_t integral;
+volatile int32_t error;
+volatile int32_t integral;
 
-int64_t regulator_output;
+volatile int32_t regulator_output;
 
 // Regulator functions:
 
@@ -48,18 +50,6 @@ void regulator_calc_output();
 
 // Set the output from the regulator to the motor
 void regulator_set_output();
-
-
-
-// Flag that can be set to enable/disable the regulator.
-// 1 : Enabled
-// 0 : Disabled
-volatile uint8_t regulator_enabled;
-
-void enable_regulator();
-void disable_regulator();
-
-void regulator_set_ref(int16_t ref);
 
 
 #endif /* REGULATOR_H_ */
