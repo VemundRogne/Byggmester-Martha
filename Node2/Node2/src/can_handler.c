@@ -87,9 +87,9 @@ void handle_can_message(struct can_message_t *message){
 
 		//Motor ref should be in interval (0, 8192)
 		uint16_t min_val = 0;
-		uint16_t max_val = 1<<13;
+		uint16_t max_val = 1<<14;
 		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
- 		//regulator_set_ref(motor_ref);
+ 		position_setpoint = motor_ref;
 
 
 		// Get servo command and shift it from (-127, 127) to (0, 255)
@@ -116,7 +116,7 @@ void handle_can_message(struct can_message_t *message){
 	
 	if ((message->id == 52) && (message->data[0] == 1)){
 		uint8_t pulse_length = message->data[1];
-		solenoid_push_ball(pulse_length);
+		//solenoid_push_ball(pulse_length);
 	}
 
 	/* ----------------- REGULATOR INPUTS ------------------------ */
