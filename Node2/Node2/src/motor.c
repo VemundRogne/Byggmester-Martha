@@ -87,6 +87,7 @@ void encoder_init(){
 	motorbox_reset_encoder();
 
 	PMC->PMC_PCER0 |= (1<<13);	// Enables clock on PIOC
+	REG_PIOD_SODR |= (1<<RST);
 }
 
 
@@ -94,8 +95,8 @@ void encoder_init(){
  * Pull the active low RST pin down, wait for a short time, then set it high again
 */
 void motorbox_reset_encoder(){
-	//REG_PIOD_CODR |= (1<<RST);
-	//_delay_ms(1);
+	REG_PIOD_CODR |= (1<<RST);
+	_delay_ms(1);
 	REG_PIOD_SODR |= (1<<RST);
 }
 
@@ -137,8 +138,6 @@ void encoder_read(int16_t *motorbox_encoder_value){
 	uint8_t LSB = 0;
 	_encoder_byte_read(&LSB);
 
-	// 8. Toggle !RST to reset encoder
-	motorbox_reset_encoder();
 
 	// 9. SET !OE high to disable output of encoder
 	REG_PIOD_SODR |= (1<<OE);
