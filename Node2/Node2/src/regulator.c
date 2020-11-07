@@ -14,6 +14,14 @@ void regulator_set_ref(int16_t ref){
 	position_ref = ref;
 }
 
+void enable_regulator(){
+	regulator_enabled = 1;
+}
+
+void disable_regulator(){
+	regulator_enabled = 0;
+}
+
 void update_motor_input(int16_t current_encoder){
 		
 	int16_t pos_error = position_ref - current_encoder;
@@ -40,7 +48,9 @@ void update_motor_input(int16_t current_encoder){
 void TC0_Handler(){
 	uint32_t dummy = REG_TC0_SR0;
 	int16_t current_encoder_position = 0;
-	encoder_read(&current_encoder_position);
-
-	update_motor_input(current_encoder_position);
+	
+	if(regulator_enabled == 1){
+		encoder_read(&current_encoder_position);
+		update_motor_input(current_encoder_position);
+	}
 }

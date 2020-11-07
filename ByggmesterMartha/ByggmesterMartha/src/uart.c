@@ -46,6 +46,9 @@ void UART_execute_cmd(){
 	if(cmd_buffer[0]== UART_CAN_CMD){
 		UART_execute_can_cmd();
 	}
+	if(cmd_buffer[0] == UART_MOTOR_CMD){
+		UART_execute_motor_cmd();
+	}
 }
 
 
@@ -254,6 +257,17 @@ void UART_execute_sram_cmd(){
 	if (cmd_buffer[1] == UART_SRAM_READ){
 		uint16_t sram_address = (cmd_buffer[2] << 8) | cmd_buffer[3];
 		UART_tx_polling(ext_ram[sram_address]);
+	}
+}
+
+void UART_execute_motor_cmd(){
+	/* Triggers a read of the encoder. Note the return is in the CAN interrupt */
+	if(cmd_buffer[1] == UART_MOTOR_READ_ENCODER){
+		struct can_msg tx_msg;
+		tx_msg.ID = 1010;
+		tx_msg.len = 0;
+
+		uint8_t can_status = can_transmit_message(&tx_msg);
 	}
 }
 
