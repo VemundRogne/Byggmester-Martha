@@ -104,15 +104,15 @@ uint8_t Joystick_can(){
 	// Make sure that offset saturation is equal in every direction to avoid bias //
 	int16_t relative_offset_x = joystick_offset_x - 127;
 	int16_t relative_offset_y = joystick_offset_y - 127;
-	lb_x = -127 + relative_offset_x;
-	ub_x = 127 - relative_offset_x;
+	int8_t lb_x = -127 + relative_offset_x;
+	int8_t ub_x = 127 - relative_offset_x;
 	if (relative_offset_x < 0){
 		lb_x = -127 - relative_offset_x;
 		ub_x = 127 + relative_offset_x;
 	}
 
-	lb_y = -127 + relative_offset_y;
-	ub_y = 127 - relative_offset_y;
+	int8_t lb_y = -127 + relative_offset_y;
+	int8_t ub_y = 127 - relative_offset_y;
 	if (relative_offset_y < 0){
 		lb_y = -127 - relative_offset_y;
 		ub_y = 127 + relative_offset_y;

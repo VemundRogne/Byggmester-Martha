@@ -6,8 +6,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define K_i 1
-#define K_p 12
+#define K_i 3
+#define K_p 2
 //current encoder, 32 bit, global
 
 void regulator_set_ref(int16_t ref){
@@ -31,7 +31,7 @@ void update_motor_input(int16_t current_encoder){
 		integrated_error += pos_error/50; //Dette tull?
 	}
 
-	//power = power >> 4; //Ikke endre denne, da kan du heller tøyse med Kp og Ki
+	power = power >> 1; //Ikke endre denne, da kan du heller tøyse med Kp og Ki
 	
 	motor_set_output(dir, power);
 

@@ -50,7 +50,7 @@ int main(void)
     while (1)
     {
 		//Checks for ball in beam
-		//ir_ball_in_beam();
+		ir_ball_in_beam();
 		// Sends ball status to node 1
 		
 		

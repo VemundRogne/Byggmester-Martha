@@ -52,24 +52,24 @@ void handle_can_message(struct can_message_t *message){
 		
 		// Get motor command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[0];
-		float motor_ref = (float)(data.i + (1<<7)); //Make positive :) 
+		float _motor_ref = (float)(data.i + (1<<7)); //Make positive :) 
 
 		//Motor ref should be in interval (0, 8192)
 		uint16_t min_val = 0;
 		uint16_t max_val = 1<<13;
-		int16_t motor_ref = fit_to_interval(motor_ref, min_val, max_val);
+		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
  		regulator_set_ref(motor_ref);
 
 
 		// Get servo command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[1];
-		float servo_ref = (float)(data.i + (1<<7));
+		float _servo_ref = (float)(data.i + (1<<7));
 
 		// Servo ref should be in interval (0, 255)
-		uint16_t min_val = 0;
-		uint16_t max_val = 255;
-		uint8_t servo_ref = (uint8_t) fit_to_interval(servo_ref, min_val, max_val);
-		servo_set_position(motor_ref);
+		min_val = 0;
+		max_val = 255;
+		uint8_t servo_ref = (uint8_t) fit_to_interval(_servo_ref, min_val, max_val);
+		servo_set_position(servo_ref);
 	}
 
 
