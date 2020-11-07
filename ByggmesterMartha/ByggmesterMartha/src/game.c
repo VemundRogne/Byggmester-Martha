@@ -20,11 +20,11 @@ void game_score_count(uint8_t ir_status){
 		game_over = 1;
 		enter_game_over(score_count);
 	}
-	else {
-		if(game_over == 0){
-			score_count += 1;
-		}
-	}
+	//else {
+		//if(game_over == 0){
+		//	score_count += 1;
+		//}
+	//}
 }
 
 
@@ -35,6 +35,7 @@ void game_sequence(){
 		struct Joystick_pos js_pos_current = get_joystick_pos();
 		Joystick_can(js_pos_current);
 		send_button_press();
+		score_count += 1;
 	}
 	
 	if(current_state == HOME_MENU){
