@@ -6,8 +6,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define Kp 3
-#define Ki 2
+#define Kp 30
+#define Ki 1
 
 #define INIT_SPEED 1000
 
@@ -16,8 +16,8 @@ void regulator_init(){
 
 	//Initialize sequence
 	uint16_t power = INIT_SPEED;
-	motor_set_output(1, power); //Drive to the right
-	_delay_s(3);
+	//motor_set_output(1, power); //Drive to the right
+	//_delay_s(3);
 	motorbox_reset_encoder();
 
 	//Not sure if we need all these, but shouldnt hurt
@@ -25,7 +25,7 @@ void regulator_init(){
 	reverse_dir_action = 1;
 	p_gain = Kp;
 	i_gain = Ki;
-	position_reference = 0; 
+	position_reference = 3500; 
 	position = 0;
 	error = 0;
 	integral = 0;
@@ -45,7 +45,9 @@ void regulator_run(){
 }
 
 void regulator_update_states(){
-	position = (int32_t)motor_encoder_value;
+	int16_t _pos;
+	encoder_read(&_pos);
+	position = (int32_t)_pos;
 	error = (int32_t)position - position_reference;
 	if (regulator_mode == 2){
 		integral += error; //ignore time interval here to make smooth, make sure you include T_i when calculating output

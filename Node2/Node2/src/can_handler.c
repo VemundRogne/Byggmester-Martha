@@ -87,7 +87,7 @@ void handle_can_message(struct can_message_t *message){
 		uint16_t min_val = 0;
 		uint16_t max_val = 1<<13;
 		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
- 		regulator_set_ref(motor_ref);
+ 		//regulator_set_ref(motor_ref);
 
 
 		// Get servo command and shift it from (-127, 127) to (0, 255)
@@ -155,7 +155,7 @@ void handle_can_message(struct can_message_t *message){
 
 	// Read regulator_output
 	if(message->id == 954){
-		transfer_signed_32_to_python(regulator_output);
+		transfer_signed_32_to_python(integral);
 	}
 
 
