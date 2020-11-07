@@ -9,6 +9,7 @@
 #define DECIMATION_GAIN	2
 
 uint8_t init_flag; //Flag to tell whether initialize sequence is finished
+uint8_t init_counter; //Old school delay for initializing
 
 // Regulator parameters
 

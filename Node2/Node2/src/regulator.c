@@ -10,14 +10,18 @@
 #define Ki 1
 
 #define INIT_SPEED 1000
+#define INIT_TIME (50*3) //50*number of seconds (50hz timer)
 
 void regulator_init(){
 	init_flag = 1; // Stop regulator while initializing
+	init_counter = 0;
 
 	//Initialize sequence
 	uint16_t power = INIT_SPEED;
-	//motor_set_output(1, power); //Drive to the right
-	//_delay_s(3);
+	motor_set_output(1, power); //Drive to the right
+}
+
+void regulator_finish_init(){
 	motorbox_reset_encoder();
 
 	//Not sure if we need all these, but shouldnt hurt
@@ -89,7 +93,13 @@ void regulator_set_output(){
 
 void TC0_Handler(){
 	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
-	if (!init_flag){
+	if (init_flag){
+		init_counter += 1;
+		if (init_counter >= INIT_TIME){
+			regulator_finish_init();
+		}
+	}
+	else{
 		regulator_run();
 	}
 }
