@@ -1,11 +1,20 @@
 """ Runs some super-simple tests to check if the motor works """
 
+from enum import IntEnum
+
 import pytest
 import time
 
 import comms
 import can_cmd
 import basic_cmd
+
+class regulator_variables(IntEnum):
+    position = 952
+    error = 953
+    integral = 954
+    output = 955
+
 
 @pytest.fixture(scope='module')
 def ser():
@@ -20,8 +29,20 @@ def regulator_set_p_gain(ser, p_gain):
     can_cmd.can_transmit(ser, msg_id=901, msg_len=2, msg_data=data)
 
 
-def regulator_read_output(ser):
-    can_cmd.can_transmit(ser, msg_id=954, msg_len=0, msg_data=[])
+def read_all_regulator_variables(ser):
+    read_variables = []
+    for variable in regulator_variables:
+        read_value = node2_read_variable(ser, variable.value)
+
+        if variable.name == "output":
+            read_value = abs(read_value)>>2
+
+        read_variables.append(read_value)
+    return read_variables
+
+
+def node2_read_variable(ser, variable_id):
+    can_cmd.can_transmit(ser, msg_id=variable_id, msg_len=0, msg_data=[])
     try:
         return comms.read_signed_32_from_node2(ser)
     except comms.ReadException:
@@ -73,6 +94,6 @@ def test_motor_encoder(ser):
 
 if __name__ == '__main__':
     ser = comms.open_serial_connection('COM3')
+    
     while True:
-        print(regulator_read_output(ser))
-        time.sleep(0.1)
+        print(read_all_regulator_variables(ser))
