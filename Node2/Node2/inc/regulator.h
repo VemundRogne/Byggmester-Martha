@@ -29,6 +29,7 @@ volatile int8_t reverse_dir_action;
 volatile uint16_t p_gain;
 volatile uint16_t i_gain;
 
+volatile int32_t position_setpoint;
 volatile int32_t position_reference;
 volatile int32_t position;
 
