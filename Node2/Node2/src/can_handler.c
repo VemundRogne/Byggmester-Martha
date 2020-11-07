@@ -30,7 +30,7 @@ union signed_16_unsigned_8{
 
 union signed_32_unsigned_8{
 	int32_t signed_32;
-	uint8_t unsigned_8[8];
+	uint8_t unsigned_8[4];
 } signed_32_unsigned_8;
 
 
@@ -141,8 +141,10 @@ void handle_can_message(struct can_message_t *message){
 
 	// SET POSITION REFERENCE
 	if(message->id == 903){
-		signed_32_unsigned_8.unsigned_8[0] = message->data[1];
-		signed_32_unsigned_8.unsigned_8[1] = message->data[0];
+		signed_32_unsigned_8.unsigned_8[0] = message->data[3];
+		signed_32_unsigned_8.unsigned_8[1] = message->data[2];
+		signed_32_unsigned_8.unsigned_8[2] = message->data[1];
+		signed_32_unsigned_8.unsigned_8[3] = message->data[0];
 		position_setpoint = signed_32_unsigned_8.signed_32;
 
 	}

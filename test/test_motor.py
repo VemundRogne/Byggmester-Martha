@@ -29,13 +29,20 @@ def regulator_set_p_gain(ser, p_gain):
     can_cmd.can_transmit(ser, msg_id=901, msg_len=2, msg_data=data)
 
 
+def regulator_set_setpoint(ser, setpoint):
+    data = list(setpoint.to_bytes(4, byteorder='big', signed=True))
+    print(data)
+    can_cmd.can_transmit(ser, msg_id=903, msg_len=4, msg_data=data)
+
+
 def read_all_regulator_variables(ser):
     read_variables = []
     for variable in regulator_variables:
         read_value = node2_read_variable(ser, variable.value)
 
         if variable.name == "output":
-            read_value = abs(read_value)>>2
+            if read_value is not None:
+                read_value = abs(read_value)>>2
 
         read_variables.append(read_value)
     return read_variables
@@ -94,6 +101,20 @@ def test_motor_encoder(ser):
 
 if __name__ == '__main__':
     ser = comms.open_serial_connection('COM3')
+    basic_cmd.synchronize(ser)
     
+    setpoint = 3000
+    start_time = time.time()
     while True:
         print(read_all_regulator_variables(ser))
+
+        if ((time.time() - start_time) > 10):
+            start_time = time.time()
+
+            if setpoint == 5000:
+                setpoint = 3000
+            else:
+                setpoint = 5000
+            
+            print("Setting setpoint to", setpoint)
+            regulator_set_setpoint(ser, setpoint)
