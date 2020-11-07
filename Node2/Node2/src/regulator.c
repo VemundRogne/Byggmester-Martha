@@ -25,7 +25,8 @@ void regulator_init(){
 	reverse_dir_action = 1;
 	p_gain = Kp;
 	i_gain = Ki;
-	position_reference = 3500; 
+	position_setpoint = 3500;
+	position_reference = 0; 
 	position = 0;
 	error = 0;
 	integral = 0;
@@ -44,7 +45,19 @@ void regulator_run(){
 	}
 }
 
+void regulator_update_reference_model(){
+	uint16_t d_ref = abs(position_setpoint - position_reference) >> 3;
+	position_reference = position_reference + d_ref;
+	if (d_ref == 0){
+		position_reference = position_setpoint;
+	}
+	else if (position_setpoint - position_reference < 0){
+		position_reference = position_reference - d_ref;
+	}
+}
+
 void regulator_update_states(){
+	regulator_update_reference_model();
 	int16_t _pos;
 	encoder_read(&_pos);
 	position = (int32_t)_pos;

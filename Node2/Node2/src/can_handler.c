@@ -143,7 +143,7 @@ void handle_can_message(struct can_message_t *message){
 	if(message->id == 903){
 		signed_32_unsigned_8.unsigned_8[0] = message->data[1];
 		signed_32_unsigned_8.unsigned_8[1] = message->data[0];
-		position_reference = signed_32_unsigned_8.signed_32;
+		position_setpoint = signed_32_unsigned_8.signed_32;
 
 	}
 
