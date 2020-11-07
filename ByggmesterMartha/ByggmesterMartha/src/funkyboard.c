@@ -32,11 +32,18 @@ struct Joystick_pos get_joystick_pos(){
 	return joystick;
 }
 
-struct Joystick_pos set_joystick_pos(uint8_t x, uint8_t y){
+struct Joystick_pos set_joystick_pos(uint8_t x_pos, uint8_t y_pos){
 	struct Joystick_pos joystick;
-	joystick.x = x;
-	joystick.y = y;
+	joystick.x = x_pos;
+	joystick.y = y_pos;
 	return joystick;
+}
+
+struct Slider_pos set_slider_pos(uint8_t right_pos, uint8_t left_pos){
+	struct Slider_pos slider;
+	slider.right = right_pos;
+	slider.left = left_pos;
+	return slider;
 }
 
 enum Joystick_dir get_joystick_dir(){
@@ -118,3 +125,25 @@ uint8_t Joystick_can(struct Joystick_pos js_pos){
 	}
 	return 1;
 };	
+
+
+
+uint8_t slider_can(struct Slider_pos s_pos){
+	struct can_msg slider_msg;
+	union Data data;
+	
+	slider_msg.ID = 70;
+	slider_msg.len = 2;
+	
+	//data.i = saturate_and_filter_noise(s_pos.right, -127, 127);
+	data.i = s_pos.right;
+	slider_msg.data[0] = data.u;
+	//data.i = saturate_and_filter_noise(s_pos.left, -127, 127);
+	data.i = s_pos.left;
+	slider_msg.data[1] = data.u;
+	
+	if(can_transmit_message(&slider_msg) != 1){
+		return 0;
+	}
+	return 1;
+}

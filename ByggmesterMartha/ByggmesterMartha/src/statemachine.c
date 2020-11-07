@@ -23,6 +23,9 @@ void enter_home_menu(){
 	struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
 	Joystick_can(js_pos_ref);
 	
+	struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
+	slider_can(slider_pos_ref);
+	
 	menu_home();
 	
 	current_selection = 3;
