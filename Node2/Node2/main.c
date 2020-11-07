@@ -23,6 +23,7 @@ int main(void)
     /* Initialize the SAM system */
     SystemInit();
 	configure_uart();
+	regulator_init();
 	servo_init_pwm();
 	ir_init();
 	solenoid_init();
@@ -47,7 +48,6 @@ int main(void)
 	// can message ID 15 => IR
 	// can message ID 5 => ACK
 	encoder_init();
-	regulator_init();
     /* Replace with your application code */
     while (1)
     {
