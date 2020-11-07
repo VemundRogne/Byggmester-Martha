@@ -49,8 +49,8 @@ void TC0_Handler(){
 	uint32_t dummy = REG_TC0_SR0;
 	int16_t current_encoder_position = 0;
 	
-	if(regulator_enabled == 1){
-		encoder_read(&current_encoder_position);
-		update_motor_input(current_encoder_position);
-	}
+	//if(regulator_enabled == 1){
+	//encoder_read(&current_encoder_position);
+	//update_motor_input(current_encoder_position);
+	//}
 }
