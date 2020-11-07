@@ -23,6 +23,35 @@ union Data {
 	int8_t i;
 };
 
+union signed_16_unsigned_8{
+	int16_t signed_16;
+	uint8_t unsigned_8[2];
+} signed_16_unsigned_8;
+
+union signed_32_unsigned_8{
+	int32_t signed_32;
+	uint8_t unsigned_8[8];
+} signed_32_unsigned_8;
+
+
+/* This is a helper function to transfer a signed 32-bit number to python
+
+ * This function generates a can message with ID 1000
+*/
+void transfer_signed_32_to_python(int32_t value){
+	signed_32_unsigned_8.signed_32 = value;
+
+	struct can_message_t signed_32_unsigned_8_can_message;
+	signed_32_unsigned_8_can_message.id = 1;
+	signed_32_unsigned_8_can_message.data_length = 4;
+	
+	for(uint8_t i=0; i<4; i++){
+		signed_32_unsigned_8_can_message.data[i] = signed_32_unsigned_8.unsigned_8[3-i];
+	}
+
+	can_send(&signed_32_unsigned_8_can_message, 0);
+}
+
 uint16_t fit_to_interval(float val, uint16_t min_val, uint16_t max_val){
 	float scale = (max_val-min_val)/(0xFF);
 
@@ -88,16 +117,49 @@ void handle_can_message(struct can_message_t *message){
 		solenoid_push_ball(pulse_length);
 	}
 
-	// Command to enable/disable regulator
+	/* ----------------- REGULATOR INPUTS ------------------------ */
+	// SET REGULATOR MODE
 	if(message->id == 900){
-		if(message->data[0] == 0){
-			disable_regulator();
-		}
-		if(message->data[1] == 1){
-			enable_regulator();
-		}
+		regulator_mode = message->data[0];
 	}
 
+	// SET REGULATOR P-GAIN
+	if(message->id == 901){
+		signed_16_unsigned_8.unsigned_8[0] = message->data[1];
+		signed_16_unsigned_8.unsigned_8[1] = message->data[0];
+		p_gain = signed_16_unsigned_8.signed_16;
+	}
+
+	// SET REGULATOR I-GAIN
+	if(message->id == 902){
+
+	}
+
+	// SET REGULATOR SETPOINT
+	if(message->id == 903){
+
+	}
+
+	// Set regulator reverse_direct_action
+	if(message->id == 904){
+
+	}
+
+
+	/* ---------------- REGULATOR OUTPUTS --------------------------*/
+	// Read position
+
+	// Read error
+
+	// Read integral
+
+	// Read regulator_output
+	if(message->id == 954){
+		transfer_signed_32_to_python(regulator_output);
+	}
+
+
+	/* ----------------- DIRECT MOTOR CONTROL ---------------------- */
 	/* Set output on motor */
 	if(message->id == 1000){
 		// Data format: [direction, power_MSB, power_LSB]
@@ -126,6 +188,10 @@ void handle_can_message(struct can_message_t *message){
 
 		can_send(&encoder_msg, 0);
 	}
+
+	/* Request from Node 1 to Node 2 to transfer current regulator output */
+	/* Request from Node 1 to Node 2 to read current regulator integral */
+	/* Request from Node 1 to Node 2 to Read current error */
 	
 	ir_transmit();
 };

@@ -12,6 +12,11 @@
 #include "../inc/can.h"
 #include "../inc/game.h"
 
+union signed_64_unsigned_8{
+	int64_t signed_64;
+	uint8_t unsigned_8[8];
+} signed_64_unsigned_8;
+
 void mcp2515_select(){
 	MCP_CS_PORT &= !(1 << MCP_CS_PIN);
 }
@@ -79,6 +84,15 @@ ISR(INT0_vect){
 			game_score_count(msg_r.data[0]);
 		}
 
+		// This function simply echoes whatever data straight to UART
+		// Used by transfer_signed_32_to_python in node 2
+		if(msg_r.ID == 1){
+			for(uint8_t i = 0; i<msg_r.len; i++){
+				UART_tx_polling(msg_r.data[i]);
+			}
+		}
+
+		// Transfer encoder position to UART
 		if(msg_r.ID == 1010){
 			UART_tx_polling(msg_r.data[1]);
 			UART_tx_polling(msg_r.data[0]);

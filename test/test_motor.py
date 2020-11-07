@@ -15,10 +15,28 @@ def ser():
     ser.close()
 
 
+def regulator_set_p_gain(ser, p_gain):
+    data = list(p_gain.to_bytes(2, byteorder='big'))
+    can_cmd.can_transmit(ser, msg_id=901, msg_len=2, msg_data=data)
+
+
+def regulator_read_output(ser):
+    can_cmd.can_transmit(ser, msg_id=954, msg_len=0, msg_data=[])
+    return read_signed_32_from_node2(ser)
+
+
 def motor_set_output(ser, direction, power):
     data = [direction]
     data.extend(list(power.to_bytes(2, byteorder='big')))
     can_cmd.can_transmit(ser, msg_id=1000, msg_len=3, msg_data=data)
+
+
+def read_signed_32_from_node2(ser):
+    returncode = ser.read(4)
+    print(returncode)
+
+    if returncode != b'':
+        return int.from_bytes(returncode, byteorder='big', signed=True)
 
 
 def motor_read_encoder(ser):
@@ -60,5 +78,5 @@ def test_motor_encoder(ser):
 if __name__ == '__main__':
     ser = comms.open_serial_connection('COM3')
     while True:
-        print(motor_read_encoder(ser))
-        time.sleep(0.5)
+        print(regulator_read_output(ser))
+        time.sleep(0.2)
