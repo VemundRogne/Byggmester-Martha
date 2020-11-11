@@ -24,7 +24,7 @@ void enter_home_menu();
 
 void enter_highscore_menu();
 
-void enter_game_over(uint8_t score);
+void enter_game_over(uint16_t score);
 
 void enter_play_game();
 

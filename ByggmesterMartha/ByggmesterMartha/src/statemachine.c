@@ -43,7 +43,7 @@ void enter_highscore_menu(){
 	menu_upper_bound = 5;
 }
 
-void enter_game_over(uint8_t score){
+void enter_game_over(uint16_t score){
 	current_state = GAME_OVER;
 	menu_game_over(score);
 	

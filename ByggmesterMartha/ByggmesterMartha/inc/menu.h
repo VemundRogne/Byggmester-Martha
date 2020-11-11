@@ -39,7 +39,7 @@ void menu_home();
 
 void menu_highscores();
 
-void menu_game_over(uint8_t score);
+void menu_game_over(uint16_t score);
 
 void menu_draw(char *menu);
 

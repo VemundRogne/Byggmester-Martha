@@ -133,7 +133,7 @@ void menu_highscores(){
 };
 
 
-void menu_game_over(uint8_t score){
+void menu_game_over(uint16_t score){
 	volatile char* menu_pointer = &go_menu[0];
 	char title[LINELENGTH] = "  GAME OVER!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
