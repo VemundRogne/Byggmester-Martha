@@ -76,25 +76,52 @@ def motor_read_encoder(ser):
 
 
 def test_motor_set_output(ser):
-    motor_set_output(ser, 1, 1000)
+    motor_set_output(ser, 1, 1500)
     time.sleep(1)
-    motor_set_output(ser, 0, 1000)
-    time.sleep(1)
+    motor_set_output(ser, 0, 1500)
+    time.sleep(5)
     motor_set_output(ser, 0, 0)
+
+
+def get_diff(input_list):
+    return [input_list[i+1] - input_list[i] for i in range(0, len(input_list) -1)]
+
+
+def ensure_monotonic(input_list, direction, tolerance):
+    """ Ensures a list is monotonic. """
+    true_if_positive = lambda x: (x > 0)
+    true_if_negative = lambda x: (x < 0)
+
+    diff = get_diff(input_list)
+
+    if direction > 0:
+        n_positive = len(list(filter(true_if_positive, diff)))
+        assert n_positive/len(diff) >= tolerance
+    else:
+        n_negative = len(list(filter(true_if_negative, diff)))
+        assert n_negative/len(diff) >= tolerance
 
 
 def test_motor_encoder(ser):
     motor_set_output(ser, 1, 1000)
-    
+
+    encoder = []
     for i in range(0, 30):
-        print(motor_read_encoder(ser))
+        encoder.append(motor_read_encoder(ser))
+    print("Raw encoder readings:", encoder)
+    ensure_monotonic(encoder, 1, 0.8)
 
     motor_set_output(ser, 1, 0)
     time.sleep(1)
 
     motor_set_output(ser, 0, 1000)
+
+    encoder = []
     for i in range(0, 30):
-        print(motor_read_encoder(ser))
+        encoder.append(motor_read_encoder(ser))
+    print("Raw encoder readings:", encoder)
+    ensure_monotonic(encoder, -1, 0.8)
+
     motor_set_output(ser, 0, 0)
     time.sleep(1)
 
@@ -107,14 +134,15 @@ if __name__ == '__main__':
     start_time = time.time()
     while True:
         print(read_all_regulator_variables(ser))
+        time.sleep(1)
 
-        if ((time.time() - start_time) > 10):
-            start_time = time.time()
+        #if ((time.time() - start_time) > 10):
+        #    start_time = time.time()#
 
-            if setpoint == 5000:
-                setpoint = 3000
-            else:
-                setpoint = 5000
+        #    if setpoint == 5000:
+        #        setpoint = 3000
+        #    else:
+        #        setpoint = 5000
             
-            print("Setting setpoint to", setpoint)
-            regulator_set_setpoint(ser, setpoint)
+        #    print("Setting setpoint to", setpoint)
+        #    regulator_set_setpoint(ser, setpoint)
