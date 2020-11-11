@@ -29,15 +29,15 @@ void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t p
 	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
 }
 
-void menu_draw_item(uint8_t position, char *menu){
-	oled_clear_row(position);
-	oled_pos(position, 0);
+void menu_draw_item(uint8_t row){
+	oled_clear_row(row);
+	oled_pos(row, 0);
 	char _item[LINELENGTH];
 	
-	memcpy(&_item[0], &menu[position*LINELENGTH], LINELENGTH);
+	memcpy(&_item[0], &menu[row*LINELENGTH], LINELENGTH);
 	_item[LINELENGTH] = '\0';
 	
-	if(current_selection == position){
+	if(current_selection == row){
 		_item[0] = 42;
 	}
 	else{
@@ -49,11 +49,9 @@ void menu_draw_item(uint8_t position, char *menu){
 	}
 }
 
-void menu_draw(char *menu){
-	memset(&inversion_mask[0], 0, 8);
-	//inversion_mask[current_selection] = 1;
-	for (uint8_t i = 0; i < 8; i++){
-		menu_draw_item(i, menu);
+void menu_draw(){
+	for (uint8_t row = 0; row < 8; row++){
+		menu_draw_item(row);
 	}
 	
 };
@@ -90,7 +88,7 @@ void menu_navigate(){
 
 
 void menu_home(){
-	volatile char* menu_pointer = &home_menu[0];
+	volatile char* menu_pointer = &menu[0];
 	//Title
 	char title[LINELENGTH] = "    WELCOME!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
@@ -110,7 +108,7 @@ void menu_home(){
 };
 
 void menu_highscores(){
-	volatile char* menu_pointer = &hs_menu[0];
+	volatile char* menu_pointer = &menu[0];
 	char title[LINELENGTH] = "  DEVELOPERS!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
@@ -131,7 +129,7 @@ void menu_highscores(){
 
 
 void menu_game_over(uint16_t score){
-	volatile char* menu_pointer = &go_menu[0];
+	volatile char* menu_pointer = &menu[0];
 	char title[LINELENGTH] = "  GAME OVER!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
@@ -154,7 +152,7 @@ void menu_game_over(uint16_t score){
 }
 
 void menu_play_game(uint16_t score){
-	volatile char* menu_pointer = &pg_menu[0];
+	volatile char* menu_pointer = &menu[0];
 	
 
 	char line0[LINELENGTH] = "  PING PONG! ";

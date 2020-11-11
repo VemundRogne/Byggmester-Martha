@@ -11,11 +11,13 @@
 #include <stdio.h>
 
 #define LINELENGTH	16
+volatile char menu[8*LINELENGTH + 1];
+/*
 volatile char home_menu[8*LINELENGTH + 1];
 volatile char hs_menu[8*LINELENGTH + 1];
 volatile char go_menu[8*LINELENGTH + 1];
 volatile char pg_menu[8*LINELENGTH + 1];
-
+*/
 uint8_t current_selection;
 uint8_t menu_upper_bound;
 uint8_t menu_lower_bound;
@@ -38,8 +40,8 @@ void menu_play_game();
 
 void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position);
 
-void menu_draw_item(uint8_t position, char *menu);
-void menu_draw(char *menu);
+void menu_draw_item(uint8_t position);
+void menu_draw();
 
 
 #endif /* MENU_H_ */
