@@ -24,8 +24,6 @@ void game_over_check(uint8_t ir_status){
 
 
 void game_sequence(){
-
-	
 	if (current_state == PLAY_GAME)
 	{
 		struct Joystick_pos js_pos_current = get_joystick_pos();
@@ -41,6 +39,4 @@ void game_sequence(){
 	}
 		
 	statemachine_execute_current_state();
-	
-		
 }
