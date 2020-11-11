@@ -8,6 +8,7 @@ import time
 import comms
 import can_cmd
 import basic_cmd
+import mcp2515_cmd
 
 class regulator_variables(IntEnum):
     position = 952
@@ -103,6 +104,11 @@ def ensure_monotonic(input_list, direction, tolerance):
 
 
 def test_motor_encoder(ser):
+    """ Verifies that the encoder works.
+
+        Runs the motor both directions, and ensures that the encoder counts
+        monotonically either up or down in those directions.    
+    """
     motor_set_output(ser, 1, 1000)
 
     encoder = []
@@ -124,6 +130,38 @@ def test_motor_encoder(ser):
 
     motor_set_output(ser, 0, 0)
     time.sleep(1)
+
+
+def test_regulator_init(ser):
+    """ Tries to initialize the regulator
+
+        If it works we should get a can mesage with ID 139, and the encoder
+        value should be between 3000 and 4000
+    """
+    mcp2515_cmd.write_can_rx_flag(ser, 0)   # Disable node 1 can reception
+    can_cmd.can_transmit(ser, 138, 1, [1])
+
+    init_success = 0
+    for i in range(0, 50):
+        returncode = can_cmd.can_receive(ser)
+
+        if returncode != 1:
+            if returncode[0] == 139:
+                init_success = 1
+                break
+
+        time.sleep(0.5)
+    
+    assert init_success == 1
+    
+    mcp2515_cmd.write_can_rx_flag(ser, 1)
+    time.sleep(3)
+
+    encoder_value = motor_read_encoder(ser)
+    print("Encoder_value", motor_read_encoder(ser))
+
+    assert encoder_value > 3000
+    assert encoder_value < 4000
 
 
 if __name__ == '__main__':
