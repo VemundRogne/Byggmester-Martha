@@ -103,7 +103,7 @@ ISR(INT0_vect){
 			}
 			
 			if (msg_r.ID == 139){
-				enter_play_game();
+				enter_play_game(score_count);
 			}
 		}
 		// Clear the interrupt

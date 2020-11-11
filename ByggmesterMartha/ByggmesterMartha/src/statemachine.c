@@ -54,8 +54,8 @@ void enter_game_over(uint16_t score){
 	menu_upper_bound = 5;
 }
 
-void enter_play_game(){
-	menu_play_game();
+void enter_play_game(uint16_t score){
+	menu_play_game(score);
 	current_state = PLAY_GAME;
 	
 }
