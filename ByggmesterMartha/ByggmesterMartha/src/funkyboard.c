@@ -76,23 +76,23 @@ void send_button_press(){
 	}
 }	
 
-int8_t saturate_and_filter_noise(int16_t value, int8_t lb, int8_t ub){
-	if (abs(value)<10){
+int8_t wrap_and_filter(int16_t value){
+	if (abs(value)<15){
 		return 0;
+	else if(value < -128){
+		return -128;
 	}
-	else if (value < lb){
-		return lb;
+	else if(value > 127){
+		return 127;
 	}
-	else if (value > ub){
-		return ub;
-	}
+	
 	return (int8_t) value;
 }
 
 // Sends joystick position over CAN bus
 // Returns 0 for successful transmission
 // 1 when failed. 
-uint8_t Joystick_can(){
+uint8_t joystick_transmit_position(){
 	
 	struct Joystick_pos js_pos = get_joystick_pos();
 	struct can_msg js_msg;
@@ -100,28 +100,12 @@ uint8_t Joystick_can(){
 	
 	js_msg.ID = 69;
 	js_msg.len = 2;
-	
-	// Make sure that offset saturation is equal in every direction to avoid bias //
-	int16_t relative_offset_x = joystick_offset_x - 127;
-	int16_t relative_offset_y = joystick_offset_y - 127;
-	int8_t lb_x = -127 + relative_offset_x;
-	int8_t ub_x = 127 - relative_offset_x;
-	if (relative_offset_x < 0){
-		lb_x = -127 - relative_offset_x;
-		ub_x = 127 + relative_offset_x;
-	}
 
-	int8_t lb_y = -127 + relative_offset_y;
-	int8_t ub_y = 127 - relative_offset_y;
-	if (relative_offset_y < 0){
-		lb_y = -127 - relative_offset_y;
-		ub_y = 127 + relative_offset_y;
-	}
-
-	data.i = saturate_and_filter_noise(js_pos.x, lb_x, ub_x);
+	data.i = wrap_and_filter(js_pos.x);
 	js_msg.data[0] = data.u;
-	data.i = saturate_and_filter_noise(js_pos.y, lb_y, ub_y);
+	data.i = wrap_and_filter(js_pos.y);
 	js_msg.data[1] = data.u;
+	
 	
 	if(can_transmit_message(&js_msg) != 1){
 		return 0;

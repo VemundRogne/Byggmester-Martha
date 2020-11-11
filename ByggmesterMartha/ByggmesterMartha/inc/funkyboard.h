@@ -11,8 +11,8 @@
 
 #include <avr/io.h>
 
-int joystick_offset_x;
-int joystick_offset_y;
+int16_t joystick_offset_x;
+int16_t joystick_offset_y;
 
 union Data {
 	uint8_t u;
@@ -20,8 +20,8 @@ union Data {
 };
 
 struct Joystick_pos{
-	int x; 
-	int y;
+	int16_t x; 
+	int16_t y;
 };
 
 struct Joystick_pos get_joystick_pos();
@@ -43,7 +43,7 @@ struct Slider_pos get_slider_pos();
 void send_button_press();
 void get_button_press();
 
-uint8_t Joystick_can();
+uint8_t joystick_transmit_position();
 
 //joystick_press(); return true if pressed or something 
 
