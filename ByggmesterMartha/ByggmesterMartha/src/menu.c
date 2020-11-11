@@ -160,19 +160,19 @@ void menu_play_game(){
 	volatile char* menu_pointer = &pg_menu[0];
 	
 
-	char line0[LINELENGTH] = " PING PONG! ";
+	char line0[LINELENGTH] = "  PING PONG! ";
 	
-	char option1[LINELENGTH] = "  ()___()";
-	char option2[LINELENGTH] = "  (=^.^=)";
-	char option3[LINELENGTH] = "  (') (')_/";
-	char line7[LINELENGTH] = " <3 <3 <3 <3";
+	char option1[LINELENGTH] = "  ";
+	char option2[LINELENGTH] = "  ";
+	char option3[LINELENGTH] = "  ";
+	
 	
 	menu_insert_item(menu_pointer, &line0[0], strlen(line0), 0);
 	menu_insert_item(menu_pointer, NULL, 0, 1);
-	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 2);
-	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
-	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
-	menu_insert_item(menu_pointer, NULL, 0, 5);
+	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 3);
+	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 4);
+	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 5);
 	menu_insert_item(menu_pointer, NULL, 0, 6);
-	menu_insert_item(menu_pointer, &line7[0], strlen(line7), 7);
+	menu_insert_item(menu_pointer, NULL, 0, 7);
 }
