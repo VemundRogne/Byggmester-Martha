@@ -57,5 +57,21 @@ def mcp2515_read_status(ser):
         return int.from_bytes(read_status, byteorder='big')
     return None
 
+
+def write_can_rx_flag(ser, value):
+    """ This is a helper function to set the receive_can_on_interrupt_flag """
+    cmd = [2, 8, value, 0, 0, 0, 0, 0, 0, 0]
+    comms.send_cmd(ser, cmd)
+
+    status = ser.read(1)
+
+    if status != b'':
+        status = int.from_bytes(status, byteorder='big')
+        if status == 0:
+            return 0
+    raise Exception
+
+
 if __name__ == '__main__':
-    pass
+    ser = comms.open_serial_connection('COM3')
+    print(write_can_rx_flag(ser, 0))

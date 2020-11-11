@@ -62,6 +62,7 @@ void UART_execute_cmd();
 #define UART_MCP2515_CMD_BIT_MODIFY 5
 #define UART_MCP2515_CMD_RESET 6
 #define UART_MCP2515_CMD_RTS 7
+#define UART_MCP2515_CMD_WRITE_RX_CAN_FLAG	8	// This command is used to set/reset the "receive_can_on_interrupt" flag
 
 // CAN commands
 // CMD_SUBNO:

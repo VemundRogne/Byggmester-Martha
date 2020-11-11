@@ -50,6 +50,8 @@ void mcp2515_init(enum mcp2515_mode CANmode){
 	// This turns off the mask and fileter -> receive any message
 	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
 	
+	// Enable reception of messages in interrupt mode
+	receive_can_on_interrupt = 1;
 	enable_RX_interrupts();
 }
 
@@ -71,36 +73,38 @@ void enable_RX_interrupts(){
 ISR(INT0_vect){
 	// Check what kind of interrupt it was
 	uint8_t CANINTF_register = 0;
-	mcp2515_READ(MCP_CANINTF, &CANINTF_register, 1);
 	
-	// This passes for both receive buffers. We don't really care which buffer got data...
-	//if ( (CANINTF_register &= (1<<0)) | (CANINTF_register &= (1<<1)) ){
-	struct can_msg msg_r;
-	uint8_t can_status = can_receive_message(&msg_r);
-	
-	if (can_status == 0){
-		if(msg_r.ID == 15){
-			menu_game_over(score_count);
-			game_score_count(msg_r.data[0]);
-		}
+	// This flag is used for automated loopback testing. In normal operation this will always run
+	if(receive_can_on_interrupt == 1){
+		mcp2515_READ(MCP_CANINTF, &CANINTF_register, 1);
+		// This passes for both receive buffers. We don't really care which buffer got data...
+		struct can_msg msg_r;
+		uint8_t can_status = can_receive_message(&msg_r);
+		
+		if (can_status == 0){
+			if(msg_r.ID == 15){
+				menu_game_over(score_count);
+				game_score_count(msg_r.data[0]);
+			}
 
-		// This function simply echoes whatever data straight to UART
-		// Used by transfer_signed_32_to_python in node 2
-		if(msg_r.ID == 1){
-			for(uint8_t i = 0; i<msg_r.len; i++){
-				UART_tx_polling(msg_r.data[i]);
+			// This function simply echoes whatever data straight to UART
+			// Used by transfer_signed_32_to_python in node 2
+			if(msg_r.ID == 1){
+				for(uint8_t i = 0; i<msg_r.len; i++){
+					UART_tx_polling(msg_r.data[i]);
+				}
+			}
+
+			// Transfer encoder position to UART
+			if(msg_r.ID == 1010){
+				UART_tx_polling(msg_r.data[1]);
+				UART_tx_polling(msg_r.data[0]);
 			}
 		}
-
-		// Transfer encoder position to UART
-		if(msg_r.ID == 1010){
-			UART_tx_polling(msg_r.data[1]);
-			UART_tx_polling(msg_r.data[0]);
-		}
+		
+		// Clear the interrupt
+		mcp2515_BIT_MODIFY(MCP_CANINTF, 3, 0);
 	}
-	
-	// Clear the interrupt
-	mcp2515_BIT_MODIFY(MCP_CANINTF, 3, 0);
 }
 
 /*
