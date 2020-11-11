@@ -66,7 +66,7 @@ struct Slider_pos get_slider_pos(){
 void send_button_press(){
 	if ((PINB &= ( 1 << 3)) == ( 1 << 3)){
 		struct can_msg button_msg;
-		uint8_t pulse_length = 2;
+		uint8_t pulse_length = 4;
 		button_msg.ID = 52;
 		button_msg.data[0] = 1;
 		button_msg.data[1] = pulse_length;

@@ -9,17 +9,20 @@
 #include "../inc/solenoid.h"
  #include <sam.h>
 #include <stdint.h>
-#include "../inc/delay.h"
 
 
 void solenoid_init(){
 	REG_PIOA_OER |= (1<<15);
 	REG_PIOA_SODR |= (1<<15);
+	solenoid_counter = 0;
+	solenoid_free_flag = 0; 
 }
 
 
-void solenoid_push_ball(uint8_t pulse_length){
+void solenoid_push(){
 	REG_PIOA_CODR |= (1<<15);
-	_delay_ms(100);
+}
+
+void solenoid_contract(){
 	REG_PIOA_SODR |= (1<<15);
 }

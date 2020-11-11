@@ -6,9 +6,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define Kp 30
-#define Ki 1
-
 #define INIT_SPEED 2000
 #define INIT_TIME (50*3) //50*number of seconds (50hz timer)
 
@@ -91,15 +88,4 @@ void regulator_set_output(){
 };
 
 
-void TC0_Handler(){
-	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
-	if (init_flag){
-		init_counter += 1;
-		if (init_counter >= INIT_TIME){
-			regulator_finish_init();
-		}
-	}
-	else{
-		regulator_run();
-	}
-}
+
