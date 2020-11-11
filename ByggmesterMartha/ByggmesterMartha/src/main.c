@@ -67,6 +67,8 @@ int main(void)
     while (1){
     	joystick_transmit_position();
 		send_button_press();
+		game_sequence();
+		//send_button_press();
 		//statemachine_execute_current_state();
 		_delay_ms(50);
 	}

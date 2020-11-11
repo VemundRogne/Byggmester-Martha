@@ -40,10 +40,18 @@ enum Joystick_dir get_joystick_dir();
 
 struct Slider_pos get_slider_pos();
 
+struct Joystick_pos get_joystick_pos();
+
+struct Joystick_pos set_joystick_pos(uint8_t x_pos, uint8_t y_pos);
+
+struct Slider_pos set_slider_pos(uint8_t right_pos, uint8_t left_pos);
+
 void send_button_press();
 void get_button_press();
 
-uint8_t joystick_transmit_position();
+uint8_t joystick_transmit_position(struct Joystick_pos js_pos);
+
+uint8_t slider_can(struct Slider_pos s_pos);
 
 //joystick_press(); return true if pressed or something 
 

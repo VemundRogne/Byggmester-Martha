@@ -14,6 +14,7 @@
 volatile char home_menu[8*LINELENGTH + 1];
 volatile char hs_menu[8*LINELENGTH + 1];
 volatile char go_menu[8*LINELENGTH + 1];
+volatile char pg_menu[8*LINELENGTH + 1];
 
 uint8_t current_selection;
 uint8_t menu_upper_bound;
@@ -38,14 +39,14 @@ void menu_home();
 
 void menu_highscores();
 
-void menu_game_over(uint8_t score);
+void menu_game_over(uint16_t score);
 
 void menu_draw(char *menu);
 
 void menu_test();
 
 //void menu_highscorse(); //TODO
-//void menu_play_game(); //TODO
+void menu_play_game(); //TODO
 
 
 #endif /* MENU_H_ */

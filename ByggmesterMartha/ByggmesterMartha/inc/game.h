@@ -12,13 +12,14 @@
 #include "menu.h"
 #include "statemachine.h"
 
-volatile uint8_t score_count;
+volatile uint16_t score_count;
 uint8_t game_over;
 
 void game_init();
 
 void game_score_count(uint8_t ir_status);
 
+void game_sequence();
 
 
 
