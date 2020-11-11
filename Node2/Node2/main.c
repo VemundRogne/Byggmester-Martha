@@ -22,7 +22,7 @@
 int main(void)
 {
     /* Initialize the SAM system */
-	init_flag = 1;
+	init_flag = 2; //Some random non-zero, non-one value
     SystemInit();
 	configure_uart();
 	servo_init_pwm();
@@ -67,7 +67,7 @@ int main(void)
 
 void TC0_Handler(){
 	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
-	if (init_flag){
+	if (init_flag == 1){
 		init_counter += 1;
 		if (init_counter >= INIT_TIME){
 			regulator_finish_init();
