@@ -157,8 +157,8 @@ void menu_play_game(uint16_t score){
 
 	char line0[LINELENGTH] = "  PING PONG! ";
 	
-	char line1[LINELENGTH];
-	sprintf(&line1[0], " Score %u", score);
+	char line1[LINELENGTH] = " heisann";
+	//sprintf(&line1[0], " Score %u", score);
 	
 	
 	
