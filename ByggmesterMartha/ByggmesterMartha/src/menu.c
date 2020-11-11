@@ -98,13 +98,13 @@ void menu_home(){
 	char option2[LINELENGTH] = " Developers";
 	char option3[LINELENGTH] = " End game";
 	
-	menu_insert_item(menu_pointer, NULL, 0, 1);
-	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, "", 0, 1);
+	menu_insert_item(menu_pointer, "", 0, 2);
 	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 3);
 	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 4);
 	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 5);
-	menu_insert_item(menu_pointer, NULL, 0, 6);
-	menu_insert_item(menu_pointer, NULL, 0, 7);
+	menu_insert_item(menu_pointer, "", 0, 6);
+	menu_insert_item(menu_pointer, "", 0, 7);
 };
 
 void menu_highscores(){
@@ -118,13 +118,13 @@ void menu_highscores(){
 	char option3[LINELENGTH] = " Martha";
 	char option4[LINELENGTH] = " Back";
 	
-	menu_insert_item(menu_pointer, NULL, 0, 1);
+	menu_insert_item(menu_pointer, "", 0, 1);
 	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 2);
 	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
 	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
 	menu_insert_item(menu_pointer, &option4[0], strlen(option4), 5);
-	menu_insert_item(menu_pointer, NULL, 0, 6);
-	menu_insert_item(menu_pointer, NULL, 0, 7);
+	menu_insert_item(menu_pointer, "", 0, 6);
+	menu_insert_item(menu_pointer, "", 0, 7);
 };
 
 
@@ -142,13 +142,13 @@ void menu_game_over(uint16_t score){
 	char option3[LINELENGTH] = " Well done! ";
 	char option4[LINELENGTH] = " Play again?";
 	
-	menu_insert_item(menu_pointer, NULL, 0, 1);
-	menu_insert_item(menu_pointer, NULL, 0, 2);
+	menu_insert_item(menu_pointer, "", 0, 1);
+	menu_insert_item(menu_pointer, "", 0, 2);
 	menu_insert_item(menu_pointer, &option2[0], strlen(option2), 3);
 	menu_insert_item(menu_pointer, &option3[0], strlen(option3), 4);
 	menu_insert_item(menu_pointer, &option4[0], strlen(option4), 5);
-	menu_insert_item(menu_pointer, NULL, 0, 6);
-	menu_insert_item(menu_pointer, NULL, 0, 7);
+	menu_insert_item(menu_pointer, "", 0, 6);
+	menu_insert_item(menu_pointer, "", 0, 7);
 }
 
 void menu_play_game(uint16_t score){
@@ -163,11 +163,11 @@ void menu_play_game(uint16_t score){
 	
 	
 	menu_insert_item(menu_pointer, &line0[0], strlen(line0), 0);
-	menu_insert_item(menu_pointer, NULL, 0, 1);
-	menu_insert_item(menu_pointer, NULL, 0, 2);
-	menu_insert_item(menu_pointer, NULL, 0, 3);
+	menu_insert_item(menu_pointer, "", 0, 1);
+	menu_insert_item(menu_pointer, "", 0, 2);
+	menu_insert_item(menu_pointer, "", 0, 3);
 	menu_insert_item(menu_pointer, &line1[0], strlen(line1), 4);
-	menu_insert_item(menu_pointer, NULL, 0, 5);
-	menu_insert_item(menu_pointer, NULL, 0, 6);
-	menu_insert_item(menu_pointer, NULL, 0, 7);
+	menu_insert_item(menu_pointer, "", 0, 5);
+	menu_insert_item(menu_pointer, "", 0, 6);
+	menu_insert_item(menu_pointer, "", 0, 7);
 }
