@@ -33,7 +33,7 @@ void oled_clear_row(uint8_t row);
 void oled_fill_row(uint8_t row);    //Denne øydela alt
 
 //Character and strings
-void oled_print_char(char* letter, uint8_t current_oled_row);
+void oled_print_char(char* letter);
 void oled_print_string(char* char_pointer, uint8_t current_oled_row);
 
 //Test function

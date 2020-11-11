@@ -100,20 +100,21 @@ void oled_clear(){
 
 
 //Character and strings
-void oled_print_char(char* letter, uint8_t current_oled_row){
+void oled_print_char(char* letter){
 	uint8_t offset = 32;
 	for (int i = 0; i < 8; i++){
 		uint8_t data = pgm_read_byte(&(font8[*letter - offset][i]));
-		if (inversion_mask[current_oled_row]){
-			data = 255 - data;
-		}
+		//if (inversion_mask[current_oled_row]){
+			//data = 255 - data;
+		//}
 		write_d(data);
 	} 
 };
 
 void oled_print_string(char* char_pointer, uint8_t current_oled_row){
+	oled_goto_row(current_oled_row);
 	while (*char_pointer != '\0'){
-		oled_print_char(char_pointer, current_oled_row);
+		oled_print_char(char_pointer);
 		char_pointer++;
 		_delay_ms(5);
 	}

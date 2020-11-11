@@ -45,7 +45,7 @@ void menu_draw_item(uint8_t position, char *menu){
 	}
 	
 	for(uint8_t i = 0; i<LINELENGTH; i++){
-		oled_print_char(&_item[i], position);
+		oled_print_char(&_item[i]);
 	}
 }
 
