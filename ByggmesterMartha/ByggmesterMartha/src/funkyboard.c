@@ -79,6 +79,7 @@ void send_button_press(){
 int8_t wrap_and_filter(int16_t value){
 	if (abs(value)<15){
 		return 0;
+	}
 	else if(value < -128){
 		return -128;
 	}
