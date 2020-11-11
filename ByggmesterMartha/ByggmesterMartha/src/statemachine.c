@@ -21,13 +21,6 @@ void init_statemachine(){
 
 void enter_home_menu(){
 	current_state = HOME_MENU;
-	
-	//struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
-	//joystick_transmit_position(js_pos_ref);
-	
-	//struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
-	//slider_can(slider_pos_ref);
-	
 	menu_home();
 	
 	current_selection = 3;
@@ -37,7 +30,6 @@ void enter_home_menu(){
 
 void enter_highscore_menu(){
 	current_state = HIGHSCORE;
-
 	menu_highscores();
 
 	current_selection = 5;
@@ -57,7 +49,7 @@ void enter_game_over(uint16_t score){
 void enter_play_game(uint16_t score){
 	menu_play_game(score);
 	current_state = PLAY_GAME;
-	
+	current_selection = 8;
 }
 
 void enter_initializing(){
@@ -65,10 +57,11 @@ void enter_initializing(){
 }
 
 
-void statemachine_handle_menu_execute(){
+void statemachine_menu_selection(){
 	switch(current_state){
 		case HOME_MENU:
 			switch(current_selection){
+				// Enter play game, wait while initializing
 				case 3: {
 					struct can_msg init_regulator_msg;
 					init_regulator_msg.ID = 138;
@@ -78,9 +71,9 @@ void statemachine_handle_menu_execute(){
 					can_transmit_message(&init_regulator_msg);
 					oled_clear();
 					enter_initializing();
-					//enter_play_game();
 				}
 					break;
+
 				case 4:
 					enter_highscore_menu();
 					break;
@@ -104,8 +97,7 @@ void statemachine_handle_menu_execute(){
 		case PLAY_GAME:
 			switch(current_selection){
 				default:
-				current_selection = 8;
-				break;
+					break;
 			}
 			break;
 		default:
@@ -117,23 +109,23 @@ void statemachine_handle_menu_execute(){
 void statemachine_execute_current_state(){
 	switch(current_state){
 		case HOME_MENU:
-			menu_draw((char*)&home_menu[0]);
+			menu_draw((char*)&menu[0]);
 			menu_navigate();
 			break;
 
 		case HIGHSCORE:
-			menu_draw((char*)&hs_menu[0]);
+			menu_draw((char*)&menu[0]);
 			menu_navigate();
 			break;
 			
 		case GAME_OVER:
-			menu_draw((char*)&go_menu[0]);
+			menu_draw((char*)&menu[0]);
 			menu_navigate();
 			break;
 			
 		case PLAY_GAME:
 			menu_play_game(score_count);
-			menu_draw((char*)&pg_menu[0]);
+			menu_draw((char*)&menu[0]);
 			break;
 		
 		case INITIALIZING:

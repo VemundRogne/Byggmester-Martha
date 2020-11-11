@@ -84,7 +84,6 @@ ISR(INT0_vect){
 		
 		if (can_status == 0){
 			if(msg_r.ID == 15){
-				menu_game_over(score_count);
 				game_over_check(msg_r.data[0]);
 			}
 
