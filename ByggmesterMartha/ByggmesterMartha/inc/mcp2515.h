@@ -167,6 +167,13 @@ enum mcp2515_mode{
 };
 
 
+/* 
+ * This is a flag that can be modified from UART to enable/disable
+ * reception of messages in interrupt. This is necessary for automated
+ * loopback-tests to actually get the messages.
+*/
+volatile uint8_t receive_can_on_interrupt;
+
 void mcp2515_init(enum mcp2515_mode MCP_MODE);
 
 /*

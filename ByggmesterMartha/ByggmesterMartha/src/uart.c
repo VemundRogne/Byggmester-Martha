@@ -166,6 +166,15 @@ void UART_execute_mcp2515_cmd(){
 			UART_tx_polling(buffer_selection);
 			break;
 		}
+		
+		/*
+		 * Set the "receive_can_on_interrupt" flag to the first arugment
+		*/
+		case UART_MCP2515_CMD_WRITE_RX_CAN_FLAG:{
+			receive_can_on_interrupt = cmd_buffer[ARG_OFFSET];
+			UART_tx_polling(0);	// Send an ACK
+			break;
+		}
     }
 }
 

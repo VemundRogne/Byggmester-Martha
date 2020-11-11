@@ -10,7 +10,9 @@ import mcp2515_cmd as mcp
 @pytest.fixture(scope='module')
 def ser():
     ser = comms.open_serial_connection('COM3')
+    mcp.write_can_rx_flag(ser, 0)
     yield ser
+    mcp.write_can_rx_flag(ser, 1)
     ser.close()
 
 
@@ -44,6 +46,7 @@ def test_can_valid_tx_buffer(ser):
 def test_can(ser):
     # Set the device in loopback mode
     assert mcp.mcp2515_init(ser, mcp.MCP_MODE.LOOPBACK) == mcp.MCP_MODE.LOOPBACK
+    mcp.write_can_rx_flag(ser, 0)
 
     # After reset, we should not have a pending receive buffer
     result = can_cmd.can_pending_rx_buffer(ser)
