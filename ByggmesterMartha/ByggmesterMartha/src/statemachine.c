@@ -21,7 +21,7 @@ void enter_home_menu(){
 	current_state = HOME_MENU;
 	
 	struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
-	Joystick_can(js_pos_ref);
+	joystick_transmit_position(js_pos_ref);
 	
 	struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
 	slider_can(slider_pos_ref);
