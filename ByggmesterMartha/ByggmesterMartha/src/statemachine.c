@@ -49,7 +49,7 @@ void enter_game_over(uint16_t score){
 void enter_play_game(uint16_t score){
 	menu_play_game(score);
 	current_state = PLAY_GAME;
-	
+	current_selection = 8;
 }
 
 void enter_initializing(){
@@ -97,8 +97,7 @@ void statemachine_menu_selection(){
 		case PLAY_GAME:
 			switch(current_selection){
 				default:
-				current_selection = 8;
-				break;
+					break;
 			}
 			break;
 		default:
