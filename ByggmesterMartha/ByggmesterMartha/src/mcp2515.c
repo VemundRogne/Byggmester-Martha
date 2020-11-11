@@ -74,6 +74,7 @@ ISR(INT0_vect){
 	// Check what kind of interrupt it was
 	uint8_t CANINTF_register = 0;
 	
+
 	// This flag is used for automated loopback testing. In normal operation this will always run
 	if(receive_can_on_interrupt == 1){
 		mcp2515_READ(MCP_CANINTF, &CANINTF_register, 1);
@@ -84,7 +85,7 @@ ISR(INT0_vect){
 		if (can_status == 0){
 			if(msg_r.ID == 15){
 				menu_game_over(score_count);
-				game_score_count(msg_r.data[0]);
+				game_over_check(msg_r.data[0]);
 			}
 
 			// This function simply echoes whatever data straight to UART
@@ -100,8 +101,11 @@ ISR(INT0_vect){
 				UART_tx_polling(msg_r.data[1]);
 				UART_tx_polling(msg_r.data[0]);
 			}
+			
+			if (msg_r.ID == 139){
+				enter_play_game();
+			}
 		}
-		
 		// Clear the interrupt
 		mcp2515_BIT_MODIFY(MCP_CANINTF, 3, 0);
 	}

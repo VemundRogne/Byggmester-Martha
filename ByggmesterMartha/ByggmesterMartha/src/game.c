@@ -15,20 +15,16 @@ void game_init(){
 	game_over = 0;
 }
 
-void game_score_count(uint8_t ir_status){
+void game_over_check(uint8_t ir_status){
 	if (ir_status == 1){
 		game_over = 1;
 		enter_game_over(score_count);
 	}
-	//else {
-		//if(game_over == 0){
-		//	score_count += 1;
-		//}
-	//}
 }
 
 
 void game_sequence(){
+
 	
 	if (current_state == PLAY_GAME)
 	{

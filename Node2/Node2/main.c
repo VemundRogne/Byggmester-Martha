@@ -73,6 +73,12 @@ void TC0_Handler(){
 		}
 	}
 	else{
+		struct can_message_t ready_msg;
+		ready_msg.id = 139;
+		ready_msg.data_length = 1;
+		ready_msg.data[0] = 1;
+		
+		can_send(&ready_msg, 0);
 		regulator_run();
 	}
 	

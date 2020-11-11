@@ -12,6 +12,7 @@
 #include "../inc/game.h"
 #include "../inc/can.h"
 #include "../inc/funkyboard.h"
+#include "../inc/oled.h"
 
 
 void init_statemachine(){
@@ -57,21 +58,23 @@ void enter_play_game(){
 	menu_play_game();
 	current_state = PLAY_GAME;
 	
-	struct can_msg init_regulator_msg;
-	init_regulator_msg.ID = 138;
-	init_regulator_msg.len = 1;
-	init_regulator_msg.data[0] = 1;
-	
-	can_transmit_message(&init_regulator_msg);
-	
 }
 
 void statemachine_handle_menu_execute(){
 	switch(current_state){
 		case HOME_MENU:
 			switch(current_selection){
-				case 3: 
-					enter_play_game();
+				case 3: {
+					struct can_msg init_regulator_msg;
+					init_regulator_msg.ID = 138;
+					init_regulator_msg.len = 1;
+					init_regulator_msg.data[0] = 1;
+				
+					can_transmit_message(&init_regulator_msg);
+					oled_clear();
+					oled_print_string(" INITIALIZING", 4);
+					//enter_play_game();
+				}
 					break;
 				case 4:
 					enter_highscore_menu();
