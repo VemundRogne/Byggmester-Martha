@@ -100,7 +100,7 @@ void menu_home(){
 	
 	//Options
 	char option1[LINELENGTH] = " Play ping pong";
-	char option2[LINELENGTH] = " High scores";
+	char option2[LINELENGTH] = " Developers";
 	char option3[LINELENGTH] = " End game";
 	
 	menu_insert_item(menu_pointer, NULL, 0, 1);
@@ -114,13 +114,13 @@ void menu_home(){
 
 void menu_highscores(){
 	volatile char* menu_pointer = &hs_menu[0];
-	char title[LINELENGTH] = "  HIGH SCORE!";
+	char title[LINELENGTH] = "  DEVELOPERS!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
 	//Options
-	char option1[LINELENGTH] = " Oskar 100";
-	char option2[LINELENGTH] = " Vemund 50";
-	char option3[LINELENGTH] = " Martha 3";
+	char option1[LINELENGTH] = " Oskar";
+	char option2[LINELENGTH] = " Vemund";
+	char option3[LINELENGTH] = " Martha";
 	char option4[LINELENGTH] = " Back";
 	
 	menu_insert_item(menu_pointer, NULL, 0, 1);
