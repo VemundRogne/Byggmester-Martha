@@ -125,6 +125,11 @@ void handle_can_message(struct can_message_t *message){
 	}
 
 	/* ----------------- REGULATOR INPUTS ------------------------ */
+	
+	if (message->id == 138){
+		regulator_init();
+	}
+	
 	// SET REGULATOR MODE
 	if(message->id == 900){
 		regulator_mode = message->data[0];

@@ -48,7 +48,7 @@ int main(void)
 	// can message ID 15 => IR
 	// can message ID 5 => ACK
 	encoder_init();
-	regulator_init();
+	//regulator_init();
     /* Replace with your application code */
     while (1)
     {

@@ -10,6 +10,7 @@
 #include "../inc/statemachine.h"
 #include "../inc/menu.h"
 #include "../inc/game.h"
+#include "../inc/can.h"
 #include "../inc/funkyboard.h"
 
 
@@ -20,11 +21,11 @@ void init_statemachine(){
 void enter_home_menu(){
 	current_state = HOME_MENU;
 	
-	struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
-	joystick_transmit_position(js_pos_ref);
+	//struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
+	//joystick_transmit_position(js_pos_ref);
 	
-	struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
-	slider_can(slider_pos_ref);
+	//struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
+	//slider_can(slider_pos_ref);
 	
 	menu_home();
 	
@@ -55,6 +56,14 @@ void enter_game_over(uint16_t score){
 void enter_play_game(){
 	menu_play_game();
 	current_state = PLAY_GAME;
+	
+	struct can_msg init_regulator_msg;
+	init_regulator_msg.ID = 138;
+	init_regulator_msg.len = 1;
+	init_regulator_msg.data[0] = 1;
+	
+	can_transmit_message(&init_regulator_msg);
+	
 }
 
 void statemachine_handle_menu_execute(){
