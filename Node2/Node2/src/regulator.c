@@ -9,7 +9,7 @@
 #define Kp 30
 #define Ki 1
 
-#define INIT_SPEED 1000
+#define INIT_SPEED 2000
 #define INIT_TIME (50*3) //50*number of seconds (50hz timer)
 
 void regulator_init(){
@@ -18,7 +18,7 @@ void regulator_init(){
 
 	//Initialize sequence
 	uint16_t power = INIT_SPEED;
-	motor_set_output(1, power); //Drive to the right
+	motor_set_output(0, power); //Drive to the right
 }
 
 void regulator_finish_init(){
@@ -50,7 +50,7 @@ void regulator_run(){
 }
 
 void regulator_update_reference_model(){
-	uint16_t d_ref = abs(position_setpoint - position_reference) >> 3;
+	uint16_t d_ref = abs(position_setpoint - position_reference) >> 2;
 	if (d_ref == 0){
 		position_reference = position_setpoint;
 	}
@@ -77,7 +77,7 @@ void regulator_update_states(){
 }
 
 void regulator_calc_output(){
-	regulator_output = reverse_dir_action*(p_gain*error + (i_gain*integral)>>6);
+	regulator_output = reverse_dir_action*(p_gain*error + (i_gain*integral)>>3);
 }
 
 void regulator_set_output(){

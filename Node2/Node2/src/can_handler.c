@@ -87,7 +87,7 @@ void handle_can_message(struct can_message_t *message){
 
 		//Motor ref should be in interval (0, 8192)
 		uint16_t min_val = 0;
-		uint16_t max_val = 1<<14;
+		uint16_t max_val = 1<<13;
 		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
  		position_setpoint = motor_ref;
 
