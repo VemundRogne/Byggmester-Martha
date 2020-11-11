@@ -83,11 +83,11 @@ void handle_can_message(struct can_message_t *message){
 		
 		// Get motor command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[0];
-		float _motor_ref = (float)(data.i + (1<<7)); //Make positive :) 
+		float _motor_ref = (float)(-data.i + (1<<7)); //Make positive :) 
 
 		//Motor ref should be in interval (0, 8192)
-		int16_t min_val = -3000;
-		int16_t max_val = 10000;
+		int16_t min_val = -2500;
+		int16_t max_val = 9000;
 		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
  		position_setpoint = motor_ref;
 

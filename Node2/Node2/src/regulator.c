@@ -47,7 +47,7 @@ void regulator_run(){
 }
 
 void regulator_update_reference_model(){
-	uint16_t d_ref = abs(position_setpoint - position_reference) >> 2;
+	uint16_t d_ref = abs(position_setpoint - position_reference) >> 4;
 	if (d_ref == 0){
 		position_reference = position_setpoint;
 	}
