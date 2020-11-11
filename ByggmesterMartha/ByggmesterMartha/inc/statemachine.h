@@ -13,7 +13,8 @@ enum state{
 	HOME_MENU,
 	HIGHSCORE,
 	GAME_OVER,
-	PLAY_GAME	
+	PLAY_GAME,
+	INITIALIZING	
 };
 
 enum state current_state;
@@ -27,6 +28,8 @@ void enter_highscore_menu();
 void enter_game_over(uint16_t score);
 
 void enter_play_game();
+
+void enter_initializing();
 
 void statemachine_handle_menu_execute();
 

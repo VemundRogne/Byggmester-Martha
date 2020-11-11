@@ -60,6 +60,11 @@ void enter_play_game(){
 	
 }
 
+void enter_initializing(){
+	current_state = INITIALIZING;
+}
+
+
 void statemachine_handle_menu_execute(){
 	switch(current_state){
 		case HOME_MENU:
@@ -72,7 +77,7 @@ void statemachine_handle_menu_execute(){
 				
 					can_transmit_message(&init_regulator_msg);
 					oled_clear();
-					oled_print_string(" INITIALIZING", 4);
+					enter_initializing();
 					//enter_play_game();
 				}
 					break;
@@ -128,6 +133,10 @@ void statemachine_execute_current_state(){
 			
 		case PLAY_GAME:
 			menu_draw((char*)&pg_menu[0]);
+			break;
+		
+		case INITIALIZING:
+			oled_print_string(" INITIALIZING", 4);
 			break;
 	}
 }
