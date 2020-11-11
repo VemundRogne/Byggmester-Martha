@@ -22,6 +22,7 @@
 int main(void)
 {
     /* Initialize the SAM system */
+	init_flag = 1;
     SystemInit();
 	configure_uart();
 	servo_init_pwm();
