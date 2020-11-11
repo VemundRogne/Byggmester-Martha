@@ -54,10 +54,10 @@ void transfer_signed_32_to_python(int32_t value){
 	can_send(&signed_32_unsigned_8_can_message, 0);
 }
 
-uint16_t fit_to_interval(float val, uint16_t min_val, uint16_t max_val){
+int16_t fit_to_interval(float val, int16_t min_val, int16_t max_val){
 	float scale = (max_val-min_val)/(0xFF);
 
-	return min_val + (uint16_t)(val*scale);
+	return min_val + (int16_t)(val*scale);
 }
 
 
@@ -86,8 +86,8 @@ void handle_can_message(struct can_message_t *message){
 		float _motor_ref = (float)(data.i + (1<<7)); //Make positive :) 
 
 		//Motor ref should be in interval (0, 8192)
-		uint16_t min_val = 0;
-		uint16_t max_val = 1<<13;
+		int16_t min_val = -3000;
+		int16_t max_val = 12000;
 		int16_t motor_ref = fit_to_interval(_motor_ref, min_val, max_val);
  		position_setpoint = motor_ref;
 
@@ -100,7 +100,7 @@ void handle_can_message(struct can_message_t *message){
 		min_val = 0;
 		max_val = 255;
 		uint8_t servo_ref = (uint8_t) fit_to_interval(_servo_ref, min_val, max_val);
-		servo_set_position(servo_ref);
+		//servo_set_position(servo_ref);
 	}
 
 
