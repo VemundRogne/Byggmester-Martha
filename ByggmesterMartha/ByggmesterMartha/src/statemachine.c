@@ -132,6 +132,7 @@ void statemachine_execute_current_state(){
 			break;
 			
 		case PLAY_GAME:
+			menu_play_game(score_count);
 			menu_draw((char*)&pg_menu[0]);
 			break;
 		
