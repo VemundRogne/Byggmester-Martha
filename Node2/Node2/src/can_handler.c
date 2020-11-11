@@ -100,7 +100,7 @@ void handle_can_message(struct can_message_t *message){
 		min_val = 0;
 		max_val = 255;
 		uint8_t servo_ref = (uint8_t) fit_to_interval(_servo_ref, min_val, max_val);
-		//servo_set_position(servo_ref);
+		servo_set_position(servo_ref);
 	}
 
 
