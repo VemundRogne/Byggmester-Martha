@@ -6,11 +6,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define Kp 30
-#define Ki 1
 
-#define INIT_SPEED 1000
-#define INIT_TIME (50*3) //50*number of seconds (50hz timer)
 
 void regulator_init(){
 	init_flag = 1; // Stop regulator while initializing
@@ -91,30 +87,4 @@ void regulator_set_output(){
 };
 
 
-void TC0_Handler(){
-	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
-	if (init_flag){
-		init_counter += 1;
-		if (init_counter >= INIT_TIME){
-			regulator_finish_init();
-		}
-	}
-	else{
-		regulator_run();
-	}
-<<<<<<< HEAD
-}
-=======
-	if (solenoid_free_flag){
-		solenoid_push();
-		if (solenoid_counter == 5){
-			solenoid_contract();
-		}
-		if (solenoid_counter == 10){
-			solenoid_free_flag = 0;
-			solenoid_counter = 0;
-		}
-		solenoid_counter += 1;
-	}
-}
->>>>>>> ea33df0... Braindead, wtf. Does it even work? La til Solenoid flag, og counter for interrupt
+

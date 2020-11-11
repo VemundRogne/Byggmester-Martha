@@ -9,7 +9,6 @@
 #include "../inc/solenoid.h"
  #include <sam.h>
 #include <stdint.h>
-#include "../inc/delay.h"
 
 
 void solenoid_init(){

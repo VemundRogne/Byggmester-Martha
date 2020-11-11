@@ -17,6 +17,7 @@
 #include "inc/motor.h"
 #include "inc/delay.h"
 #include "inc/regulator.h"
+#include "inc/solenoid.h"
 
 int main(void)
 {
@@ -61,4 +62,27 @@ int main(void)
 
 		//stepper_joystick_command(12);
     }
+}
+
+void TC0_Handler(){
+	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
+	if (init_flag){
+		init_counter += 1;
+		if (init_counter >= INIT_TIME){
+			regulator_finish_init();
+		}
+	}
+	else{
+		regulator_run();
+	}
+	if (solenoid_free_flag == 1){
+		if(solenoid_counter > 7){
+			solenoid_contract();
+			solenoid_counter = 0;
+			solenoid_free_flag = 0;
+		}
+		else{
+			solenoid_counter += 1;
+		}
+	}
 }

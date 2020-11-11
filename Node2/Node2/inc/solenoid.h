@@ -12,9 +12,9 @@
  #include "sam.h"
  
  
- uint8_t solenoid_counter;
+volatile uint8_t solenoid_counter;
  // 0 when free, 1 when busy
- uint8_t solenoid_free_flag;
+volatile uint8_t solenoid_free_flag;
  
  void solenoid_init();
 

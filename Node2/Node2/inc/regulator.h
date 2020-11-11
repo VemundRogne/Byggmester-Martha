@@ -8,6 +8,12 @@
 */
 #define DECIMATION_GAIN	2
 
+#define INIT_SPEED 2000
+#define INIT_TIME (50*3) //50*number of seconds (50hz timer)
+
+#define Kp 30
+#define Ki 1
+
 uint8_t init_flag; //Flag to tell whether initialize sequence is finished
 uint8_t init_counter; //Old school delay for initializing
 
