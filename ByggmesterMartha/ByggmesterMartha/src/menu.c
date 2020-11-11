@@ -23,10 +23,9 @@ void menu_init(){
 	menu_lower_bound = 5;
 };
 
-void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position){
-	memcpy((char*)&menu[position*LINELENGTH], element, len);
-	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
-}
+
+/// MENU DRAW ///
+
 
 void menu_draw_item(uint8_t row){
 	oled_clear_row(row);
@@ -54,6 +53,10 @@ void menu_draw(){
 	}
 	
 };
+
+
+
+/// MENU NAVIGATION ///
 
 void menu_go_up(){
 	if (current_selection > menu_upper_bound){ //Upper bound){
@@ -85,6 +88,15 @@ void menu_navigate(){
 	last_joystick_dir = direction;
 };
 
+
+
+/// MENU MANIPULATION ///
+
+
+void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position){
+	memcpy((char*)&menu[position*LINELENGTH], element, len);
+	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
+}
 
 void menu_home(){
 	volatile char* menu_pointer = &menu[0];

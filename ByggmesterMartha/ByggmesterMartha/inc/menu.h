@@ -20,12 +20,7 @@ uint8_t menu_lower_bound;
 
 void menu_init();
 
-// MENU NAVIGATION //
 void menu_navigate();
-void menu_go_up();
-void menu_go_down();
-
-
 
 // CHANGE MENU DATA //
 void menu_home();
@@ -33,9 +28,6 @@ void menu_highscores();
 void menu_game_over(uint16_t score);
 void menu_play_game();
 
-void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position);
-
-void menu_draw_item(uint8_t position);
 void menu_draw();
 
 
