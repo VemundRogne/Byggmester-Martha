@@ -33,8 +33,8 @@ def verify_CNF_registers_are_valid(ser):
     assert read_CNF3 == Expected_CNF3
 
 
-def test_mcp2515_init_normal(ser):
-    mode_id = cmd.MCP_MODE.NORMAL
+def test_mcp2515_init_loopback(ser):
+    mode_id = cmd.MCP_MODE.LOOPBACK
     assert cmd.mcp2515_init(ser, mode_id) != -1
 
     canctrl_adr = 0x0F
@@ -42,8 +42,9 @@ def test_mcp2515_init_normal(ser):
 
     verify_CNF_registers_are_valid(ser)
 
-def test_mcp2515_init_loopback(ser):
-    mode_id = cmd.MCP_MODE.LOOPBACK
+
+def test_mcp2515_init_normal(ser):
+    mode_id = cmd.MCP_MODE.NORMAL
     assert cmd.mcp2515_init(ser, mode_id) != -1
 
     canctrl_adr = 0x0F
