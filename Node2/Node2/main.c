@@ -71,15 +71,16 @@ void TC0_Handler(){
 		init_counter += 1;
 		if (init_counter >= INIT_TIME){
 			regulator_finish_init();
+			//Tell game_play that initializing is done
+			struct can_message_t ready_msg;
+			ready_msg.id = 139;
+			ready_msg.data_length = 1;
+			ready_msg.data[0] = 1;
+			
+			can_send(&ready_msg, 0);
 		}
 	}
 	else{
-		struct can_message_t ready_msg;
-		ready_msg.id = 139;
-		ready_msg.data_length = 1;
-		ready_msg.data[0] = 1;
-		
-		can_send(&ready_msg, 0);
 		regulator_run();
 	}
 	
