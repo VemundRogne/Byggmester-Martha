@@ -16,23 +16,25 @@ enum state{
 	PLAY_GAME,
 	INITIALIZING	
 };
-
 enum state current_state;
+
 
 void init_statemachine();
 
+
+// STATE ENTRY FUNCTIONS //
 void enter_home_menu();
-
 void enter_highscore_menu();
-
 void enter_game_over(uint16_t score);
-
 void enter_play_game();
-
 void enter_initializing();
 
-void statemachine_handle_menu_execute();
 
+// HANDLE MENU SELECTIONS //
+void statemachine_menu_selection();
+
+
+// FSM EXECUTION //
 void statemachine_execute_current_state();
 
 #endif /* STATEMACHINE_H_ */

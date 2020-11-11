@@ -21,13 +21,6 @@ void init_statemachine(){
 
 void enter_home_menu(){
 	current_state = HOME_MENU;
-	
-	//struct Joystick_pos js_pos_ref = set_joystick_pos(0,0);
-	//joystick_transmit_position(js_pos_ref);
-	
-	//struct Slider_pos slider_pos_ref = set_slider_pos(0, 0);
-	//slider_can(slider_pos_ref);
-	
 	menu_home();
 	
 	current_selection = 3;
@@ -37,7 +30,6 @@ void enter_home_menu(){
 
 void enter_highscore_menu(){
 	current_state = HIGHSCORE;
-
 	menu_highscores();
 
 	current_selection = 5;
@@ -65,7 +57,7 @@ void enter_initializing(){
 }
 
 
-void statemachine_handle_menu_execute(){
+void statemachine_menu_selection(){
 	switch(current_state){
 		case HOME_MENU:
 			switch(current_selection){

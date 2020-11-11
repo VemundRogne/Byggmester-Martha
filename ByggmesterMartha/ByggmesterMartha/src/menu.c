@@ -81,16 +81,13 @@ void menu_navigate(){
 		menu_go_up();
 	}
 	if ((direction == LEFT) && (last_joystick_dir != LEFT)){
-		statemachine_handle_menu_execute();
+		statemachine_menu_selection();
 	}
 	
 		
 	last_joystick_dir = direction;
 };
 
-uint8_t menu_select(){
-	printf("HEEEEEEEEEI <3333");
-};
 
 void menu_home(){
 	volatile char* menu_pointer = &home_menu[0];
