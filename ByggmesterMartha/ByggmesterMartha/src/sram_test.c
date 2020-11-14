@@ -1,9 +1,3 @@
-/*
- * sram_test.c
- *
- * Created: 02/09/2020 12:54:35
- *  Author: vemun
- */ 
 
 #include <avr/io.h>
 #include <stdio.h>

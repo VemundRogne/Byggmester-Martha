@@ -1,10 +1,3 @@
-/*
- * can.h
- *
- * Created: 04/10/2020 13:06:56
- *  Author: vemun
- */ 
-
 
 #ifndef CAN_H_
 #define CAN_H_

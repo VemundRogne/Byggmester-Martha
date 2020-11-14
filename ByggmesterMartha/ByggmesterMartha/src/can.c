@@ -1,9 +1,3 @@
-/*
- * can.c
- *
- * Created: 04/10/2020 13:07:08
- *  Author: vemun
- */ 
 
 #define F_CPU	4915200
 #include <avr/io.h>

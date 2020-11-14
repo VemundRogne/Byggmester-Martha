@@ -1,9 +1,3 @@
-/*
- * oled.c
- *
- * Created: 19.09.2020 11:20:34
- *  Author: marth
- */ 
 
 #define F_CPU	4915200
 #include <util/delay.h>

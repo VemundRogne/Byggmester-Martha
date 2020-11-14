@@ -1,9 +1,3 @@
-/*
- * uart.c
- *
- * Created: 05.09.2020 13:59:53
- *  Author: marth
- */ 
 
 #define F_CPU	4915200
 #define BAUD	9600

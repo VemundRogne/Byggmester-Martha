@@ -1,9 +1,3 @@
-/*
- * mmi.h
- *
- * Created: 09/09/2020 16:13:57
- *  Author: vemun
- */ 
 
 #ifndef FUNKYBOARD_H_
 #define FUNKYBOARD_H_

@@ -1,9 +1,3 @@
-/*
- * menu.c
- *
- * Created: 23.09.2020 08:59:35
- *  Author: marth
- */ 
 
 #include <stdio.h>
 #include <string.h>

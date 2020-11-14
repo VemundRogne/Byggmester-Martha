@@ -1,9 +1,3 @@
-/*
- * mmi.c
- *
- * Created: 09/09/2020 16:14:17
- *  Author: vemun
- */ 
 
 #define F_CPU	4915200
 

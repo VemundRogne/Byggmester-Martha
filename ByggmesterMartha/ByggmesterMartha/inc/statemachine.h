@@ -1,10 +1,3 @@
-/*
- * statemachine.h
- *
- * Created: 26/09/2020 13:43:32
- *  Author: 
- */ 
-
 
 #ifndef STATEMACHINE_H_
 #define STATEMACHINE_H_

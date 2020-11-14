@@ -1,9 +1,3 @@
-/*
- * timers.c
- *
- * Created: 23/09/2020 13:06:45
- *  Author: Vemund
- */ 
 
 #include "../inc/timers.h"
 #include <avr/io.h>

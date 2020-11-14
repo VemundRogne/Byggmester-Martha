@@ -1,9 +1,4 @@
-/*
- * game.c
- *
- * Created: 28.10.2020 13:08:52
- *  Author: marth
- */ 
+
 #define F_CPU	4915200
 
 #include "../inc/game.h"

@@ -1,10 +1,3 @@
-/*
- * game.h
- *
- * Created: 28.10.2020 13:09:13
- *  Author: marth
- */ 
-
 
 #ifndef GAME_H_
 #define GAME_H_

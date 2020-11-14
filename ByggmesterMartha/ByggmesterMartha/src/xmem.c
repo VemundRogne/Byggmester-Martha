@@ -1,9 +1,3 @@
-/*
- * xmem.c
- *
- * Created: 02.09.2020 09:59:38
- *  Author: marth
- */ 
 
 #include <avr/io.h>
 

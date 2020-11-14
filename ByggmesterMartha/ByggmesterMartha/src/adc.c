@@ -1,9 +1,3 @@
-/*
- * adc.c
- *
- * Created: 09/09/2020 09:58:11
- *  Author: vemun
- */ 
 
 #include <avr/io.h>
 

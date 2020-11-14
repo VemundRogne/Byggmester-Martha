@@ -1,9 +1,3 @@
-/*
- * statemachine.c
- *
- * Created: 26/09/2020 13:44:03
- *  Author: 
- */ 
 
 #include <stdio.h>
 

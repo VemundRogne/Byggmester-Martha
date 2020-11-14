@@ -1,10 +1,3 @@
-/*
- * menu.h
- *
- * Created: 23.09.2020 08:59:24
- *  Author: marth
- */ 
-
 
 #ifndef MENU_H_
 #define MENU_H_
