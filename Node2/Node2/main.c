@@ -21,47 +21,25 @@
 
 int main(void)
 {
+	// Disable watchdog
+	WDT->WDT_MR = WDT_MR_WDDIS;
+	
     /* Initialize the SAM system */
 	init_flag = 2; //Some random non-zero, non-one value
     SystemInit();
-	configure_uart();
+	uart_configure();
 	servo_init_pwm();
 	ir_init();
 	solenoid_init();
-	
-	// Disable watchdog
-	WDT->WDT_MR = WDT_MR_WDDIS;
 	motor_init();
-	
 	can_init_def_tx_rx_mb(0x00290561);
-	
-	struct can_message_t msg;
-	
-	msg.id = 10;
-	msg.data_length = 3;
-	msg.data[0] = 0;
-	msg.data[1] = 1;
-	msg.data[2] = 2;
-	
-	REG_PIOA_OER |= (1<<19);
-	
-	uint8_t can_status = 1;
-	// can message ID 15 => IR
-	// can message ID 5 => ACK
 	encoder_init();
-	//regulator_init();
-    /* Replace with your application code */
+		
     while (1)
     {
 		//Checks for ball in beam
 		ir_ball_in_beam();
-		// Sends ball status to node 1
-		
-		
-		//encoder_read(&encoder_value);
-		//encoder_read(&encoder_value);
 
-		//stepper_joystick_command(12);
     }
 }
 

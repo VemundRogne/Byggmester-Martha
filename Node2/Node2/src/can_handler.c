@@ -1,9 +1,3 @@
-/*
- * can_handler.c
- *
- * Created: 21/10/2020 10:49:37
- *  Author: vemun
- */ 
 
 #include <stdint.h>
 #include "sam.h"
@@ -223,5 +217,5 @@ void handle_can_message(struct can_message_t *message){
 	/* Request from Node 1 to Node 2 to Read current error */
 	
 	ir_transmit();
-};
+}
 

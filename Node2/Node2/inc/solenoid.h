@@ -1,10 +1,3 @@
-/*
- * solenoid.h
- *
- * Created: 01.11.2020 13:31:42
- *  Author: marth
- */ 
-
 
 #ifndef SOLENOID_H_
 #define SOLENOID_H_

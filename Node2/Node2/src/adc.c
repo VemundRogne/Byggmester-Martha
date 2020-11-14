@@ -1,9 +1,3 @@
-/*
- * adc.c
- *
- * Created: 21.10.2020 14:52:23
- *  Author: marth
- */ 
 
 #include "sam.h"
 

@@ -1,10 +1,3 @@
-/*
- * ir_driver.h
- *
- * Created: 21.10.2020 14:47:31
- *  Author: marth
- */ 
-
 
 #ifndef IR_DRIVER_H_
 #define IR_DRIVER_H_
@@ -17,11 +10,13 @@
 uint8_t status_ball;
 volatile uint8_t transmit_ball_status_flag;
 
-//IR init
+// IR init
 void ir_init();
 
+// Detects if ball is in IR beam
 void ir_ball_in_beam();
 
+// Transmits IR message over can bus to Node1
 uint8_t ir_transmit();
 
 

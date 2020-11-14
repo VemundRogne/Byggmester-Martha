@@ -25,7 +25,7 @@ typedef struct uart_ringbuffer_t
 	} uart_ringbuffer;
 
 
-void configure_uart(void);
+void uart_configure(void);
 
 int uart_getchar(uint8_t *c);
 int uart_putchar(const uint8_t c);

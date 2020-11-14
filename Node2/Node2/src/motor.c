@@ -28,18 +28,11 @@ void motor_disable_output(){
 void motor_init(){
 	REG_PIOD_OER |= (1 << DIR) | (1 << EN) | (1 << SEL) | (1 << RST) | (1 << OE); //Enable output for our desired control pins for MJ1
 	motor_enable_output();
-
-	//DACC stuff
-	//REG_PIOB_OER |= (1<<DACC_PIO);
-
-	//PIOB->PIO_ABSR |= PIO_ABSR_P25; Dont think we need this cus dac no peripheral?
 	
 	PMC->PMC_PCER1 |= PMC_PCDR1_PID38; 
 
 	DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so
 	DACC->DACC_CHER |= (1<<1); //Enable channel 1
-	
-	//DACC->DACC_CDR = 1000 | (1<<12);
 }
 
 /*
@@ -70,9 +63,6 @@ void motor_joystick_command(int8_t motor_speed){
 
 	uint16_t val = abs(motor_speed);
 	val = val << 4;
-
-	//DACC->DACC_MR |= DACC_MR_TAG; //Tag selection cus studass said so
-	//uint16_t tag_channel_enabler = (1<<13); //Tag channel 1
 
 	DACC->DACC_CHER |= (1<<1); //Enable channel 1
 	DACC->DACC_CDR |= (val | (1<<12)); //Channel data register gets tag-bit + digital value to convert

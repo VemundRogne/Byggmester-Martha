@@ -1,4 +1,3 @@
-//regulator.c
 
 #include "../inc/regulator.h"
 #include "../inc/motor.h"

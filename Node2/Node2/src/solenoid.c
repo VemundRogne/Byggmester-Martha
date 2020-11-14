@@ -1,10 +1,3 @@
-/*
- * solenoid.c
- *
- * Created: 01.11.2020 13:31:27
- *  Author: marth
- */ 
-
 
 #include "../inc/solenoid.h"
  #include <sam.h>
