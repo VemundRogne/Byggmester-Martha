@@ -14,7 +14,8 @@ enum state{
 	DEVELOPERS,
 	GAME_OVER,
 	PLAY_GAME,
-	INITIALIZING	
+	INITIALIZING, 
+	END_GAME	
 };
 enum state current_state;
 

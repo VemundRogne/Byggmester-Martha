@@ -56,6 +56,9 @@ void enter_initializing(){
 	current_state = INITIALIZING;
 }
 
+void enter_end_game(){
+	current_state = END_GAME;
+}
 
 void statemachine_menu_selection(){
 	switch(current_state){
@@ -77,8 +80,9 @@ void statemachine_menu_selection(){
 				case 4:
 					enter_developers_menu();
 					break;
+					
 				case 5:
-					oled_clear();
+					enter_end_game();
 					break;
 			}
 			break;
@@ -133,6 +137,10 @@ void statemachine_execute_current_state(){
 		
 		case INITIALIZING:
 			oled_print_string(" INITIALIZING", 4);
+			break;
+			
+		case END_GAME:
+			oled_clear();
 			break;
 	}
 }
