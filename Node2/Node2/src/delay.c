@@ -1,8 +1,7 @@
 /*
  * delay.c 
- *
- * This source file was taken from forum discussion on the topic of 
- * delays in the atsam3x8e
+ * This code was retrieved from a forum discussion on the topic of
+ * delays in the ATSAM3X8E micro controller
  * Link: https://community.atmel.com/forum/samd21-delay-functions?fbclid=IwAR0GK1Z7JAE3Zi1POwpBCI7li3vHm5ci7iDNOtG_i-7EFT5g5IYlZX1GVqc
  * Author: 12oclocker
  */ 
