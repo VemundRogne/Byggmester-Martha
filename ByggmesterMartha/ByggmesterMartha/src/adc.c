@@ -5,10 +5,7 @@
  *  Author: vemun
  */ 
 
-#define F_CPU	4915200
-
 #include <avr/io.h>
-#include <util/delay.h>
 
 #include "../inc/adc.h"
 #include "../inc/timers.h"
@@ -44,7 +41,7 @@ void adc_init(){
 void adc_rd(){
 	volatile char *ext_adc = (char *) ADC_START_ADDRESS; // Start address for the ADC
 	
-	//Write start to start conversion
+	//Write dummy value start to start conversion
 	ext_adc[0] = 0x00;
 	
 	// Wait for conversion to complete
@@ -52,6 +49,7 @@ void adc_rd(){
 		// WAIT
 	}
 	
+	// Run adc values throught digital low-pass filter and store values
 	for(uint8_t i=0; i<4; i++){
 		_adc_values[i] = _adc_values[i] - (_adc_values[i] >> FILTER_CONSTANT) + ext_adc[i];
 	}
