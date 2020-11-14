@@ -14,9 +14,8 @@ Include dependency graph for timers.\+c\+:
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}\label{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}} 
-{\bfseries I\+SR} (T\+I\+M\+E\+R0\+\_\+\+O\+V\+F\+\_\+vect)
-\item 
+\hyperlink{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}{I\+SR} (T\+I\+M\+E\+R0\+\_\+\+O\+V\+F\+\_\+vect)
+\begin{DoxyCompactList}\small\item\em Interrupt service triggered by timer 0. Read and filter A\+DC values by \hyperlink{adc_8h_a346bb13fcedaf0fc92e5b7770aaa921f}{adc\+\_\+rd()} \end{DoxyCompactList}\item 
 void \hyperlink{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}{timer0\+\_\+init} ()
 \begin{DoxyCompactList}\small\item\em Timer 0 is used to read and filter adc continously. \end{DoxyCompactList}\item 
 void \hyperlink{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}{timer1\+\_\+init} ()
@@ -29,6 +28,23 @@ Implementation of timers.
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}\label{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}} 
+\index{timers.\+c@{timers.\+c}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!timers.\+c@{timers.\+c}}
+\subsubsection{\texorpdfstring{I\+S\+R()}{ISR()}}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{T\+I\+M\+E\+R0\+\_\+\+O\+V\+F\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+
+
+Interrupt service triggered by timer 0. Read and filter A\+DC values by \hyperlink{adc_8h_a346bb13fcedaf0fc92e5b7770aaa921f}{adc\+\_\+rd()} 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file timers.\+c.
+
 \mbox{\Hypertarget{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}\label{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}} 
 \index{timers.\+c@{timers.\+c}!timer0\+\_\+init@{timer0\+\_\+init}}
 \index{timer0\+\_\+init@{timer0\+\_\+init}!timers.\+c@{timers.\+c}}
@@ -44,7 +60,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 17 of file timers.\+c.
+Definition at line 22 of file timers.\+c.
 
 \mbox{\Hypertarget{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}\label{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}} 
 \index{timers.\+c@{timers.\+c}!timer1\+\_\+init@{timer1\+\_\+init}}
@@ -61,5 +77,5 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 30 of file timers.\+c.
+Definition at line 35 of file timers.\+c.
 

@@ -8,7 +8,12 @@
 #include "../inc/adc.h"
 #include <avr/interrupt.h>
 
-// This ISR is called approximately 70 times per second, as per init_timer0();
+/**
+* @brief Interrupt service triggered by timer 0. Read and filter ADC values by adc_rd()
+*
+* @return void
+*/
+
 ISR(TIMER0_OVF_vect){
 	adc_rd();
 }

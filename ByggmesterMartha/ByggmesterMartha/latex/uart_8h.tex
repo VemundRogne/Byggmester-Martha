@@ -1,0 +1,305 @@
+\hypertarget{uart_8h}{}\section{inc/uart.h File Reference}
+\label{uart_8h}\index{inc/uart.\+h@{inc/uart.\+h}}
+
+
+Library for uart communication with node 1.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{uart_8h_ac5c85a6a18b2073865149b2c0554ce8d}\label{uart_8h_ac5c85a6a18b2073865149b2c0554ce8d}} 
+\#define {\bfseries C\+M\+D\+\_\+\+L\+EN}~10
+\item 
+\mbox{\Hypertarget{uart_8h_ad1be813220e151babb6cb031dc2bf12b}\label{uart_8h_ad1be813220e151babb6cb031dc2bf12b}} 
+\#define {\bfseries A\+R\+G\+\_\+\+O\+F\+F\+S\+ET}~2
+\item 
+\mbox{\Hypertarget{uart_8h_a431dd55ad44c0a74a2a64bf146e1c9eb}\label{uart_8h_a431dd55ad44c0a74a2a64bf146e1c9eb}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+C\+MD}~0
+\item 
+\mbox{\Hypertarget{uart_8h_a4bae4ead53bab1bd45bd174721e36fa4}\label{uart_8h_a4bae4ead53bab1bd45bd174721e36fa4}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+S\+R\+A\+M\+\_\+\+C\+MD}~1
+\item 
+\mbox{\Hypertarget{uart_8h_aa63bbecd73ade4c0fa39fdf4927e5477}\label{uart_8h_aa63bbecd73ade4c0fa39fdf4927e5477}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+MD}~2
+\item 
+\mbox{\Hypertarget{uart_8h_a4c78534ac215e2290ed890c57ecec945}\label{uart_8h_a4c78534ac215e2290ed890c57ecec945}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+C\+A\+N\+\_\+\+C\+MD}~3
+\item 
+\mbox{\Hypertarget{uart_8h_a6128235d39ce4f93eb1bb008347c9e8f}\label{uart_8h_a6128235d39ce4f93eb1bb008347c9e8f}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+O\+T\+O\+R\+\_\+\+C\+MD}~4
+\item 
+\mbox{\Hypertarget{uart_8h_aaab0b6232700c67e59ed23e7cdc66e0b}\label{uart_8h_aaab0b6232700c67e59ed23e7cdc66e0b}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+C\+M\+D\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+ZE}~0
+\item 
+\mbox{\Hypertarget{uart_8h_a428ae82dd3efe9bcb4a96f9983b73c9d}\label{uart_8h_a428ae82dd3efe9bcb4a96f9983b73c9d}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+C\+M\+D\+\_\+\+E\+C\+HO}~1
+\item 
+\mbox{\Hypertarget{uart_8h_a4c735ffb44b0299f9b7ec430e68c0d5f}\label{uart_8h_a4c735ffb44b0299f9b7ec430e68c0d5f}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+B\+A\+S\+I\+C\+\_\+\+C\+M\+D\+\_\+\+J\+O\+Y\+S\+T\+I\+CK}~2
+\item 
+\mbox{\Hypertarget{uart_8h_a90fc0fc59390a1ce9f908118f375adc0}\label{uart_8h_a90fc0fc59390a1ce9f908118f375adc0}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+S\+R\+A\+M\+\_\+\+W\+R\+I\+TE}~0
+\item 
+\mbox{\Hypertarget{uart_8h_a0417e5b8992e69ed3b7226859d66906b}\label{uart_8h_a0417e5b8992e69ed3b7226859d66906b}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+S\+R\+A\+M\+\_\+\+R\+E\+AD}~1
+\item 
+\mbox{\Hypertarget{uart_8h_a52d01ebb36ece90ef404655b2d171bab}\label{uart_8h_a52d01ebb36ece90ef404655b2d171bab}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+R\+E\+A\+D\+S\+T\+A\+T\+US}~0
+\item 
+\mbox{\Hypertarget{uart_8h_a10957295228a077d891d915f1b63e78a}\label{uart_8h_a10957295228a077d891d915f1b63e78a}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+I\+N\+IT}~1
+\item 
+\mbox{\Hypertarget{uart_8h_a4ffcbca1aa4f4909b4e174664a8423dc}\label{uart_8h_a4ffcbca1aa4f4909b4e174664a8423dc}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+W\+R\+I\+TE}~2
+\item 
+\mbox{\Hypertarget{uart_8h_a839647687b5c3a89ad84d413f78470cb}\label{uart_8h_a839647687b5c3a89ad84d413f78470cb}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+R\+E\+AD}~3
+\item 
+\mbox{\Hypertarget{uart_8h_a17a592be560cae00dd8395d8b8899eff}\label{uart_8h_a17a592be560cae00dd8395d8b8899eff}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+R\+X\+\_\+\+S\+T\+A\+T\+US}~4
+\item 
+\mbox{\Hypertarget{uart_8h_a04871b40eb12944c5cc2ec1dc9bb458f}\label{uart_8h_a04871b40eb12944c5cc2ec1dc9bb458f}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+B\+I\+T\+\_\+\+M\+O\+D\+I\+FY}~5
+\item 
+\mbox{\Hypertarget{uart_8h_ab17f678c65a628fb44349d47ba791e45}\label{uart_8h_ab17f678c65a628fb44349d47ba791e45}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+R\+E\+S\+ET}~6
+\item 
+\mbox{\Hypertarget{uart_8h_af6777a269ae91c3ce67bfc943140e489}\label{uart_8h_af6777a269ae91c3ce67bfc943140e489}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+R\+TS}~7
+\item 
+\mbox{\Hypertarget{uart_8h_ab7b2cc70d9bc16a524799ba4cdd503a0}\label{uart_8h_ab7b2cc70d9bc16a524799ba4cdd503a0}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+C\+P2515\+\_\+\+C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+R\+X\+\_\+\+C\+A\+N\+\_\+\+F\+L\+AG}~8
+\item 
+\mbox{\Hypertarget{uart_8h_aeeccbce216448fed0cd1ad16bf52222e}\label{uart_8h_aeeccbce216448fed0cd1ad16bf52222e}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+C\+A\+N\+\_\+\+C\+M\+D\+\_\+\+T\+R\+A\+N\+S\+M\+IT}~0
+\item 
+\mbox{\Hypertarget{uart_8h_ab78da431414beeebee1c5677431a8eb4}\label{uart_8h_ab78da431414beeebee1c5677431a8eb4}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+C\+A\+N\+\_\+\+C\+M\+D\+\_\+\+R\+E\+C\+E\+I\+VE}~1
+\item 
+\mbox{\Hypertarget{uart_8h_a93f8865a1b3b8c58fd3480fc4482a2b4}\label{uart_8h_a93f8865a1b3b8c58fd3480fc4482a2b4}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+C\+A\+N\+\_\+\+C\+M\+D\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+ER}~2
+\item 
+\mbox{\Hypertarget{uart_8h_a3233b3b860f73ed45ebcf7764e2831c4}\label{uart_8h_a3233b3b860f73ed45ebcf7764e2831c4}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+C\+A\+N\+\_\+\+C\+M\+D\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+ER}~3
+\item 
+\mbox{\Hypertarget{uart_8h_a80df7ffbd2f062b49dc63e5fb1c52e14}\label{uart_8h_a80df7ffbd2f062b49dc63e5fb1c52e14}} 
+\#define {\bfseries U\+A\+R\+T\+\_\+\+M\+O\+T\+O\+R\+\_\+\+R\+E\+A\+D\+\_\+\+E\+N\+C\+O\+D\+ER}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{uart_8h_a01f5996cfbcef121abc486e732b208c7}{uart\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize baudrate and dataformat. Enable Rx, Tx and interrupt on uart. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{uart_8h_ad6e60ebdedd5917c28e27ece1999fac7}{U\+A\+R\+T\+\_\+rx\+\_\+polling} ()
+\begin{DoxyCompactList}\small\item\em Read data from uart. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_a355551c5b3fc5d33227f1dd2bed1d9f6}{U\+A\+R\+T\+\_\+tx\+\_\+polling} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send data with uart. \end{DoxyCompactList}\item 
+\hyperlink{uart_8h_a9622edb266a65452131cdbbccb5e5b0e}{I\+SR} (U\+S\+A\+R\+T0\+\_\+\+R\+X\+C\+\_\+vect)
+\begin{DoxyCompactList}\small\item\em Interrupt service routine when data received over uart. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_aa18a082d6fdf943df86482169ffc3f87}{U\+A\+R\+T\+\_\+execute\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute command type specified by cmd\+\_\+buffer\mbox{[}0\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_a1e6251d42b9ed9f5a1c7a7c9141e944d}{U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute the basic command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_a4871894308632c9c45b93ea8d400d5fa}{U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute the sram command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_ab21055edd9b1212e67721dbf249f39a4}{U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute the can command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_a2124463c7e9b3ef7821408e335a9f5d1}{U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute the mcp2515 command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. \end{DoxyCompactList}\item 
+void \hyperlink{uart_8h_a7c8a9916d47317775f7c5df93ad39634}{U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd} ()
+\begin{DoxyCompactList}\small\item\em Execute the motor command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{uart_8h_a154ef0b7180a9fb98aa9cb423a9b29f3}\label{uart_8h_a154ef0b7180a9fb98aa9cb423a9b29f3}} 
+volatile uint8\+\_\+t {\bfseries cmd\+\_\+buffer} \mbox{[}C\+M\+D\+\_\+\+L\+EN\mbox{]}
+\item 
+\mbox{\Hypertarget{uart_8h_a8a1ed46b41a61fc8ea442dd93c21116a}\label{uart_8h_a8a1ed46b41a61fc8ea442dd93c21116a}} 
+volatile uint8\+\_\+t {\bfseries cmd\+\_\+receive\+\_\+counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for uart communication with node 1. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{uart_8h_a9622edb266a65452131cdbbccb5e5b0e}\label{uart_8h_a9622edb266a65452131cdbbccb5e5b0e}} 
+\index{uart.\+h@{uart.\+h}!I\+SR@{I\+SR}}
+\index{I\+SR@{I\+SR}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{I\+S\+R()}{ISR()}}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{U\+S\+A\+R\+T0\+\_\+\+R\+X\+C\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+
+
+Interrupt service routine when data received over uart. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 24 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a1e6251d42b9ed9f5a1c7a7c9141e944d}\label{uart_8h_a1e6251d42b9ed9f5a1c7a7c9141e944d}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd()}{UART\_execute\_basic\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+basic\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the basic command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_ab21055edd9b1212e67721dbf249f39a4}\label{uart_8h_ab21055edd9b1212e67721dbf249f39a4}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd()}{UART\_execute\_can\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+can\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the can command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 179 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_aa18a082d6fdf943df86482169ffc3f87}\label{uart_8h_aa18a082d6fdf943df86482169ffc3f87}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+cmd()}{UART\_execute\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute command type specified by cmd\+\_\+buffer\mbox{[}0\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a2124463c7e9b3ef7821408e335a9f5d1}\label{uart_8h_a2124463c7e9b3ef7821408e335a9f5d1}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd()}{UART\_execute\_mcp2515\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+mcp2515\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the mcp2515 command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a7c8a9916d47317775f7c5df93ad39634}\label{uart_8h_a7c8a9916d47317775f7c5df93ad39634}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd()}{UART\_execute\_motor\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+motor\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the motor command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 270 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a4871894308632c9c45b93ea8d400d5fa}\label{uart_8h_a4871894308632c9c45b93ea8d400d5fa}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd}}
+\index{U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd@{U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd()}{UART\_execute\_sram\_cmd()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+execute\+\_\+sram\+\_\+cmd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute the sram command specified by cmd\+\_\+buffer\mbox{[}1\mbox{]}. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a01f5996cfbcef121abc486e732b208c7}\label{uart_8h_a01f5996cfbcef121abc486e732b208c7}} 
+\index{uart.\+h@{uart.\+h}!uart\+\_\+init@{uart\+\_\+init}}
+\index{uart\+\_\+init@{uart\+\_\+init}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{uart\+\_\+init()}{uart\_init()}}
+{\footnotesize\ttfamily void uart\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize baudrate and dataformat. Enable Rx, Tx and interrupt on uart. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_ad6e60ebdedd5917c28e27ece1999fac7}\label{uart_8h_ad6e60ebdedd5917c28e27ece1999fac7}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+rx\+\_\+polling@{U\+A\+R\+T\+\_\+rx\+\_\+polling}}
+\index{U\+A\+R\+T\+\_\+rx\+\_\+polling@{U\+A\+R\+T\+\_\+rx\+\_\+polling}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+rx\+\_\+polling()}{UART\_rx\_polling()}}
+{\footnotesize\ttfamily uint8\+\_\+t U\+A\+R\+T\+\_\+rx\+\_\+polling (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read data from uart. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t \hyperlink{unionData}{Data} received 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file uart.\+c.
+
+\mbox{\Hypertarget{uart_8h_a355551c5b3fc5d33227f1dd2bed1d9f6}\label{uart_8h_a355551c5b3fc5d33227f1dd2bed1d9f6}} 
+\index{uart.\+h@{uart.\+h}!U\+A\+R\+T\+\_\+tx\+\_\+polling@{U\+A\+R\+T\+\_\+tx\+\_\+polling}}
+\index{U\+A\+R\+T\+\_\+tx\+\_\+polling@{U\+A\+R\+T\+\_\+tx\+\_\+polling}!uart.\+h@{uart.\+h}}
+\subsubsection{\texorpdfstring{U\+A\+R\+T\+\_\+tx\+\_\+polling()}{UART\_tx\_polling()}}
+{\footnotesize\ttfamily void U\+A\+R\+T\+\_\+tx\+\_\+polling (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Send data with uart. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & \hyperlink{unionData}{Data} to be sent over uart\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 307 of file uart.\+c.
+

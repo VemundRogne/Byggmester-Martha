@@ -32,5 +32,5 @@ digraph "src/mcp2515.c"
   Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
   Node11 [label="statemachine.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$statemachine_8h.html",tooltip="Library for keeping track of states and state-transitions for game play. "];
   Node0 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
-  Node12 [label="../inc/uart.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$uart_8h_source.html"];
+  Node12 [label="../inc/uart.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$uart_8h.html",tooltip="Library for uart communication with node 1. "];
 }

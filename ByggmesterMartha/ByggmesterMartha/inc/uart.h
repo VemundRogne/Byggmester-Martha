@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Library for uart communication with node 1
+*/
 
 #ifndef UART_H_
 #define UART_H_
@@ -8,12 +12,35 @@
 volatile uint8_t cmd_buffer[CMD_LEN];
 volatile uint8_t cmd_receive_counter;
 
+/**
+* @brief Initialize baudrate and dataformat. Enable Rx, Tx and interrupt on uart.
+*
+* @return void
+*/
 void uart_init();
 
+/**
+* @brief Read data from uart
+*
+* @return uint8_t Data received
+*/
 uint8_t UART_rx_polling();
 
+/**
+* @brief Send data with uart
+*
+* @param[in] data Data to be sent over uart
+*
+* @return void
+*/
 void UART_tx_polling(uint8_t data);
 
+
+/**
+* @brief Interrupt service routine when data received over uart
+*
+* @return void
+*/
 ISR(USART0_RXC_vect);
 
 // Points to the correct CMDs
@@ -23,6 +50,12 @@ ISR(USART0_RXC_vect);
 #define UART_CAN_CMD 3
 #define UART_MOTOR_CMD 4
 
+
+/**
+* @brief Execute command type specified by cmd_buffer[0]
+*
+* @return void
+*/
 void UART_execute_cmd();
 
 // Basic commands
@@ -71,10 +104,39 @@ void UART_execute_cmd();
 // MOTOR commands
 #define UART_MOTOR_READ_ENCODER 1
 
+/**
+* @brief Execute the basic command specified by cmd_buffer[1]
+*
+* @return void
+*/
 void UART_execute_basic_cmd();
+
+/**
+* @brief Execute the sram command specified by cmd_buffer[1]
+*
+* @return void
+*/
 void UART_execute_sram_cmd();
+
+/**
+* @brief Execute the can command specified by cmd_buffer[1]
+*
+* @return void
+*/
 void UART_execute_can_cmd();
+
+/**
+* @brief Execute the mcp2515 command specified by cmd_buffer[1]
+*
+* @return void
+*/
 void UART_execute_mcp2515_cmd();
+
+/**
+* @brief Execute the motor command specified by cmd_buffer[1]
+*
+* @return void
+*/
 void UART_execute_motor_cmd();
 
 

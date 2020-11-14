@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation for uart library
+*/
 
 #define F_CPU	4915200
 #define BAUD	9600
