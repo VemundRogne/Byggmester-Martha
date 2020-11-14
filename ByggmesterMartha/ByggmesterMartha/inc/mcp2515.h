@@ -1,3 +1,8 @@
+/**
+* @file
+* @brief Library communication and control of the MCP2515
+*/
+
 #ifndef __MCP2515_H
 #define __MCP2515_H
 
@@ -175,52 +180,72 @@ enum mcp2515_mode{
 */
 volatile uint8_t receive_can_on_interrupt;
 
+
+/**
+* @brief Initialize MCP2515 to specified mode
+*
+* @param[in] MCP_MODE Mode selection of MCP2515
+*
+* @return void
+*/
 void mcp2515_init(enum mcp2515_mode MCP_MODE);
 
-/*
- * Function: Configure the bit timing of the CAN bus
- * This function is called in the mcp2515_init function and
- * does not need to be manually modified.
+
+/**
+* @brief Configure the bit timing of the CAN bus
+*
+* @return void
 */
 void mcp2515_configure_bit_timing();
 
-/*
- * Function: Send reset command to mcp2515
- * ---------------------------------------
- * Single-byte instruction to re-initialize the internal registers
- * of the MCP2515 and set Configuration mode.
+/**
+* @brief Reset MCP2515, setting it in configuration mode
+*
+* @return void
 */
 void mcp2515_RESET();
 
-/*
- * Function: Read n bytes from MCP2515
- * -----------------------------------
- * Reads n bytes from MCP2515 starting from address
+
+/**
+* @brief Read n bytes from MCP2515
+*
+* @param[in] address Start address to read from MCP2515
+* @param[out] read_buffer Pointer to buffer used to save read data
+* @param[in] n Number of bytes to read
+*
+* @return void
 */
 void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n);
 
-/*
- * Function: Write n bytes to the MCP2515
- * --------------------------------------
- * Write n bytes to the MCP2515 starting at address
+
+/**
+* @brief Write n bytes to the MCP2515
+*
+* @param[in] address Start address to write to MCP2515
+* @param[in] write_buffer Pointer to buffer containing data to be written
+* @param[in] n Number of bytes to write
+*
+* @return void
 */
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
 
-/*
- * Function: Request to send transmition buffer specified by RTS_selection
- * --------------------------------------
- * RTS_selection:
- *	Bit 3-7: Dont care
- *	Bit 0-2: Request to send transmition buffer 0-2
+
+/**
+* @brief Request to send transmition buffer specified by bits 0-2 in RTS_selection
+*
+* @param[in] address Start address to write to MCP2515
+* @param[in] write_buffer Pointer to buffer containing data to be written
+* @param[in] n Number of bytes to write
+*
+* @return void
 */
 void mcp2515_RTS(uint8_t RTS_selection);
 
-/*
- * Function: Read most used status bits for message transmission and reception
- * ---------------------------------------------------------------------------
- * This is a single-instruction way to find many status bits:
- *
- * Returns status byte:
+
+/**
+* @brief Read most used status bits for message transmission and reception
+*
+* @return uint8_t 
  *  Bit 7: CANINTF.TX2IF	- Flag is set when transmission completes
  *  Bit 6: TXB2CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
  *  Bit 5: CANINTF.TX1IF	- Flag is set when transmission completes
@@ -232,33 +257,37 @@ void mcp2515_RTS(uint8_t RTS_selection);
 */
 uint8_t mcp2515_READ_STATUS();
 
-/*
- * Function: Returns receive buffer status
- * --------------------------------------
- * Status byte:
- 	Bit 6-7:
- 		0 - No message
- 		1 - Message in buffer 0
- 		2 - Message in buffer 1
- 		3 - Message in both buffers
- 	Bit 4-3:
- 		0 - Standard data frame
- 		1 - Standard remote data frame
- 		2 - Extended data fram
- 		3 - Extended remote data frame
- 	Bit 2-0:
- 		0->5 - RXFn filter match
- 		6 	 - RXF0 (rollover to RXB1)
- 		7    - RXF1 (rollover to RXB1)
-*/
+
+/**
+* @brief Reads receive buffer status
+*
+* @return uint8_t 
+* 	Bit 6-7:
+* 		0 - No message
+* 		1 - Message in buffer 0
+* 		2 - Message in buffer 1
+* 		3 - Message in both buffers
+* 	Bit 4-3:
+* 		0 - Standard data frame
+* 		1 - Standard remote data frame
+* 		2 - Extended data fram
+* 		3 - Extended remote data frame
+* 	Bit 2-0:
+* 		0->5 - RXFn filter match
+* 		6 	 - RXF0 (rollover to RXB1)
+*		7    - RXF1 (rollover to RXB1)
+ */
 uint8_t mcp2515_RX_STATUS();
 
-/*
- * Function: Modifies specified bits in specified address of MCP2515
- * --------------------------------------
- * register_addr: address of byte to change
- * mask_byte: Mask byte to choose which bits can be modified (0 - non modifiable, 1 - modifiable)
- * value_byte: What values the corresponging high mask-bits should be changed to
+
+/**
+* @brief Modifies specified bits in specified address of MCP2515
+*
+* @param[in] register_addr Address of byte to be changed
+* @param[in] mask_byte Mask byte to choose which bits can be modified (0 - non modifiable, 1 - modifiable)
+* @param[in] value_byte What values the corresponging high mask-bits should be changed to
+*
+* @return void
 */
 void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_byte);
 

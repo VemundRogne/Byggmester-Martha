@@ -1,3 +1,8 @@
+/**
+* @file
+* @brief Main file for node 1
+*/
+
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -22,6 +27,12 @@
 #include "../inc/game.h"
 #include <stdlib.h>
 
+
+/**
+* @brief Initializes everything on node 1, then oops game_sequence
+*
+* @return int 0
+*/
 
 int main(void)
 {
