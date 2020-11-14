@@ -81,12 +81,15 @@ def test_can_loopback(ser):
 
 def test_can_with_node_2(ser):
     """ Attempts to talk to node 2 """
+    mcp.write_can_rx_flag(ser, 1)
+    assert mcp.mcp2515_init(ser, mcp.MCP_MODE.NORMAL) == mcp.MCP_MODE.NORMAL
+
     value = random.randint(-40000, 40000)
     value_bytes = list(value.to_bytes(4, byteorder='big', signed=True))
 
     print("Sending", value, value_bytes)
 
-    mcp.write_can_rx_flag(ser, 1)
+    time.sleep(1)
     byggern.can_cmd.can_transmit(
         ser,
         msg_id=1100,
