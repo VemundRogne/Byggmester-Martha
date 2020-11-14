@@ -16,7 +16,7 @@ ISR(TIMER0_OVF_vect){
 }
 
 // Configures timer0 to be a system-wide interrupt generator at ~70 Hz
-void init_timer0(){
+void timer0_init(){
 	// Waveform generation defaults to "Normal"
 	// We configure no direct outputs
 	
@@ -29,7 +29,7 @@ void init_timer0(){
 }
 
 // Configures timer1 and OC1A as an ADC clock
-void init_timer1(){
+void timer1_init(){
 	// Sets Waveform Generation Mode to mode 5: Fast PWM, 8-bit
 	TCCR1A |= (1<<WGM10);
 	TCCR1B |= (1<<WGM12);

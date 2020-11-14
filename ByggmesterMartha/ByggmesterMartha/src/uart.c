@@ -280,7 +280,7 @@ void UART_execute_motor_cmd(){
 	}
 }
 
-void init_UART(){
+void uart_init(){
 	// Set Baudrate
 	UBRR0L = MYUBRR;
 

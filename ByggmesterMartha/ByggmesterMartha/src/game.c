@@ -14,6 +14,7 @@
 void game_init(){
 	score_count = 0;
 	game_over = 0;
+	ir_status = 0;
 }
 
 void game_over_check(uint8_t ir_status){

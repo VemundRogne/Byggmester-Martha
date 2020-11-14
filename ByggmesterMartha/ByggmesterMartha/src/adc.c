@@ -5,18 +5,20 @@
  *  Author: vemun
  */ 
 
+#define F_CPU	4915200
+
+#include <avr/io.h>
+#include <util/delay.h>
+
 #include "../inc/adc.h"
 #include "../inc/timers.h"
-#include <avr/io.h>
 #include "../inc/xmem.h"
 
-#define F_CPU	4915200
-#include <util/delay.h>
 
 // Sets up Timer1 to be a PWM output on PD5 (OC1A)
 // This is the required clock that the ADC needs to operate
 void init_adc(){
-	init_timer1();
+	timer1_init();
 }
 
 // Loads configuration of each channel according to figura 4a (page 11) in datasheet

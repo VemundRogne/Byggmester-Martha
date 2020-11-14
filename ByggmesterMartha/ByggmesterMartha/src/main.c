@@ -29,17 +29,16 @@
 #include "../inc/game.h"
 #include <stdlib.h>
 
+
 int main(void)
 {
-	init_UART();
-	//fdevopen(&UART_tx_polling, &UART_rx_polling);
-	//printf("Start!\n");
-	init_XMEM();
+	uart_init();
+	xmem_init();
 	init_adc();
 	oled_init();
 	menu_init();
-	init_timer0();
-	init_statemachine();	
+	timer0_init();
+	statemachine_init();	
 	game_init();
 	
 	sei();

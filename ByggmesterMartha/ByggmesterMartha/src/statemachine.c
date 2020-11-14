@@ -15,7 +15,7 @@
 #include "../inc/oled.h"
 
 
-void init_statemachine(){
+void statemachine_init(){
 	current_state = HOME_MENU;
 }
 

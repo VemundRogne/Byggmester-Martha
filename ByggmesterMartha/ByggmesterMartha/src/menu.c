@@ -18,6 +18,7 @@ void menu_init(){
 	current_selection = 3;
 	menu_upper_bound = 3;
 	menu_lower_bound = 5;
+	menu_home();
 };
 
 

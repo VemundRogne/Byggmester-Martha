@@ -14,7 +14,7 @@
 volatile uint8_t cmd_buffer[CMD_LEN];
 volatile uint8_t cmd_receive_counter;
 
-void init_UART();
+void uart_init();
 
 uint8_t UART_rx_polling();
 

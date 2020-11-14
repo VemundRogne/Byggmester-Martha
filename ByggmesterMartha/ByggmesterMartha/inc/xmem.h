@@ -11,8 +11,6 @@
 
 #define ADC_START_ADDRESS	0x1500
 
-void init_XMEM();
-
-void test_XMEM();
+void xmem_init();
 
 #endif /* XMEM_H_ */

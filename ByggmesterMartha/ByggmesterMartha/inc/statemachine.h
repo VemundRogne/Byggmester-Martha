@@ -19,7 +19,7 @@ enum state{
 enum state current_state;
 
 
-void init_statemachine();
+void statemachine_init();
 
 
 // STATE ENTRY FUNCTIONS //
