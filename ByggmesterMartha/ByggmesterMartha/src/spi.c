@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of spi library
+*/
 
 #include <avr/io.h>
 #include <stdio.h>
@@ -20,11 +24,14 @@ void spi_init(){
 	SPCR |= (1<<SPE) | (1<<MSTR) | (1<<SPR0);
 };
 
-/*
- * Function: write and read a single byte with the SPI peripheral
- * --------------------------------------------------------------
- * Writes the input byte to the SPI peripheral, and return the
- * read value.
+
+
+/**
+* @brief  Write and read a single byte with the SPI peripheral
+*
+* @param[in] byte Byte to be written to peripheral
+*
+* @return uint8_t Byte read from peripheral
 */
 uint8_t spi_readwrite_byte(uint8_t byte){
 	SPDR = byte;

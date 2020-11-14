@@ -1,0 +1,260 @@
+\hypertarget{menu_8c}{}\section{src/menu.c File Reference}
+\label{menu_8c}\index{src/menu.\+c@{src/menu.\+c}}
+
+
+Implementation of menu library.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/menu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/oled.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/statemachine.\+h\char`\"{}}\newline
+Include dependency graph for menu.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{menu_8c_a825deebad1aa530657673fb8a95a2565}{menu\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize menu to home. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a41d173c5f40525ddd2e06ffa0c6c2689}{menu\+\_\+draw\+\_\+item} (uint8\+\_\+t row)
+\begin{DoxyCompactList}\small\item\em Update specified row/item in menu. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_ad9ca45d311aa34fff8adbde51c3f4c02}{menu\+\_\+draw} ()
+\begin{DoxyCompactList}\small\item\em Draw current menu on oled. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a7276b656947ccd3b3cad7187f68034b8}{menu\+\_\+go\+\_\+up} ()
+\begin{DoxyCompactList}\small\item\em Move menu selector one up if possible. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a7e0b833fe9cab4eb857ebf9c8438b5d1}{menu\+\_\+go\+\_\+down} ()
+\begin{DoxyCompactList}\small\item\em Move menu selector one down if possible. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a76610da33333722792374486a8b5ae49}{menu\+\_\+navigate} ()
+\begin{DoxyCompactList}\small\item\em Navigate menu based on joystick direction. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a87d4f05724e6515ab6e4174fa018fe3d}{menu\+\_\+insert\+\_\+item} (volatile char $\ast$menu, char $\ast$element, uint8\+\_\+t len, uint8\+\_\+t position)
+\begin{DoxyCompactList}\small\item\em Abstraction for changing single items/menu-\/rows. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_aff579f7b2404c63dfffa19de764a889f}{menu\+\_\+home} ()
+\begin{DoxyCompactList}\small\item\em Update menu to home menu. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a4f3830c0487369b2f7f347eebc72d013}{menu\+\_\+developers} ()
+\begin{DoxyCompactList}\small\item\em Update menu to developers. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_ad238db740536beb2177284b17ff3fea3}{menu\+\_\+game\+\_\+over} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Update menu to game over. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8c_a1878c93addde70eee188a9510d7fcd33}{menu\+\_\+play\+\_\+game} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Update menu to play game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of menu library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{menu_8c_a4f3830c0487369b2f7f347eebc72d013}\label{menu_8c_a4f3830c0487369b2f7f347eebc72d013}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+developers@{menu\+\_\+developers}}
+\index{menu\+\_\+developers@{menu\+\_\+developers}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+developers()}{menu\_developers()}}
+{\footnotesize\ttfamily void menu\+\_\+developers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update menu to developers. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_ad9ca45d311aa34fff8adbde51c3f4c02}\label{menu_8c_ad9ca45d311aa34fff8adbde51c3f4c02}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+draw@{menu\+\_\+draw}}
+\index{menu\+\_\+draw@{menu\+\_\+draw}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+draw()}{menu\_draw()}}
+{\footnotesize\ttfamily void menu\+\_\+draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draw current menu on oled. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a41d173c5f40525ddd2e06ffa0c6c2689}\label{menu_8c_a41d173c5f40525ddd2e06ffa0c6c2689}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+draw\+\_\+item@{menu\+\_\+draw\+\_\+item}}
+\index{menu\+\_\+draw\+\_\+item@{menu\+\_\+draw\+\_\+item}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+draw\+\_\+item()}{menu\_draw\_item()}}
+{\footnotesize\ttfamily void menu\+\_\+draw\+\_\+item (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{row }\end{DoxyParamCaption})}
+
+
+
+Update specified row/item in menu. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em row} & Current row to draw on oled\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_ad238db740536beb2177284b17ff3fea3}\label{menu_8c_ad238db740536beb2177284b17ff3fea3}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+game\+\_\+over@{menu\+\_\+game\+\_\+over}}
+\index{menu\+\_\+game\+\_\+over@{menu\+\_\+game\+\_\+over}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+game\+\_\+over()}{menu\_game\_over()}}
+{\footnotesize\ttfamily void menu\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Update menu to game over. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Score obtained in game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a7e0b833fe9cab4eb857ebf9c8438b5d1}\label{menu_8c_a7e0b833fe9cab4eb857ebf9c8438b5d1}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+go\+\_\+down@{menu\+\_\+go\+\_\+down}}
+\index{menu\+\_\+go\+\_\+down@{menu\+\_\+go\+\_\+down}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+go\+\_\+down()}{menu\_go\_down()}}
+{\footnotesize\ttfamily void menu\+\_\+go\+\_\+down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move menu selector one down if possible. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a7276b656947ccd3b3cad7187f68034b8}\label{menu_8c_a7276b656947ccd3b3cad7187f68034b8}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+go\+\_\+up@{menu\+\_\+go\+\_\+up}}
+\index{menu\+\_\+go\+\_\+up@{menu\+\_\+go\+\_\+up}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+go\+\_\+up()}{menu\_go\_up()}}
+{\footnotesize\ttfamily void menu\+\_\+go\+\_\+up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Move menu selector one up if possible. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_aff579f7b2404c63dfffa19de764a889f}\label{menu_8c_aff579f7b2404c63dfffa19de764a889f}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+home@{menu\+\_\+home}}
+\index{menu\+\_\+home@{menu\+\_\+home}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+home()}{menu\_home()}}
+{\footnotesize\ttfamily void menu\+\_\+home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update menu to home menu. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a825deebad1aa530657673fb8a95a2565}\label{menu_8c_a825deebad1aa530657673fb8a95a2565}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+init@{menu\+\_\+init}}
+\index{menu\+\_\+init@{menu\+\_\+init}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+init()}{menu\_init()}}
+{\footnotesize\ttfamily void menu\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize menu to home. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a87d4f05724e6515ab6e4174fa018fe3d}\label{menu_8c_a87d4f05724e6515ab6e4174fa018fe3d}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+insert\+\_\+item@{menu\+\_\+insert\+\_\+item}}
+\index{menu\+\_\+insert\+\_\+item@{menu\+\_\+insert\+\_\+item}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+insert\+\_\+item()}{menu\_insert\_item()}}
+{\footnotesize\ttfamily void menu\+\_\+insert\+\_\+item (\begin{DoxyParamCaption}\item[{volatile char $\ast$}]{menu,  }\item[{char $\ast$}]{element,  }\item[{uint8\+\_\+t}]{len,  }\item[{uint8\+\_\+t}]{position }\end{DoxyParamCaption})}
+
+
+
+Abstraction for changing single items/menu-\/rows. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em menu} & Pointer to menu to be overwritten \\
+\hline
+\mbox{\tt in}  & {\em element} & Pointer to buffer containing content of the new menu row \\
+\hline
+\mbox{\tt in}  & {\em len} & Length of the buffer to be written \\
+\hline
+\mbox{\tt in}  & {\em position} & What row in menu to be overwritten\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a76610da33333722792374486a8b5ae49}\label{menu_8c_a76610da33333722792374486a8b5ae49}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+navigate@{menu\+\_\+navigate}}
+\index{menu\+\_\+navigate@{menu\+\_\+navigate}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+navigate()}{menu\_navigate()}}
+{\footnotesize\ttfamily void menu\+\_\+navigate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Navigate menu based on joystick direction. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8c_a1878c93addde70eee188a9510d7fcd33}\label{menu_8c_a1878c93addde70eee188a9510d7fcd33}} 
+\index{menu.\+c@{menu.\+c}!menu\+\_\+play\+\_\+game@{menu\+\_\+play\+\_\+game}}
+\index{menu\+\_\+play\+\_\+game@{menu\+\_\+play\+\_\+game}!menu.\+c@{menu.\+c}}
+\subsubsection{\texorpdfstring{menu\+\_\+play\+\_\+game()}{menu\_play\_game()}}
+{\footnotesize\ttfamily void menu\+\_\+play\+\_\+game (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Update menu to play game. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Current score in game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 186 of file menu.\+c.
+

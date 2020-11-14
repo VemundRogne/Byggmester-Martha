@@ -1,0 +1,170 @@
+\hypertarget{oled_8h}{}\section{inc/oled.h File Reference}
+\label{oled_8h}\index{inc/oled.\+h@{inc/oled.\+h}}
+
+
+Library for communicating and controlling oled.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for oled.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{oled_8h_ad10fd9b0094a9353376dc2bbd759295d}\label{oled_8h_ad10fd9b0094a9353376dc2bbd759295d}} 
+\#define {\bfseries O\+L\+E\+D\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+A\+D\+D\+R\+E\+SS}~0x1000
+\item 
+\mbox{\Hypertarget{oled_8h_a50e2b31f23f92fee615de3b8057a27e6}\label{oled_8h_a50e2b31f23f92fee615de3b8057a27e6}} 
+\#define {\bfseries O\+L\+E\+D\+\_\+\+D\+A\+T\+A\+\_\+\+A\+D\+D\+R\+E\+SS}~0x1200
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{oled_8h_a8c50659733df2acac1580d209db8e97f}{oled\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize oled. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{oled_8h_a129146c5c512ed99bdcdc8f6c53c69cb}{oled\+\_\+pos} (uint8\+\_\+t row, uint8\+\_\+t col)
+\begin{DoxyCompactList}\small\item\em Set position of oled pointer. \end{DoxyCompactList}\item 
+void \hyperlink{oled_8h_a7e6923ddc6b5833d794246d0bccf127b}{oled\+\_\+clear} ()
+\begin{DoxyCompactList}\small\item\em Clear entire oled screen. \end{DoxyCompactList}\item 
+void \hyperlink{oled_8h_a6dc87843da11f220188368268130a846}{oled\+\_\+clear\+\_\+row} (uint8\+\_\+t row)
+\begin{DoxyCompactList}\small\item\em Clear a specified row of the oled. \end{DoxyCompactList}\item 
+void \hyperlink{oled_8h_ab54839da436e4471ee917ee6170dc9ef}{oled\+\_\+print\+\_\+char} (char $\ast$letter)
+\begin{DoxyCompactList}\small\item\em Print a char from \hyperlink{fonts_8h}{fonts.\+h} to current oled pointer position. \end{DoxyCompactList}\item 
+void \hyperlink{oled_8h_a5f91422d1632aaefdec6d9ccc20b0c33}{oled\+\_\+print\+\_\+string} (char $\ast$char\+\_\+pointer, uint8\+\_\+t current\+\_\+oled\+\_\+row)
+\begin{DoxyCompactList}\small\item\em Display a string on the oled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for communicating and controlling oled. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{oled_8h_a7e6923ddc6b5833d794246d0bccf127b}\label{oled_8h_a7e6923ddc6b5833d794246d0bccf127b}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+clear@{oled\+\_\+clear}}
+\index{oled\+\_\+clear@{oled\+\_\+clear}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+clear()}{oled\_clear()}}
+{\footnotesize\ttfamily void oled\+\_\+clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear entire oled screen. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file oled.\+c.
+
+\mbox{\Hypertarget{oled_8h_a6dc87843da11f220188368268130a846}\label{oled_8h_a6dc87843da11f220188368268130a846}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+clear\+\_\+row@{oled\+\_\+clear\+\_\+row}}
+\index{oled\+\_\+clear\+\_\+row@{oled\+\_\+clear\+\_\+row}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+clear\+\_\+row()}{oled\_clear\_row()}}
+{\footnotesize\ttfamily void oled\+\_\+clear\+\_\+row (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{row }\end{DoxyParamCaption})}
+
+
+
+Clear a specified row of the oled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em row} & Desired row to clear\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+Clear a specified row of the oled. 
+
+Definition at line 75 of file oled.\+c.
+
+\mbox{\Hypertarget{oled_8h_a8c50659733df2acac1580d209db8e97f}\label{oled_8h_a8c50659733df2acac1580d209db8e97f}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+init@{oled\+\_\+init}}
+\index{oled\+\_\+init@{oled\+\_\+init}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+init()}{oled\_init()}}
+{\footnotesize\ttfamily void oled\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize oled. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file oled.\+c.
+
+\mbox{\Hypertarget{oled_8h_a129146c5c512ed99bdcdc8f6c53c69cb}\label{oled_8h_a129146c5c512ed99bdcdc8f6c53c69cb}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+pos@{oled\+\_\+pos}}
+\index{oled\+\_\+pos@{oled\+\_\+pos}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+pos()}{oled\_pos()}}
+{\footnotesize\ttfamily uint8\+\_\+t oled\+\_\+pos (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{row,  }\item[{uint8\+\_\+t}]{col }\end{DoxyParamCaption})}
+
+
+
+Set position of oled pointer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em row} & Desired row of oled pointer \\
+\hline
+\mbox{\tt in}  & {\em col} & Desired col of oled pointer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Row moved to 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file oled.\+c.
+
+\mbox{\Hypertarget{oled_8h_ab54839da436e4471ee917ee6170dc9ef}\label{oled_8h_ab54839da436e4471ee917ee6170dc9ef}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+print\+\_\+char@{oled\+\_\+print\+\_\+char}}
+\index{oled\+\_\+print\+\_\+char@{oled\+\_\+print\+\_\+char}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+print\+\_\+char()}{oled\_print\_char()}}
+{\footnotesize\ttfamily void oled\+\_\+print\+\_\+char (\begin{DoxyParamCaption}\item[{char $\ast$}]{letter }\end{DoxyParamCaption})}
+
+
+
+Print a char from \hyperlink{fonts_8h}{fonts.\+h} to current oled pointer position. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em letter} & Pointer to array containing character data\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+Print a char from \hyperlink{fonts_8h}{fonts.\+h} to current oled pointer position. 
+
+Definition at line 91 of file oled.\+c.
+
+\mbox{\Hypertarget{oled_8h_a5f91422d1632aaefdec6d9ccc20b0c33}\label{oled_8h_a5f91422d1632aaefdec6d9ccc20b0c33}} 
+\index{oled.\+h@{oled.\+h}!oled\+\_\+print\+\_\+string@{oled\+\_\+print\+\_\+string}}
+\index{oled\+\_\+print\+\_\+string@{oled\+\_\+print\+\_\+string}!oled.\+h@{oled.\+h}}
+\subsubsection{\texorpdfstring{oled\+\_\+print\+\_\+string()}{oled\_print\_string()}}
+{\footnotesize\ttfamily void oled\+\_\+print\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{char\+\_\+pointer,  }\item[{uint8\+\_\+t}]{current\+\_\+oled\+\_\+row }\end{DoxyParamCaption})}
+
+
+
+Display a string on the oled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em char\+\_\+pointer} & Pointer to start of string \\
+\hline
+\mbox{\tt in}  & {\em current\+\_\+oled\+\_\+row} & Row to write string on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file oled.\+c.
+

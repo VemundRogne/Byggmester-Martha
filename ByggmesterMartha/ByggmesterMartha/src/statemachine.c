@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of the statemachine library
+*/
 
 #include <stdio.h>
 
@@ -49,6 +53,12 @@ void enter_play_game(uint16_t score){
 void enter_initializing(){
 	current_state = INITIALIZING;
 }
+
+/**
+* @brief Transition function to END_GAME
+*
+* @return void
+*/
 
 void enter_end_game(){
 	current_state = END_GAME;

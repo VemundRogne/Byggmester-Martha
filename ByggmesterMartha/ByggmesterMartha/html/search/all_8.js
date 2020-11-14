@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['timer0_5finit',['timer0_init',['../timers_8h.html#a99eb04bf8fed2beecfb3cb74451416c5',1,'timer0_init():&#160;timers.c'],['../timers_8c.html#a99eb04bf8fed2beecfb3cb74451416c5',1,'timer0_init():&#160;timers.c']]],
-  ['timer1_5finit',['timer1_init',['../timers_8h.html#abb302081b7dbd40d0fea4bbe53fd9b7b',1,'timer1_init():&#160;timers.c'],['../timers_8c.html#abb302081b7dbd40d0fea4bbe53fd9b7b',1,'timer1_init():&#160;timers.c']]],
-  ['timers_2ec',['timers.c',['../timers_8c.html',1,'']]],
-  ['timers_2eh',['timers.h',['../timers_8h.html',1,'']]]
+  ['load_5fmux_5fconfig',['load_mux_config',['../adc_8c.html#af2f4e1ff3c3b8cf2e9e3318d00a06d01',1,'adc.c']]]
 ];

@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of menu library
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -17,7 +21,13 @@ void menu_init(){
 
 
 
-
+/**
+* @brief Update specified row/item in menu
+*
+* @param[in] row Current row to draw on oled
+*
+* @return void
+*/
 void menu_draw_item(uint8_t row){
 	//Clear row and move pointer
 	oled_clear_row(row);
@@ -53,13 +63,22 @@ void menu_draw(){
 
 
 
-// Move menu selector up
+/**
+* @brief Move menu selector one up if possible
+*
+* @return void
+*/
 void menu_go_up(){
 	if (current_selection > menu_upper_bound){ //Upper bound){
 		current_selection -= 1;
 	}
 }
-// Move menu selector down
+
+/**
+* @brief Move menu selector one down if possible
+*
+* @return void
+*/
 void menu_go_down(){
 	if (current_selection < menu_lower_bound){ //Lower Bound){
 		current_selection += 1;
@@ -87,9 +106,17 @@ void menu_navigate(){
 
 
 
-/// MENU MANIPULATION ///
 
-// Abstraction for changing single items/menu-rows
+/**
+* @brief Abstraction for changing single items/menu-rows
+*
+* @param[in] menu Pointer to menu to be overwritten
+* @param[in] element Pointer to buffer containing content of the new menu row
+* @param[in] len Length of the buffer to be written
+* @param[in] position What row in menu to be overwritten
+*
+* @return void
+*/
 void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position){
 	memcpy((char*)&menu[position*LINELENGTH], element, len);
 	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3

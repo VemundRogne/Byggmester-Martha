@@ -1,0 +1,191 @@
+\hypertarget{menu_8h}{}\section{inc/menu.h File Reference}
+\label{menu_8h}\index{inc/menu.\+h@{inc/menu.\+h}}
+
+
+Library for updating menu on oled.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}funkyboard.\+h\char`\"{}}\newline
+Include dependency graph for menu.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{menu_8h_a10e8c7b8458375c3dbfbb4010a2aba8c}\label{menu_8h_a10e8c7b8458375c3dbfbb4010a2aba8c}} 
+\#define {\bfseries L\+I\+N\+E\+L\+E\+N\+G\+TH}~16
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{menu_8h_a825deebad1aa530657673fb8a95a2565}{menu\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize menu to home. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_a76610da33333722792374486a8b5ae49}{menu\+\_\+navigate} ()
+\begin{DoxyCompactList}\small\item\em Navigate menu based on joystick direction. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_aff579f7b2404c63dfffa19de764a889f}{menu\+\_\+home} ()
+\begin{DoxyCompactList}\small\item\em Update menu to home menu. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_a4f3830c0487369b2f7f347eebc72d013}{menu\+\_\+developers} ()
+\begin{DoxyCompactList}\small\item\em Update menu to developers. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_ad238db740536beb2177284b17ff3fea3}{menu\+\_\+game\+\_\+over} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Update menu to game over. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_a1878c93addde70eee188a9510d7fcd33}{menu\+\_\+play\+\_\+game} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Update menu to play game. \end{DoxyCompactList}\item 
+void \hyperlink{menu_8h_ad9ca45d311aa34fff8adbde51c3f4c02}{menu\+\_\+draw} ()
+\begin{DoxyCompactList}\small\item\em Draw current menu on oled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{menu_8h_aab955bed72a3570f7afa254e21b09b21}\label{menu_8h_aab955bed72a3570f7afa254e21b09b21}} 
+volatile char {\bfseries menu} \mbox{[}8 $\ast$L\+I\+N\+E\+L\+E\+N\+G\+TH+1\mbox{]}
+\item 
+\mbox{\Hypertarget{menu_8h_a4cc67214bf9eefdc21750ac985ba0679}\label{menu_8h_a4cc67214bf9eefdc21750ac985ba0679}} 
+enum Joystick\+\_\+dir {\bfseries last\+\_\+joystick\+\_\+dir}
+\item 
+\mbox{\Hypertarget{menu_8h_a0e289ea5d468d576e5830032fc3a71a1}\label{menu_8h_a0e289ea5d468d576e5830032fc3a71a1}} 
+uint8\+\_\+t {\bfseries current\+\_\+selection}
+\item 
+\mbox{\Hypertarget{menu_8h_a6cbb253a607d32653bbdf8735015b6b7}\label{menu_8h_a6cbb253a607d32653bbdf8735015b6b7}} 
+uint8\+\_\+t {\bfseries menu\+\_\+upper\+\_\+bound}
+\item 
+\mbox{\Hypertarget{menu_8h_a79653e6189902e48d66ccab68cebc1fe}\label{menu_8h_a79653e6189902e48d66ccab68cebc1fe}} 
+uint8\+\_\+t {\bfseries menu\+\_\+lower\+\_\+bound}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for updating menu on oled. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{menu_8h_a4f3830c0487369b2f7f347eebc72d013}\label{menu_8h_a4f3830c0487369b2f7f347eebc72d013}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+developers@{menu\+\_\+developers}}
+\index{menu\+\_\+developers@{menu\+\_\+developers}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+developers()}{menu\_developers()}}
+{\footnotesize\ttfamily void menu\+\_\+developers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update menu to developers. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_ad9ca45d311aa34fff8adbde51c3f4c02}\label{menu_8h_ad9ca45d311aa34fff8adbde51c3f4c02}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+draw@{menu\+\_\+draw}}
+\index{menu\+\_\+draw@{menu\+\_\+draw}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+draw()}{menu\_draw()}}
+{\footnotesize\ttfamily void menu\+\_\+draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Draw current menu on oled. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_ad238db740536beb2177284b17ff3fea3}\label{menu_8h_ad238db740536beb2177284b17ff3fea3}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+game\+\_\+over@{menu\+\_\+game\+\_\+over}}
+\index{menu\+\_\+game\+\_\+over@{menu\+\_\+game\+\_\+over}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+game\+\_\+over()}{menu\_game\_over()}}
+{\footnotesize\ttfamily void menu\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Update menu to game over. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Score obtained in game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_aff579f7b2404c63dfffa19de764a889f}\label{menu_8h_aff579f7b2404c63dfffa19de764a889f}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+home@{menu\+\_\+home}}
+\index{menu\+\_\+home@{menu\+\_\+home}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+home()}{menu\_home()}}
+{\footnotesize\ttfamily void menu\+\_\+home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update menu to home menu. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 125 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_a825deebad1aa530657673fb8a95a2565}\label{menu_8h_a825deebad1aa530657673fb8a95a2565}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+init@{menu\+\_\+init}}
+\index{menu\+\_\+init@{menu\+\_\+init}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+init()}{menu\_init()}}
+{\footnotesize\ttfamily void menu\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize menu to home. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_a76610da33333722792374486a8b5ae49}\label{menu_8h_a76610da33333722792374486a8b5ae49}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+navigate@{menu\+\_\+navigate}}
+\index{menu\+\_\+navigate@{menu\+\_\+navigate}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+navigate()}{menu\_navigate()}}
+{\footnotesize\ttfamily void menu\+\_\+navigate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Navigate menu based on joystick direction. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file menu.\+c.
+
+\mbox{\Hypertarget{menu_8h_a1878c93addde70eee188a9510d7fcd33}\label{menu_8h_a1878c93addde70eee188a9510d7fcd33}} 
+\index{menu.\+h@{menu.\+h}!menu\+\_\+play\+\_\+game@{menu\+\_\+play\+\_\+game}}
+\index{menu\+\_\+play\+\_\+game@{menu\+\_\+play\+\_\+game}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{menu\+\_\+play\+\_\+game()}{menu\_play\_game()}}
+{\footnotesize\ttfamily void menu\+\_\+play\+\_\+game (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Update menu to play game. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Current score in game\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 186 of file menu.\+c.
+

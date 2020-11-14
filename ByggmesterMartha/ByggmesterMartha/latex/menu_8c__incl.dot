@@ -1,0 +1,22 @@
+digraph "src/menu.c"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="src/menu.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="stdio.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="string.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="../inc/menu.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu_8h.html",tooltip="Library for updating menu on oled. "];
+  Node3 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="funkyboard.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$funkyboard_8h.html",tooltip="Library for communicating with multifunction board. "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="avr/io.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="../inc/oled.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$oled_8h.html",tooltip="Library for communicating and controlling oled. "];
+  Node6 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="../inc/statemachine.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$statemachine_8h.html",tooltip="Library for keeping track of states and state-transitions for game play. "];
+}

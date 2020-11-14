@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of oled library
+*/
 
 #define F_CPU	4915200
 #include <util/delay.h>
@@ -9,25 +13,48 @@ volatile char *ext_oled_cmd = (char*)OLED_COMMAND_ADDRESS;
 volatile char *ext_oled_data = (char*)OLED_DATA_ADDRESS;
 
 
-
-/// Abstraction for writing commands and data to oled ///
-
+/**
+* @brief Write command to oled
+*
+* @param[in] command 8-bit command byte
+*
+* @return void
+*/
 void write_c(uint8_t command){
 	ext_oled_cmd[0] = command;
 }
 
+/**
+* @brief Write data to oled display
+*
+* @param[in] data 8-bit data byte
+*
+* @return void
+*/
 void write_d(uint8_t data){
 	ext_oled_data[0] = data;
 }
 
 
 
-/// Moving position pointer ///
-
+/**
+* @brief Move oled pointer to a specified row
+*
+* @param[in] row Desired row to go to
+*
+* @return void
+*/
 void oled_goto_row(uint8_t row){
 	write_c(0xB0 | row);
 };
 
+/**
+* @brief Move oled pointer to a specified columns
+*
+* @param[in] col Desired columns to go to
+*
+* @return void
+*/
 void oled_goto_column(uint8_t col){
 	uint8_t upper_address = col >> 4;
 	uint8_t lower_address = col & 0b00001111;

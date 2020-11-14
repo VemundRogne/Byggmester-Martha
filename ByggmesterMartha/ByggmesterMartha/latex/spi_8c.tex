@@ -1,0 +1,154 @@
+\hypertarget{spi_8c}{}\section{src/spi.c File Reference}
+\label{spi_8c}\index{src/spi.\+c@{src/spi.\+c}}
+
+
+Implementation of spi library.  
+
+
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/spi.\+h\char`\"{}}\newline
+Include dependency graph for spi.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{spi_8c_a5db0aceecaf7db5fbe2984e88fef3734}{spi\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes the S\+PI peripheral to support M\+C\+P2515\+: \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{spi_8c_ad341e264e8061d528e66a6322d08beb8}{spi\+\_\+readwrite\+\_\+byte} (uint8\+\_\+t byte)
+\begin{DoxyCompactList}\small\item\em Write and read a single byte with the S\+PI peripheral. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a4c1cdbc51010c704b12b7b4f0a1e194e}{spi\+\_\+read} (uint8\+\_\+t $\ast$read\+\_\+buffer, uint8\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Read data from the S\+PI peripheral in polling mode. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a53eac506356bf131d318cacb677ac1a7}{spi\+\_\+write} (uint8\+\_\+t $\ast$write\+\_\+buffer, uint8\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Write data to the S\+PI peripheral in polling mode. \end{DoxyCompactList}\item 
+void \hyperlink{spi_8c_a1de49a46058a3b35932627ffb3a5a03a}{spi\+\_\+readwrite} (uint8\+\_\+t $\ast$write\+\_\+buffer, uint8\+\_\+t $\ast$read\+\_\+buffer, uint8\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Read and write from the S\+PI peripheral in polling mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of spi library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{spi_8c_a5db0aceecaf7db5fbe2984e88fef3734}\label{spi_8c_a5db0aceecaf7db5fbe2984e88fef3734}} 
+\index{spi.\+c@{spi.\+c}!spi\+\_\+init@{spi\+\_\+init}}
+\index{spi\+\_\+init@{spi\+\_\+init}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{spi\+\_\+init()}{spi\_init()}}
+{\footnotesize\ttfamily void spi\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the S\+PI peripheral to support M\+C\+P2515\+: 
+
+
+\begin{DoxyItemize}
+\item Master mode
+\item \hyperlink{unionData}{Data} order M\+SB
+\item C\+P\+HA = C\+P\+OL = 0 or 1
+\item M\+C\+P2515 supports any frequency up to 10\+M\+Hz
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_a4c1cdbc51010c704b12b7b4f0a1e194e}\label{spi_8c_a4c1cdbc51010c704b12b7b4f0a1e194e}} 
+\index{spi.\+c@{spi.\+c}!spi\+\_\+read@{spi\+\_\+read}}
+\index{spi\+\_\+read@{spi\+\_\+read}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{spi\+\_\+read()}{spi\_read()}}
+{\footnotesize\ttfamily void spi\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{read\+\_\+buffer,  }\item[{uint8\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Read data from the S\+PI peripheral in polling mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em read\+\_\+buffer} & Pointer to buffer where read bytes are stored \\
+\hline
+\mbox{\tt in}  & {\em n} & Number of bytes to read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_a1de49a46058a3b35932627ffb3a5a03a}\label{spi_8c_a1de49a46058a3b35932627ffb3a5a03a}} 
+\index{spi.\+c@{spi.\+c}!spi\+\_\+readwrite@{spi\+\_\+readwrite}}
+\index{spi\+\_\+readwrite@{spi\+\_\+readwrite}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{spi\+\_\+readwrite()}{spi\_readwrite()}}
+{\footnotesize\ttfamily void spi\+\_\+readwrite (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{write\+\_\+buffer,  }\item[{uint8\+\_\+t $\ast$}]{read\+\_\+buffer,  }\item[{uint8\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Read and write from the S\+PI peripheral in polling mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em write\+\_\+buffer} & Pointer to buffer where bytes to be written are stored \\
+\hline
+\mbox{\tt out}  & {\em read\+\_\+buffer} & Pointer to buffer where read bytes are stored \\
+\hline
+\mbox{\tt in}  & {\em n} & Number of bytes to write\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_ad341e264e8061d528e66a6322d08beb8}\label{spi_8c_ad341e264e8061d528e66a6322d08beb8}} 
+\index{spi.\+c@{spi.\+c}!spi\+\_\+readwrite\+\_\+byte@{spi\+\_\+readwrite\+\_\+byte}}
+\index{spi\+\_\+readwrite\+\_\+byte@{spi\+\_\+readwrite\+\_\+byte}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{spi\+\_\+readwrite\+\_\+byte()}{spi\_readwrite\_byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t spi\+\_\+readwrite\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+
+
+
+Write and read a single byte with the S\+PI peripheral. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em byte} & Byte to be written to peripheral\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Byte read from peripheral 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file spi.\+c.
+
+\mbox{\Hypertarget{spi_8c_a53eac506356bf131d318cacb677ac1a7}\label{spi_8c_a53eac506356bf131d318cacb677ac1a7}} 
+\index{spi.\+c@{spi.\+c}!spi\+\_\+write@{spi\+\_\+write}}
+\index{spi\+\_\+write@{spi\+\_\+write}!spi.\+c@{spi.\+c}}
+\subsubsection{\texorpdfstring{spi\+\_\+write()}{spi\_write()}}
+{\footnotesize\ttfamily void spi\+\_\+write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{write\+\_\+buffer,  }\item[{uint8\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Write data to the S\+PI peripheral in polling mode. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em write\+\_\+buffer} & Pointer to buffer where bytes to be written are stored \\
+\hline
+\mbox{\tt in}  & {\em n} & Number of bytes to write\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file spi.\+c.
+

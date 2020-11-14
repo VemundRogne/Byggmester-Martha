@@ -1,0 +1,202 @@
+\hypertarget{statemachine_8h}{}\section{inc/statemachine.h File Reference}
+\label{statemachine_8h}\index{inc/statemachine.\+h@{inc/statemachine.\+h}}
+
+
+Library for keeping track of states and state-\/transitions for game play.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{statemachine_8h_adc6e5733fc3c22f0a7b2914188c49c90}\label{statemachine_8h_adc6e5733fc3c22f0a7b2914188c49c90}} 
+enum {\bfseries state} \{ \newline
+{\bfseries H\+O\+M\+E\+\_\+\+M\+E\+NU}, 
+{\bfseries D\+E\+V\+E\+L\+O\+P\+E\+RS}, 
+{\bfseries G\+A\+M\+E\+\_\+\+O\+V\+ER}, 
+{\bfseries P\+L\+A\+Y\+\_\+\+G\+A\+ME}, 
+\newline
+{\bfseries I\+N\+I\+T\+I\+A\+L\+I\+Z\+I\+NG}, 
+{\bfseries E\+N\+D\+\_\+\+G\+A\+ME}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{statemachine_8h_a29eae0627c9a35435b0982e9353ed8a2}{statemachine\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize state to H\+O\+M\+E\+\_\+\+M\+E\+NU. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_a61238c685773cc8e0bcd3e6bb08fbc2c}{enter\+\_\+home\+\_\+menu} ()
+\begin{DoxyCompactList}\small\item\em Transition function to H\+O\+M\+E\+\_\+\+M\+E\+NU. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_a077b0261e343c17da0ffa0d2ec73f9c2}{enter\+\_\+developers\+\_\+menu} ()
+\begin{DoxyCompactList}\small\item\em Transition function to D\+E\+V\+E\+L\+O\+P\+E\+RS. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_a09bd5f46de64c54539f7879ffdddf3e7}{enter\+\_\+game\+\_\+over} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Transition function to G\+A\+M\+E\+\_\+\+O\+V\+ER. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_aed9672a34023b63f1a4581b6f172f40f}{enter\+\_\+play\+\_\+game} (uint16\+\_\+t score)
+\begin{DoxyCompactList}\small\item\em Transition function to P\+L\+A\+Y\+\_\+\+G\+A\+ME. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_a456d51508c9ee1459bbda460312ea7c1}{enter\+\_\+initializing} ()
+\begin{DoxyCompactList}\small\item\em Transition function to I\+N\+I\+T\+I\+A\+L\+I\+Z\+I\+NG. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_ab890e36c99ad64053c74453e0f88bcf5}{statemachine\+\_\+menu\+\_\+selection} ()
+\begin{DoxyCompactList}\small\item\em Handler users selecting a new menu. \end{DoxyCompactList}\item 
+void \hyperlink{statemachine_8h_ad156bb99663665fbe5df1a157777d77d}{statemachine\+\_\+execute\+\_\+current\+\_\+state} ()
+\begin{DoxyCompactList}\small\item\em Execute actions according to the current state of the fsm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{statemachine_8h_a1e2054a42ae208912dc99b5e358835b5}\label{statemachine_8h_a1e2054a42ae208912dc99b5e358835b5}} 
+enum state {\bfseries current\+\_\+state}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for keeping track of states and state-\/transitions for game play. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{statemachine_8h_a077b0261e343c17da0ffa0d2ec73f9c2}\label{statemachine_8h_a077b0261e343c17da0ffa0d2ec73f9c2}} 
+\index{statemachine.\+h@{statemachine.\+h}!enter\+\_\+developers\+\_\+menu@{enter\+\_\+developers\+\_\+menu}}
+\index{enter\+\_\+developers\+\_\+menu@{enter\+\_\+developers\+\_\+menu}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{enter\+\_\+developers\+\_\+menu()}{enter\_developers\_menu()}}
+{\footnotesize\ttfamily void enter\+\_\+developers\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transition function to D\+E\+V\+E\+L\+O\+P\+E\+RS. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_a09bd5f46de64c54539f7879ffdddf3e7}\label{statemachine_8h_a09bd5f46de64c54539f7879ffdddf3e7}} 
+\index{statemachine.\+h@{statemachine.\+h}!enter\+\_\+game\+\_\+over@{enter\+\_\+game\+\_\+over}}
+\index{enter\+\_\+game\+\_\+over@{enter\+\_\+game\+\_\+over}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{enter\+\_\+game\+\_\+over()}{enter\_game\_over()}}
+{\footnotesize\ttfamily void enter\+\_\+game\+\_\+over (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Transition function to G\+A\+M\+E\+\_\+\+O\+V\+ER. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Final score of game play\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_a61238c685773cc8e0bcd3e6bb08fbc2c}\label{statemachine_8h_a61238c685773cc8e0bcd3e6bb08fbc2c}} 
+\index{statemachine.\+h@{statemachine.\+h}!enter\+\_\+home\+\_\+menu@{enter\+\_\+home\+\_\+menu}}
+\index{enter\+\_\+home\+\_\+menu@{enter\+\_\+home\+\_\+menu}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{enter\+\_\+home\+\_\+menu()}{enter\_home\_menu()}}
+{\footnotesize\ttfamily void enter\+\_\+home\+\_\+menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transition function to H\+O\+M\+E\+\_\+\+M\+E\+NU. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 20 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_a456d51508c9ee1459bbda460312ea7c1}\label{statemachine_8h_a456d51508c9ee1459bbda460312ea7c1}} 
+\index{statemachine.\+h@{statemachine.\+h}!enter\+\_\+initializing@{enter\+\_\+initializing}}
+\index{enter\+\_\+initializing@{enter\+\_\+initializing}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{enter\+\_\+initializing()}{enter\_initializing()}}
+{\footnotesize\ttfamily void enter\+\_\+initializing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transition function to I\+N\+I\+T\+I\+A\+L\+I\+Z\+I\+NG. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_aed9672a34023b63f1a4581b6f172f40f}\label{statemachine_8h_aed9672a34023b63f1a4581b6f172f40f}} 
+\index{statemachine.\+h@{statemachine.\+h}!enter\+\_\+play\+\_\+game@{enter\+\_\+play\+\_\+game}}
+\index{enter\+\_\+play\+\_\+game@{enter\+\_\+play\+\_\+game}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{enter\+\_\+play\+\_\+game()}{enter\_play\_game()}}
+{\footnotesize\ttfamily void enter\+\_\+play\+\_\+game (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{score }\end{DoxyParamCaption})}
+
+
+
+Transition function to P\+L\+A\+Y\+\_\+\+G\+A\+ME. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em score} & Current score of game play\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_ad156bb99663665fbe5df1a157777d77d}\label{statemachine_8h_ad156bb99663665fbe5df1a157777d77d}} 
+\index{statemachine.\+h@{statemachine.\+h}!statemachine\+\_\+execute\+\_\+current\+\_\+state@{statemachine\+\_\+execute\+\_\+current\+\_\+state}}
+\index{statemachine\+\_\+execute\+\_\+current\+\_\+state@{statemachine\+\_\+execute\+\_\+current\+\_\+state}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{statemachine\+\_\+execute\+\_\+current\+\_\+state()}{statemachine\_execute\_current\_state()}}
+{\footnotesize\ttfamily void statemachine\+\_\+execute\+\_\+current\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute actions according to the current state of the fsm. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 120 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_a29eae0627c9a35435b0982e9353ed8a2}\label{statemachine_8h_a29eae0627c9a35435b0982e9353ed8a2}} 
+\index{statemachine.\+h@{statemachine.\+h}!statemachine\+\_\+init@{statemachine\+\_\+init}}
+\index{statemachine\+\_\+init@{statemachine\+\_\+init}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{statemachine\+\_\+init()}{statemachine\_init()}}
+{\footnotesize\ttfamily void statemachine\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize state to H\+O\+M\+E\+\_\+\+M\+E\+NU. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file statemachine.\+c.
+
+\mbox{\Hypertarget{statemachine_8h_ab890e36c99ad64053c74453e0f88bcf5}\label{statemachine_8h_ab890e36c99ad64053c74453e0f88bcf5}} 
+\index{statemachine.\+h@{statemachine.\+h}!statemachine\+\_\+menu\+\_\+selection@{statemachine\+\_\+menu\+\_\+selection}}
+\index{statemachine\+\_\+menu\+\_\+selection@{statemachine\+\_\+menu\+\_\+selection}!statemachine.\+h@{statemachine.\+h}}
+\subsubsection{\texorpdfstring{statemachine\+\_\+menu\+\_\+selection()}{statemachine\_menu\_selection()}}
+{\footnotesize\ttfamily void statemachine\+\_\+menu\+\_\+selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handler users selecting a new menu. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file statemachine.\+c.
+

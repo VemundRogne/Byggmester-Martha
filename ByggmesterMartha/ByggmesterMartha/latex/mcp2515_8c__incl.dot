@@ -1,0 +1,36 @@
+digraph "src/mcp2515.c"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="src/mcp2515.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
+  Node1 [label="util/delay.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="avr/io.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="avr/interrupt.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="../inc/spi.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$spi_8h.html",tooltip="Library for spi communication. "];
+  Node4 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="stdio.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="../inc/mcp2515.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mcp2515_8h.html",tooltip="Library communication and control of the MCP2515. "];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="../inc/can.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$can_8h.html",tooltip="Library for communicating over CAN. "];
+  Node7 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="../inc/game.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$game_8h.html",tooltip="Library for running the actual game sequence. "];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="menu.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$menu_8h.html",tooltip="Library for updating menu on oled. "];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="funkyboard.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$funkyboard_8h.html",tooltip="Library for communicating with multifunction board. "];
+  Node10 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node11 [color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="statemachine.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$statemachine_8h.html",tooltip="Library for keeping track of states and state-transitions for game play. "];
+  Node0 -> Node12 [color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="../inc/uart.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$uart_8h_source.html"];
+}
