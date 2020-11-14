@@ -7,6 +7,18 @@ The code for Node1 is contained in the folder "ByggmesterMartha" and is an Atmel
 ## Node 2
 The code for node 2 is contained in the folder "Node2" and is an Atmel-Studio project.
 
+## Continous Integration and automated testing
+To ease the development process we setup an automated CI and testing framework through Github actions. The full action is described in ".github/Node1.yml"
+
+Every time a new commit is pushed to github this automated system:
+1. Downloads the new code in a fresh environment
+2. Builds node 1 and node 2
+3. Flashes the newly build node 1 and node 2 (if it did actually sucessfully build)
+4. Run tests on the hardware through the communications-interface
+
+### Test example
+A nice example of a test is the test_can::test_can test. This test sets the MCP2515 into loopback mode, constructs and sends a can message and verifies that the same message is read back. While performing this test the comms inteface calls the same functions that the firmware would, and thus proves that the entire can-chain is valid.
+
 ## Communications-interface
 We have developed a protocol for communication between a host computer and node 1. The protocol makes it possible to get and set variables, run tests and collect debug-information.
 
@@ -30,13 +42,3 @@ byggern.can_transmit(
     msg_data = data
 )
 ```
-
-## Continous Integration and automated testing
-To ease the development process we setup an automated CI and testing framework through Github actions. The full action is described in ".github/Node1.yml"
-
-Every time a new commit is pushed to github this automated system:
-1. Downloads the new code in a fresh environment
-2. Builds node 1 and node 2
-3. Flashes the newly build node 1 and node 2 (if it did actually sucessfully build)
-4. Run tests on the hardware through the communications-interface
-
