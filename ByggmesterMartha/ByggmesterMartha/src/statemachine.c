@@ -22,9 +22,9 @@ void enter_home_menu(){
 	menu_lower_bound = 5;
 }
 
-void enter_highscore_menu(){
-	current_state = HIGHSCORE;
-	menu_highscores();
+void enter_developers_menu(){
+	current_state = DEVELOPERS;
+	menu_developers();
 
 	current_selection = 5;
 	menu_lower_bound = 5;
@@ -50,6 +50,9 @@ void enter_initializing(){
 	current_state = INITIALIZING;
 }
 
+void enter_end_game(){
+	current_state = END_GAME;
+}
 
 void statemachine_menu_selection(){
 	switch(current_state){
@@ -69,12 +72,16 @@ void statemachine_menu_selection(){
 					break;
 
 				case 4:
-					enter_highscore_menu();
+					enter_developers_menu();
+					break;
+					
+				case 5:
+					enter_end_game();
 					break;
 			}
 			break;
 
-		case HIGHSCORE:
+		case DEVELOPERS:
 			switch(current_selection){
 				default:
 					enter_home_menu();
@@ -107,7 +114,7 @@ void statemachine_execute_current_state(){
 			menu_navigate();
 			break;
 
-		case HIGHSCORE:
+		case DEVELOPERS:
 			menu_draw((char*)&menu[0]);
 			menu_navigate();
 			break;
@@ -124,6 +131,10 @@ void statemachine_execute_current_state(){
 		
 		case INITIALIZING:
 			oled_print_string(" INITIALIZING", 4);
+			break;
+			
+		case END_GAME:
+			oled_clear();
 			break;
 	}
 }

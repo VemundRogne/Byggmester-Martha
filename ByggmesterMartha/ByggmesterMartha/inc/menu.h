@@ -21,7 +21,7 @@ void menu_navigate();
 
 // CHANGE MENU DATA //
 void menu_home();
-void menu_highscores();
+void menu_developers();
 void menu_game_over(uint16_t score);
 void menu_play_game(uint16_t score);
 
