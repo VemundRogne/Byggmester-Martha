@@ -1,9 +1,3 @@
-/*
- * timers.c
- *
- * Created: 23/09/2020 13:06:45
- *  Author: Vemund
- */ 
 
 #include "../inc/timers.h"
 #include <avr/io.h>
@@ -12,11 +6,11 @@
 
 // This ISR is called approximately 70 times per second, as per init_timer0();
 ISR(TIMER0_OVF_vect){
-	rd_adc();
+	adc_rd();
 }
 
 // Configures timer0 to be a system-wide interrupt generator at ~70 Hz
-void init_timer0(){
+void timer0_init(){
 	// Waveform generation defaults to "Normal"
 	// We configure no direct outputs
 	
@@ -29,7 +23,7 @@ void init_timer0(){
 }
 
 // Configures timer1 and OC1A as an ADC clock
-void init_timer1(){
+void timer1_init(){
 	// Sets Waveform Generation Mode to mode 5: Fast PWM, 8-bit
 	TCCR1A |= (1<<WGM10);
 	TCCR1B |= (1<<WGM12);

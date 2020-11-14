@@ -1,40 +1,34 @@
-/*
- * menu.c
- *
- * Created: 23.09.2020 08:59:35
- *  Author: marth
- */ 
 
 #include <stdio.h>
+#include <string.h>
 
 #include "../inc/menu.h"
 #include "../inc/oled.h"
-#include "../inc/funkyboard.h"
 #include "../inc/statemachine.h"
-#include <string.h>
 
-enum Joystick_dir last_joystick_dir = NEUTRAL;
 
 void menu_init(){
-	oled_clear();
-	
+	last_joystick_dir = NEUTRAL;	
 	current_selection = 3;
 	menu_upper_bound = 3;
 	menu_lower_bound = 5;
+	menu_home();
 };
 
 
-/// MENU DRAW ///
 
 
 void menu_draw_item(uint8_t row){
+	//Clear row and move pointer
 	oled_clear_row(row);
 	oled_pos(row, 0);
+
+	// Retrieve correct menu data
 	char _item[LINELENGTH];
-	
 	memcpy(&_item[0], &menu[row*LINELENGTH], LINELENGTH);
 	_item[LINELENGTH] = '\0';
 	
+	// Add oled pointer to the "selected line"
 	if(current_selection == row){
 		_item[0] = 42;
 	}
@@ -42,38 +36,41 @@ void menu_draw_item(uint8_t row){
 		_item[0] = 32;
 	}
 	
+	// Write data row to oled
 	for(uint8_t i = 0; i<LINELENGTH; i++){
 		oled_print_char(&_item[i]);
 	}
 }
 
+
 void menu_draw(){
+	// Draw every row of the oled
 	for (uint8_t row = 0; row < 8; row++){
 		menu_draw_item(row);
 	}
 	
-};
+}
 
 
 
-/// MENU NAVIGATION ///
-
+// Move menu selector up
 void menu_go_up(){
 	if (current_selection > menu_upper_bound){ //Upper bound){
 		current_selection -= 1;
 	}
-};
-
+}
+// Move menu selector down
 void menu_go_down(){
 	if (current_selection < menu_lower_bound){ //Lower Bound){
 		current_selection += 1;
 	}
 	
-};
+}
 
 void menu_navigate(){
 	enum Joystick_dir direction = get_joystick_dir(); 
 	
+	// Check for a change in joystick direction to make it easy to control menu selector
 	if ((direction == DOWN) && (last_joystick_dir != DOWN)) {
 		menu_go_down();
 	}
@@ -86,13 +83,13 @@ void menu_navigate(){
 	
 		
 	last_joystick_dir = direction;
-};
+}
 
 
 
 /// MENU MANIPULATION ///
 
-
+// Abstraction for changing single items/menu-rows
 void menu_insert_item(volatile char* menu, char *element, uint8_t len, uint8_t position){
 	memcpy((char*)&menu[position*LINELENGTH], element, len);
 	memset((char*)&menu[(position*LINELENGTH) + len], 32, LINELENGTH-len);	// 32 is ascii for SPACE <3
@@ -104,7 +101,7 @@ void menu_home(){
 	char title[LINELENGTH] = "    WELCOME!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
-	//Options
+	// Menu options, other rows are set to "" 
 	char option1[LINELENGTH] = " Play ping pong";
 	char option2[LINELENGTH] = " Developers";
 	char option3[LINELENGTH] = " End game";
@@ -123,7 +120,7 @@ void menu_highscores(){
 	char title[LINELENGTH] = "  DEVELOPERS!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
-	//Options
+	// Menu options, other rows are set to "" 
 	char option1[LINELENGTH] = " Oskar";
 	char option2[LINELENGTH] = " Vemund";
 	char option3[LINELENGTH] = " Martha";
@@ -144,10 +141,7 @@ void menu_game_over(uint16_t score){
 	char title[LINELENGTH] = "  GAME OVER!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);
 	
-	//Options
-	//fprintf(" Score %u", score);
-	//char option2[LINELENGTH];
-	//sprintf(&score, "Score %u", score);
+	// Menu options, other rows are set to "" 
 	char option2[LINELENGTH];
 	sprintf(&option2[0], " Score %u", score);
 	char option3[LINELENGTH] = " Well done! ";
@@ -165,19 +159,16 @@ void menu_game_over(uint16_t score){
 void menu_play_game(uint16_t score){
 	volatile char* menu_pointer = &menu[0];
 	
-
-	char line0[LINELENGTH] = "  PING PONG! ";
+	// Menu options, other rows are set to "" 
+	char option0[LINELENGTH] = "  PING PONG! ";
+	char option1[LINELENGTH];
+	sprintf(&option1[0], " Score %u", score);
 	
-	char line1[LINELENGTH];
-	sprintf(&line1[0], " Score %u", score);
-	
-	
-	
-	menu_insert_item(menu_pointer, &line0[0], strlen(line0), 0);
+	menu_insert_item(menu_pointer, &option0[0], strlen(option0), 0);
 	menu_insert_item(menu_pointer, "", 0, 1);
 	menu_insert_item(menu_pointer, "", 0, 2);
 	menu_insert_item(menu_pointer, "", 0, 3);
-	menu_insert_item(menu_pointer, &line1[0], strlen(line1), 4);
+	menu_insert_item(menu_pointer, &option1[0], strlen(option1), 4);
 	menu_insert_item(menu_pointer, "", 0, 5);
 	menu_insert_item(menu_pointer, "", 0, 6);
 	menu_insert_item(menu_pointer, "", 0, 7);

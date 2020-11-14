@@ -1,10 +1,3 @@
-/*
- * adc.h
- *
- * Created: 09/09/2020 09:57:51
- *  Author: 
- */ 
-
 
 #ifndef ADC_H_
 #define ADC_H_
@@ -32,14 +25,15 @@ volatile uint16_t _adc_values[4];
 #define ADC_BUSY_PORT	PORTE
 #define ADC_BUSY_DDR	DDRE
 
+
 // NOTE: The ADC is dependent on TIMER1.
 // Sets up Timer1 to be a PWM output on PD5 (OC1A)
-void init_adc();
+void adc_init();
 
-void load_mux_config();
+// Read and store adc values internally
+void adc_rd();
 
-void rd_adc();
-
+// Read filtered adc-values from memory
 void adc_get_values(uint8_t *dest);
 
 

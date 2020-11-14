@@ -1,10 +1,3 @@
-/*
- * oled.h
- *
- * Created: 19.09.2020 11:20:18
- *  Author: marth
- */ 
-
 
 #ifndef OLED_H_
 #define OLED_H_

@@ -1,9 +1,3 @@
-/*
- * uart.h
- *
- * Created: 05.09.2020 13:59:36
- *  Author: marth
- */ 
 
 #ifndef UART_H_
 #define UART_H_
@@ -14,7 +8,7 @@
 volatile uint8_t cmd_buffer[CMD_LEN];
 volatile uint8_t cmd_receive_counter;
 
-void init_UART();
+void uart_init();
 
 uint8_t UART_rx_polling();
 

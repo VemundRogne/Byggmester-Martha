@@ -214,9 +214,6 @@
     <Compile Include="src\spi.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\sram_test.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\statemachine.c">
       <SubType>compile</SubType>
     </Compile>

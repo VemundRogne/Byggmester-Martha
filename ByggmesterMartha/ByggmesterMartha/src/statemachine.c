@@ -1,9 +1,3 @@
-/*
- * statemachine.c
- *
- * Created: 26/09/2020 13:44:03
- *  Author: 
- */ 
 
 #include <stdio.h>
 
@@ -15,7 +9,7 @@
 #include "../inc/oled.h"
 
 
-void init_statemachine(){
+void statemachine_init(){
 	current_state = HOME_MENU;
 }
 

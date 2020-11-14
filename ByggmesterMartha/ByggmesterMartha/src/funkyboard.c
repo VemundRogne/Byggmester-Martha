@@ -1,95 +1,86 @@
-/*
- * mmi.c
- *
- * Created: 09/09/2020 16:14:17
- *  Author: vemun
- */ 
+
+#define F_CPU	4915200
+
+#include <util/delay.h>
+#include <stdlib.h>
 
 #include "../inc/funkyboard.h"
 #include "../inc/adc.h"
 #include "../inc/can.h"
 
-#define F_CPU	4915200
-#include <util/delay.h>
-#include <stdlib.h>
+void joystick_init(){
 
-void init_joystick(){
+	// Wait a second to let the ADC-filter converge on a reasonable offset
 	_delay_ms(1000);
+	
+	// Assuming zero offset
 	joystick_offset_x = 0;
 	joystick_offset_y = 0;
+
+	// Find actual offset
 	struct Joystick_pos joystick = get_joystick_pos();
 	joystick_offset_x = joystick.x;
 	joystick_offset_y = joystick.y;
 }
 
+
+
 struct Joystick_pos get_joystick_pos(){
+	// Read all adc values
 	uint8_t adc_values[4];
 	adc_get_values(&adc_values[0]);
-	struct Joystick_pos joystick;
 
+	// Store offset adjusted joystick positions
+	struct Joystick_pos joystick;
 	joystick.x = (int16_t)(adc_values[0]) - joystick_offset_x;
 	joystick.y = (int16_t)(adc_values[1]) - joystick_offset_y;
+	
 	return joystick;
 }
 
-struct Joystick_pos set_joystick_pos(uint8_t x_pos, uint8_t y_pos){
-	struct Joystick_pos joystick;
-	joystick.x = x_pos;
-	joystick.y = y_pos;
-	return joystick;
-}
-
-struct Slider_pos set_slider_pos(uint8_t right_pos, uint8_t left_pos){
-	struct Slider_pos slider;
-	slider.right = right_pos;
-	slider.left = left_pos;
-	return slider;
-}
 
 enum Joystick_dir get_joystick_dir(){
 	struct Joystick_pos joystick = get_joystick_pos();
 	
+	// Check if neutral
 	if ((abs(joystick.x) < 50) && (abs(joystick.y) < 50)){
 		return NEUTRAL;
 	}
 	
+	// If not neutral, check if joystick is more tilted in y direction
 	if (abs(joystick.y)>abs(joystick.x)){
+		// If so, what y-direction?
 		if (joystick.y < -35){
 			return DOWN;
 		}
 		return UP;
 	}
 	
+	// If more in x-direction, test what x-direction
 	if (joystick.x < -35){
 		return LEFT;
 	}
 	return RIGHT;
 	
-	};
+}
 
-struct Slider_pos get_slider_pos(){
-	uint8_t adc_values[4];
-	rd_adc(&adc_values);
-	struct Slider_pos slider;
-	slider.right = (int) (((adc_values[2]-128)*100)/128);
-	slider.left = (int) (((adc_values[3]-128)*100)/128);
-	return slider;
-	};
-	
 	
 void send_button_press(){
+	// Check for buttonpress
 	if ((PINB &= ( 1 << 3)) == ( 1 << 3)){
+		// Create can message and send to node 2
 		struct can_msg button_msg;
-		uint8_t pulse_length = 4;
 		button_msg.ID = 52;
-		button_msg.data[0] = 1;
-		button_msg.data[1] = pulse_length;
 		button_msg.len = 2;
+		button_msg.data[0] = 1;
 		
 		can_transmit_message(&button_msg);
 	}
 }	
 
+
+// Wraps value into 8 bit signed integer to accomadate a short CAN message
+// Filter noise to make servo stop twitching
 int8_t wrap_and_filter(int16_t value){
 	if (abs(value)<15){
 		return 0;
@@ -104,46 +95,20 @@ int8_t wrap_and_filter(int16_t value){
 	return (int8_t) value;
 }
 
-// Sends joystick position over CAN bus
-// Returns 0 for successful transmission
-// 1 when failed. 
-uint8_t joystick_transmit_position(struct Joystick_pos js_pos){
-	struct can_msg js_msg;
+void send_joystick_position(struct Joystick_pos js_pos){
 	union Data data;
 	
+	// Create can message
+	struct can_msg js_msg;
 	js_msg.ID = 69;
 	js_msg.len = 2;
 
+	// Load message with joystick data
 	data.i = wrap_and_filter(js_pos.x);
 	js_msg.data[0] = data.u;
 	data.i = wrap_and_filter(js_pos.y);
 	js_msg.data[1] = data.u;
 	
-	
-	if(can_transmit_message(&js_msg) != 1){
-		return 0;
-	}
-	return 1;
-};	
-
-
-
-uint8_t slider_can(struct Slider_pos s_pos){
-	struct can_msg slider_msg;
-	union Data data;
-	
-	slider_msg.ID = 70;
-	slider_msg.len = 2;
-	
-	//data.i = saturate_and_filter_noise(s_pos.right, -127, 127);
-	data.i = s_pos.right;
-	slider_msg.data[0] = data.u;
-	//data.i = saturate_and_filter_noise(s_pos.left, -127, 127);
-	data.i = s_pos.left;
-	slider_msg.data[1] = data.u;
-	
-	if(can_transmit_message(&slider_msg) != 1){
-		return 0;
-	}
-	return 1;
+	// Send joystick data to node 2
+	can_transmit_message(&js_msg);
 }

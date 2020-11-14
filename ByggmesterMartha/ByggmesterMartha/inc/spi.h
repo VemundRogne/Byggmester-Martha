@@ -1,9 +1,3 @@
-/*
- * spi.h
- *
- * Created: 30/09/2020 10:51:58
- *  Author: vemun
- */ 
 
 #include <avr/io.h>
 #include <stdio.h>

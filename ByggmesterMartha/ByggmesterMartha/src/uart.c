@@ -1,20 +1,14 @@
-/*
- * uart.c
- *
- * Created: 05.09.2020 13:59:53
- *  Author: marth
- */ 
-
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <stdio.h>
-#include <string.h>
 
 #define F_CPU	4915200
 #define BAUD	9600
 #define MYUBRR	F_CPU/16/BAUD-1
 
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <stdio.h>
+#include <string.h>
 #include <util/delay.h>
+#include <stdlib.h>
 
 #include "../inc/uart.h"
 #include "../inc/mcp2515.h"
@@ -280,7 +274,7 @@ void UART_execute_motor_cmd(){
 	}
 }
 
-void init_UART(){
+void uart_init(){
 	// Set Baudrate
 	UBRR0L = MYUBRR;
 
