@@ -29,7 +29,7 @@ void game_sequence(){
 	{
 		struct Joystick_pos js_pos_current = get_joystick_pos();
 		//struct Slider_pos slider_pos_current = get_slider_pos();
-		joystick_transmit_position(js_pos_current);
+		send_joystick_position(js_pos_current);
 		//slider_can(slider_pos_current);
 		send_button_press();
 		score_count += 1;

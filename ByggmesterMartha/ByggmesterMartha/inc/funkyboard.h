@@ -6,8 +6,8 @@
  */ 
 
 
-#ifndef MMI_H_
-#define MMI_H_
+#ifndef FUNKYBOARD_H_
+#define FUNKYBOARD_H_
 
 #include <avr/io.h>
 
@@ -24,35 +24,18 @@ struct Joystick_pos{
 	int16_t y;
 };
 
-struct Joystick_pos get_joystick_pos();
+enum Joystick_dir {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3, NEUTRAL = 4};
 
 
-struct Slider_pos {
-	int right;
-	int left;
-};
 
 void init_joystick();
 
-enum Joystick_dir {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3, NEUTRAL = 4};
 
 enum Joystick_dir get_joystick_dir();
-
-struct Slider_pos get_slider_pos();
-
 struct Joystick_pos get_joystick_pos();
 
-struct Joystick_pos set_joystick_pos(uint8_t x_pos, uint8_t y_pos);
-
-struct Slider_pos set_slider_pos(uint8_t right_pos, uint8_t left_pos);
-
 void send_button_press();
-void get_button_press();
+uint8_t send_joystick_position(struct Joystick_pos js_pos);
 
-uint8_t joystick_transmit_position(struct Joystick_pos js_pos);
 
-uint8_t slider_can(struct Slider_pos s_pos);
-
-//joystick_press(); return true if pressed or something 
-
-#endif /* MMI_H_ */
+#endif /* FUNKYBOARD_H_ */
