@@ -6,18 +6,15 @@
  */ 
 
 #include <stdio.h>
+#include <string.h>
 
 #include "../inc/menu.h"
 #include "../inc/oled.h"
-#include "../inc/funkyboard.h"
 #include "../inc/statemachine.h"
-#include <string.h>
 
-enum Joystick_dir last_joystick_dir = NEUTRAL;
 
 void menu_init(){
-	oled_clear();
-	
+	last_joystick_dir = NEUTRAL;	
 	current_selection = 3;
 	menu_upper_bound = 3;
 	menu_lower_bound = 5;
@@ -25,7 +22,6 @@ void menu_init(){
 
 
 /// MENU DRAW ///
-
 
 void menu_draw_item(uint8_t row){
 	oled_clear_row(row);

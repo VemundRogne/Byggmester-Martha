@@ -8,11 +8,14 @@
 
 #ifndef MENU_H_
 #define MENU_H_
-#include <stdio.h>
-
 #define LINELENGTH	16
+
+#include <stdio.h>
+#include "funkyboard.h"
+
 volatile char menu[8*LINELENGTH + 1];
 
+enum Joystick_dir last_joystick_dir;
 uint8_t current_selection;
 uint8_t menu_upper_bound;
 uint8_t menu_lower_bound;
