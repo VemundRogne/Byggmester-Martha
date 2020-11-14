@@ -32,37 +32,19 @@
 
 int main(void)
 {
+	sei();
+
 	uart_init();
 	xmem_init();
-	init_adc();
+	adc_init();
 	oled_init();
 	menu_init();
 	timer0_init();
 	statemachine_init();	
 	game_init();
-	
-	sei();
-
-	load_mux_config();
-	init_joystick();
-	
-	menu_home();
-
+	joystick_init();
 	mcp2515_init(NORMAL);
 
-	uint8_t rd_adc_values[4];
-	uint8_t ir_status = 0;
-	
-	struct can_msg flag_msg;
-	flag_msg.ID = 5;
-	flag_msg.data[0] = 1;
-	flag_msg.len = 1;
-	
-//	can_transmit_message(&flag_msg);
-	
-	uint8_t test = 0;
-
-	//printf("Starting main:\n");
     while (1){
 		game_sequence();
 		_delay_ms(50);

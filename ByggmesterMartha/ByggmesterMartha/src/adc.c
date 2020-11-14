@@ -17,8 +17,9 @@
 
 // Sets up Timer1 to be a PWM output on PD5 (OC1A)
 // This is the required clock that the ADC needs to operate
-void init_adc(){
+void adc_init(){
 	timer1_init();
+	load_mux_config();
 }
 
 // Loads configuration of each channel according to figura 4a (page 11) in datasheet

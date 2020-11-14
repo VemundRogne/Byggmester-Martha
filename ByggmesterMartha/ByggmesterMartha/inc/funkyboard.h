@@ -28,7 +28,7 @@ enum Joystick_dir {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3, NEUTRAL = 4};
 
 
 
-void init_joystick();
+void joystick_init();
 
 // Get ADC values 
 struct Joystick_pos get_joystick_pos();

@@ -14,7 +14,7 @@
 #include "../inc/adc.h"
 #include "../inc/can.h"
 
-void init_joystick(){
+void joystick_init(){
 	_delay_ms(1000);
 	joystick_offset_x = 0;
 	joystick_offset_y = 0;

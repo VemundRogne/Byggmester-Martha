@@ -34,7 +34,7 @@ volatile uint16_t _adc_values[4];
 
 // NOTE: The ADC is dependent on TIMER1.
 // Sets up Timer1 to be a PWM output on PD5 (OC1A)
-void init_adc();
+void adc_init();
 
 void load_mux_config();
 
