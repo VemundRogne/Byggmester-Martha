@@ -16,6 +16,7 @@ uint8_t menu_lower_bound;
 
 void menu_init();
 
+// Move menu pointer
 void menu_navigate();
 
 // CHANGE MENU DATA //
@@ -24,6 +25,7 @@ void menu_highscores();
 void menu_game_over(uint16_t score);
 void menu_play_game(uint16_t score);
 
+// Draw current menu to oled
 void menu_draw();
 
 
