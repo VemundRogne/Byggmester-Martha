@@ -81,66 +81,7 @@ ISR(INT0_vect){
 	}
 }
 
-/*
- * Function: Configure the bit-timing of the CAN bus
- * -------------------------------------------------
- * Theory:
- *   CAN BIT TIME SEGMENTS:
- *         |Sync|Prop|PhaseSeg1|PhaseSeg2|
- *   The sampling time is between PS1 and PS2.
- * 
- *   The full length is the time for ONE BIT. The length of each segment is
- *   some amount of time-quantas TQ. The full length of one bit is typically 16 Tq
- *
- *   The point of this configuration is to configure the sync-process.
- '   The device will shorten or extend its bit-time to match the sender. 
- * 
- *   The device expects an edge (a bit) within the Sync-segment. If the bit falls
- *   within the segment then we have synchronization. If the bit falls after the 
- *   sync segment [The transmitter is slower than expected] - we extend the 
- *   duration of PhaseSeg2 (PS2). If the bit falls before the sync segment
- *   [The transmitter is faster than expected] we shorten the duration of PS2.
- *
- *   The length of extension or shortening is configured by the Synchronization
- *   jump width (SJW).
- *
- *   Some requirements for the programming of the segments (see page 43 in MCP2515 datasheet):
- *    - PropSeg + PhaseSeg1 (PS1) >= PS2
- *    - PropSeg + PS1 >= T_delay
- *    - PS2 > SJW
- *
- * Configuration-register explanation:
- *   CNF1 - Configuration 1:
- *     bit 7-6 : Synchronization Jump Width Length
- *     bit 5-0 : Baud Rate Prescaler Bits
- *
- *   CNF2 - Configuration 2:
- *     bit 7   : PS2 Bit Time Length bit
- *     bit 6   : Sample Point Configuration bit
- *     bit 5-3 : PS1 Length bits
- *     bit 2-0 : Propagation Segments Length bits
- *
- *   CNF3 - Configuration 3:
- *     bit 7   : Start-of-Frame signal bit
- *     bit 6   : Wake-up Filter bit
- *     bit 5-3 : Unimplemented
- *     bit 2-0 : PS2 Length bits
- *
- * Configuration:
- *   We target a CAN_BAUDRATE of 9600 Hz
- *   The oscillator on the MCP2515 is 16 MHz
- *
- *   Prescaling the OSCILLATOR with 2^6 - 1 (max prescaling, slowest timequanta)
- *   results in F_Tq = 125 984.252. If we then have 16 Tq per bit we get a
- *   CAN_BAUDRATE = 7874.
- *
- *   These durations are from page 43 in the datasheet:
- *     SyncSeg = 1 TQ
- *     PropSeg = 2 TQ
- *     PS1 = 7 TQ
- *     PS2 = 6 TQ
- *     SJW = 1
-*/
+
 void mcp2515_configure_bit_timing(){
 	// Setting TQ duration: 0x3F in both mask and value gives the maximum prescaling
 	// and the lowest baudrate.
@@ -167,12 +108,6 @@ void mcp2515_configure_bit_timing(){
 	mcp2515_BIT_MODIFY(MCP_CNF3, 0x07, 0x05);
 }
 
-/*
- * Function: Send reset command to mcp2515
- * ---------------------------------------
- * Single-byte instruction to re-initialize the internal registers
- * of the MCP2515 and set Configuration mode.
-*/
 void mcp2515_RESET(){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
@@ -186,11 +121,6 @@ void mcp2515_RESET(){
 }
 
 
-/*
- * Function: Read n bytes from MCP2515
- * -----------------------------------
- * Reads n bytes from MCP2515 starting from address
-*/
 void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
@@ -205,12 +135,6 @@ void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n){
 	mcp2515_deselect();
 }
 
-
-/*
- * Function: Write n bytes to the MCP2515
- * --------------------------------------
- * Write n bytes to the MCP2515 starting at address
-*/
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
@@ -227,11 +151,6 @@ void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n){
 }
 
 
-/*
- * Function: Get status of receive buffers
- * --------------------------------------
- * See FIGURE 12-9 in MCP2515 datasheet for description of the byte returned
-*/
 uint8_t mcp2515_RX_STATUS(){
 	uint8_t rx_status;
 
@@ -252,21 +171,7 @@ uint8_t mcp2515_RX_STATUS(){
 
 
 
-/*
- * Function: Read most used status bits for message transmission and reception
- * ---------------------------------------------------------------------------
- * This is a single-instruction way to find many status bits:
- *
- * Returns status byte:
- *  Bit 7: CANINTF.TX2IF	- Flag is set when transmission completes
- *  Bit 6: TXB2CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
- *  Bit 5: CANINTF.TX1IF	- Flag is set when transmission completes
- *  Bit 4: TXB1CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
- *  Bit 3: CANINTF.TX0IF	- Flag is set when transmission completes
- *  Bit 2: TXB0CNTRL.TXREQ	- Indicates status of pending transmission (0: register clear, 1: register is pending transmission)
- *  Bit 1: CANINTFL.RX1IF	- Indicates that a message has been received into Receive buffer 1
- *  Bit 0: CANINTF.RX0IF	- Indicates that a message has been received into Receive buffer 0
-*/
+
 uint8_t mcp2515_READ_STATUS(){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
@@ -286,11 +191,6 @@ uint8_t mcp2515_READ_STATUS(){
 }
 
 
-/*
- * Function: Modify a bit in a chosen register in MCP2515
- * --------------------------------------
- * Sets bit in register_addr to value (0/1)
-*/
 void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_byte){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();
@@ -302,13 +202,7 @@ void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_
 	mcp2515_deselect();
 };
 
-/*
- * Function: Request to send for MCP2515
- * --------------------------------------
-	Gets selected transmit buffer(s) as input
-	and initiates message transmission for the selected transmit buffer(s). 
- * 
-*/
+
 void mcp2515_RTS(uint8_t RTS_selection){
 	// Select the MCP2515 (pull CS low)
 	mcp2515_select();

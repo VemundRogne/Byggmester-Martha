@@ -155,9 +155,10 @@ Copyright 2003 Kimberly Otten Software Consulting
 #define MCP_WAKIF		0x40
 #define MCP_MERRF		0x80
 
-//mcp functions
+//// HERE BEGINS OUR OWN STUFF ////
 #include <stdio.h>
 
+// Enum to make mode initializing cleaner
 enum mcp2515_mode{
 	NORMAL = 0b000,
 	SLEEP = 0b001,
@@ -205,6 +206,13 @@ void mcp2515_READ(uint8_t address, uint8_t *read_buffer, uint8_t n);
 */
 void mcp2515_WRITE(uint8_t address, uint8_t *write_buffer, uint8_t n);
 
+/*
+ * Function: Request to send transmition buffer specified by RTS_selection
+ * --------------------------------------
+ * RTS_selection:
+ *	Bit 3-7: Dont care
+ *	Bit 0-2: Request to send transmition buffer 0-2
+*/
 void mcp2515_RTS(uint8_t RTS_selection);
 
 /*
@@ -224,8 +232,34 @@ void mcp2515_RTS(uint8_t RTS_selection);
 */
 uint8_t mcp2515_READ_STATUS();
 
+/*
+ * Function: Returns receive buffer status
+ * --------------------------------------
+ * Status byte:
+ 	Bit 6-7:
+ 		0 - No message
+ 		1 - Message in buffer 0
+ 		2 - Message in buffer 1
+ 		3 - Message in both buffers
+ 	Bit 4-3:
+ 		0 - Standard data frame
+ 		1 - Standard remote data frame
+ 		2 - Extended data fram
+ 		3 - Extended remote data frame
+ 	Bit 2-0:
+ 		0->5 - RXFn filter match
+ 		6 	 - RXF0 (rollover to RXB1)
+ 		7    - RXF1 (rollover to RXB1)
+*/
 uint8_t mcp2515_RX_STATUS();
 
+/*
+ * Function: Modifies specified bits in specified address of MCP2515
+ * --------------------------------------
+ * register_addr: address of byte to change
+ * mask_byte: Mask byte to choose which bits can be modified (0 - non modifiable, 1 - modifiable)
+ * value_byte: What values the corresponging high mask-bits should be changed to
+*/
 void mcp2515_BIT_MODIFY(uint8_t register_addr, uint8_t mask_byte, uint8_t value_byte);
 
 
