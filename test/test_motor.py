@@ -5,10 +5,10 @@ from enum import IntEnum
 import pytest
 import time
 
-import comms
-import can_cmd
-import basic_cmd
-import mcp2515_cmd
+import byggern.comms as comms
+import byggern.can_cmd as can_cmd
+import byggern.basic_cmd as basic_cmd
+import byggern.mcp2515_cmd as mcp2515_cmd
 
 class regulator_variables(IntEnum):
     position = 952

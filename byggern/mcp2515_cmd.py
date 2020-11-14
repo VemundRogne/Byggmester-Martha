@@ -4,7 +4,7 @@ import random
 import time
 from enum import IntEnum
 
-import comms
+import byggern.comms as comms
 
 class MCP_MODE(IntEnum):
     NORMAL      = 0b000
