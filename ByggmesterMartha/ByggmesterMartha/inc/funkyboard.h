@@ -14,6 +14,7 @@ union Data {
 	int8_t i;
 };
 
+// Data association for joystick
 struct Joystick_pos{
 	int16_t x; 
 	int16_t y;
@@ -21,16 +22,16 @@ struct Joystick_pos{
 enum Joystick_dir {LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3, NEUTRAL = 4};
 
 
-
+// Initialize joystick with correct offset
 void joystick_init();
 
-// Get ADC values 
+// Read ADC values and make data associations
 struct Joystick_pos get_joystick_pos();
 enum Joystick_dir get_joystick_dir();
 
-// Send values to node 2
+// Send button and joystick states to node 2
 void send_button_press();
-uint8_t send_joystick_position(struct Joystick_pos js_pos);
+void send_joystick_position(struct Joystick_pos js_pos);
 
 
 #endif /* FUNKYBOARD_H_ */
