@@ -1,9 +1,3 @@
-/*
- * timers.c
- *
- * Created: 21/10/2020 12:15:33
- *  Author: vemun
- */ 
 
 #include <stdint.h>
 #include "sam.h"
@@ -41,14 +35,10 @@ void servo_init_pwm(){
 	
 	PMC->PMC_PCER0 |= PMC_PCDR0_PID27; 
 
-	// Disable write protection
-	//TC0->TC_WPMR = "TIM";
-
 	// Clock: Internal MCK/32. Set to Wave mode
 	TC0->TC_CHANNEL[0].TC_CMR |= TC_CMR_TCCLKS_TIMER_CLOCK3 | TC_CMR_WAVE | TC_CMR_WAVSEL_UP_RC;
 	
 	TC0->TC_CHANNEL[0].TC_IER = TC_IER_CPCS; // Interrupt enable on compare
-	//TC0->TC_CHANNEL[0].TC_IMR = TC_IMR_CPCS;
 	TC0->TC_CHANNEL[0].TC_IDR =~TC_IER_CPCS;
 	
 	NVIC_EnableIRQ(TC0_IRQn);
@@ -67,18 +57,14 @@ void pwm_set_duty_cycle(float duty_cycle){
 	if (duty_cycle >= 0.045 && duty_cycle <= 0.105){
 		TC0->TC_CHANNEL[0].TC_RA = 53332*duty_cycle;
 	}
-};
+}
 
 
-// Set servo to position from 0 to 255 (defined as leftbound to rightbound)
+
 void servo_set_position(uint8_t position){
 	//Position is 0-255
 	//Should scale to 4.5 - 10.5 (diff is 6)
 	float duty_cycle = (4.5 + (((float)position)/255.0)*6)/100;
 	pwm_set_duty_cycle(duty_cycle);
-};
+}
 
-/*
-void servo_joystick_command(uint8_t position){
-	servo_set_position(position);
-};*/

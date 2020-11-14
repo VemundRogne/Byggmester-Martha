@@ -23,7 +23,7 @@ uart_ringbuffer rx_buffer;
  *
  * \retval void.
  */
-void configure_uart(void)
+void uart_configure(void)
 {
 	uint32_t ul_sr;
 

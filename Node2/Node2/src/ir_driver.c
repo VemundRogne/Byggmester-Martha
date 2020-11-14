@@ -1,9 +1,3 @@
-/*
- * ir_driver.c
- *
- * Created: 21.10.2020 14:47:47
- *  Author: marth
- */ 
 
 #include "../inc/ir_driver.h"
 
@@ -17,7 +11,6 @@
 */
 void ir_init(){
 	adc_init();
-	//prev_status_ball = 0;
 	status_ball = 0;
 	transmit_ball_status_flag = 1;
 }

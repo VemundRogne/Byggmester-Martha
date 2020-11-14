@@ -14,19 +14,28 @@
 
 #include <stdint.h>
 
+// Struct of can message 
 typedef struct can_message_t
 {
 	uint16_t id;
 	char data_length;
 	char data[8];
+	
 } CAN_MESSAGE;
 
+// Sets all the correct bits for a CAN Baudrate Register to match Node1
 uint32_t construct_can_br_register();
 
+// Initialize can bus with predefined number of rx and tx mailboxes
 uint8_t can_init_def_tx_rx_mb(uint32_t can_br);
+
+// Initialize can bus
 uint8_t can_init(uint32_t can_br, uint8_t num_tx_mb, uint8_t num_rx_mb);
 
+// Send can message from mailbox
 uint8_t can_send(CAN_MESSAGE* can_msg, uint8_t mailbox_id);
+
+// Read can message from mailbox
 uint8_t can_receive(CAN_MESSAGE* can_msg, uint8_t mailbox_id);
 
 #endif /* CAN_CONTROLLER_H_ */
