@@ -11,6 +11,7 @@
 #include "../inc/mcp2515.h"
 #include "../inc/can.h"
 #include "../inc/game.h"
+#include "../inc/uart.h"
 
 union signed_64_unsigned_8{
 	int64_t signed_64;
@@ -24,37 +25,6 @@ void mcp2515_select(){
 void mcp2515_deselect(){
 	MCP_CS_PORT |= (1 << MCP_CS_PIN);
 }
-
-void mcp2515_init(enum mcp2515_mode CANmode){
-	//Initialize SPI to be able to communicate with mcp2515
-	spi_init();
-
-	// Setting direction of slave_select pin and deselecting mcp
-	MCP_CS_DDR |= (1 << MCP_CS_PIN);
-	mcp2515_deselect();
-	_delay_ms(10);
-	//Reset mcp2515 on initialization
-	mcp2515_RESET();
-	
-	mcp2515_BIT_MODIFY(MCP_CNF1, 0xff, 0x43);
-	mcp2515_BIT_MODIFY(MCP_CNF2, 0xff, 0xb5);
-	mcp2515_BIT_MODIFY(MCP_CNF3, 0xff, 0x01);
-
-	//Set up timing for CAN bus
-	//mcp2515_configure_bit_timing();
-	
-	//Select mode
-	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
-	
-	// Enable buffer 0 to receive all messages
-	// This turns off the mask and fileter -> receive any message
-	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
-	
-	// Enable reception of messages in interrupt mode
-	receive_can_on_interrupt = 1;
-	enable_RX_interrupts();
-}
-
 
 void enable_RX_interrupts(){
 	// Enable interrupts in MCP2515
@@ -351,4 +321,35 @@ void mcp2515_RTS(uint8_t RTS_selection){
 	
 	// Deselect MCP2515 (release CS)
 	mcp2515_deselect();	
+}
+
+
+void mcp2515_init(enum mcp2515_mode CANmode){
+	//Initialize SPI to be able to communicate with mcp2515
+	spi_init();
+
+	// Setting direction of slave_select pin and deselecting mcp
+	MCP_CS_DDR |= (1 << MCP_CS_PIN);
+	mcp2515_deselect();
+	_delay_ms(10);
+	//Reset mcp2515 on initialization
+	mcp2515_RESET();
+	
+	mcp2515_BIT_MODIFY(MCP_CNF1, 0xff, 0x43);
+	mcp2515_BIT_MODIFY(MCP_CNF2, 0xff, 0xb5);
+	mcp2515_BIT_MODIFY(MCP_CNF3, 0xff, 0x01);
+
+	//Set up timing for CAN bus
+	//mcp2515_configure_bit_timing();
+	
+	//Select mode
+	mcp2515_BIT_MODIFY(MCP_CANCTRL, 0xE0, CANmode << 5);
+	
+	// Enable buffer 0 to receive all messages
+	// This turns off the mask and fileter -> receive any message
+	mcp2515_BIT_MODIFY(MCP_RXB0CTRL, 0b01100000, 0b01100000);
+	
+	// Enable reception of messages in interrupt mode
+	receive_can_on_interrupt = 1;
+	enable_RX_interrupts();
 }
