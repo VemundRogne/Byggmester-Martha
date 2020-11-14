@@ -1,0 +1,92 @@
+\hypertarget{game_8c}{}\section{src/game.c File Reference}
+\label{game_8c}\index{src/game.\+c@{src/game.\+c}}
+
+
+Implementation of the game library.  
+
+
+{\ttfamily \#include \char`\"{}../inc/game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/funkyboard.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$util/delay.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for game.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{game_8c_a43bafb28b29491ec7f871319b5a3b2f8}\label{game_8c_a43bafb28b29491ec7f871319b5a3b2f8}} 
+\#define {\bfseries F\+\_\+\+C\+PU}~4915200
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{game_8c_a5f5ccbe5abfdef24c8378dc3cf32ffb3}{game\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize game status values\+: score\+\_\+count, game\+\_\+over, ir\+\_\+status. \end{DoxyCompactList}\item 
+void \hyperlink{game_8c_a170eade5ad110dfd51c0620f8f797ae9}{game\+\_\+over\+\_\+check} (uint8\+\_\+t ir\+\_\+status)
+\begin{DoxyCompactList}\small\item\em Updates game over status based on input from IR on node 2. \end{DoxyCompactList}\item 
+void \hyperlink{game_8c_a6f88143aae245e52709e3e8c777cc11f}{game\+\_\+sequence} ()
+\begin{DoxyCompactList}\small\item\em Run game-\/sequence, check state and performe actions accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the game library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{game_8c_a5f5ccbe5abfdef24c8378dc3cf32ffb3}\label{game_8c_a5f5ccbe5abfdef24c8378dc3cf32ffb3}} 
+\index{game.\+c@{game.\+c}!game\+\_\+init@{game\+\_\+init}}
+\index{game\+\_\+init@{game\+\_\+init}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{game\+\_\+init()}{game\_init()}}
+{\footnotesize\ttfamily void game\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize game status values\+: score\+\_\+count, game\+\_\+over, ir\+\_\+status. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file game.\+c.
+
+\mbox{\Hypertarget{game_8c_a170eade5ad110dfd51c0620f8f797ae9}\label{game_8c_a170eade5ad110dfd51c0620f8f797ae9}} 
+\index{game.\+c@{game.\+c}!game\+\_\+over\+\_\+check@{game\+\_\+over\+\_\+check}}
+\index{game\+\_\+over\+\_\+check@{game\+\_\+over\+\_\+check}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{game\+\_\+over\+\_\+check()}{game\_over\_check()}}
+{\footnotesize\ttfamily void game\+\_\+over\+\_\+check (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ir\+\_\+status }\end{DoxyParamCaption})}
+
+
+
+Updates game over status based on input from IR on node 2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ir\+\_\+status} & Status of ir beam in pingpong game. 0 -\/ No blockage, 1 -\/ Blocked ray\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file game.\+c.
+
+\mbox{\Hypertarget{game_8c_a6f88143aae245e52709e3e8c777cc11f}\label{game_8c_a6f88143aae245e52709e3e8c777cc11f}} 
+\index{game.\+c@{game.\+c}!game\+\_\+sequence@{game\+\_\+sequence}}
+\index{game\+\_\+sequence@{game\+\_\+sequence}!game.\+c@{game.\+c}}
+\subsubsection{\texorpdfstring{game\+\_\+sequence()}{game\_sequence()}}
+{\footnotesize\ttfamily void game\+\_\+sequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run game-\/sequence, check state and performe actions accordingly. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 28 of file game.\+c.
+

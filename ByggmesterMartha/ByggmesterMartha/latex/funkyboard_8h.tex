@@ -1,0 +1,152 @@
+\hypertarget{funkyboard_8h}{}\section{inc/funkyboard.h File Reference}
+\label{funkyboard_8h}\index{inc/funkyboard.\+h@{inc/funkyboard.\+h}}
+
+
+Library for communicating with multifunction board.  
+
+
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+Include dependency graph for funkyboard.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionData}{Data}
+\item 
+struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{funkyboard_8h_a76c91ae8dc2e20bf5acff7ead6af0592}\label{funkyboard_8h_a76c91ae8dc2e20bf5acff7ead6af0592}} 
+enum {\bfseries Joystick\+\_\+dir} \{ \newline
+{\bfseries L\+E\+FT} = 0, 
+{\bfseries R\+I\+G\+HT} = 1, 
+{\bfseries UP} = 2, 
+{\bfseries D\+O\+WN} = 3, 
+\newline
+{\bfseries N\+E\+U\+T\+R\+AL} = 4
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{funkyboard_8h_a90acebf0114a3aa5d95650790e8b8693}{joystick\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize joystick with correct offset. \end{DoxyCompactList}\item 
+struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} \hyperlink{funkyboard_8h_a85891afd9153ba73246ee648b103c5b3}{get\+\_\+joystick\+\_\+pos} ()
+\begin{DoxyCompactList}\small\item\em Read joystick position. \end{DoxyCompactList}\item 
+enum Joystick\+\_\+dir \hyperlink{funkyboard_8h_af5aac833c6c1385fab0dcdd45ec27ed0}{get\+\_\+joystick\+\_\+dir} ()
+\begin{DoxyCompactList}\small\item\em Read joystick direction. \end{DoxyCompactList}\item 
+void \hyperlink{funkyboard_8h_a283ee124467340c13f5deb3d5ce4aba8}{send\+\_\+button\+\_\+press} ()
+\begin{DoxyCompactList}\small\item\em Send message to node 2 if button pressed. \end{DoxyCompactList}\item 
+void \hyperlink{funkyboard_8h_aff20a6d10e97fe131252df007773b98e}{send\+\_\+joystick\+\_\+position} (struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} js\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Send message to node 2 with joystick position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{funkyboard_8h_a0a6e42ee1329a0dc960565ef630cfa52}\label{funkyboard_8h_a0a6e42ee1329a0dc960565ef630cfa52}} 
+int16\+\_\+t {\bfseries joystick\+\_\+offset\+\_\+x}
+\item 
+\mbox{\Hypertarget{funkyboard_8h_a618690e1f8bae6a503db141b6497ca81}\label{funkyboard_8h_a618690e1f8bae6a503db141b6497ca81}} 
+int16\+\_\+t {\bfseries joystick\+\_\+offset\+\_\+y}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for communicating with multifunction board. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{funkyboard_8h_af5aac833c6c1385fab0dcdd45ec27ed0}\label{funkyboard_8h_af5aac833c6c1385fab0dcdd45ec27ed0}} 
+\index{funkyboard.\+h@{funkyboard.\+h}!get\+\_\+joystick\+\_\+dir@{get\+\_\+joystick\+\_\+dir}}
+\index{get\+\_\+joystick\+\_\+dir@{get\+\_\+joystick\+\_\+dir}!funkyboard.\+h@{funkyboard.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+joystick\+\_\+dir()}{get\_joystick\_dir()}}
+{\footnotesize\ttfamily enum Joystick\+\_\+dir get\+\_\+joystick\+\_\+dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read joystick direction. 
+
+\begin{DoxyReturn}{Returns}
+Joystick\+\_\+dir Direction of joystick 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8h_a85891afd9153ba73246ee648b103c5b3}\label{funkyboard_8h_a85891afd9153ba73246ee648b103c5b3}} 
+\index{funkyboard.\+h@{funkyboard.\+h}!get\+\_\+joystick\+\_\+pos@{get\+\_\+joystick\+\_\+pos}}
+\index{get\+\_\+joystick\+\_\+pos@{get\+\_\+joystick\+\_\+pos}!funkyboard.\+h@{funkyboard.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+joystick\+\_\+pos()}{get\_joystick\_pos()}}
+{\footnotesize\ttfamily struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} get\+\_\+joystick\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read joystick position. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{structJoystick__pos}{Joystick\+\_\+pos} X and Y position of joystick 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8h_a90acebf0114a3aa5d95650790e8b8693}\label{funkyboard_8h_a90acebf0114a3aa5d95650790e8b8693}} 
+\index{funkyboard.\+h@{funkyboard.\+h}!joystick\+\_\+init@{joystick\+\_\+init}}
+\index{joystick\+\_\+init@{joystick\+\_\+init}!funkyboard.\+h@{funkyboard.\+h}}
+\subsubsection{\texorpdfstring{joystick\+\_\+init()}{joystick\_init()}}
+{\footnotesize\ttfamily void joystick\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize joystick with correct offset. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8h_a283ee124467340c13f5deb3d5ce4aba8}\label{funkyboard_8h_a283ee124467340c13f5deb3d5ce4aba8}} 
+\index{funkyboard.\+h@{funkyboard.\+h}!send\+\_\+button\+\_\+press@{send\+\_\+button\+\_\+press}}
+\index{send\+\_\+button\+\_\+press@{send\+\_\+button\+\_\+press}!funkyboard.\+h@{funkyboard.\+h}}
+\subsubsection{\texorpdfstring{send\+\_\+button\+\_\+press()}{send\_button\_press()}}
+{\footnotesize\ttfamily void send\+\_\+button\+\_\+press (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Send message to node 2 if button pressed. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8h_aff20a6d10e97fe131252df007773b98e}\label{funkyboard_8h_aff20a6d10e97fe131252df007773b98e}} 
+\index{funkyboard.\+h@{funkyboard.\+h}!send\+\_\+joystick\+\_\+position@{send\+\_\+joystick\+\_\+position}}
+\index{send\+\_\+joystick\+\_\+position@{send\+\_\+joystick\+\_\+position}!funkyboard.\+h@{funkyboard.\+h}}
+\subsubsection{\texorpdfstring{send\+\_\+joystick\+\_\+position()}{send\_joystick\_position()}}
+{\footnotesize\ttfamily void send\+\_\+joystick\+\_\+position (\begin{DoxyParamCaption}\item[{struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos}}]{js\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Send message to node 2 with joystick position. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em js\+\_\+pos} & Position of joystick\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file funkyboard.\+c.
+

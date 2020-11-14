@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['signed_5f64_5funsigned_5f8',['signed_64_unsigned_8',['../unionsigned__64__unsigned__8.html',1,'']]]
+  ['joystick_5finit',['joystick_init',['../funkyboard_8h.html#a90acebf0114a3aa5d95650790e8b8693',1,'joystick_init():&#160;funkyboard.c'],['../funkyboard_8c.html#a90acebf0114a3aa5d95650790e8b8693',1,'joystick_init():&#160;funkyboard.c']]],
+  ['joystick_5fpos',['Joystick_pos',['../structJoystick__pos.html',1,'']]]
 ];

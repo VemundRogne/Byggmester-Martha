@@ -1,3 +1,8 @@
+/**
+* @file
+* @brief Delivered file containing 8x8 font for oled
+*/
+
 /*
  * fonts.h
  *

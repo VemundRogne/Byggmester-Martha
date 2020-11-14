@@ -87,7 +87,7 @@ Read filtered adc-\/values from memory.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em $\ast$dest} & List of A\+DC values\\
+\mbox{\tt out}  & {\em dest} & Pointer to list of A\+DC values\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

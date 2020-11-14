@@ -132,7 +132,7 @@ Functions</h2></td></tr>
 <p>Checks for pending receive buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">uint8_t</td><td>*tx_buffer_address Address of first pending buffer found</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tx_buffer_address</td><td>Address of first pending buffer found</td></tr>
   </table>
   </dd>
 </dl>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
 <p>Read received message from can bus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">struct</td><td><a class="el" href="structcan__msg.html">can_msg</a> *msg Points to location where received message is stored</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">msg</td><td>Points to location where received message is stored</td></tr>
   </table>
   </dd>
 </dl>
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
 <p>Transmit message over can bus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">struct</td><td><a class="el" href="structcan__msg.html">can_msg</a> *msg Pointer message to be send</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Pointer message to be send</td></tr>
   </table>
   </dd>
 </dl>
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
 <p>Checks for valid transmition buffer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">uint8_t</td><td>*tx_buffer_address Address of first valid buffer found</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tx_buffer_address</td><td>Address of first valid buffer found</td></tr>
   </table>
   </dd>
 </dl>

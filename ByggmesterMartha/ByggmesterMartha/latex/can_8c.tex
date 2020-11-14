@@ -43,7 +43,7 @@ Checks for pending receive buffer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em uint8\+\_\+t} & $\ast$tx\+\_\+buffer\+\_\+address Address of first pending buffer found\\
+\mbox{\tt out}  & {\em tx\+\_\+buffer\+\_\+address} & Address of first pending buffer found\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -65,7 +65,7 @@ Read received message from can bus.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em struct} & \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg Points to location where received message is stored\\
+\mbox{\tt out}  & {\em msg} & Points to location where received message is stored\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -87,7 +87,7 @@ Transmit message over can bus.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em struct} & \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg Pointer message to be send\\
+\mbox{\tt in}  & {\em msg} & Pointer message to be send\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -109,7 +109,7 @@ Checks for valid transmition buffer.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt out}  & {\em uint8\+\_\+t} & $\ast$tx\+\_\+buffer\+\_\+address Address of first valid buffer found\\
+\mbox{\tt out}  & {\em tx\+\_\+buffer\+\_\+address} & Address of first valid buffer found\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -131,7 +131,7 @@ This function is used to clear the C\+A\+N\+I\+N\+T\+F.\+R\+Xn\+IF flag.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em uint8\+\_\+t} & receive\+\_\+buffer\+\_\+id Buffer ID corresponding to cleared flag\\
+\mbox{\tt in}  & {\em receive\+\_\+buffer\+\_\+id} & Buffer ID corresponding to cleared flag\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

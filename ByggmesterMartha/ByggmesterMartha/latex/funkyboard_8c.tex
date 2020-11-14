@@ -1,0 +1,155 @@
+\hypertarget{funkyboard_8c}{}\section{src/funkyboard.c File Reference}
+\label{funkyboard_8c}\index{src/funkyboard.\+c@{src/funkyboard.\+c}}
+
+
+Implementation of multifunction board library.  
+
+
+{\ttfamily \#include $<$util/delay.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/funkyboard.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/adc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/can.\+h\char`\"{}}\newline
+Include dependency graph for funkyboard.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{funkyboard_8c_a43bafb28b29491ec7f871319b5a3b2f8}\label{funkyboard_8c_a43bafb28b29491ec7f871319b5a3b2f8}} 
+\#define {\bfseries F\+\_\+\+C\+PU}~4915200
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{funkyboard_8c_a90acebf0114a3aa5d95650790e8b8693}{joystick\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize joystick with correct offset. \end{DoxyCompactList}\item 
+struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} \hyperlink{funkyboard_8c_a85891afd9153ba73246ee648b103c5b3}{get\+\_\+joystick\+\_\+pos} ()
+\begin{DoxyCompactList}\small\item\em Read joystick position. \end{DoxyCompactList}\item 
+enum Joystick\+\_\+dir \hyperlink{funkyboard_8c_af5aac833c6c1385fab0dcdd45ec27ed0}{get\+\_\+joystick\+\_\+dir} ()
+\begin{DoxyCompactList}\small\item\em Read joystick direction. \end{DoxyCompactList}\item 
+void \hyperlink{funkyboard_8c_a283ee124467340c13f5deb3d5ce4aba8}{send\+\_\+button\+\_\+press} ()
+\begin{DoxyCompactList}\small\item\em Send message to node 2 if button pressed. \end{DoxyCompactList}\item 
+int8\+\_\+t \hyperlink{funkyboard_8c_ad0f2a8ee0db435136a032d05c0d3a41b}{wrap\+\_\+and\+\_\+filter} (int16\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Wraps value into 8 bit signed integer and filters out small values. \end{DoxyCompactList}\item 
+void \hyperlink{funkyboard_8c_aff20a6d10e97fe131252df007773b98e}{send\+\_\+joystick\+\_\+position} (struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} js\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Send message to node 2 with joystick position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of multifunction board library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{funkyboard_8c_af5aac833c6c1385fab0dcdd45ec27ed0}\label{funkyboard_8c_af5aac833c6c1385fab0dcdd45ec27ed0}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!get\+\_\+joystick\+\_\+dir@{get\+\_\+joystick\+\_\+dir}}
+\index{get\+\_\+joystick\+\_\+dir@{get\+\_\+joystick\+\_\+dir}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+joystick\+\_\+dir()}{get\_joystick\_dir()}}
+{\footnotesize\ttfamily enum Joystick\+\_\+dir get\+\_\+joystick\+\_\+dir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read joystick direction. 
+
+\begin{DoxyReturn}{Returns}
+Joystick\+\_\+dir Direction of joystick 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8c_a85891afd9153ba73246ee648b103c5b3}\label{funkyboard_8c_a85891afd9153ba73246ee648b103c5b3}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!get\+\_\+joystick\+\_\+pos@{get\+\_\+joystick\+\_\+pos}}
+\index{get\+\_\+joystick\+\_\+pos@{get\+\_\+joystick\+\_\+pos}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+joystick\+\_\+pos()}{get\_joystick\_pos()}}
+{\footnotesize\ttfamily struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos} get\+\_\+joystick\+\_\+pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read joystick position. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{structJoystick__pos}{Joystick\+\_\+pos} X and Y position of joystick 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8c_a90acebf0114a3aa5d95650790e8b8693}\label{funkyboard_8c_a90acebf0114a3aa5d95650790e8b8693}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!joystick\+\_\+init@{joystick\+\_\+init}}
+\index{joystick\+\_\+init@{joystick\+\_\+init}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{joystick\+\_\+init()}{joystick\_init()}}
+{\footnotesize\ttfamily void joystick\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize joystick with correct offset. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8c_a283ee124467340c13f5deb3d5ce4aba8}\label{funkyboard_8c_a283ee124467340c13f5deb3d5ce4aba8}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!send\+\_\+button\+\_\+press@{send\+\_\+button\+\_\+press}}
+\index{send\+\_\+button\+\_\+press@{send\+\_\+button\+\_\+press}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{send\+\_\+button\+\_\+press()}{send\_button\_press()}}
+{\footnotesize\ttfamily void send\+\_\+button\+\_\+press (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Send message to node 2 if button pressed. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8c_aff20a6d10e97fe131252df007773b98e}\label{funkyboard_8c_aff20a6d10e97fe131252df007773b98e}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!send\+\_\+joystick\+\_\+position@{send\+\_\+joystick\+\_\+position}}
+\index{send\+\_\+joystick\+\_\+position@{send\+\_\+joystick\+\_\+position}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{send\+\_\+joystick\+\_\+position()}{send\_joystick\_position()}}
+{\footnotesize\ttfamily void send\+\_\+joystick\+\_\+position (\begin{DoxyParamCaption}\item[{struct \hyperlink{structJoystick__pos}{Joystick\+\_\+pos}}]{js\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Send message to node 2 with joystick position. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em js\+\_\+pos} & Position of joystick\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file funkyboard.\+c.
+
+\mbox{\Hypertarget{funkyboard_8c_ad0f2a8ee0db435136a032d05c0d3a41b}\label{funkyboard_8c_ad0f2a8ee0db435136a032d05c0d3a41b}} 
+\index{funkyboard.\+c@{funkyboard.\+c}!wrap\+\_\+and\+\_\+filter@{wrap\+\_\+and\+\_\+filter}}
+\index{wrap\+\_\+and\+\_\+filter@{wrap\+\_\+and\+\_\+filter}!funkyboard.\+c@{funkyboard.\+c}}
+\subsubsection{\texorpdfstring{wrap\+\_\+and\+\_\+filter()}{wrap\_and\_filter()}}
+{\footnotesize\ttfamily int8\+\_\+t wrap\+\_\+and\+\_\+filter (\begin{DoxyParamCaption}\item[{int16\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Wraps value into 8 bit signed integer and filters out small values. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to be wrapped and filtered\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int8\+\_\+t Wrapped and filtered value 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file funkyboard.\+c.
+

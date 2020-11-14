@@ -6,7 +6,7 @@ digraph "inc/adc.h"
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="src/adc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$adc_8c.html",tooltip="Implementation of the ADC library. "];
   Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="src/funkyboard.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$funkyboard_8c_source.html"];
+  Node4 [label="src/funkyboard.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$funkyboard_8c.html",tooltip="Implementation of multifunction board library. "];
   Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="src/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c_source.html"];
   Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

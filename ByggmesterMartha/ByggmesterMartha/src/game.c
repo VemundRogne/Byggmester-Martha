@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of the game library
+*/
 
 #define F_CPU	4915200
 

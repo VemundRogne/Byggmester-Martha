@@ -1,4 +1,7 @@
-
+/**
+* @file
+* @brief Implementation of multifunction board library
+*/
 #define F_CPU	4915200
 
 #include <util/delay.h>
@@ -79,8 +82,14 @@ void send_button_press(){
 }	
 
 
-// Wraps value into 8 bit signed integer to accomadate a short CAN message
-// Filter noise to make servo stop twitching
+
+/**
+* @brief Wraps value into 8 bit signed integer and filters out small values
+*
+* @param[in] value Value to be wrapped and filtered
+*
+* @return int8_t Wrapped and filtered value
+*/
 int8_t wrap_and_filter(int16_t value){
 	if (abs(value)<15){
 		return 0;
