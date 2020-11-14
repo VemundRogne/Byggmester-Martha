@@ -16,8 +16,10 @@ Every time a new commit is pushed to github this automated system:
 3. Flashes the newly build node 1 and node 2 (if it did actually sucessfully build)
 4. Run tests on the hardware through the communications-interface
 
-### Test example
+### Test examples
 A nice example of a test is the test_can::test_can test. This test sets the MCP2515 into loopback mode, constructs and sends a can message and verifies that the same message is read back. While performing this test the comms inteface calls the same functions that the firmware would, and thus proves that the entire can-chain is valid.
+
+Another nice example is the tests we run on the motor. Here we run the motor in both directions while reading encoder values, then we ensure that the encoder values are monotonic (while the motor is moving left the encoder values should increase, while the motor is moving right the encoder values should decrease). Finally we call the regulator-init function and verify that the initialization was successful and that the final motor-position regulates to the middle.
 
 ## Communications-interface
 We have developed a protocol for communication between a host computer and node 1. The protocol makes it possible to get and set variables, run tests and collect debug-information.
