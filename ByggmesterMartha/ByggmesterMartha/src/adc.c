@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of the ADC library
+*/
 
 #include <avr/io.h>
 
@@ -6,7 +10,11 @@
 #include "../inc/xmem.h"
 
 
-// Loads configuration of each channel according to figura 4a (page 11) in datasheet
+/**
+* @brief Loads configuration of each channel according to figura 4a (page 11) in datasheet
+*
+* @return void
+*/
 void load_mux_config(){
 	volatile char *ext_adc = (char *) ADC_START_ADDRESS; // Start address for the ADC
 	

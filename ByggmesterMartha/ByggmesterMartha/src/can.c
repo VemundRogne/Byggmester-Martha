@@ -1,3 +1,8 @@
+/**
+* @file
+* @brief Implementation of the CAN library
+*/
+
 
 #include <avr/io.h>
 
@@ -84,8 +89,14 @@ uint8_t can_transmit_message(struct can_msg *msg){
 }
 
 
-// This function is used to clear the CANINTF.RXnIF flag
-// Flag must be cleared to receive new messages
+
+/**
+* @brief This function is used to clear the CANINTF.RXnIF flag
+*
+* @param[in] receive_buffer_id Buffer ID corresponding to cleared flag
+*
+* @return void
+*/
 void clear_receive_flag(uint8_t receive_buffer_id){
 	// CANINTF register:
 	// Address: 0x2C

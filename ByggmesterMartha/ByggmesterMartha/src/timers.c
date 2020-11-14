@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of timers
+*/
 
 #include "../inc/timers.h"
 #include <avr/io.h>

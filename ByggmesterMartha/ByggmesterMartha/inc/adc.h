@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Library for reading values through ADC
+*/
 
 #ifndef ADC_H_
 #define ADC_H_
@@ -26,14 +30,30 @@ volatile uint16_t _adc_values[4];
 #define ADC_BUSY_DDR	DDRE
 
 
-// NOTE: The ADC is dependent on TIMER1.
-// Sets up Timer1 to be a PWM output on PD5 (OC1A)
+
+
+/**
+* @brief Sets up Timer1 to be a PWM output on PD5 (OC1A)
+*
+* @return void
+*/
+
 void adc_init();
 
-// Read and store adc values internally
+/**
+* @brief Read and store adc values internally
+*
+* @return void
+*/
 void adc_rd();
 
-// Read filtered adc-values from memory
+/**
+* @brief Read filtered adc-values from memory
+*
+* @param[out] dest Pointer to list of ADC values
+*
+* @return void
+*/
 void adc_get_values(uint8_t *dest);
 
 

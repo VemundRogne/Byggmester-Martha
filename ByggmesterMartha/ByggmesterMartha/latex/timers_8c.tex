@@ -1,0 +1,65 @@
+\hypertarget{timers_8c}{}\section{src/timers.c File Reference}
+\label{timers_8c}\index{src/timers.\+c@{src/timers.\+c}}
+
+
+Implementation of timers.  
+
+
+{\ttfamily \#include \char`\"{}../inc/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/adc.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+Include dependency graph for timers.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}\label{timers_8c_add2d7cdddfb682dcc0391e60cf42c7d6}} 
+{\bfseries I\+SR} (T\+I\+M\+E\+R0\+\_\+\+O\+V\+F\+\_\+vect)
+\item 
+void \hyperlink{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}{timer0\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Timer 0 is used to read and filter adc continously. \end{DoxyCompactList}\item 
+void \hyperlink{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}{timer1\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Timer 1 is used for P\+WM output on P\+D5. Works as a clock for the A\+DC. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of timers. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}\label{timers_8c_a99eb04bf8fed2beecfb3cb74451416c5}} 
+\index{timers.\+c@{timers.\+c}!timer0\+\_\+init@{timer0\+\_\+init}}
+\index{timer0\+\_\+init@{timer0\+\_\+init}!timers.\+c@{timers.\+c}}
+\subsubsection{\texorpdfstring{timer0\+\_\+init()}{timer0\_init()}}
+{\footnotesize\ttfamily void timer0\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Timer 0 is used to read and filter adc continously. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file timers.\+c.
+
+\mbox{\Hypertarget{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}\label{timers_8c_abb302081b7dbd40d0fea4bbe53fd9b7b}} 
+\index{timers.\+c@{timers.\+c}!timer1\+\_\+init@{timer1\+\_\+init}}
+\index{timer1\+\_\+init@{timer1\+\_\+init}!timers.\+c@{timers.\+c}}
+\subsubsection{\texorpdfstring{timer1\+\_\+init()}{timer1\_init()}}
+{\footnotesize\ttfamily void timer1\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Timer 1 is used for P\+WM output on P\+D5. Works as a clock for the A\+DC. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file timers.\+c.
+

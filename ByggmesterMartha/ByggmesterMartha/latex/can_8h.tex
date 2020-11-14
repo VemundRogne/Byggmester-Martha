@@ -1,0 +1,124 @@
+\hypertarget{can_8h}{}\section{inc/can.h File Reference}
+\label{can_8h}\index{inc/can.\+h@{inc/can.\+h}}
+
+
+Library for communicating over C\+AN.  
+
+
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+Include dependency graph for can.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcan__msg}{can\+\_\+msg}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{can_8h_ac133c0bb7997b70ea99174432c83f320}{can\+\_\+valid\+\_\+transmit\+\_\+buffer} (uint8\+\_\+t $\ast$tx\+\_\+buffer\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Checks for valid transmition buffer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can_8h_a2480004d596d8f3f86b9160f9a707e62}{can\+\_\+pending\+\_\+receive\+\_\+buffer} (uint8\+\_\+t $\ast$tx\+\_\+buffer\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Checks for pending receive buffer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can_8h_a746677b11307306d78e3fb3d89360164}{can\+\_\+transmit\+\_\+message} (struct \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Transmit message over can bus. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can_8h_a148e24efedb0634295c9835984059d81}{can\+\_\+receive\+\_\+message} (struct \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em Read received message from can bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for communicating over C\+AN. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{can_8h_a2480004d596d8f3f86b9160f9a707e62}\label{can_8h_a2480004d596d8f3f86b9160f9a707e62}} 
+\index{can.\+h@{can.\+h}!can\+\_\+pending\+\_\+receive\+\_\+buffer@{can\+\_\+pending\+\_\+receive\+\_\+buffer}}
+\index{can\+\_\+pending\+\_\+receive\+\_\+buffer@{can\+\_\+pending\+\_\+receive\+\_\+buffer}!can.\+h@{can.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+pending\+\_\+receive\+\_\+buffer()}{can\_pending\_receive\_buffer()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+pending\+\_\+receive\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{tx\+\_\+buffer\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+Checks for pending receive buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em uint8\+\_\+t} & $\ast$tx\+\_\+buffer\+\_\+address Address of first pending buffer found\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t ID of valid buffer, returns 3 if non valid buffers 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file can.\+c.
+
+\mbox{\Hypertarget{can_8h_a148e24efedb0634295c9835984059d81}\label{can_8h_a148e24efedb0634295c9835984059d81}} 
+\index{can.\+h@{can.\+h}!can\+\_\+receive\+\_\+message@{can\+\_\+receive\+\_\+message}}
+\index{can\+\_\+receive\+\_\+message@{can\+\_\+receive\+\_\+message}!can.\+h@{can.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+receive\+\_\+message()}{can\_receive\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+receive\+\_\+message (\begin{DoxyParamCaption}\item[{struct \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$}]{msg }\end{DoxyParamCaption})}
+
+
+
+Read received message from can bus. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em struct} & \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg Points to location where received message is stored\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t 0 on success, 1 on failure 
+\end{DoxyReturn}
+
+
+Definition at line 117 of file can.\+c.
+
+\mbox{\Hypertarget{can_8h_a746677b11307306d78e3fb3d89360164}\label{can_8h_a746677b11307306d78e3fb3d89360164}} 
+\index{can.\+h@{can.\+h}!can\+\_\+transmit\+\_\+message@{can\+\_\+transmit\+\_\+message}}
+\index{can\+\_\+transmit\+\_\+message@{can\+\_\+transmit\+\_\+message}!can.\+h@{can.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+transmit\+\_\+message()}{can\_transmit\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+transmit\+\_\+message (\begin{DoxyParamCaption}\item[{struct \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$}]{msg }\end{DoxyParamCaption})}
+
+
+
+Transmit message over can bus. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em struct} & \hyperlink{structcan__msg}{can\+\_\+msg} $\ast$msg Pointer message to be send\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t 0 on success, 1 on failure 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file can.\+c.
+
+\mbox{\Hypertarget{can_8h_ac133c0bb7997b70ea99174432c83f320}\label{can_8h_ac133c0bb7997b70ea99174432c83f320}} 
+\index{can.\+h@{can.\+h}!can\+\_\+valid\+\_\+transmit\+\_\+buffer@{can\+\_\+valid\+\_\+transmit\+\_\+buffer}}
+\index{can\+\_\+valid\+\_\+transmit\+\_\+buffer@{can\+\_\+valid\+\_\+transmit\+\_\+buffer}!can.\+h@{can.\+h}}
+\subsubsection{\texorpdfstring{can\+\_\+valid\+\_\+transmit\+\_\+buffer()}{can\_valid\_transmit\_buffer()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+valid\+\_\+transmit\+\_\+buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{tx\+\_\+buffer\+\_\+address }\end{DoxyParamCaption})}
+
+
+
+Checks for valid transmition buffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em uint8\+\_\+t} & $\ast$tx\+\_\+buffer\+\_\+address Address of first valid buffer found\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t ID of valid buffer, returns 3 if non valid buffers 
+\end{DoxyReturn}
+
+
+Definition at line 14 of file can.\+c.
+
