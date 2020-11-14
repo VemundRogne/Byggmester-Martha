@@ -4,8 +4,8 @@ import pytest
 import random
 import time
 
-import comms
-import basic_cmd
+import byggern.comms as comms
+import byggern.basic_cmd as  basic_cmd
 
 def make_random_list(length, minimum_value, maximum_value):
     random_list = []

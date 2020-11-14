@@ -3,7 +3,7 @@ import pytest
 import random
 import time
 
-import comms
+import byggern.comms as comms
 
 def echo(ser, number_list):
     cmd = [0, 1]

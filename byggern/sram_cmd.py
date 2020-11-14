@@ -3,7 +3,7 @@ import pytest
 import random
 import time
 
-import comms
+import byggern.comms as comms
 
 def sram_write(ser, address, value):
     cmd = [1, 0]

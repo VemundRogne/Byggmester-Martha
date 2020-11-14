@@ -3,9 +3,9 @@ import pytest
 import random
 import time
 
-import comms
-import can_cmd
-import mcp2515_cmd as mcp
+from byggern import comms
+from byggern import can_cmd
+from byggern import mcp2515_cmd as mcp
 
 @pytest.fixture(scope='module')
 def ser():

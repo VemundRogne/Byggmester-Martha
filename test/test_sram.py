@@ -3,8 +3,8 @@ import pytest
 import random
 import time
 
-import comms
-import sram_cmd
+import byggern.comms as comms
+import byggern.sram_cmd as sram_cmd
 
 
 @pytest.fixture(scope='module')

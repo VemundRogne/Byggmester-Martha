@@ -3,7 +3,7 @@ import pytest
 import random
 import time
 
-import comms
+import byggern.comms as comms
 
 def can_valid_tx_buffer(ser):
     cmd = [3, 2]

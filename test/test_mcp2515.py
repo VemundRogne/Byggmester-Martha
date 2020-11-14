@@ -3,8 +3,8 @@ import pytest
 import random
 import time
 
-import comms
-import mcp2515_cmd as cmd
+import byggern.comms as comms
+import byggern.mcp2515_cmd as cmd
 
 
 @pytest.fixture(scope='module')
