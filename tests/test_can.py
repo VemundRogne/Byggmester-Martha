@@ -3,6 +3,7 @@ import pytest
 import random
 import time
 
+import byggern
 from byggern import comms
 from byggern import can_cmd
 from byggern import mcp2515_cmd as mcp
@@ -43,7 +44,7 @@ def test_can_valid_tx_buffer(ser):
     assert result[1] != 3
 
 
-def test_can(ser):
+def test_can_loopback(ser):
     # Set the device in loopback mode
     assert mcp.mcp2515_init(ser, mcp.MCP_MODE.LOOPBACK) == mcp.MCP_MODE.LOOPBACK
     mcp.write_can_rx_flag(ser, 0)
@@ -65,6 +66,7 @@ def test_can(ser):
     # Check to see if we have a pending receive buffer
     result = can_cmd.can_pending_rx_buffer(ser)
     assert result[1] != 3   # 0 or 1 is a valid buffer, 3 is not
+    mcp.write_can_rx_flag(ser, 1)
 
     # Read out the message
     received_msg = can_cmd.can_receive(ser)
@@ -75,3 +77,24 @@ def test_can(ser):
     print("Transmitted:", transmit_msg)
     print("Received   :", received_msg)
     assert received_msg == transmit_msg
+
+
+def test_can_with_node_2(ser):
+    """ Attempts to talk to node 2 """
+    value = random.randint(-40000, 40000)
+    value_bytes = list(value.to_bytes(4, byteorder='big', signed=True))
+
+    print("Sending", value, value_bytes)
+
+    mcp.write_can_rx_flag(ser, 1)
+    byggern.can_cmd.can_transmit(
+        ser,
+        msg_id=1100,
+        msg_len=len(value_bytes),
+        msg_data=value_bytes
+    )
+
+    read_value = byggern.comms.read_signed_32_from_node2(ser)
+
+    print("Received:", read_value)
+    assert read_value == value
