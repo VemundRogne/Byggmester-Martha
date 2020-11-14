@@ -1,0 +1,48 @@
+\hypertarget{can__handler_8h}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/can\+\_\+handler.h File Reference}
+\label{can__handler_8h}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/can\+\_\+handler.\+h@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/can\+\_\+handler.\+h}}
+
+
+Library for can message handling.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/can\+\_\+controller.\+h\char`\"{}}\newline
+Include dependency graph for can\+\_\+handler.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{can__handler_8h_a1545a0464deb0efe960c14eb087abe2c}{handle\+\_\+can\+\_\+message} (struct \hyperlink{structcan__message__t}{can\+\_\+message\+\_\+t} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Handler for all communication from node 1 to node 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for can message handling. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{can__handler_8h_a1545a0464deb0efe960c14eb087abe2c}\label{can__handler_8h_a1545a0464deb0efe960c14eb087abe2c}} 
+\index{can\+\_\+handler.\+h@{can\+\_\+handler.\+h}!handle\+\_\+can\+\_\+message@{handle\+\_\+can\+\_\+message}}
+\index{handle\+\_\+can\+\_\+message@{handle\+\_\+can\+\_\+message}!can\+\_\+handler.\+h@{can\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{handle\+\_\+can\+\_\+message()}{handle\_can\_message()}}
+{\footnotesize\ttfamily void handle\+\_\+can\+\_\+message (\begin{DoxyParamCaption}\item[{struct \hyperlink{structcan__message__t}{can\+\_\+message\+\_\+t} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Handler for all communication from node 1 to node 2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & Pointer to can message received by node 1\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file can\+\_\+handler.\+c.
+

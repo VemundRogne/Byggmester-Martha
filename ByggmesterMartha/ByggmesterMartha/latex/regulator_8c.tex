@@ -1,0 +1,167 @@
+\hypertarget{regulator_8c}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/regulator.c File Reference}
+\label{regulator_8c}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/regulator.\+c@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/regulator.\+c}}
+
+
+Implementation of regulator library.  
+
+
+{\ttfamily \#include \char`\"{}../inc/regulator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/motor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sam3x4c.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for regulator.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{regulator_8c_a1c65411e8b3e751f3cdb901bbcb50586}\label{regulator_8c_a1c65411e8b3e751f3cdb901bbcb50586}} 
+\#define {\bfseries I\+N\+I\+T\+\_\+\+S\+P\+E\+ED}~2000
+\item 
+\mbox{\Hypertarget{regulator_8c_a83ce2efc7d1819cbaf8deb0cae3b04c6}\label{regulator_8c_a83ce2efc7d1819cbaf8deb0cae3b04c6}} 
+\#define {\bfseries I\+N\+I\+T\+\_\+\+T\+I\+ME}~(50$\ast$3)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{regulator_8c_a762556297d3be6f97984783dc7b924ed}{regulator\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Start initialize sequence for regulator. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_a5aaace59058f195ff0725369ebb1387e}{regulator\+\_\+finish\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Finish initalizing. Reset encoder and set internal regulator variables. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_ae4cf8ad07d66d83fb888e43c1e2e6240}{regulator\+\_\+run} ()
+\begin{DoxyCompactList}\small\item\em Run regulator. Corresponds to one time step update and sets update. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_a38074077e9ddba81ab9e161aa2ebdfdb}{regulator\+\_\+update\+\_\+reference\+\_\+model} ()
+\begin{DoxyCompactList}\small\item\em Update reference model each time step. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_a8624a603d2ed0be3ce7c1a9dbb1fa735}{regulator\+\_\+update\+\_\+states} ()
+\begin{DoxyCompactList}\small\item\em Update encoder position and error variables. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_a9e6e10cc2474c0c5d2cb910185215306}{regulator\+\_\+calc\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Calculate output based on regulator variables. \end{DoxyCompactList}\item 
+void \hyperlink{regulator_8c_aaa5e744b4144395323ac2510e2ef6183}{regulator\+\_\+set\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Set output of motorbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of regulator library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{regulator_8c_a9e6e10cc2474c0c5d2cb910185215306}\label{regulator_8c_a9e6e10cc2474c0c5d2cb910185215306}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+calc\+\_\+output@{regulator\+\_\+calc\+\_\+output}}
+\index{regulator\+\_\+calc\+\_\+output@{regulator\+\_\+calc\+\_\+output}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+calc\+\_\+output()}{regulator\_calc\_output()}}
+{\footnotesize\ttfamily void regulator\+\_\+calc\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculate output based on regulator variables. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_a5aaace59058f195ff0725369ebb1387e}\label{regulator_8c_a5aaace59058f195ff0725369ebb1387e}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+finish\+\_\+init@{regulator\+\_\+finish\+\_\+init}}
+\index{regulator\+\_\+finish\+\_\+init@{regulator\+\_\+finish\+\_\+init}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+finish\+\_\+init()}{regulator\_finish\_init()}}
+{\footnotesize\ttfamily void regulator\+\_\+finish\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finish initalizing. Reset encoder and set internal regulator variables. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_a762556297d3be6f97984783dc7b924ed}\label{regulator_8c_a762556297d3be6f97984783dc7b924ed}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+init@{regulator\+\_\+init}}
+\index{regulator\+\_\+init@{regulator\+\_\+init}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+init()}{regulator\_init()}}
+{\footnotesize\ttfamily void regulator\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start initialize sequence for regulator. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_ae4cf8ad07d66d83fb888e43c1e2e6240}\label{regulator_8c_ae4cf8ad07d66d83fb888e43c1e2e6240}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+run@{regulator\+\_\+run}}
+\index{regulator\+\_\+run@{regulator\+\_\+run}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+run()}{regulator\_run()}}
+{\footnotesize\ttfamily void regulator\+\_\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run regulator. Corresponds to one time step update and sets update. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_aaa5e744b4144395323ac2510e2ef6183}\label{regulator_8c_aaa5e744b4144395323ac2510e2ef6183}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+set\+\_\+output@{regulator\+\_\+set\+\_\+output}}
+\index{regulator\+\_\+set\+\_\+output@{regulator\+\_\+set\+\_\+output}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+set\+\_\+output()}{regulator\_set\_output()}}
+{\footnotesize\ttfamily void regulator\+\_\+set\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set output of motorbox. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_a38074077e9ddba81ab9e161aa2ebdfdb}\label{regulator_8c_a38074077e9ddba81ab9e161aa2ebdfdb}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+update\+\_\+reference\+\_\+model@{regulator\+\_\+update\+\_\+reference\+\_\+model}}
+\index{regulator\+\_\+update\+\_\+reference\+\_\+model@{regulator\+\_\+update\+\_\+reference\+\_\+model}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+update\+\_\+reference\+\_\+model()}{regulator\_update\_reference\_model()}}
+{\footnotesize\ttfamily void regulator\+\_\+update\+\_\+reference\+\_\+model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update reference model each time step. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file regulator.\+c.
+
+\mbox{\Hypertarget{regulator_8c_a8624a603d2ed0be3ce7c1a9dbb1fa735}\label{regulator_8c_a8624a603d2ed0be3ce7c1a9dbb1fa735}} 
+\index{regulator.\+c@{regulator.\+c}!regulator\+\_\+update\+\_\+states@{regulator\+\_\+update\+\_\+states}}
+\index{regulator\+\_\+update\+\_\+states@{regulator\+\_\+update\+\_\+states}!regulator.\+c@{regulator.\+c}}
+\subsubsection{\texorpdfstring{regulator\+\_\+update\+\_\+states()}{regulator\_update\_states()}}
+{\footnotesize\ttfamily void regulator\+\_\+update\+\_\+states (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update encoder position and error variables. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file regulator.\+c.
+

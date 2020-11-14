@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['joystick_5finit',['joystick_init',['../funkyboard_8h.html#a90acebf0114a3aa5d95650790e8b8693',1,'joystick_init():&#160;funkyboard.c'],['../funkyboard_8c.html#a90acebf0114a3aa5d95650790e8b8693',1,'joystick_init():&#160;funkyboard.c']]],
-  ['joystick_5fpos',['Joystick_pos',['../structJoystick__pos.html',1,'']]]
+  ['handle_5fcan_5fmessage',['handle_can_message',['../can__handler_8c.html#a1545a0464deb0efe960c14eb087abe2c',1,'handle_can_message(struct can_message_t *message):&#160;can_handler.c'],['../can__handler_8h.html#a1545a0464deb0efe960c14eb087abe2c',1,'handle_can_message(struct can_message_t *message):&#160;can_handler.c']]]
 ];

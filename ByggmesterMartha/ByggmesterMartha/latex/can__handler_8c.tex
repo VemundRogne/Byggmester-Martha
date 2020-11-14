@@ -1,0 +1,125 @@
+\hypertarget{can__handler_8c}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+handler.c File Reference}
+\label{can__handler_8c}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+handler.\+c@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+handler.\+c}}
+
+
+Implementation of can\+\_\+handler library.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sam.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/can\+\_\+controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/can\+\_\+handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/servo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/motor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/regulator.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$component/tc.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/joystick.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/ir\+\_\+driver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/solenoid.\+h\char`\"{}}\newline
+Include dependency graph for can\+\_\+handler.\+c\+:
+% FIG 0
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+union \hyperlink{unionData}{Data}
+\item 
+union \hyperlink{unionsigned__16__unsigned__8}{signed\+\_\+16\+\_\+unsigned\+\_\+8}
+\item 
+union \hyperlink{unionsigned__32__unsigned__8}{signed\+\_\+32\+\_\+unsigned\+\_\+8}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{can__handler_8c_a9f9ad31bbe45aa5171dee5c5c5c4f9f9}{transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python} (int32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Transfer a signed 32-\/bit integer by can bus. Implemented to read node 2 values by uart via node 1. \end{DoxyCompactList}\item 
+int16\+\_\+t \hyperlink{can__handler_8c_a06dec5d4581776062a2436fae385087f}{fit\+\_\+to\+\_\+interval} (float val, int16\+\_\+t min\+\_\+val, int16\+\_\+t max\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Transform a floating value from interval (0, 0x\+FF) to interval (min\+\_\+val, max\+\_\+val) \end{DoxyCompactList}\item 
+void \hyperlink{can__handler_8c_a1545a0464deb0efe960c14eb087abe2c}{handle\+\_\+can\+\_\+message} (struct \hyperlink{structcan__message__t}{can\+\_\+message\+\_\+t} $\ast$message)
+\begin{DoxyCompactList}\small\item\em Handler for all communication from node 1 to node 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{can__handler_8c_a3007485ea40879318afedd297a211bf5}\label{can__handler_8c_a3007485ea40879318afedd297a211bf5}} 
+union \hyperlink{unionsigned__16__unsigned__8}{signed\+\_\+16\+\_\+unsigned\+\_\+8} {\bfseries signed\+\_\+16\+\_\+unsigned\+\_\+8}
+\item 
+\mbox{\Hypertarget{can__handler_8c_aa6bb492bc3cfaa3c788231c5b26e59fd}\label{can__handler_8c_aa6bb492bc3cfaa3c788231c5b26e59fd}} 
+union \hyperlink{unionsigned__32__unsigned__8}{signed\+\_\+32\+\_\+unsigned\+\_\+8} {\bfseries signed\+\_\+32\+\_\+unsigned\+\_\+8}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of can\+\_\+handler library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{can__handler_8c_a06dec5d4581776062a2436fae385087f}\label{can__handler_8c_a06dec5d4581776062a2436fae385087f}} 
+\index{can\+\_\+handler.\+c@{can\+\_\+handler.\+c}!fit\+\_\+to\+\_\+interval@{fit\+\_\+to\+\_\+interval}}
+\index{fit\+\_\+to\+\_\+interval@{fit\+\_\+to\+\_\+interval}!can\+\_\+handler.\+c@{can\+\_\+handler.\+c}}
+\subsubsection{\texorpdfstring{fit\+\_\+to\+\_\+interval()}{fit\_to\_interval()}}
+{\footnotesize\ttfamily int16\+\_\+t fit\+\_\+to\+\_\+interval (\begin{DoxyParamCaption}\item[{float}]{val,  }\item[{int16\+\_\+t}]{min\+\_\+val,  }\item[{int16\+\_\+t}]{max\+\_\+val }\end{DoxyParamCaption})}
+
+
+
+Transform a floating value from interval (0, 0x\+FF) to interval (min\+\_\+val, max\+\_\+val) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em val} & Value to be converted \\
+\hline
+\mbox{\tt in}  & {\em min\+\_\+val} & Lower boundry of transformed interval \\
+\hline
+\mbox{\tt in}  & {\em max\+\_\+val} & Upper boundry of transformed interval\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int16\+\_\+t Transformed value 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file can\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{can__handler_8c_a1545a0464deb0efe960c14eb087abe2c}\label{can__handler_8c_a1545a0464deb0efe960c14eb087abe2c}} 
+\index{can\+\_\+handler.\+c@{can\+\_\+handler.\+c}!handle\+\_\+can\+\_\+message@{handle\+\_\+can\+\_\+message}}
+\index{handle\+\_\+can\+\_\+message@{handle\+\_\+can\+\_\+message}!can\+\_\+handler.\+c@{can\+\_\+handler.\+c}}
+\subsubsection{\texorpdfstring{handle\+\_\+can\+\_\+message()}{handle\_can\_message()}}
+{\footnotesize\ttfamily void handle\+\_\+can\+\_\+message (\begin{DoxyParamCaption}\item[{struct \hyperlink{structcan__message__t}{can\+\_\+message\+\_\+t} $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Handler for all communication from node 1 to node 2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & Pointer to can message received by node 1\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file can\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{can__handler_8c_a9f9ad31bbe45aa5171dee5c5c5c4f9f9}\label{can__handler_8c_a9f9ad31bbe45aa5171dee5c5c5c4f9f9}} 
+\index{can\+\_\+handler.\+c@{can\+\_\+handler.\+c}!transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python@{transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python}}
+\index{transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python@{transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python}!can\+\_\+handler.\+c@{can\+\_\+handler.\+c}}
+\subsubsection{\texorpdfstring{transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python()}{transfer\_signed\_32\_to\_python()}}
+{\footnotesize\ttfamily void transfer\+\_\+signed\+\_\+32\+\_\+to\+\_\+python (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Transfer a signed 32-\/bit integer by can bus. Implemented to read node 2 values by uart via node 1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & Value to be transfered by can to node 1\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 44 of file can\+\_\+handler.\+c.
+

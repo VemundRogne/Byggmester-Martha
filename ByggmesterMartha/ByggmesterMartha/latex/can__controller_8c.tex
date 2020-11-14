@@ -1,0 +1,138 @@
+\hypertarget{can__controller_8c}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+controller.c File Reference}
+\label{can__controller_8c}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+controller.\+c@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/can\+\_\+controller.\+c}}
+
+
+Implementation of delivered can controll library for node 2.  
+
+
+{\ttfamily \#include \char`\"{}../inc/can\+\_\+controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sam.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/printf-\/stdarg.\+h\char`\"{}}\newline
+Include dependency graph for can\+\_\+controller.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{can__controller_8c_aaefb35a157cd03ca83d82e86716a6c3c}\label{can__controller_8c_aaefb35a157cd03ca83d82e86716a6c3c}} 
+uint32\+\_\+t {\bfseries construct\+\_\+can\+\_\+br\+\_\+register} ()
+\item 
+uint8\+\_\+t \hyperlink{can__controller_8c_a75e7e1428e5ce309c0087602721bf57d}{can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb} (uint32\+\_\+t can\+\_\+br)
+\begin{DoxyCompactList}\small\item\em Initialize can bus with predefined number of rx and tx mailboxes, C\+A\+N0-\/$>$C\+A\+N\+\_\+\+MB\mbox{[}0\mbox{]} is used for transmitting C\+A\+N0-\/$>$C\+A\+N\+\_\+\+MB\mbox{[}1,2\mbox{]} is used for receiving. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can__controller_8c_ab12c1286ebbc8c54dc200d4b9c86902d}{can\+\_\+init} (uint32\+\_\+t can\+\_\+br, uint8\+\_\+t num\+\_\+tx\+\_\+mb, uint8\+\_\+t num\+\_\+rx\+\_\+mb)
+\begin{DoxyCompactList}\small\item\em Initialize can bus. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can__controller_8c_a8f4793f97f7c2faaf3942bf2e21b24a7}{can\+\_\+send} (\hyperlink{structcan__message__t}{C\+A\+N\+\_\+\+M\+E\+S\+S\+A\+GE} $\ast$\hyperlink{structcan__msg}{can\+\_\+msg}, uint8\+\_\+t tx\+\_\+mb\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Send can message from mailbox. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{can__controller_8c_a03d4c2c5c83b39910e579652a514f658}{can\+\_\+receive} (\hyperlink{structcan__message__t}{C\+A\+N\+\_\+\+M\+E\+S\+S\+A\+GE} $\ast$\hyperlink{structcan__msg}{can\+\_\+msg}, uint8\+\_\+t rx\+\_\+mb\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Read can message from mailbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of delivered can controll library for node 2. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{can__controller_8c_ab12c1286ebbc8c54dc200d4b9c86902d}\label{can__controller_8c_ab12c1286ebbc8c54dc200d4b9c86902d}} 
+\index{can\+\_\+controller.\+c@{can\+\_\+controller.\+c}!can\+\_\+init@{can\+\_\+init}}
+\index{can\+\_\+init@{can\+\_\+init}!can\+\_\+controller.\+c@{can\+\_\+controller.\+c}}
+\subsubsection{\texorpdfstring{can\+\_\+init()}{can\_init()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{can\+\_\+br,  }\item[{uint8\+\_\+t}]{num\+\_\+tx\+\_\+mb,  }\item[{uint8\+\_\+t}]{num\+\_\+rx\+\_\+mb }\end{DoxyParamCaption})}
+
+
+
+Initialize can bus. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em can\+\_\+br} & Value to be set in C\+A\+N0-\/$>$C\+A\+N\+\_\+\+BR register to match can bus bit timing\\
+\hline
+{\em num\+\_\+tx\+\_\+mb} & Number of transmit mailboxes, tx mb indexes\+: \mbox{[}0 , num\+\_\+tx\+\_\+mb-\/1\mbox{]}\\
+\hline
+{\em num\+\_\+rx\+\_\+mb} & Number of receive mailboxes, rx mb indexes\+: \mbox{[}num\+\_\+tx\+\_\+mb, num\+\_\+rx\+\_\+mb-\/1\mbox{]}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success(0)} & or failure(1) \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 86 of file can\+\_\+controller.\+c.
+
+\mbox{\Hypertarget{can__controller_8c_a75e7e1428e5ce309c0087602721bf57d}\label{can__controller_8c_a75e7e1428e5ce309c0087602721bf57d}} 
+\index{can\+\_\+controller.\+c@{can\+\_\+controller.\+c}!can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb@{can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb}}
+\index{can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb@{can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb}!can\+\_\+controller.\+c@{can\+\_\+controller.\+c}}
+\subsubsection{\texorpdfstring{can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb()}{can\_init\_def\_tx\_rx\_mb()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+init\+\_\+def\+\_\+tx\+\_\+rx\+\_\+mb (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{can\+\_\+br }\end{DoxyParamCaption})}
+
+
+
+Initialize can bus with predefined number of rx and tx mailboxes, C\+A\+N0-\/$>$C\+A\+N\+\_\+\+MB\mbox{[}0\mbox{]} is used for transmitting C\+A\+N0-\/$>$C\+A\+N\+\_\+\+MB\mbox{[}1,2\mbox{]} is used for receiving. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em can\+\_\+br} & Value to be set in C\+A\+N0-\/$>$C\+A\+N\+\_\+\+BR register to match can bus bit timing\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success(0)} & or failure(1) \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 68 of file can\+\_\+controller.\+c.
+
+\mbox{\Hypertarget{can__controller_8c_a03d4c2c5c83b39910e579652a514f658}\label{can__controller_8c_a03d4c2c5c83b39910e579652a514f658}} 
+\index{can\+\_\+controller.\+c@{can\+\_\+controller.\+c}!can\+\_\+receive@{can\+\_\+receive}}
+\index{can\+\_\+receive@{can\+\_\+receive}!can\+\_\+controller.\+c@{can\+\_\+controller.\+c}}
+\subsubsection{\texorpdfstring{can\+\_\+receive()}{can\_receive()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+receive (\begin{DoxyParamCaption}\item[{\hyperlink{structcan__message__t}{C\+A\+N\+\_\+\+M\+E\+S\+S\+A\+GE} $\ast$}]{can\+\_\+msg,  }\item[{uint8\+\_\+t}]{rx\+\_\+mb\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Read can message from mailbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structcan__msg}{can\+\_\+msg}} & struct instance to save received data\\
+\hline
+{\em rx\+\_\+mb\+\_\+id} & ID of receive mailbox to be used\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success(0)} & or failure(1) \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 209 of file can\+\_\+controller.\+c.
+
+\mbox{\Hypertarget{can__controller_8c_a8f4793f97f7c2faaf3942bf2e21b24a7}\label{can__controller_8c_a8f4793f97f7c2faaf3942bf2e21b24a7}} 
+\index{can\+\_\+controller.\+c@{can\+\_\+controller.\+c}!can\+\_\+send@{can\+\_\+send}}
+\index{can\+\_\+send@{can\+\_\+send}!can\+\_\+controller.\+c@{can\+\_\+controller.\+c}}
+\subsubsection{\texorpdfstring{can\+\_\+send()}{can\_send()}}
+{\footnotesize\ttfamily uint8\+\_\+t can\+\_\+send (\begin{DoxyParamCaption}\item[{\hyperlink{structcan__message__t}{C\+A\+N\+\_\+\+M\+E\+S\+S\+A\+GE} $\ast$}]{can\+\_\+msg,  }\item[{uint8\+\_\+t}]{tx\+\_\+mb\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Send can message from mailbox. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structcan__msg}{can\+\_\+msg}} & message to be sent\\
+\hline
+{\em tx\+\_\+mb\+\_\+id} & ID of transmit mailbox to be used\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Success(0)} & or failure(1) \\
+\hline
+\end{DoxyRetVals}
+
+
+Definition at line 171 of file can\+\_\+controller.\+c.
+

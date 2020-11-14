@@ -4,14 +4,14 @@ digraph "/home/student/Byggmester-Martha/Node2/Node2/inc/adc.h"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node2 [label="/home/student/Byggmester\l-Martha/Node2/Node2/inc/adc.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node3 [label="/home/student/Byggmester\l-Martha/Node2/Node2/inc\l/ir_driver.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ir__driver_8h_source.html"];
+  Node3 [label="/home/student/Byggmester\l-Martha/Node2/Node2/inc\l/ir_driver.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ir__driver_8h.html",tooltip="Library for controlling IR. "];
   Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node4 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/can_handler.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$can__handler_8c_source.html"];
+  Node4 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/can_handler.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$can__handler_8c.html",tooltip="Implementation of can_handler library. "];
   Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node5 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/ir_driver.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ir__driver_8c_source.html"];
+  Node5 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/ir_driver.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ir__driver_8c.html",tooltip="Implementation of IR library. "];
   Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node6 [label="/home/student/Byggmester\l-Martha/Node2/Node2/inc\l/solenoid.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$solenoid_8h_source.html"];
+  Node6 [label="/home/student/Byggmester\l-Martha/Node2/Node2/inc\l/solenoid.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$solenoid_8h.html",tooltip="Implementation of solenoid library. "];
   Node6 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node7 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/solenoid.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$solenoid_8c_source.html"];
+  Node7 [label="/home/student/Byggmester\l-Martha/Node2/Node2/src\l/solenoid.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$solenoid_8c.html",tooltip="Library for controlling the solenoid. "];
 }

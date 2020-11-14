@@ -1,0 +1,80 @@
+\hypertarget{solenoid_8c}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/solenoid.c File Reference}
+\label{solenoid_8c}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/solenoid.\+c@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/solenoid.\+c}}
+
+
+Library for controlling the solenoid.  
+
+
+{\ttfamily \#include \char`\"{}../inc/solenoid.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sam.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for solenoid.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{solenoid_8c_a05736227e6f452fb1ceb65c417ebd8c9}{solenoid\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize solenoid. Enable control pin and set status variables. \end{DoxyCompactList}\item 
+void \hyperlink{solenoid_8c_ac63a5e9ac27255ad9c7b81f70ee59a47}{solenoid\+\_\+push} ()
+\begin{DoxyCompactList}\small\item\em Start a solenoid pulse. \end{DoxyCompactList}\item 
+void \hyperlink{solenoid_8c_a2d3c973bf75c73522405145648402d6a}{solenoid\+\_\+contract} ()
+\begin{DoxyCompactList}\small\item\em End a solenoid pulse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for controlling the solenoid. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{solenoid_8c_a2d3c973bf75c73522405145648402d6a}\label{solenoid_8c_a2d3c973bf75c73522405145648402d6a}} 
+\index{solenoid.\+c@{solenoid.\+c}!solenoid\+\_\+contract@{solenoid\+\_\+contract}}
+\index{solenoid\+\_\+contract@{solenoid\+\_\+contract}!solenoid.\+c@{solenoid.\+c}}
+\subsubsection{\texorpdfstring{solenoid\+\_\+contract()}{solenoid\_contract()}}
+{\footnotesize\ttfamily void solenoid\+\_\+contract (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+End a solenoid pulse. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file solenoid.\+c.
+
+\mbox{\Hypertarget{solenoid_8c_a05736227e6f452fb1ceb65c417ebd8c9}\label{solenoid_8c_a05736227e6f452fb1ceb65c417ebd8c9}} 
+\index{solenoid.\+c@{solenoid.\+c}!solenoid\+\_\+init@{solenoid\+\_\+init}}
+\index{solenoid\+\_\+init@{solenoid\+\_\+init}!solenoid.\+c@{solenoid.\+c}}
+\subsubsection{\texorpdfstring{solenoid\+\_\+init()}{solenoid\_init()}}
+{\footnotesize\ttfamily void solenoid\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize solenoid. Enable control pin and set status variables. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file solenoid.\+c.
+
+\mbox{\Hypertarget{solenoid_8c_ac63a5e9ac27255ad9c7b81f70ee59a47}\label{solenoid_8c_ac63a5e9ac27255ad9c7b81f70ee59a47}} 
+\index{solenoid.\+c@{solenoid.\+c}!solenoid\+\_\+push@{solenoid\+\_\+push}}
+\index{solenoid\+\_\+push@{solenoid\+\_\+push}!solenoid.\+c@{solenoid.\+c}}
+\subsubsection{\texorpdfstring{solenoid\+\_\+push()}{solenoid\_push()}}
+{\footnotesize\ttfamily void solenoid\+\_\+push (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start a solenoid pulse. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file solenoid.\+c.
+

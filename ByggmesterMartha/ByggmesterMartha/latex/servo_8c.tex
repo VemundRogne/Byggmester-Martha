@@ -1,0 +1,99 @@
+\hypertarget{servo_8c}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/servo.c File Reference}
+\label{servo_8c}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/servo.\+c@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/src/servo.\+c}}
+
+
+Implementation of servo library.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sam.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$component/pmc.\+h$>$}\newline
+{\ttfamily \#include $<$component/tc.\+h$>$}\newline
+{\ttfamily \#include $<$component/pio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/servo.\+h\char`\"{}}\newline
+Include dependency graph for servo.\+c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{servo_8c_a0f1b66fb8147299aed2b75c3bdb56a42}\label{servo_8c_a0f1b66fb8147299aed2b75c3bdb56a42}} 
+\#define {\bfseries M\+CK}~48000000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{servo_8c_ad3b283e330d19cc5cedefd6ed2ecf656}{servo\+\_\+init\+\_\+pwm} ()
+\begin{DoxyCompactList}\small\item\em Initialize P\+W\+M2 by the use of timer0. \end{DoxyCompactList}\item 
+void \hyperlink{servo_8c_a99faf5a7baa4a6b296d019b960a315ea}{pwm\+\_\+set\+\_\+duty\+\_\+cycle} (float duty\+\_\+cycle)
+\begin{DoxyCompactList}\small\item\em Abstraction to set duty\+\_\+cycle of pwm controlling the servo. \end{DoxyCompactList}\item 
+void \hyperlink{servo_8c_aa6f944f44ff176210bdf4e3c1b1dc615}{servo\+\_\+set\+\_\+position} (uint8\+\_\+t position)
+\begin{DoxyCompactList}\small\item\em Set position of servo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of servo library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{servo_8c_a99faf5a7baa4a6b296d019b960a315ea}\label{servo_8c_a99faf5a7baa4a6b296d019b960a315ea}} 
+\index{servo.\+c@{servo.\+c}!pwm\+\_\+set\+\_\+duty\+\_\+cycle@{pwm\+\_\+set\+\_\+duty\+\_\+cycle}}
+\index{pwm\+\_\+set\+\_\+duty\+\_\+cycle@{pwm\+\_\+set\+\_\+duty\+\_\+cycle}!servo.\+c@{servo.\+c}}
+\subsubsection{\texorpdfstring{pwm\+\_\+set\+\_\+duty\+\_\+cycle()}{pwm\_set\_duty\_cycle()}}
+{\footnotesize\ttfamily void pwm\+\_\+set\+\_\+duty\+\_\+cycle (\begin{DoxyParamCaption}\item[{float}]{duty\+\_\+cycle }\end{DoxyParamCaption})}
+
+
+
+Abstraction to set duty\+\_\+cycle of pwm controlling the servo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em duty\+\_\+cycle} & Duty cycle to be set\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file servo.\+c.
+
+\mbox{\Hypertarget{servo_8c_ad3b283e330d19cc5cedefd6ed2ecf656}\label{servo_8c_ad3b283e330d19cc5cedefd6ed2ecf656}} 
+\index{servo.\+c@{servo.\+c}!servo\+\_\+init\+\_\+pwm@{servo\+\_\+init\+\_\+pwm}}
+\index{servo\+\_\+init\+\_\+pwm@{servo\+\_\+init\+\_\+pwm}!servo.\+c@{servo.\+c}}
+\subsubsection{\texorpdfstring{servo\+\_\+init\+\_\+pwm()}{servo\_init\_pwm()}}
+{\footnotesize\ttfamily void servo\+\_\+init\+\_\+pwm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize P\+W\+M2 by the use of timer0. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file servo.\+c.
+
+\mbox{\Hypertarget{servo_8c_aa6f944f44ff176210bdf4e3c1b1dc615}\label{servo_8c_aa6f944f44ff176210bdf4e3c1b1dc615}} 
+\index{servo.\+c@{servo.\+c}!servo\+\_\+set\+\_\+position@{servo\+\_\+set\+\_\+position}}
+\index{servo\+\_\+set\+\_\+position@{servo\+\_\+set\+\_\+position}!servo.\+c@{servo.\+c}}
+\subsubsection{\texorpdfstring{servo\+\_\+set\+\_\+position()}{servo\_set\_position()}}
+{\footnotesize\ttfamily void servo\+\_\+set\+\_\+position (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{postition }\end{DoxyParamCaption})}
+
+
+
+Set position of servo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em position} & Value (0, 255) corresponds to (leftmost, rightmost) position\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file servo.\+c.
+

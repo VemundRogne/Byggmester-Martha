@@ -1,0 +1,15 @@
+digraph "/home/student/Byggmester-Martha/Node2/Node2" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a0c52fe222d51b3e88a925bf0c201982 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Node2" fontname="Helvetica", fontsize="10", URL="dir_a0c52fe222d51b3e88a925bf0c201982.html"]
+  subgraph clusterdir_52e82626848ab54abcb6dc6b76c1c602 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_52e82626848ab54abcb6dc6b76c1c602.html"];
+    dir_52e82626848ab54abcb6dc6b76c1c602 [shape=plaintext label="Node2"];
+    dir_52a97f7ec481c3e691ee813f3b956bbf [shape=box label="inc" color="black" fillcolor="white" style="filled" URL="dir_52a97f7ec481c3e691ee813f3b956bbf.html"];
+    dir_9f8cec0d7e9c4621dff2904753e6a0d0 [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_9f8cec0d7e9c4621dff2904753e6a0d0.html"];
+  }
+  }
+  dir_9f8cec0d7e9c4621dff2904753e6a0d0->dir_52a97f7ec481c3e691ee813f3b956bbf [headlabel="16", labeldistance=1.5 headhref="dir_000005_000003.html"];
+}

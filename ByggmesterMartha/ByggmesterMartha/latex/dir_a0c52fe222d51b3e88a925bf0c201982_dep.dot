@@ -1,0 +1,10 @@
+digraph "/home/student/Byggmester-Martha/Node2" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a0c52fe222d51b3e88a925bf0c201982 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_a0c52fe222d51b3e88a925bf0c201982.html"];
+    dir_a0c52fe222d51b3e88a925bf0c201982 [shape=plaintext label="Node2"];
+    dir_52e82626848ab54abcb6dc6b76c1c602 [shape=box label="Node2" color="red" fillcolor="white" style="filled" URL="dir_52e82626848ab54abcb6dc6b76c1c602.html"];
+  }
+}

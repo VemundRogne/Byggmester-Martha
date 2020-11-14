@@ -1,0 +1,250 @@
+\hypertarget{motor_8h}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/motor.h File Reference}
+\label{motor_8h}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/motor.\+h@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/motor.\+h}}
+
+
+Library containing low level functions to control the motor.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for motor.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{motor_8h_a6c8de73bb604d91743c7f6f356eb171e}\label{motor_8h_a6c8de73bb604d91743c7f6f356eb171e}} 
+\#define {\bfseries D\+IR}~10
+\item 
+\mbox{\Hypertarget{motor_8h_a22e6626f2c98ed902f8ded47f6438c05}\label{motor_8h_a22e6626f2c98ed902f8ded47f6438c05}} 
+\#define {\bfseries EN}~9
+\item 
+\mbox{\Hypertarget{motor_8h_a66c7f87d14d4591f214e44dc70c05454}\label{motor_8h_a66c7f87d14d4591f214e44dc70c05454}} 
+\#define {\bfseries S\+EL}~2
+\item 
+\mbox{\Hypertarget{motor_8h_ac5d957e4fd3dc11cd97a54cf9ca057a4}\label{motor_8h_ac5d957e4fd3dc11cd97a54cf9ca057a4}} 
+\#define {\bfseries R\+ST}~1
+\item 
+\mbox{\Hypertarget{motor_8h_a7122a6e5d75b5f8b7f00c7130df40407}\label{motor_8h_a7122a6e5d75b5f8b7f00c7130df40407}} 
+\#define {\bfseries OE}~0
+\item 
+\mbox{\Hypertarget{motor_8h_a50c60ebe8985c64ea77c8094b08ef6fe}\label{motor_8h_a50c60ebe8985c64ea77c8094b08ef6fe}} 
+\#define {\bfseries D\+A\+C\+C\+\_\+\+P\+IO}~16
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{motor_8h_adb92f0b182a8a8e3e9f82d600659d7c3}{motor\+\_\+enable\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Handler for all communication from node 1 to node 2. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_a25788b323a605966f64e76b94f223d0d}{motor\+\_\+disable\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Disable output from motorbox to motor. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_a05062d361685d70da781dee3169e4754}{motor\+\_\+set\+\_\+direction} (int8\+\_\+t dir)
+\begin{DoxyCompactList}\small\item\em Set direction of motor output. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_afc2a6ae9d770c29106dc139111bc67a6}{motor\+\_\+set\+\_\+output} (uint8\+\_\+t direction, uint16\+\_\+t power)
+\begin{DoxyCompactList}\small\item\em Set motor output power and direction. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_a151cccf0120a24d251b5ce5d878abb67}{motor\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize motor control pins and D\+A\+CC. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_a1810f19ef7d35edd2e26a7d4ee29f6bc}{encoder\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize encoder. Reset and enable encoder read clock. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_af3b159df873bdf1ebb75059ec79dafd5}{motorbox\+\_\+reset\+\_\+encoder} ()
+\begin{DoxyCompactList}\small\item\em Reset encoder counter. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_a9d7e1d7960184af5f5febbde0b86fc71}{encoder\+\_\+read} (int16\+\_\+t $\ast$motorbox\+\_\+encoder\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Read encoder value from motorbox. \end{DoxyCompactList}\item 
+void \hyperlink{motor_8h_afd1107354671686a6dfeba3f89688385}{\+\_\+encoder\+\_\+byte\+\_\+read} (uint8\+\_\+t $\ast$\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Lowlevel function to get single byte from motorbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{motor_8h_aacb02fd4b47c66d1a51ca55d307cb7b3}\label{motor_8h_aacb02fd4b47c66d1a51ca55d307cb7b3}} 
+volatile int32\+\_\+t {\bfseries motor\+\_\+encoder\+\_\+value}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library containing low level functions to control the motor. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{motor_8h_afd1107354671686a6dfeba3f89688385}\label{motor_8h_afd1107354671686a6dfeba3f89688385}} 
+\index{motor.\+h@{motor.\+h}!\+\_\+encoder\+\_\+byte\+\_\+read@{\+\_\+encoder\+\_\+byte\+\_\+read}}
+\index{\+\_\+encoder\+\_\+byte\+\_\+read@{\+\_\+encoder\+\_\+byte\+\_\+read}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+encoder\+\_\+byte\+\_\+read()}{\_encoder\_byte\_read()}}
+{\footnotesize\ttfamily void \+\_\+encoder\+\_\+byte\+\_\+read (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Lowlevel function to get single byte from motorbox. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & Pointer to buffer for storing encoder value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_a1810f19ef7d35edd2e26a7d4ee29f6bc}\label{motor_8h_a1810f19ef7d35edd2e26a7d4ee29f6bc}} 
+\index{motor.\+h@{motor.\+h}!encoder\+\_\+init@{encoder\+\_\+init}}
+\index{encoder\+\_\+init@{encoder\+\_\+init}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{encoder\+\_\+init()}{encoder\_init()}}
+{\footnotesize\ttfamily void encoder\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize encoder. Reset and enable encoder read clock. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_a9d7e1d7960184af5f5febbde0b86fc71}\label{motor_8h_a9d7e1d7960184af5f5febbde0b86fc71}} 
+\index{motor.\+h@{motor.\+h}!encoder\+\_\+read@{encoder\+\_\+read}}
+\index{encoder\+\_\+read@{encoder\+\_\+read}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{encoder\+\_\+read()}{encoder\_read()}}
+{\footnotesize\ttfamily void encoder\+\_\+read (\begin{DoxyParamCaption}\item[{int16\+\_\+t $\ast$}]{motorbox\+\_\+encoder\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Read encoder value from motorbox. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em motorbox\+\_\+encoder\+\_\+value} & Pointer to buffer for storing encoder values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_a25788b323a605966f64e76b94f223d0d}\label{motor_8h_a25788b323a605966f64e76b94f223d0d}} 
+\index{motor.\+h@{motor.\+h}!motor\+\_\+disable\+\_\+output@{motor\+\_\+disable\+\_\+output}}
+\index{motor\+\_\+disable\+\_\+output@{motor\+\_\+disable\+\_\+output}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motor\+\_\+disable\+\_\+output()}{motor\_disable\_output()}}
+{\footnotesize\ttfamily void motor\+\_\+disable\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disable output from motorbox to motor. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_adb92f0b182a8a8e3e9f82d600659d7c3}\label{motor_8h_adb92f0b182a8a8e3e9f82d600659d7c3}} 
+\index{motor.\+h@{motor.\+h}!motor\+\_\+enable\+\_\+output@{motor\+\_\+enable\+\_\+output}}
+\index{motor\+\_\+enable\+\_\+output@{motor\+\_\+enable\+\_\+output}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motor\+\_\+enable\+\_\+output()}{motor\_enable\_output()}}
+{\footnotesize\ttfamily void motor\+\_\+enable\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Handler for all communication from node 1 to node 2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & Pointer to can message received by node 1\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Enable output from motorbox to motor
+
+void 
+\end{DoxyReturn}
+
+
+Definition at line 27 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_a151cccf0120a24d251b5ce5d878abb67}\label{motor_8h_a151cccf0120a24d251b5ce5d878abb67}} 
+\index{motor.\+h@{motor.\+h}!motor\+\_\+init@{motor\+\_\+init}}
+\index{motor\+\_\+init@{motor\+\_\+init}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motor\+\_\+init()}{motor\_init()}}
+{\footnotesize\ttfamily void motor\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize motor control pins and D\+A\+CC. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_a05062d361685d70da781dee3169e4754}\label{motor_8h_a05062d361685d70da781dee3169e4754}} 
+\index{motor.\+h@{motor.\+h}!motor\+\_\+set\+\_\+direction@{motor\+\_\+set\+\_\+direction}}
+\index{motor\+\_\+set\+\_\+direction@{motor\+\_\+set\+\_\+direction}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motor\+\_\+set\+\_\+direction()}{motor\_set\_direction()}}
+{\footnotesize\ttfamily void motor\+\_\+set\+\_\+direction (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{dir }\end{DoxyParamCaption})}
+
+
+
+Set direction of motor output. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dir} & Desired direction/sign of motor output\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 17 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_afc2a6ae9d770c29106dc139111bc67a6}\label{motor_8h_afc2a6ae9d770c29106dc139111bc67a6}} 
+\index{motor.\+h@{motor.\+h}!motor\+\_\+set\+\_\+output@{motor\+\_\+set\+\_\+output}}
+\index{motor\+\_\+set\+\_\+output@{motor\+\_\+set\+\_\+output}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motor\+\_\+set\+\_\+output()}{motor\_set\_output()}}
+{\footnotesize\ttfamily void motor\+\_\+set\+\_\+output (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{direction,  }\item[{uint16\+\_\+t}]{power }\end{DoxyParamCaption})}
+
+
+
+Set motor output power and direction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em direction} & Desired direction/sign of motor output \\
+\hline
+\mbox{\tt in}  & {\em power} & Desired power of motor output\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file motor.\+c.
+
+\mbox{\Hypertarget{motor_8h_af3b159df873bdf1ebb75059ec79dafd5}\label{motor_8h_af3b159df873bdf1ebb75059ec79dafd5}} 
+\index{motor.\+h@{motor.\+h}!motorbox\+\_\+reset\+\_\+encoder@{motorbox\+\_\+reset\+\_\+encoder}}
+\index{motorbox\+\_\+reset\+\_\+encoder@{motorbox\+\_\+reset\+\_\+encoder}!motor.\+h@{motor.\+h}}
+\subsubsection{\texorpdfstring{motorbox\+\_\+reset\+\_\+encoder()}{motorbox\_reset\_encoder()}}
+{\footnotesize\ttfamily void motorbox\+\_\+reset\+\_\+encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reset encoder counter. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file motor.\+c.
+

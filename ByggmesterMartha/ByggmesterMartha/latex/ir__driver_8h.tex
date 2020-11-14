@@ -1,0 +1,91 @@
+\hypertarget{ir__driver_8h}{}\section{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/ir\+\_\+driver.h File Reference}
+\label{ir__driver_8h}\index{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/ir\+\_\+driver.\+h@{/home/student/\+Byggmester-\/\+Martha/\+Node2/\+Node2/inc/ir\+\_\+driver.\+h}}
+
+
+Library for controlling IR.  
+
+
+{\ttfamily \#include \char`\"{}../inc/adc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/can\+\_\+controller.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for ir\+\_\+driver.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ir__driver_8h_a398213820d1862c262f45bb51a4bb934}{ir\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initialize IR by starting up A\+DC and setting status variables. \end{DoxyCompactList}\item 
+void \hyperlink{ir__driver_8h_a4cb6d5052c497ea73b023a63e8fb6c3e}{ir\+\_\+ball\+\_\+in\+\_\+beam} ()
+\begin{DoxyCompactList}\small\item\em Reads adc value from ir circuit to determine whether the beam is blocked. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{ir__driver_8h_a1277d796eaef13d47f6ac4c5187216a7}{ir\+\_\+transmit} ()
+\begin{DoxyCompactList}\small\item\em Transmit message with ir status to node 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ir__driver_8h_a10183df5297fe9dc7416ff43b4892404}\label{ir__driver_8h_a10183df5297fe9dc7416ff43b4892404}} 
+uint8\+\_\+t {\bfseries status\+\_\+ball}
+\item 
+\mbox{\Hypertarget{ir__driver_8h_a8687bdd6a71353ccdd58b211bb774c20}\label{ir__driver_8h_a8687bdd6a71353ccdd58b211bb774c20}} 
+volatile uint8\+\_\+t {\bfseries transmit\+\_\+ball\+\_\+status\+\_\+flag}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for controlling IR. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ir__driver_8h_a4cb6d5052c497ea73b023a63e8fb6c3e}\label{ir__driver_8h_a4cb6d5052c497ea73b023a63e8fb6c3e}} 
+\index{ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}!ir\+\_\+ball\+\_\+in\+\_\+beam@{ir\+\_\+ball\+\_\+in\+\_\+beam}}
+\index{ir\+\_\+ball\+\_\+in\+\_\+beam@{ir\+\_\+ball\+\_\+in\+\_\+beam}!ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{ir\+\_\+ball\+\_\+in\+\_\+beam()}{ir\_ball\_in\_beam()}}
+{\footnotesize\ttfamily void ir\+\_\+ball\+\_\+in\+\_\+beam (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads adc value from ir circuit to determine whether the beam is blocked. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file ir\+\_\+driver.\+c.
+
+\mbox{\Hypertarget{ir__driver_8h_a398213820d1862c262f45bb51a4bb934}\label{ir__driver_8h_a398213820d1862c262f45bb51a4bb934}} 
+\index{ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}!ir\+\_\+init@{ir\+\_\+init}}
+\index{ir\+\_\+init@{ir\+\_\+init}!ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{ir\+\_\+init()}{ir\_init()}}
+{\footnotesize\ttfamily void ir\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize IR by starting up A\+DC and setting status variables. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 16 of file ir\+\_\+driver.\+c.
+
+\mbox{\Hypertarget{ir__driver_8h_a1277d796eaef13d47f6ac4c5187216a7}\label{ir__driver_8h_a1277d796eaef13d47f6ac4c5187216a7}} 
+\index{ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}!ir\+\_\+transmit@{ir\+\_\+transmit}}
+\index{ir\+\_\+transmit@{ir\+\_\+transmit}!ir\+\_\+driver.\+h@{ir\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{ir\+\_\+transmit()}{ir\_transmit()}}
+{\footnotesize\ttfamily uint8\+\_\+t ir\+\_\+transmit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Transmit message with ir status to node 1. 
+
+\begin{DoxyReturn}{Returns}
+uint8\+\_\+t Nothing, should be void 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file ir\+\_\+driver.\+c.
+
