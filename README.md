@@ -29,12 +29,15 @@ pip install .
 ### Example
 Let's send a CAN-message to Node2.
 ```python
+# Import our custom communications-protocol
 import byggern
 
-# Open a connection
+# Open a serial connection
 serial_connection = byggern.comms.open_serial_connection(COMPORT)
 
-data = [1, 2, 3, 4, 5]
+# Send a can message
+data = [1, 2, 3, 4, 5]  # Arbitrary data
+msg_id = 1000           # Arbitrary ID
 byggern.can_transmit(
     serial_connection,
     msg_id = msg_id,
