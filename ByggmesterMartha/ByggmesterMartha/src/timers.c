@@ -12,7 +12,7 @@
 
 // This ISR is called approximately 70 times per second, as per init_timer0();
 ISR(TIMER0_OVF_vect){
-	rd_adc();
+	adc_rd();
 }
 
 // Configures timer0 to be a system-wide interrupt generator at ~70 Hz

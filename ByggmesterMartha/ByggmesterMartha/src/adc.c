@@ -15,13 +15,6 @@
 #include "../inc/xmem.h"
 
 
-// Sets up Timer1 to be a PWM output on PD5 (OC1A)
-// This is the required clock that the ADC needs to operate
-void adc_init(){
-	timer1_init();
-	load_mux_config();
-}
-
 // Loads configuration of each channel according to figura 4a (page 11) in datasheet
 void load_mux_config(){
 	volatile char *ext_adc = (char *) ADC_START_ADDRESS; // Start address for the ADC
@@ -39,8 +32,16 @@ void load_mux_config(){
 	}
 }
 
+
+// Sets up Timer1 to be a PWM output on PD5 (OC1A)
+// This is the required clock that the ADC needs to operate
+void adc_init(){
+	timer1_init();
+	load_mux_config();
+}
+
 // Updates the internally buffered adc_val register with new values from the ADC
-void rd_adc(){
+void adc_rd(){
 	volatile char *ext_adc = (char *) ADC_START_ADDRESS; // Start address for the ADC
 	
 	//Write start to start conversion
