@@ -118,7 +118,7 @@ void menu_home(){
 	menu_insert_item(menu_pointer, "", 0, 7);
 };
 
-void menu_highscores(){
+void menu_developers(){
 	volatile char* menu_pointer = &menu[0];
 	char title[LINELENGTH] = "  DEVELOPERS!";
 	menu_insert_item(menu_pointer, &title[0], strlen(title), 0);

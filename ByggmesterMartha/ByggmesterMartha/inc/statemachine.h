@@ -11,7 +11,7 @@
 
 enum state{
 	HOME_MENU,
-	HIGHSCORE,
+	DEVELOPERS,
 	GAME_OVER,
 	PLAY_GAME,
 	INITIALIZING	
@@ -24,7 +24,7 @@ void init_statemachine();
 
 // STATE ENTRY FUNCTIONS //
 void enter_home_menu();
-void enter_highscore_menu();
+void enter_developers_menu();
 void enter_game_over(uint16_t score);
 void enter_play_game(uint16_t score);
 void enter_initializing();
