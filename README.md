@@ -1,2 +1,42 @@
-# Byggmester-Martha
-Vi spiller pingpong
+# TTK4155: Byggmester-Martha
+> We're playing ping-pong!
+
+## Node 1
+The code for Node1 is contained in the folder "ByggmesterMartha" and is an Atmel-Studio project.
+
+## Node 2
+The code for node 2 is contained in the folder "Node2" and is an Atmel-Studio project.
+
+## Communications-interface
+We have developed a protocol for communication between a host computer and node 1. The protocol makes it possible to get and set variables, run tests and collect debug-information.
+
+### Installation
+```
+pip install .
+```
+### Example
+Let's send a CAN-message to Node2.
+```python
+import byggern
+
+# Open a connection
+serial_connection = byggern.comms.open_serial_connection(COMPORT)
+
+data = [1, 2, 3, 4, 5]
+byggern.can_transmit(
+    serial_connection,
+    msg_id = msg_id,
+    msg_len = len(data),
+    msg_data = data
+)
+```
+
+## Continous Integration and automated testing
+To ease the development process we setup an automated CI and testing framework through Github actions. The full action is described in ".github/Node1.yml"
+
+Every time a new commit is pushed to github this automated system:
+1. Downloads the new code in a fresh environment
+2. Builds node 1 and node 2
+3. Flashes the newly build node 1 and node 2 (if it did actually sucessfully build)
+4. Run tests on the hardware through the communications-interface
+
