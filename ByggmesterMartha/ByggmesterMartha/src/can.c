@@ -1,11 +1,8 @@
 
-#define F_CPU	4915200
 #include <avr/io.h>
-#include <util/delay.h>
-#include <string.h>
 
-#include "../inc/mcp2515.h"
 #include "../inc/can.h"
+#include "../inc/mcp2515.h"
 
 // Looks for valid transmit buffer, if non returns 3
 // tx_buffer_address points to the valid transmit buffer
