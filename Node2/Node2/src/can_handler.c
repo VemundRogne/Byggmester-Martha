@@ -48,15 +48,20 @@ void transfer_signed_32_to_python(int32_t value){
 	can_send(&signed_32_unsigned_8_can_message, 0);
 }
 
+// Fit values to specified interval
 int16_t fit_to_interval(float val, int16_t min_val, int16_t max_val){
 	float scale = (max_val-min_val)/(0xFF);
 
 	return min_val + (int16_t)(val*scale);
 }
 
+/*
+* All message IDs are predefined and corresponds to 
+* specific parts of the embedded system
+*/
 
 void handle_can_message(struct can_message_t *message){
-	// The message contains info about the joystick!
+	// Handle incoming joystick pos message
 	if (message->id == 68){
 		union Data data;
 		
@@ -71,13 +76,13 @@ void handle_can_message(struct can_message_t *message){
 		REG_PIOA_SODR |= (1<<19);
 	}
 
-	// Move servo and stepper from joystick! 
+	// Joystick commands for servo and motor
 	if (message->id == 69){
 		union Data data;
 		
 		// Get motor command and shift it from (-127, 127) to (0, 255)
 		data.u = message->data[0];
-		float _motor_ref = (float)(-data.i + (1<<7)); //Make positive :) 
+		float _motor_ref = (float)(-data.i + (1<<7));
 
 		//Motor ref should be in interval (0, 8192)
 		int16_t min_val = -2500;
@@ -90,7 +95,7 @@ void handle_can_message(struct can_message_t *message){
 		data.u = message->data[1];
 		float _servo_ref = (float)(data.i + (1<<7));
 
-		// Servo ref should be in interval (0, 255)
+		// Servo ref is in interval (0, 255)
 		min_val = 0;
 		max_val = 255;
 		uint8_t servo_ref = (uint8_t) fit_to_interval(_servo_ref, min_val, max_val);
@@ -98,52 +103,52 @@ void handle_can_message(struct can_message_t *message){
 	}
 
 
-	// Move servo motor <3 data should contain some duty cycle?
+	// Set servo position
 	if(message->id == 50){
 		uint8_t position = (uint8_t)(message->data[0]);
 		servo_set_position(position);
 	}
 
+	// Set IR status flag based on incoming can message data
 	if (message->id == 5){
 		transmit_ball_status_flag = message->data[0];
 	}
 	
+	// Activate solenoid if flag is not set
 	if ((message->id == 52) && (message->data[0] == 1)){
-		//uint8_t pulse_length = message->data[1];
 		if(solenoid_free_flag == 0){
 			solenoid_push();
 			solenoid_free_flag = 1;
 		}
-		
-		//solenoid_push_ball(pulse_length);
 	}
 
 	/* ----------------- REGULATOR INPUTS ------------------------ */
 	
+	// Init regulator
 	if (message->id == 138){
 		regulator_init();
 	}
 	
-	// SET REGULATOR MODE
+	// Set regulator mode
 	if(message->id == 900){
 		regulator_mode = message->data[0];
 	}
 
-	// SET REGULATOR P-GAIN
+	// Set regulator P-gain
 	if(message->id == 901){
 		signed_16_unsigned_8.unsigned_8[0] = message->data[1];
 		signed_16_unsigned_8.unsigned_8[1] = message->data[0];
 		p_gain = signed_16_unsigned_8.signed_16;
 	}
 
-	// SET REGULATOR I-GAIN
+	// Set regulator I-gain
 	if(message->id == 902){
 		signed_16_unsigned_8.unsigned_8[0] = message->data[1];
 		signed_16_unsigned_8.unsigned_8[1] = message->data[0];
 		i_gain = signed_16_unsigned_8.signed_16;
 	}
 
-	// SET POSITION REFERENCE
+	// Set position reference
 	if(message->id == 903){
 		signed_32_unsigned_8.unsigned_8[0] = message->data[3];
 		signed_32_unsigned_8.unsigned_8[1] = message->data[2];
@@ -216,6 +221,7 @@ void handle_can_message(struct can_message_t *message){
 	/* Request from Node 1 to Node 2 to read current regulator integral */
 	/* Request from Node 1 to Node 2 to Read current error */
 	
+	// Transmit IR status to Node1
 	ir_transmit();
 }
 

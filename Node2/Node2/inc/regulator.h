@@ -28,7 +28,6 @@ volatile uint8_t regulator_mode;
 
 /* 
  * -1 or 1 sets if regulator is direct-action or reverse action
- * Should a positive error yield a positive output?
 */
 volatile int8_t reverse_dir_action;
 

@@ -55,20 +55,6 @@ void motor_set_output(uint8_t direction, uint16_t power){
 	DACC->DACC_CDR |= (power | (1<<12));	// TODO: Check if this method of setting power is dangerous
 }
 
-
-// Vi vil gi DACCen en verdi mellom 0 og 2048 (alts� en 12-bit verdi)
-void motor_joystick_command(int8_t motor_speed){
-	motor_enable_motor();
-	motor_set_direction(motor_speed);
-
-	uint16_t val = abs(motor_speed);
-	val = val << 4;
-
-	DACC->DACC_CHER |= (1<<1); //Enable channel 1
-	DACC->DACC_CDR |= (val | (1<<12)); //Channel data register gets tag-bit + digital value to convert
-};
-
-
 // ------------------ ENCODER -----------------------
 
 /* Resets all out internal counters and stuff */

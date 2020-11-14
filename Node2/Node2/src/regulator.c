@@ -19,8 +19,6 @@ void regulator_init(){
 
 void regulator_finish_init(){
 	motorbox_reset_encoder();
-
-	//Not sure if we need all these, but shouldnt hurt
 	regulator_mode = 2;
 	reverse_dir_action = 1;
 	p_gain = Kp;
@@ -45,6 +43,7 @@ void regulator_run(){
 	}
 }
 
+// Updates the reference model of the regulator
 void regulator_update_reference_model(){
 	uint16_t d_ref = abs(position_setpoint - position_reference) >> 4;
 	if (d_ref == 0){

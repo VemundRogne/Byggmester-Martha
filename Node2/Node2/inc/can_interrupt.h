@@ -11,6 +11,8 @@
 
 #ifndef CAN_INTERRUPT_H_
 #define CAN_INTERRUPT_H_
+
+//  CAN0 Interrupt handler for RX, TX and bus error interrupts
 void CAN0_Handler       ( void );
 
 #endif /* CAN_INTERRUPT_H_ */

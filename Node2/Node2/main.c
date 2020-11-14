@@ -43,6 +43,7 @@ int main(void)
     }
 }
 
+// TC0 Interrupt handler
 void TC0_Handler(){
 	uint32_t dummy = REG_TC0_SR0; //Clear interrupt flag to avoid continously call to TCO_Handler()
 	if (init_flag == 1){

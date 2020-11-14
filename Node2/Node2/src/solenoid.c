@@ -1,6 +1,6 @@
 
 #include "../inc/solenoid.h"
- #include <sam.h>
+#include <sam.h>
 #include <stdint.h>
 
 
@@ -10,7 +10,6 @@ void solenoid_init(){
 	solenoid_counter = 0;
 	solenoid_free_flag = 0; 
 }
-
 
 void solenoid_push(){
 	REG_PIOA_CODR |= (1<<15);

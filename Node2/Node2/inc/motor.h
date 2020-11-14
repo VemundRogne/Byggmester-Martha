@@ -39,11 +39,6 @@ void motor_set_output(uint8_t direction, uint16_t power);
 /* Initializes the motor */
 void motor_init();
 
-
-// Stepper speed should be commanded by joystick (-127, 127)
-//void motor_joystick_command(int8_t stepper_speed);
-
-
 // ------------------ ENCODER -----------------------
 
 /* 
