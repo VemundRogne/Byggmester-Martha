@@ -1,3 +1,7 @@
+/**
+* @file
+* @brief Implementation of the external memory library
+*/
 
 #include <avr/io.h>
 

@@ -10,5 +10,5 @@ digraph "inc/mcp2515.h"
   Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node5 [label="src/mcp2515.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mcp2515_8c.html",tooltip="Implementation of the MCP2515 library. "];
   Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node6 [label="src/uart.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$uart_8c.html",tooltip="Implementation for uart library. "];
+  Node6 [label="src/uart.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ByggmesterMartha_2ByggmesterMartha_2src_2uart_8c.html",tooltip="Implementation for uart library. "];
 }

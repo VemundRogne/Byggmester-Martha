@@ -1,0 +1,133 @@
+\hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h}{}\section{inc/adc.h File Reference}
+\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h}\index{inc/adc.\+h@{inc/adc.\+h}}
+
+
+Library for reading values through A\+DC.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for adc.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a5cdee2d8dd40e8472128a8077bc304cf}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a5cdee2d8dd40e8472128a8077bc304cf}} 
+\#define {\bfseries F\+I\+L\+T\+E\+R\+\_\+\+C\+O\+N\+S\+T\+A\+NT}~4
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_af41575c9ec5feeed07194d44d8eb507e}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_af41575c9ec5feeed07194d44d8eb507e}} 
+\#define {\bfseries A\+D\+C\+\_\+\+A0}~0x00
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_acbe1fb750322cf596e4744221bcd5bfa}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_acbe1fb750322cf596e4744221bcd5bfa}} 
+\#define {\bfseries A\+D\+C\+\_\+\+A1}~0x01
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ab76c8d2dafab5ffa9b1644f1f952cc4c}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ab76c8d2dafab5ffa9b1644f1f952cc4c}} 
+\#define {\bfseries A\+D\+C\+\_\+\+A2}~0x02
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ae58c896457eb7c69d808175b83efd201}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ae58c896457eb7c69d808175b83efd201}} 
+\#define {\bfseries A\+D\+C\+\_\+\+PD}~0x03
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a451a14b795eddc11d8d3a06136447d47}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a451a14b795eddc11d8d3a06136447d47}} 
+\#define {\bfseries A\+D\+C\+\_\+\+I\+NH}~0\+X04
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_af6188f8a553dec2c1a19fc474d82a104}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_af6188f8a553dec2c1a19fc474d82a104}} 
+\#define {\bfseries A\+D\+C\+\_\+\+B\+IP}~0x05
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ae838c6f352d15ec94f5a9b773abba002}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_ae838c6f352d15ec94f5a9b773abba002}} 
+\#define {\bfseries A\+D\+C\+\_\+\+D\+I\+FF}~0x06
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a327e138d5bf361f8ac3b111a4ba2c3b5}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a327e138d5bf361f8ac3b111a4ba2c3b5}} 
+\#define {\bfseries A\+D\+C\+\_\+\+A\+LL}~0x07
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_aca890432108a12deb6bfb0cbb6e82ab1}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_aca890432108a12deb6bfb0cbb6e82ab1}} 
+\#define {\bfseries A\+D\+C\+\_\+\+B\+U\+S\+Y\+\_\+\+B\+IT}~P\+E0
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a7fd1ce3532da4703d7c98d58fb0a3991}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a7fd1ce3532da4703d7c98d58fb0a3991}} 
+\#define {\bfseries A\+D\+C\+\_\+\+B\+U\+S\+Y\+\_\+\+P\+IN}~P\+I\+NE
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a1858089c4d03e6f10babe71bb13d979a}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a1858089c4d03e6f10babe71bb13d979a}} 
+\#define {\bfseries A\+D\+C\+\_\+\+B\+U\+S\+Y\+\_\+\+P\+O\+RT}~P\+O\+R\+TE
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a133acd1872335f68871355e2cae98e4a}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a133acd1872335f68871355e2cae98e4a}} 
+\#define {\bfseries A\+D\+C\+\_\+\+B\+U\+S\+Y\+\_\+\+D\+DR}~D\+D\+RE
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a1e942fcd91f79d49e4ddb8d7e9d3ef95}{adc\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Sets up Timer1 to be a P\+WM output on P\+D5 (O\+C1A) \end{DoxyCompactList}\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a346bb13fcedaf0fc92e5b7770aaa921f}{adc\+\_\+rd} ()
+\begin{DoxyCompactList}\small\item\em Read and store adc values internally. \end{DoxyCompactList}\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a0b06a7461ca92e52e057420074eec2f6}{adc\+\_\+get\+\_\+values} (uint8\+\_\+t $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Read filtered adc-\/values from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_aadf332d44a59177e79f42dd737a16942}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_aadf332d44a59177e79f42dd737a16942}} 
+volatile uint16\+\_\+t {\bfseries \+\_\+adc\+\_\+values} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for reading values through A\+DC. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a0b06a7461ca92e52e057420074eec2f6}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a0b06a7461ca92e52e057420074eec2f6}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}!adc\+\_\+get\+\_\+values@{adc\+\_\+get\+\_\+values}}
+\index{adc\+\_\+get\+\_\+values@{adc\+\_\+get\+\_\+values}!Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}}
+\subsubsection{\texorpdfstring{adc\+\_\+get\+\_\+values()}{adc\_get\_values()}}
+{\footnotesize\ttfamily void adc\+\_\+get\+\_\+values (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Read filtered adc-\/values from memory. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em dest} & Pointer to list of A\+DC values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file adc.\+c.
+
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a1e942fcd91f79d49e4ddb8d7e9d3ef95}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a1e942fcd91f79d49e4ddb8d7e9d3ef95}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}!adc\+\_\+init@{adc\+\_\+init}}
+\index{adc\+\_\+init@{adc\+\_\+init}!Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}}
+\subsubsection{\texorpdfstring{adc\+\_\+init()}{adc\_init()}}
+{\footnotesize\ttfamily void adc\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets up Timer1 to be a P\+WM output on P\+D5 (O\+C1A) 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file adc.\+c.
+
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a346bb13fcedaf0fc92e5b7770aaa921f}\label{ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h_a346bb13fcedaf0fc92e5b7770aaa921f}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}!adc\+\_\+rd@{adc\+\_\+rd}}
+\index{adc\+\_\+rd@{adc\+\_\+rd}!Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h@{Byggmester\+Martha/\+Byggmester\+Martha/inc/adc.\+h}}
+\subsubsection{\texorpdfstring{adc\+\_\+rd()}{adc\_rd()}}
+{\footnotesize\ttfamily void adc\+\_\+rd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read and store adc values internally. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file adc.\+c.
+

@@ -4,7 +4,7 @@ digraph "inc/timers.h"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="inc/timers.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
-  Node2 [label="src/adc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$adc_8c.html",tooltip="Implementation of the ADC library. "];
+  Node2 [label="src/adc.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c.html",tooltip="Implementation of the ADC library. "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
   Node3 [label="src/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c.html",tooltip="Main file for node 1. "];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];

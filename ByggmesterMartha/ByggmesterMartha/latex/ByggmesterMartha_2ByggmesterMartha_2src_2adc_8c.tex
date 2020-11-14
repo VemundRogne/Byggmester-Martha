@@ -1,0 +1,107 @@
+\hypertarget{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c}{}\section{src/adc.c File Reference}
+\label{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c}\index{src/adc.\+c@{src/adc.\+c}}
+
+
+Implementation of the A\+DC library.  
+
+
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../inc/adc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/timers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../inc/xmem.\+h\char`\"{}}\newline
+Include dependency graph for adc.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_af2f4e1ff3c3b8cf2e9e3318d00a06d01}{load\+\_\+mux\+\_\+config} ()
+\begin{DoxyCompactList}\small\item\em Loads configuration of each channel according to figura 4a (page 11) in datasheet. \end{DoxyCompactList}\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}{adc\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Sets up Timer1 to be a P\+WM output on P\+D5 (O\+C1A) \end{DoxyCompactList}\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a346bb13fcedaf0fc92e5b7770aaa921f}{adc\+\_\+rd} ()
+\begin{DoxyCompactList}\small\item\em Read and store adc values internally. \end{DoxyCompactList}\item 
+void \hyperlink{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a0b06a7461ca92e52e057420074eec2f6}{adc\+\_\+get\+\_\+values} (uint8\+\_\+t $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Read filtered adc-\/values from memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the A\+DC library. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a0b06a7461ca92e52e057420074eec2f6}\label{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a0b06a7461ca92e52e057420074eec2f6}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}!adc\+\_\+get\+\_\+values@{adc\+\_\+get\+\_\+values}}
+\index{adc\+\_\+get\+\_\+values@{adc\+\_\+get\+\_\+values}!Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}}
+\subsubsection{\texorpdfstring{adc\+\_\+get\+\_\+values()}{adc\_get\_values()}}
+{\footnotesize\ttfamily void adc\+\_\+get\+\_\+values (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Read filtered adc-\/values from memory. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em dest} & Pointer to list of A\+DC values\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file adc.\+c.
+
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}\label{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a1e942fcd91f79d49e4ddb8d7e9d3ef95}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}!adc\+\_\+init@{adc\+\_\+init}}
+\index{adc\+\_\+init@{adc\+\_\+init}!Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}}
+\subsubsection{\texorpdfstring{adc\+\_\+init()}{adc\_init()}}
+{\footnotesize\ttfamily void adc\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets up Timer1 to be a P\+WM output on P\+D5 (O\+C1A) 
+
+Initialize adc to freerun mode.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file adc.\+c.
+
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a346bb13fcedaf0fc92e5b7770aaa921f}\label{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_a346bb13fcedaf0fc92e5b7770aaa921f}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}!adc\+\_\+rd@{adc\+\_\+rd}}
+\index{adc\+\_\+rd@{adc\+\_\+rd}!Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}}
+\subsubsection{\texorpdfstring{adc\+\_\+rd()}{adc\_rd()}}
+{\footnotesize\ttfamily void adc\+\_\+rd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read and store adc values internally. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file adc.\+c.
+
+\mbox{\Hypertarget{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_af2f4e1ff3c3b8cf2e9e3318d00a06d01}\label{ByggmesterMartha_2ByggmesterMartha_2src_2adc_8c_af2f4e1ff3c3b8cf2e9e3318d00a06d01}} 
+\index{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}!load\+\_\+mux\+\_\+config@{load\+\_\+mux\+\_\+config}}
+\index{load\+\_\+mux\+\_\+config@{load\+\_\+mux\+\_\+config}!Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c@{Byggmester\+Martha/\+Byggmester\+Martha/src/adc.\+c}}
+\subsubsection{\texorpdfstring{load\+\_\+mux\+\_\+config()}{load\_mux\_config()}}
+{\footnotesize\ttfamily void load\+\_\+mux\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Loads configuration of each channel according to figura 4a (page 11) in datasheet. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 18 of file adc.\+c.
+

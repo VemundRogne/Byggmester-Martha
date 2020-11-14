@@ -14,11 +14,11 @@ digraph "src/main.c"
   Node0 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
   Node5 [label="util/delay.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
   Node0 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
-  Node6 [label="../inc/xmem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xmem_8h_source.html"];
+  Node6 [label="../inc/xmem.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xmem_8h.html",tooltip="Library to keep control of external memory addressing. "];
   Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
-  Node7 [label="../inc/uart.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$uart_8h.html",tooltip="Library for uart communication with node 1. "];
+  Node7 [label="../inc/uart.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ByggmesterMartha_2ByggmesterMartha_2inc_2uart_8h.html",tooltip="Library for uart communication with node 1. "];
   Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
-  Node8 [label="../inc/adc.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$adc_8h.html",tooltip="Library for reading values through ADC. "];
+  Node8 [label="../inc/adc.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ByggmesterMartha_2ByggmesterMartha_2inc_2adc_8h.html",tooltip="Library for reading values through ADC. "];
   Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
   Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
   Node9 [label="../inc/funkyboard.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$funkyboard_8h.html",tooltip="Library for communicating with multifunction board. "];
