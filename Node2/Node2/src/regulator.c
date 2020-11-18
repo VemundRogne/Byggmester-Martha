@@ -75,6 +75,7 @@ void regulator_calc_output(){
 	regulator_output = reverse_dir_action*(p_gain*error + (i_gain*integral)>>3);
 }
 
+
 void regulator_set_output(){
 	uint8_t dir = 0; //Positive direction
 	if (regulator_output < 0){
