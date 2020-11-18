@@ -162,9 +162,9 @@ Copyright 2003 Kimberly Otten Software Consulting
 enum mcp2515_mode{
 	NORMAL = 0b000,
 	SLEEP = 0b001,
-	LOOPBACK = 0b010,
+	LOOPBACK = 0b100,
 	LISTEN = 0b011,
-	CONFIG = 0b100
+	CONFIG = 0b010
 };
 
 
